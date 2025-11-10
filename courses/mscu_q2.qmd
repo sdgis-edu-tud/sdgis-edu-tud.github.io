@@ -7,9 +7,7 @@ format: html
 
 ## Importing Data from Portals
 
-Exercise: Using the Data Source Manager with WFS and WMS
-
-\[pages/\]\[Using the Data Source Manager with WFS and WMS\](pages/misc/using_data_source_manager.qmd "Using the Data Source Manager with WFS and WMS")\[/\]
+-   **Exercise 1: [Using the Data Source Manager with WFS and WMS](/pages/misc/using_data_source_manager.qmd)**
 
 ## Georeferencing and Digitalizing
 
