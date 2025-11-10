@@ -1,0 +1,18 @@
+---
+title: "Master of Urbanism - Q2 - GIS Workshop"
+format: html
+---
+
+# Data Sources and Formats
+
+## Importing Data from Portals
+
+Exercise: Using the Data Source Manager with WFS and WMS
+
+\[pages/\]\[Using the Data Source Manager with WFS and WMS\](pages/misc/using_data_source_manager.qmd "Using the Data Source Manager with WFS and WMS")\[/\]
+
+## Georeferencing and Digitalizing
+
+# Building and Analyzing sections
+
+# Data Interoperability and Visualization

@@ -1,0 +1,25 @@
+---
+title: "Spatial Data and GIS Edu Platform"
+---
+
+Introducing the **Spatial Data and GIS platform**, a cutting-edge initiative crafted by the Department of Urbanism at TU Delft. Our platform serves as a hub for the collection, editing, publication, and dissemination of invaluable teaching resources pertinent to the dynamic realms of Geographic Information Systems (GIS) and Digital Tools. Catering to both Bachelor's and Master's programs within the Faculty of Architecture and the Built Environment, our mission is to empower students with meticulously curated educational materials.
+
+Tailored to the needs of aspiring scholars, our platform offers a comprehensive array of resources meticulously developed by esteemed educators and researchers at TU Delft, supplemented by external contributions. Designed to foster an enriching learning experience, students gain access to a wealth of knowledge, enhancing their understanding of GIS and digital tools.
+
+Furthermore, our platform extends its reach to educators, providing them with an open forum to share and repurpose teaching materials, fostering collaboration and innovation within the academic community. Embracing a spirit of inclusivity and collaboration, we invite both students and instructors to embark on a journey of discovery and growth through the Spatial Data and GIS platform.
+
+# Learn GIS
+
+Geographic Information Systems (GIS) are essential tools for visualizing, analyzing, and interpreting spatial data to understand patterns, relationships, and trends. Whether you are an architecture and urbanism student or a professional looking to enhance your skills, this section provides comprehensive resources to help you master GIS.
+
+# Find Data
+
+Accessing high-quality spatial data is crucial for effective analysis and decision-making in GIS. This section provides you with the resources and guidance needed to discover, obtain, and manage spatial data for your projects in architecture, urbanism and landscape architecture.
+
+# Software and Tools for GIS and Data Visualization
+
+Curated list os open software and tools
+
+# Data-Informed Design for Sustainable Urban Futures
+
+# Collaborate

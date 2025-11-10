@@ -1,0 +1,83 @@
+---
+title: "Visual Variables and Map Aesthetics"
+format: html
+---
+
+# Introduction
+
+This chapter focuses on the stylistic and perceptual aspects of map design—those that influence clarity, hierarchy, emotion, and interpretation. These elements translate cartographic principles (Chapter 1) into concrete design decisions across the map elements (Chapter 2) and layout (Chapter 3).
+
+## Fonts and Typography
+
+### Font types
+
+serif, sans-serif, decorative \### Font syze and hierarchy
+
+### Font weight and emphasis
+
+### Kerning, spacing, readability
+
+### Typographic conventions in cartography
+
+## Color Use in Maps
+
+### Color systems
+
+-   RGB
+-   CMYK
+-   HSL
+-   HEX \### Color theory \### Sequential, diverging, and categorical schemes \### Color perception and accessibility \### Psychological and caltural meaning of colors
+
+## Line and Stroke Styles
+
+Line weight and hierarchy
+
+Dash types and meanings (e.g., administrative boundaries vs physical features)
+
+Contour and flow line visualization
+
+Edge sharpness and layering
+
+## Symbols and Iconography
+
+Types of symbols: point, line, area
+
+Pictorial vs geometric symbols
+
+Symbol scaling and abstraction
+
+Semiotics of symbols (iconic/indexical/symbolic)
+
+## Texture and Pattern
+
+Use of hatching, shading, dotted fills
+
+Surface texture to suggest terrain, land use, or density
+
+Interactions with color and scale
+
+## Transparency and Layering
+
+Visual hierarchy via opacity
+
+Overlapping elements
+
+Techniques for depth and dimensionality
+
+## Animation and Interactivity
+
+Animated transitions for layers or zoom
+
+Interactive color and symbol changes
+
+Mouseover and click-based symbol variation
+
+Time-based variables (e.g., animated flows or change detection)
+
+## Design Cohesion and Style Guides
+
+How all these elements work together in design systems
+
+Using style guides or cartographic templates
+
+Creating and applying cartographic identities (e.g., for institutions, atlases, or web platforms)

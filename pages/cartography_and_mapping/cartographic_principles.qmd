@@ -1,0 +1,132 @@
+---
+title: "Cartographic principles"
+format: html
+---
+
+-   Introduction
+
+    -   what is a map?
+
+    -   what is cartography?
+
+    -   why do we map?
+
+<!-- -->
+
+-   principles of cartography and layout
+    -   visual contrast
+    -   legibility
+    -   figure-ground
+    -   hyerarchical organization
+    -   balance
+        -   colors
+        -   fonts
+        -   thematic maps
+-   static maps vs dynamic maps
+-   layout manager
+-   set layout size
+-   set frame
+-   set legend
+-   set labels
+-   add other elements
+
+# Introduction
+
+Mapping is the activity or process of making a map.\
+Map making is in many repsects a creative process.
+
+> Even if you know all of the standard practices that exist for maps, you will still have to deal with your unique data and mapping goals. And the only way to deal with those is to employ your creative skills.
+
+Mappare e' una delle attivita' fondamentali per chi progetta lo spazio.
+
+Cartographic mapping is the art and science of making maps and charts. This discipline has ancient roots dating back to prehistoric depiction of hunting and fishing territories. Modern cartography started in the 15th century when portolan charts were complied for navigation.
+
+This duality reverberates in the map design process: one needs knowledge of mapping standard and creative intelligence to generate products tha can support both visual knowledge and visual communication.
+
+> Without the standards know-how, you risk everything from leaving out a bit of information that could have been useful, all the way to making grievous communications errors. Without creative skills, you could make maps that look nondescript, that don’t adequately illustrate your unique data and their ramifications, that don’t increase your professional capital, and that fail to leave a lasting impression.
+
+In the digital era, le possibilita' di svariare su *cosa* possiamo mappare si sono moltiplicate esponenzialmente, grazie all'infinita disponibilita' di dati georiferiti a cui abbiamo accesso. La disponibilita' di GIS software come QGIS permette a chiunque di collezionare facilmente dati spaziali, visualizzarli in ambiente digitale, e mettere su grandi quantita' di mappe.
+
+Ciononostante, perche' le mappe e gli atlanti siano anche prodotti di **qualita'**, e non solo di **quantita'**, bisogna conoscere quei principi sui cui si fonda la cartografia che rimangono invariati nel tempo.
+
+Cartography is a proper language, with its on rules and "vocabulary", or, better, principles.
+
+## Principi di map design
+
+Quando si progetta una mappa, l'obiettivo principale e' quello di comunicare un messaggio.
+
+> che domande bisogna porsi quando si disegna una mappa?
+
+Cinque di questi principi principali sono **legibility**, **visual contrast**, **figure-ground**, **hierarchical organization**, and balance (<https://www.esri.com/arcgis-blog/products/arcgis-pro/mapping/design-principles-for-cartography>). Quando usati in maniera appropriata, questo sistema di principi favorisce e guida la lettura di una mappa sulla pagina in maniera chiara e in grado di comunicare il messaggio che il map maker vuole comunicare.
+
+### Visual Contrast
+
+Visual contrast relates to how map featrues and page elements contrast with each other and their background. A well-designed map with a high visual contrast can result in a crisp, cleanm sharp-looking map. The higher the contrast between features, the more something will stand out. This is ususally the feature that is darker or brighter. Conversely, a map that has low visual contrast can be used to promote a more subtle impression. Features that have less contrast will appear to belong together.
+
+### Legibility
+
+Legibility is "the ability to be seen and understood". It depends on good decision-making for selecting symbols that are familiar to the rider, and choosing appropriate sizes so that the results are effortlessy seen and easily understood (example image). Geometric symbols are easier to read at smaller sizes; more complex symbols or incons require larger amounts of space to be legible (examples).
+
+In linea di principio questi aspetti sono controllabili quando la mappa e' stampata su un foglio di carta - un media ormai passato quasi obsoleto, dal momento che la gran parte della comunicazione visiva, mappe incluse, passa attraverso altri media come schermi digitali. Nel processo di mappatura, si effettuano diverse iterazioni - prove di stampa - per rifinire il contenuto e l'aspetto di una mappa, la grandezza dei simboli e delle labels, la dimensione e posizione della legenda, l'adeguatezza della scala di rappresentazione, eccetera. L'uso di strumenti e software digitale, come gis, cad, o graphica visiva (es. senza nominare illustrator o photoshop), nella costruzione della mappa, e l'uso di schermi per la sua comunicazione, spesso fanno tralasciare questi aspetti, risultando in immagini difficilmente legibili perche' troppo piccole, o altro.
+
+In questo senso, bisogna sempre considerare il supporto finale che ospitera' la mappa. Finira' in un libro? Che dimensioni avra' questo libro? Quanto spazio posso usare nella pagina? Finira' in un articolo scientifico? Sara' proiettata su uno schermo di grandi dimensioni o di piccole dimensioni? eccetera.
+
+Questi due principi sono propedetuici to other design principles: figure-ground, hierarchical organization, and balance.
+
+A map is a graphic representation, drawn to **scale** and traditionaly on a flat surface, of features of an area of the Earth. Such features can vary, they can be geographical - for instance, landforms, rivers, or geopolitical - administrative boundaries.
+
+Da un punto di vista tecnico, mappare significa riportare degli elementi
+
+### Figure-ground
+
+Figure-ground organization is the spontaneous separation of the figure in the foreground from an "amorphous" background. Cartographers use this design principle to help their map readers find the area of the map or page to focus on.
+
+There are many to promote figure-ground organization, such as adding detail to the map or using a white wash, a drop shadow, or feathering.
+
+### Hierarchical organization
+
+The internal graphic structuring of the map - and the page layout more generally - is fundamental to helping people read your map. A hierarchy is the visual separation of your map into layers of information. Some types of features will be seen as more important that other kinds of features, and some features will seem more important than other features of the same type.
+
+ovviamente, questo dipende dal tipo di mappa sui cui dovete lavorare.
+
+Hieararchical organization on reference maps (add link) works differently than on thematic maps (add link). For reference maps, many of the features should be no more important than one another and so, visually, they should lie on essentially the same visual plane. In reference maps, hierarchy is ususally more subtle and the map reader brings elements to the forefront by focusing attention on them.
+
+Example: a topographic map
+
+For thematic maps, the theme is more important than the base that provides geographic context.
+
+Example: choroplet map
+
+### Balance
+
+Balance involves the organization of the map and other elements on the page. A well-balanced map page results in an impression of equilibrium and harmony.
+
+We can also use balance in different ways to promote "edginess" or "tension" or create an impression that is more "organic". Balance results from two primary factors, visual weight and visual direction.
+
+If you imagine that the center of your map page is balancing on a fulcrum, the factors that will “tip” the map in a particular direction include the relative location, shape, size, and subject matter of elements on the page.
+
+## Time
+
+an additional principle in map makin is **time**.
+
+As illustrated in
+
+Investire tempo in una mappa - o, per esteso, in un progetto cartografico piu' complesso come la creazione di un atlante - significa avere expectations realistiche su una project timeline.
+
+![https://youtu.be/x9wn633vl_c?si=wAzIYQ8RMxIrRgKe](/images/misc/Spiderman.png){#spiderman fig-align="center" width="355"}
+
+## Exercise: choose and assess a map
+
+Go to the internet or books, and look for maps. Pick three maps that caught your attention - either in a good or a bad way. Assess the maps according to these principles described above.
+
+Ask yourselves:
+
+-   does the map has good visual contrast?
+
+-   Is it legible?
+
+-   Figure ground?
+
+-   Hierarchical organization?
+
+-   Balance?

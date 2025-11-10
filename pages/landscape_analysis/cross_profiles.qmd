@@ -1,0 +1,88 @@
+---
+title: "Cross Profiles"
+format: html
+---
+
+Cross profiles - also known as elevation profiles or terrain transects - are vertical slices of the terrain that show changes in elevation along a line across a landscape. They are fundamental tools in environmental analysis, geomorphology, hydrology, landscape design, and urban planning.
+
+Cross profiles help us:
+
+-   Understand topographic variation in a specific area
+
+-   Identify ridges, valleys, and slopes
+
+-   Compare terrain before and after interventions (e.g. excavation, flood defenses)
+
+-   Analyze the shape and structure of natural and artificial landforms
+
+-   Integrate and assess data from various sources such as Digital Terrain Models (DTMs), Digital Surface Models (DSMs), and point clouds (.laz files)
+
+## Cross profiles in QGIS
+
+QGIS allows you to combine raster data (like elevation models), vector layers (like contour lines), and point clouds (such as LiDAR data) to generate highly informative profiles. With the right tools and plugins, you can visualize, compare, and extract insights from these profiles—at both site-specific and regional scales.
+
+software: Excel, QGIS level: basic courses: Untitled
+
+## Watch video tutorials
+
+### Cross section detection Using Profile Tool
+
+{{< video https://www.youtube.com/watch?v=jwbsdLuxyAY&t=110s&ab_channel=GeoDeltaLabs >}}
+
+### Compare raster DTM's, contour lines and a point cloud for different transects
+
+{{< video https://www.youtube.com/watch?v=jqDm1RpGpVE&t=65s&ab_channel=HansvanderKwast >}}
+
+### Elevation Profiles using .laz data
+
+{{< video https://www.youtube.com/watch?v=8fsMyj1nxpE&ab_channel=OpenSourceOptions >}}
+
+### Multiple cross-sectional profiles
+
+{{< video https://www.youtube.com/watch?v=HCO7Ugfc_0w&t=184s&ab_channel=WebStoryMap >}}
+
+## Exercise. Create 3D Terrain with QGIS and GIMP (Optional)
+
+<https://www.youtube.com/watch?v=rgFI5WiXOl8&ab_channel=GeoDeltaLabs>
+
+#### Download / select data
+
+##### Download elevation data
+
+1.  Access <https://ahn.arcgisonline.nl/ahnviewer/> and click the `Layer List` button (fig.1)
+2.  Check the `AHN4 - Downloads per kaartblad layer`
+3.  Tiles with orange outlines will appear on the viewer. Click on the your study area tile to download the raster and point cloud files. The tile outline will turn turquoise, and a pop-up window will appear (fig.2).
+4.  Download `AHN4_DSM_5m`, `AHN4_DTM_5m` and `AHN4_Puntenwolk (LAZ)`. Laz files are quite large, so it will take a while to dowload them.
+
+![Untitled](Untitled.png)
+
+![Untitled](Untitled%201.png)
+
+#### Download complementary data
+
+#### Soil and water tables and groundwater levels, geomorphology and soils
+
+[Ondergrondmodellen \| BROloket](https://www.broloket.nl/ondergrondmodellen/kaart)
+
+#### Water management (Waterboard Delfland)
+
+[Legger Delfland AGOL](https://geohub-delfland-1-hhdelfland.hub.arcgis.com/pages/legger-delfland)
+
+#### Historical maps
+
+[ ](https://qgis.nl/2017/02/01/topotijdreis-kaartlagen-in-qgis/)
+
+### Create cross profiles for your study area
+
+1.  Create a cross profile at the small scale using .laz data
+2.  Create a cross profile at the landscape scale
+
+# Resources
+
+BGT
+
+<https://app.pdok.nl/lv/bgt/download-viewer/>
+
+Bodem
+
+<https://service.pdok.nl/bzk/bro-bodemkaart/atom/bro-bodemkaart.xml>

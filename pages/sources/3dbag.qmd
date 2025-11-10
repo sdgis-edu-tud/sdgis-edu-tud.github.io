@@ -1,0 +1,27 @@
+---
+title: "3D BAG"
+description: "3D BAG provides detailed 3D building models for the Netherlands, derived from the Basisregistratie Adressen en Gebouwen (BAG)."
+image: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F3d.bk.tudelft.nl%2Fprojects%2F3dbag%2Fimg%2F3dbag_viewer.png
+url: https://3dbag.bk.tudelft.nl/
+word-count: 100
+categories:
+  - 3D Data
+  - Building Models
+  - Netherlands
+  - Geospatial Data
+  - Urban Planning
+  - GIS Datasets
+  - Open Data
+  - Digital Twins
+extent: "Netherlands"
+coverage: "National"
+year: 2023
+resolution: "Building-level (LOD1–2)"
+data_format: 
+  - CityJSON
+  - 3D Tiles
+source: "TU Delft & Kadaster"
+external_link: https://3dbag.bk.tudelft.nl/
+---
+
+[Visit the official 3D BAG website](https://3dbag.bk.tudelft.nl/){:target="_blank"}

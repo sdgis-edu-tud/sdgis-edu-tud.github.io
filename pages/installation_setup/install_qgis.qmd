@@ -1,0 +1,94 @@
+---
+title: "Install QGIS"
+format: html
+---
+
+------------------------------------------------------------------------
+
+## Getting Started: Installing QGIS
+
+To begin using QGIS, you'll need to download and install it on your computer. The process depends on your operating system.
+
+------------------------------------------------------------------------
+
+## Installing QGIS on **Windows**
+
+1.  **Download QGIS**
+    -   Go to the official QGIS website: [**qgis.org**](https://qgis.org/)
+    -   Click on the `Download Now` button.
+    -   Choose **Windows** and download the **Long Term Release (LTR)** version. This version is more stable and recommended for beginners.
+
+::: callout-important
+**We recommend the Long Term Release (LTR) version for stability and compatibility.**
+:::
+
+![Screenshot of the QGIS download page highlighting the "Long Term Version for Windows (3.40 LTR)" standalone installer, recommended for users prioritizing stability over the latest features.](images/01_ltr.PNG){fig-align="center"}
+
+2.  **Run the Installer**
+    -   After the download is complete, double-click the installer file.
+    -   Follow the installation wizard — you can safely accept the default settings.
+3.  **Select Components**
+    -   If asked, keep the default components selected. These will include QGIS and essential libraries.
+4.  **Install Plugins**
+    -   You might be asked to select optional plugins. Beginners can stick with the defaults.
+5.  **Finish the Installation**
+    -   Once the process is done, click **Finish** and launch QGIS from the Start Menu.
+
+------------------------------------------------------------------------
+
+## Installing QGIS on **macOS**
+
+1.  **Download QGIS**
+    -   Visit [**qgis.org**](https://qgis.org/)
+    -   Click the `Download Now` button and select the **macOS** version (Long Term Release recommended).
+2.  **Mount the Disk Image**
+    -   Open the downloaded `.dmg` file.
+3.  **Move QGIS to Applications**
+    -   Drag the QGIS icon into your `Applications` folder.
+4.  **Install Dependencies (if needed)**
+    -   If prompted, follow the instructions to install any required frameworks or libraries.
+5.  **Complete Installation**
+    -   Eject the disk image, then open QGIS from the `Applications` folder.
+
+------------------------------------------------------------------------
+
+## Installing QGIS on **Linux** (Example: Ubuntu)
+
+1.  **Add the QGIS Repository** Open a terminal and enter the following:
+
+    ``` bash
+    sudo add-apt-repository ppa:ubuntugis/ppa
+    sudo apt-get update
+    ```
+
+2.  **Install QGIS**
+
+    ``` bash
+    sudo apt-get install qgis
+    ```
+
+3.  **Install Extra Dependencies (if required)** If prompted, install any suggested packages to ensure full functionality.
+
+4.  **Launch QGIS** You can now open QGIS from your applications menu.
+
+------------------------------------------------------------------------
+
+## Post-Installation: What’s Next?
+
+1.  **Check Your Version**
+    -   Open QGIS and go to `Help > About` to confirm that the correct version has been installed.
+2.  **Start Exploring**
+    -   Try opening a sample project or load a basic shapefile (e.g., world countries or your city boundaries).
+    -   Get familiar with tools like the **Layer Panel**, **Map Canvas**, and **Attribute Table**.
+3.  **Learn by Doing**
+    -   There are many beginner tutorials online to help you start working with QGIS (including official training at <https://docs.qgis.org/>).
+
+------------------------------------------------------------------------
+
+## You're Ready to Go!
+
+Congratulations — you’ve installed QGIS! As you continue your architecture studies, QGIS will help you understand spatial relationships, analyze urban systems, and communicate your ideas more effectively. Remember: it’s okay to start small — load a map, try out basic tools, and learn step by step.
+
+> 💡 *Tip: Bookmark <https://docs.qgis.org> for tutorials, documentation, and user guides.*
+
+------------------------------------------------------------------------

@@ -1,0 +1,141 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "sdgistud"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: pages/software_and_tools.qmd
+        text: "Software and Tools"
+      - text: "Learn QGIS"
+        menu:
+          - text: "Installation and setup"
+            href: pages/installation_setup/install_qgis.qmd
+          - text: "Getting started with QGIS"
+            href: pages/getting_started.qmd
+          - text: "Cartography and mapping"
+            href: pages/cartography_and_mapping/cartographic_principles.qmd
+          - text: "Density analysis"
+            href: pages/density_analysis/land_cover_density_in_grid.qmd
+          - text: "Landscape analysis"
+            href: pages/landscape_analysis/terrain_data.qmd
+      - text: "Learn R"
+        menu:
+          - text: "Rbanism Geospatial Data Carpentry"
+            href: https://carpentries-incubator.github.io/r-geospatial-urban/
+          - text: "Join the Rbanism #30daysmapchallenge"
+            href: https://carpentries-incubator.github.io/r-geospatial-urban/
+      - text: "Courses and Workshops"
+        menu:
+          - text: "IOP1 - "
+            href: ""
+          - text: "WV5 - "
+            href: ""
+          - text: "MSc Urbanism Q1 - GIS workshop"
+            href: ""
+          - text: "MSc Urbanism Q2 - GIS workshop"
+            href: courses/mscu_q2.qmd
+          - text: "MSc Urbanism Q3 - GIS workshop"
+            href: ""
+          - text: "ARFW0501 - Applied Spatial Analytics for Sustainable Futures"
+            href: ""
+          - text: "DISSUF MSc Urbanism Graduation Cluster"
+            href: ""
+      - href: pages/find_data.qmd
+        text: "Find Data"
+      - href: pages/about.qmd
+        text: "About"
+    right:
+      - href: contact.qmd
+        text: "Contact us"
+      - href: contribute.qmd
+        text: "Contribute"  
+    tools:
+      - icon: twitter
+        href: https://twitter.com
+      - icon: github
+        menu:
+          - text: Source Code
+            href: https://code.com
+          - text: Report a Bug
+            href: https://bugs.com
+
+  sidebar:
+    - id: qgis_tutorials
+      title: "Learn GIS"
+      style: "floating"
+      navigation: true
+      search: true
+      collapse-level: 1
+      contents:
+        - pages/learn_gis_introduction.qmd
+        - section: "Installation and setup"
+          contents:
+            - pages/installation_setup/install_qgis.qmd
+            - pages/installation_setup/switch_language.qmd
+            - pages/installation_setup/activating_panels.qmd
+            - pages/installation_setup/connecting_folders.qmd
+            - pages/installation_setup/installing_plugins.qmd
+        - section: "Gettin started with QGIS"
+          contents:
+            - pages/getting_started.qmd
+            - pages/starting_a_new_project.qmd
+            - pages/importing_vector_layers.qmd
+            - pages/styling_vector_layers.qmd
+            - pages/importing_raster_layers.qmd
+            - pages/importing_tables.qmd
+        - section: "Cartography and mapping"
+          contents:
+            - pages/cartography_and_mapping/making_a_map.qmd
+            - pages/cartography_and_mapping/cartographic_principles.qmd
+            - pages/cartography_and_mapping/elements.qmd
+            - pages/cartography_and_mapping/map_layout.qmd
+            - pages/cartography_and_mapping/map_aesthetics.qmd
+            - pages/cartography_and_mapping/types_of_maps.qmd
+            - pages/cartography_and_mapping/creating_a_map_in_qgis.qmd
+        - section: "Density analysis"
+          contents:
+            - pages/density_analysis/land_cover_density_in_grid.qmd
+            - pages/density_analysis/tree_cover_density_in_grid.qmd
+            - pages/density_analysis/road_density_in_grid.qmd
+            - pages/density_analysis/calculating_density_using_hex_maps.qmd
+        - section: "Landscape analysis"
+          contents:
+            - pages/landscape_analysis/terrain_data.qmd
+            - pages/landscape_analysis/hydrological_analysis.qmd
+            - pages/landscape_analysis/visibility_analysis.qmd
+            - pages/landscape_analysis/cross_profiles.qmd
+
+    - id: r_tutorials
+      title: "Learn R"
+      style: "floating"
+      navigation: true
+      contents:
+        - pages/tutorials/index2.qmd
+        - pages/tutorials/qgis_basics2.qmd
+        - pages/tutorials/raster_analysis2.qmd
+        - pages/tutorials/vector_analysis2.qmd
+
+  back-to-top-navigation: true
+  reader-mode: true
+  page-footer: 
+    left: "Copyright 2025, SDGIS@tudelft.nl"
+    right: 
+      - icon: github
+        href: https://github.com/
+      - icon: twitter 
+        href: https://twitter.com/
+  page-navigation: true
+  search: true
+
+format:
+  html:
+    theme: 
+      - cosmo
+    css: styles.css
+    toc: true
+
+editor: visual

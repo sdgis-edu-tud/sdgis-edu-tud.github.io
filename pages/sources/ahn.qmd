@@ -1,0 +1,23 @@
+---
+title: "AHN 4"
+description: "AHN 4 is the latest version of the Netherlands’ high-resolution digital elevation model (Actueel Hoogtebestand Nederland)."
+image: https://www.ahn.nl/sites/default/files/styles/open_graph/public/2022-12/AHN4.jpg
+word-count: 100
+categories:
+  - Elevation Data
+  - Digital Terrain Models
+  - Netherlands
+  - Geospatial Data
+  - Remote Sensing
+  - GIS Datasets
+  - Open Data
+extent: "Netherlands"
+coverage: "National"
+year: 2023
+resolution: "0.5 m (DSM and DTM)"
+data_format: 
+  - Point Cloud
+  - Raster (GeoTIFF)
+source: "AHN / Waterschappen"
+external_link: https://www.ahn.nl
+---

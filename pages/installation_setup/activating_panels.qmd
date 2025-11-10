@@ -1,0 +1,76 @@
+---
+title: "Activating Panels"
+format: html
+---
+
+## 🧭 Activating Panels in QGIS
+
+QGIS has a flexible and customizable interface. One of the most important parts of that interface is **panels** — tool windows that give you access to data, tools, and project controls.
+
+This tutorial will guide you through activating three essential panels:\
+🔍 **Browser Panel**\
+📂 **Layer Panel**\
+🛠️ **Processing Toolbox**
+
+------------------------------------------------------------------------
+
+## 🧱 What Are Panels?
+
+Panels are parts of the QGIS interface that appear on the sides of the main window. Each panel has a specific function:
+
+-   **Browser Panel** – Lets you quickly browse your computer for spatial files and databases to add to your project.
+-   **Layer Panel** – Displays all the map layers you’re currently using. You can show/hide, reorder, or manage them from here.
+-   **Processing Toolbox** – Gives you access to powerful spatial analysis tools, like buffering, clipping, and merging layers.
+
+> 💡 If your screen looks empty or confusing when you first open QGIS, some of these panels might be hidden. Let’s turn them on!
+
+------------------------------------------------------------------------
+
+## 🔍 Turn On the **Browser Panel**
+
+1.  **Launch QGIS** on your computer.
+2.  On the top menu bar, click **`View`**.
+3.  Hover over **`Panels`**.
+4.  Click **`Browser Panel`** to activate it.
+
+✅ The **Browser Panel** should now appear (usually on the left). You can now explore folders and add spatial data files by dragging them into the map.
+
+------------------------------------------------------------------------
+
+## 📂 Turn On the **Layer Panel**
+
+1.  In QGIS, go to the **`View`** menu again.
+2.  Hover over **`Panels`**.
+3.  Click **`Layer Panel`**.
+
+✅ The **Layer Panel** should appear — this is where you can manage what’s shown on your map. Right-click layers here to rename, style, or remove them.
+
+------------------------------------------------------------------------
+
+## 🛠️ Turn On the **Processing Toolbox**
+
+1.  Click the **`Processing`** menu on the top bar.
+2.  Select **`Toolbox`** from the dropdown.
+
+✅ The **Processing Toolbox** will appear (usually on the right). This panel gives you access to dozens of analysis tools, from simple measurements to advanced geospatial functions.
+
+------------------------------------------------------------------------
+
+## 🧩 Bonus: Customize Your Layout
+
+-   **Docking Panels**: Drag panels around and dock them where it feels comfortable — left, right, top, or bottom.
+-   **Floating Panels**: You can also leave a panel floating like a separate window.
+-   **Save Layout**: Once you're happy with the setup, go to\
+    `View \> Panels \> Save Panel Layout` to save your interface for future sessions.
+
+> 📌 Tip: If your panels disappear by accident, just reopen them using the steps above!
+
+------------------------------------------------------------------------
+
+## ✅ You're Ready!
+
+Now your QGIS workspace is organized and ready to use. These three panels — **Browser**, **Layer**, and **Processing Toolbox** — are the foundation of your QGIS workflow.
+
+> 🎓 *Tip for architecture students: Keeping your panels organized helps when managing multiple layers like building footprints, zoning areas, or transport networks.*
+
+------------------------------------------------------------------------

@@ -1,0 +1,8 @@
+---
+title: "main_find_data"
+format: html
+---
+
+# Find Data
+
+Accessing high-quality spatial data is crucial for effective analysis and decision-making in GIS. This section provides you with the resources and guidance needed to discover, obtain, and manage spatial data for your projects in architecture, urbanism and landscape architecture.

@@ -1,0 +1,6 @@
+---
+title: "Learn GIS"
+format: html
+---
+
+Geographic Information Systems (GIS) are essential tools for visualizing, analyzing, and interpreting spatial data to understand patterns, relationships, and trends. Whether you are an architecture and urbanism student or a professional looking to enhance your skills, this section provides comprehensive resources to help you master GIS.

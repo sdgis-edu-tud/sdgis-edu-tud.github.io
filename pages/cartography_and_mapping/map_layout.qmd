@@ -1,0 +1,169 @@
+---
+title: "Map layout"
+format: html
+---
+
+# Introduction
+
+**Map layout** or **map composition** is the part of [cartographic design](https://en.wikipedia.org/wiki/Cartographic_design) that involves assembling various map elements on a page.
+
+Common map elements include **one or more data frames** (each containing an ordered set of map layers), a scale bar, north arrow, map title, descriptive text, and a legend. 
+
+For geographic reference, you can add grids or graticules.
+
+When designin a map, several questions can be asked:
+
+> -   Will the map stand alone, or will it be part of a series of maps that share a similar design?
+>
+> -   What size will the printed map be? How will the page be oriented?
+>
+> -   How many data frames will your map have?
+>
+> -   Will the map have other elements such as a title, north arrow, and legend?
+>
+> -   Will the map contain graphs or reports to complement the geographic data?
+>
+> -   How will scale be indicated on the map?
+>
+> -   How will the map elements be organized on the page?
+>
+> -   Who are the end-users of our map?
+>
+> -   Are there any ‘unintended’ audiences (e.g., future employees, other colleagues, etc)?
+
+::: callout-note
+## map layout checklist
+
++-------------------------+----------------------+-----------------------------+
+| Primary Elements        | Secondary Elements   |                             |
++=========================+======================+=============================+
+| -   Title               | -   Inset maps       | -   Disclaimer              |
+|                         |                      |                             |
+| -   Subtitle            | -   Graticules       | -   Data sources            |
+|                         |                      |                             |
+| -   Legend              | -   Tables           | -   Data citations          |
+|                         |                      |                             |
+| -   Map(s)              | -   Photographs      | -   Map numbers (if series) |
+|                         |                      |                             |
+| -   Scale bars          | -   Graphics         | -   Copyright               |
+|                         |                      |                             |
+| -   North arrow         | -   Descriptive Text | -   Projection              |
+|                         |                      |                             |
+| -   Date                | -   Neat lines       | -   Network path            |
+|                         |                      |                             |
+| -   Autorship           | -   Graphs           | -   Page Borders            |
+|                         |                      |                             |
+|                         | -   Logos            |                             |
++-------------------------+----------------------+-----------------------------+
+|                         |                      |                             |
++-------------------------+----------------------+-----------------------------+
+:::
+
+## Map layout elements
+
+### Title
+
+-   Map title describes the theme or subject of a map.
+
+-   It should instantly give the viewer a good idea of what the map is depicting.
+
+-   The title is either the primary or secondary layout element (if secondary, it is only second to the map element)
+
+-   It summarizes (in ten words or less) the primary findings of the analysis
+
+-   Avoid any obvious and redundant terms (e.g., ‘map of…’, ‘analysis of…’)
+
+## Subtitle
+
+-   **The subtitle is comprised of any spillover text that is slightly less important than the title but still somewhat necessary to fully understand the map**
+
+-   **Ideally, the subtitle provides further detail that the viewer needs to know prior to being able to understand the map**
+
+-   **It is placed directly below or to the right of the title**
+
+It is displayed in the **same font as the title** but carries **slightly less emphasis** than the title
+
+## Legend
+
+-   **It is comprised of items (icons, points, lines, polygons) and their associated descriptions**
+
+-   **Only exclude map layers from a legend—or the legend itself from the layout—purposefully**
+
+-   **Best practices: Items look best when placed to the left of their corresponding label.**
+
+**Complicated legends** with many items necessitate **grouping levels**.\
+Most common grouping levels are the **categorical group** (e.g., all land-use colors placed separately from all stream-level colors) and the **shape-type  group** (e.g., all polygon features placed separately from all line features)
+
+## Inset maps
+
+-   **An inset map in cartography is a smaller map featured within a larger map.**
+
+-   **Zooming in on a specific area: It shows a detailed view of a particular region that may be too small to clearly represent on the main map. For example, an inset might zoom in on a city or area of interest within a larger regional or national map.**
+
+-   **Providing context: It shows the location of the main map's area within a broader geographic context. For example, a small world map might be inset in a detailed country map to show where the country is located globally.**
+
+**Highlighting related information**: Inset maps can show additional data or thematic content that complements the main map. For example, a weather map of a country may include an inset showing temperature trends in a specific region.
+
+## Labels
+
+-   **Identification of features\
+    Labels provide names for cities, rivers, roads, landmarks.\
+    Benefit: Helps users recognize and interpret map features.**
+
+-   **Context and Orientation\
+    Labels offer a spatial frame of reference.\
+    Benefit: Aids in understanding relationships between areas and features.**
+
+-   **Clarifying Thematic Data\
+    Labels explain data on maps like population or climate zones.\
+    Benefit: Helps users grasp patterns or trends in the data.**
+
+-   **Prioritizing Information\
+    Highlights key features (e.g., capital cities, major roads).\
+    Benefit: Directs focus to the most relevant parts of the map.**
+
+Conveying Additional Information\
+Can include extra data (e.g., population, distances).\
+Benefit: Enriches the map with supplementary details.
+
+## Charts and Graphs
+
+-   **Visualizing Complex Data\
+    Simplifies large datasets for easy understanding.\
+    Benefit: Highlights patterns and trends.**
+
+-   **Enhancing Data Interpretation\
+    Shows relationships between geographic locations and data.\
+    Benefit: Provides clear insight into spatial patterns.**
+
+-   **Combining Spatial and Quantitative Insights\
+    Merges location with numbers.\
+    Benefit: Analyzes how data varies by region.**
+
+-   **Supporting Thematic Analysis\
+    Adds context to thematic maps (e.g., demographics, economics).\
+    Benefit: Offers detailed insights on specific topics.**
+
+-   **Facilitating Comparisons Between Regions\
+    Easy comparison of regions using charts like bar or pie charts.\
+    Benefit: Shows socio-economic differences between areas.**
+
+# Exercise
+
+::: callout-warning
+## Map Peer Review exercise
+
+-   **Form groups (2-3 people)**
+
+-   **Choose a map** from your work that you would like to receive feedback on from your peers
+
+-   As a group, to **review the map evaluation criteria** provided in the review sheet (3 minutes)
+
+-   **Present your map**, explaining key details and objectives (2 min)
+
+-   **Give yourself a feedback** on areas you believe could be improved (2 min)
+
+-   **Peer feedback**: Group members give their **constructive feedback** and suggestions (max 5 min)
+
+-   **Write down the feedback and suggestions** received from both yourself and your peers on the map review sheet for future reference.
+:::

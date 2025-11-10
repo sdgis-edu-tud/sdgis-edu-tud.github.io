@@ -1,0 +1,110 @@
+---
+title: "Map elements"
+format: html
+---
+
+# Introduction
+
+## Map elements
+
+### Scale
+
+Scale is the relationship between a distance on a map and the corresponding distance on the ground.
+
+It affects the level of detail that can be shown and the map's overall purpose.
+
+It affects **generalization**: as scale decreases (i.e., becomes smaller), map makers must generalize features. This means they simplify, aggregate, or omit certain details to keep the map legible and useful.
+
+While scales in GIS are exactly defined and represented on the map as s scale bar or ratio, general discussions about map scale often use the relative terms: large scale, medium scale, and small scale.
+
+#### Small scale, large scale
+
+In spatial design disciplines, we offer associate the terms "small" and "large" in relation to the portion of territory that maps frame. A small scale map indicates a "zoom-in" area,
+
+In Cartographic terms, Large-scale maps show things as big and small-scsale maps show things as small.\
+
+::: callout-note
+#### scales
+
+-   Small scale: 1:250,000 and smaller
+
+-   Medium scale: 1:50,000 to 1:250,000
+
+-   Large scale: 1:50,000 and larger
+:::
+
+#### Spatial data and scales
+
+Spatial data are produced with a scale. An example is the dataset from [Natural Earth](https://www.naturalearthdata.com)[^map_elements-1]
+
+[^map_elements-1]: Natural Earth is a public domain map dataset available at 1:10m, 1:50m, and 1:110 million scales. Featuring tightly integrated vector and raster data, with Natural Earth you can make a variety of visually pleasing, well-crafted maps with cartography or GIS software.
+
+    Natural Earth was built through a collaboration of many [volunteers](https://www.naturalearthdata.com/about/contributors/) and is supported by [NACIS](http://www.nacis.org/) (North American Cartographic Information Society), and is free for use in any type of project (see our [Terms of Use](https://www.naturalearthdata.com/about/terms-of-use/) page for more information).[Get the Data](https://www.naturalearthdata.com/downloads)
+
+### Projections
+
+it is hard to represent our spherical world on a flat piece of paper. That is why cartographers use projections: to morph the globe into 2D map.
+
+Projection is a method of transforming the three-dimensional surface of the Earth into a two-dimensional map.
+
+Because a curved surface cannot be flattened without distortion, every projection results in some form of distortion. The type and extend of this distortion depend on the projection method used.
+
+These pictures from 1921 compare how the drwaing of a man's head changes in different projections, resulting in different distoritions.
+
+![](/images/misc/manshead.jpg){fig-align="center" width="300"}
+
+#### Distortions
+
+[The True Size of](https://thetruesize.com/#?borders=1~!MTYxNDMxOTc.MzgwOTIxMQ*MzU0NzE2NTA(MjAyMDQ3OA~!CONTIGUOUS_US*MTAwMjQwNzU.MjUwMjM1MTc(MTc1)Mg~!IN*NTI2NDA1MQ.Nzg2MzQyMQ)MQ~!CN*OTkyMTY5Nw.NzMxNDcwNQ(MjI1)MA) allows you to understand how distortion affects shapes proportions. You can drag and drop countries' shapes around the map and explore the effect that distortion does.
+
+Countries more in the north, such as Russia or Canada, or to the sout, such argentina and australia, are depicted way bigger than they are in the Mercator Projection. Similarly, countries lying on the equator look smaller.
+
+Questo significa che ogni mappa, seppur geometricamente e matematicamente inecceplibile, non puo' non produrre distorsioni che affect la reppresentazione di geographical fitures sul nostro pianeta quando proiettate su una mappa piatta.
+
+Questo tipo di rappresentazione affect anche il modo in cui noi percepiamo il mondo, attraverso la nostra mappa mentale. Per questo motivo la mappa di mercatore e' stata molto criticata
+
+On the Mercator projection, greenland appears to be roughly the same size as Africa. In reality, Greenland is 0.8 million sq. miles, and Africa is 11.6 million sq. miles, nearly 14 and a half times larger.
+
+Gerardus Mercator revolutionized map making[^map_elements-2]. His [Mercator projection](http://en.wikipedia.org/wiki/Mercator_projection) map, invented in 1569, was the primary map that navigators used for years. It’s the form that many maps still come in today. And the name he chose for his massive collection of maps — “Atlas” — is widely used.
+
+[^map_elements-2]: <https://kaiserscience.wordpress.com/earth-science/maps/mercator-maps-use-and-criticism/>
+
+This map was designed only for navigation, but when used incorrectly, can cause people to misudnderstand the sizes of continents and nations.
+
+His new map was a revelation, because:
+
+-   the projection kept the latitude and longitude lines at consistent 90 degree angles.
+
+-   made it easier for sailors to plot their course without constantly adjusting for mapping mistakes.
+
+-   Easier to see the relationships between landmasses.
+
+-   The downside was that it distorted the size of land masses, particularly near the poles
+
+-   This map was designed only for navigation, but when used incorrectly, can cause people to misudnderstand the sizes of continents and nations.
+
+That achievement was followed by the publication of Mercator’s *Atlas.* Though [it wasn’t the first book of maps](http://www.bl.uk/onlinegallery/ttp/mercator/accessible/introduction.html), the name Mercator chose came to define the type of book.
+
+In recent years, the Mercator projection has [come under fire](http://www.gislounge.com/look-mercator-projection/) for distorting the real shape of the world’s continents — objects closer to the poles appear larger than they should. That results in North America looking larger than Africa, or China looking smaller than Greenland, when really the opposite is true.
+
+#### **Implications of the Mercator Projection**[^map_elements-3]
+
+[^map_elements-3]: <https://thecartographicinstitute.com/the-mercator-projection-history-implications-and-drawbacks/>
+
+1.  **Geographic Misconceptions**: The distortion inherent in the Mercator projection has led to widespread misconceptions. People have the wrong idea about the relative size of countries and continents. Africa, for example, is vastly larger than Greenland in reality, yet on a Mercator map, they comparable in size. This skewed perception has implications for how people understand global geography. It can reinforce Eurocentric views of the world. Europe appears larger and more centrally located than it is in reality.
+
+2.  **Cultural and Political Impacts**: The Mercator projection has been critiqued for reinforcing colonial and imperialist worldviews. The projection enlarges Europe and North America while minimizing the Global South. This effect perpetuates a sense of dominance and importance for the countries in the Northern Hemisphere. This bias can subtly influence political and cultural attitudes. It contributes to a worldview that overemphasizes the power and significance of the North at the expense of the South.
+
+3.  **Educational Consequences**: The Mercator projection’s prevalence in educational settings, particularly in classrooms, has had lasting impacts. These impacts affect students’ understanding of world geography. The distorted sizes of continents and countries can lead to misconceptions that persist into adulthood. These misconceptions can influence everything from personal worldviews to policy decisions. An inaccurate understanding of geography can lead to flawed strategic and economic considerations.
+
+### Symbology
+
+The visual representation of geographic data on a map using various symbols to depict different types of features
+
+It includes the choice of symbols, their sizes, colors, styles, and labels to represent different map elements like roads, rivers, cities, elevation, land use, and more
+
+Graphic symbols complement map scale and projections, by making visible the features, places, and other locational information represented on the map.
+
+Map symbols serve as a graphic code for storing and retrieving data
+
+![Basic cartographical visual variables. Source: Krygier and Wood (2005)](/images/misc/symbology.png){fig-align="center" width="392"}

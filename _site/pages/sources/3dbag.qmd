@@ -1,0 +1,16 @@
+---
+title: "3D BAG"
+description: "3D buildings of the Netherlands"
+image: https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.swartvast.nl%2Fplaatjes%2FAHN_Nederland_2003.jpg
+word-count: 100
+categories:
+  - 3D Data
+  - Building Models
+  - Netherlands
+  - Geospatial Data
+  - Urban Planning
+  - GIS Datasets
+  - Open Data
+  - Digital Twins
+---
+aa

@@ -1,0 +1,95 @@
+---
+title: "Installing Plugins (QMS & PDOK)"
+format: html
+---
+
+## 🧩 Installing Plugins in QGIS
+
+QGIS supports many useful plugins that help you add extra data and tools to your projects. In this tutorial, you’ll learn how to install **two popular plugins**:
+
+-   **QMS (QuickMapServices)** — gives you access to base maps like OpenStreetMap, Google, and more.\
+-   **PDOK (Publieke Dienstverlening Op de Kaart)** — provides Dutch geospatial datasets (such as cadastral, administrative, and aerial layers).
+
+------------------------------------------------------------------------
+
+## ✅ What You’ll Learn
+
+-   How to use the Plugin Manager\
+-   How to install QMS and PDOK plugins\
+-   How to load layers from each plugin into your map
+
+------------------------------------------------------------------------
+
+## 📦 Before You Start
+
+Make sure you have QGIS installed.\
+👉 You can download the latest version here: <https://qgis.org>
+
+------------------------------------------------------------------------
+
+## 🔧 Step-by-Step Guide
+
+### Open QGIS and Access the Plugin Manager
+
+-   Launch QGIS\
+-   In the top menu, go to:\
+    `Plugins` → `Manage and Install Plugins`
+
+------------------------------------------------------------------------
+
+### Search for and Install **QMS (QuickMapServices)**
+
+-   In the **Plugins window**, go to the **All** tab\
+-   In the **search bar**, type `QMS`\
+-   Select **QuickMapServices** from the list\
+-   Click **Install Plugin**\
+-   Close the window after installation
+
+✅ You’ll now see a new icon or find QMS under the **Web** or **Plugins** menu.
+
+------------------------------------------------------------------------
+
+### Search for and Install **PDOK Services Plugin**
+
+-   Open the **Plugin Manager** again (`Plugins > Manage and Install Plugins`)
+-   Search for **PDOK**
+-   Select **PDOK Services Plugin**
+-   Click **Install Plugin**
+-   Close the window after installation
+
+✅ The PDOK plugin may also appear under the **Web** menu after installation.
+
+------------------------------------------------------------------------
+
+## 🌍 Load Layers Using the Plugins
+
+### 🗺️ Using QMS (QuickMapServices)
+
+1.  Click the **QMS** icon in the toolbar or go to `Web > QuickMapServices`\
+2.  Search for a base map (e.g., “OpenStreetMap”)\
+3.  Click on the map name to load it into your project
+
+### 🧭 Using PDOK
+
+1.  Go to `Web > PDOK Services Plugin`\
+2.  Browse the list of layers (e.g., base maps, cadastral, boundaries)\
+3.  Select a layer and click **Add Layer**
+
+------------------------------------------------------------------------
+
+## 💡 Extra Tips
+
+-   You can **add both plugins** to your toolbar for quick access.\
+-   Use QMS for **global base maps**, and PDOK for **Dutch-specific data**.\
+-   To remove or update plugins, go back to `Plugins > Manage and Install Plugins`.
+
+------------------------------------------------------------------------
+
+## 🎉 You’re Done!
+
+You've successfully installed the **QMS** and **PDOK** plugins in QGIS.\
+You now have access to powerful tools and rich datasets to support your spatial design work.
+
+> 🏗️ *Tip for architecture students: Use QMS base maps for site context and PDOK layers for official boundaries and parcel data when analyzing Dutch locations.*
+
+------------------------------------------------------------------------

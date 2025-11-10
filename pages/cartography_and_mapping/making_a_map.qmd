@@ -1,0 +1,14 @@
+---
+title: "Making a map"
+format: html
+---
+
+## Introduction
+
+## Overview of the task
+
+## What you will learn
+
+## Get the data
+
+## Procedure

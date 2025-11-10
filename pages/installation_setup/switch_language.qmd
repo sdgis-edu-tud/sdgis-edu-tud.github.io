@@ -1,0 +1,57 @@
+---
+title: "Change Language to English"
+format: html
+---
+
+## 🌐 Change Language to English in QGIS
+
+QGIS supports many languages and allows you to easily switch the interface to the one you're most comfortable with. If QGIS opens in a different language by default, follow the steps below to change it to English (or any other language of your choice).
+
+---
+
+## 🔄 Step-by-Step: Changing the Interface Language
+
+### Open QGIS
+Launch the QGIS application on your computer.
+
+### Open the Settings/Preferences Window
+- On **Windows**: Click on the **`Settings`** menu in the top menu bar.
+- On **macOS**: Click on the **`QGIS`** menu in the top-left corner of the screen.
+
+### Access Options (Windows) or Preferences (macOS)
+- Select **`Options`** (Windows) or **`Preferences`** (macOS) from the drop-down menu.
+
+This opens the **QGIS Settings dialog** where you can change various preferences.
+
+### Go to Locale Settings
+In the settings window, navigate to the tab or section labeled **`Locale`**, **`Locale Settings`**, or **`General`**, depending on your QGIS version.
+
+### Change the Language
+- Find the **Language** or **Locale** dropdown menu.
+- Select **English** (or another preferred language) from the list.
+
+> 💡 Tip: QGIS uses your system language by default. To override it, make sure the **"Override system locale"** checkbox is selected (if available).
+
+### Apply the Changes
+Click **`Apply`** or **`OK`** to save your settings.
+
+### Restart QGIS
+Close and reopen QGIS for the new language settings to take full effect.
+
+---
+
+## 📝 Additional Notes
+
+- **Language Packs**: QGIS usually comes with common language packs pre-installed. If English doesn’t appear as an option, make sure you're using a standard version of QGIS or reinstall it with all components.
+- **Updates**: Language support improves with new releases. Make sure you're using the latest version of QGIS from [qgis.org](https://qgis.org/).
+- **Need Help?**: If you encounter issues or can't find the setting, check the [official QGIS documentation](https://docs.qgis.org/) for your version.
+
+---
+
+## ✅ That’s It!
+
+You’ve successfully changed the QGIS interface language to English! This can make it easier to follow tutorials and use the software more comfortably — especially when you're just getting started.
+
+> 📘 _Tip for beginners: Keeping QGIS in English will help you follow most online guides, documentation, and community support threads._
+
+---
