@@ -247,8 +247,9 @@ ul.task-list li input[type="checkbox"] {
 <h1>Data Sources and Formats</h1>
 <section id="importing-data-from-portals" class="level2">
 <h2 class="anchored" data-anchor-id="importing-data-from-portals">Importing Data from Portals</h2>
-<p>Exercise: Using the Data Source Manager with WFS and WMS</p>
-<p>[pages/][Using the Data Source Manager with WFS and WMS](pages/misc/using_data_source_manager.qmd “Using the Data Source Manager with WFS and WMS”)[/]</p>
+<ul>
+<li><strong>Exercise 1: <a href="../pages/misc/using_data_source_manager.html">Using the Data Source Manager with WFS and WMS</a></strong></li>
+</ul>
 </section>
 <section id="georeferencing-and-digitalizing" class="level2">
 <h2 class="anchored" data-anchor-id="georeferencing-and-digitalizing">Georeferencing and Digitalizing</h2>
@@ -336,7 +337,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/sdgis-edu-tud\.github\.io\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
