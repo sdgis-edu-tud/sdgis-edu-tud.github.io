@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Software and Tools for GIS and Data Visualization – sdgistud</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">sdgistud</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../pages/software_and_tools.html" aria-current="page"> 
+<span class="menu-text">Software and Tools</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-learn-qgis" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Learn QGIS</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-learn-qgis">    
+        <li>
+    <a class="dropdown-item" href="../pages/installation_setup/install_qgis.html">
+ <span class="dropdown-text">Installation and setup</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../pages/getting_started.html">
+ <span class="dropdown-text">Getting started with QGIS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../pages/cartography_and_mapping/cartographic_principles.html">
+ <span class="dropdown-text">Cartography and mapping</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../pages/density_analysis/land_cover_density_in_grid.qmd">
+ <span class="dropdown-text">Density analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../pages/landscape_analysis/terrain_data.html">
+ <span class="dropdown-text">Landscape analysis</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-learn-r" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Learn R</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-learn-r">    
+        <li>
+    <a class="dropdown-item" href="https://carpentries-incubator.github.io/r-geospatial-urban/">
+ <span class="dropdown-text">Rbanism Geospatial Data Carpentry</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://carpentries-incubator.github.io/r-geospatial-urban/">
+ <span class="dropdown-text">Join the Rbanism #30daysmapchallenge</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses-and-workshops" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Courses and Workshops</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-courses-and-workshops">    
+        <li class="dropdown-header">IOP1 -</li>
+        <li class="dropdown-header">WV5 -</li>
+        <li class="dropdown-header">MSc Urbanism Q1 - GIS workshop</li>
+        <li>
+    <a class="dropdown-item" href="../courses/mscu_q2.html">
+ <span class="dropdown-text">MSc Urbanism Q2 - GIS workshop</span></a>
+  </li>  
+        <li class="dropdown-header">MSc Urbanism Q3 - GIS workshop</li>
+        <li class="dropdown-header">ARFW0501 - Applied Spatial Analytics for Sustainable Futures</li>
+        <li class="dropdown-header">DISSUF MSc Urbanism Graduation Cluster</li>
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/find_data.html"> 
+<span class="menu-text">Find Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../contact.qmd"> 
+<span class="menu-text">Contact us</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../contribute.qmd"> 
+<span class="menu-text">Contribute</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://twitter.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://code.com">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://bugs.com">
+            Report a Bug
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#geographic-information-systems-gis" id="toc-geographic-information-systems-gis" class="nav-link active" data-scroll-target="#geographic-information-systems-gis">Geographic Information Systems (GIS)</a>
+  <ul class="collapse">
+  <li><a href="#qgis" id="toc-qgis" class="nav-link" data-scroll-target="#qgis"><strong>QGIS</strong></a></li>
+  <li><a href="#grass-gis" id="toc-grass-gis" class="nav-link" data-scroll-target="#grass-gis"><strong>Grass GIS</strong></a></li>
+  <li><a href="#geoda" id="toc-geoda" class="nav-link" data-scroll-target="#geoda"><strong>Geoda</strong></a></li>
+  </ul></li>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data Visualization</a>
+  <ul class="collapse">
+  <li><a href="#flourish" id="toc-flourish" class="nav-link" data-scroll-target="#flourish"><strong>Flourish</strong></a></li>
+  <li><a href="#rawgraphs" id="toc-rawgraphs" class="nav-link" data-scroll-target="#rawgraphs">Rawgraphs</a></li>
+  </ul></li>
+  <li><a href="#statistical-and-data-science-tools" id="toc-statistical-and-data-science-tools" class="nav-link" data-scroll-target="#statistical-and-data-science-tools">Statistical and Data Science Tools</a>
+  <ul class="collapse">
+  <li><a href="#rstudio-desktop" id="toc-rstudio-desktop" class="nav-link" data-scroll-target="#rstudio-desktop">RStudio Desktop</a></li>
+  </ul></li>
+  <li><a href="#other-useful-tools" id="toc-other-useful-tools" class="nav-link" data-scroll-target="#other-useful-tools">Other Useful Tools</a>
+  <ul class="collapse">
+  <li><a href="#openrefine" id="toc-openrefine" class="nav-link" data-scroll-target="#openrefine">OpenRefine</a></li>
+  <li><a href="#inkscape" id="toc-inkscape" class="nav-link" data-scroll-target="#inkscape">Inkscape</a></li>
+  <li><a href="#jupyterlab" id="toc-jupyterlab" class="nav-link" data-scroll-target="#jupyterlab">JupyterLab</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Software and Tools for GIS and Data Visualization</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="geographic-information-systems-gis" class="level2">
+<h2 class="anchored" data-anchor-id="geographic-information-systems-gis">Geographic Information Systems (GIS)</h2>
+<section id="qgis" class="level3">
+<h3 class="anchored" data-anchor-id="qgis"><a href="https://qgis.org/en/site/"><strong>QGIS</strong></a></h3>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td><img src="images/qgis.png" class="img-fluid" width="500"></td>
+<td><p><strong>QGIS</strong> is a professional GIS application that is built on top of and proud to be itself Free and Open Source Software (FOSS). QGIS is a user friendly <strong>Open Source Geographic Information System (GIS)</strong> licensed under the GNU General Public License. QGIS is an official project of the Open Source Geospatial Foundation (OSGeo). It runs on Linux, Unix, Mac OSX, Windows and Android and supports numerous vector, raster, and database formats and functionalities.</p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Website:</strong> <a href="https://qgis.org" class="uri">https://qgis.org</a><br>
+<strong>Platform:</strong> Windows, macOS, Linux, Android<br>
+<strong>Use it for:</strong> General GIS, cartography, spatial analysis, plugins like TimeManager and Processing toolbox</p>
+</div>
+</div>
+</div></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="grass-gis" class="level3">
+<h3 class="anchored" data-anchor-id="grass-gis"><a href="https://grass.osgeo.org/"><strong>Grass GIS</strong></a></h3>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td><img src="images/grass.png" class="img-fluid" width="500"></td>
+<td><p><strong>GRASS</strong>, Geographic Resources Analysis Support System, is a powerful computational engine for raster, vector, and geospatial processing. It supports terrain and ecosystem modeling, hydrology, data management, and imagery processing. With a built-in temporal framework and Python API, it enables advanced time series analysis and rapid geospatial programming, optimized for large-scale analysis on various hardware configurations. GRASS GIS (Geographic Resources Analysis Support System) is a powerful spatial modeling tool with support for raster, vector, and temporal data.</p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Website:</strong> <a href="https://grass.osgeo.org" class="uri">https://grass.osgeo.org</a><br>
+<strong>Platform:</strong> Windows, macOS, Linux<br>
+<strong>Use it for:</strong> Hydrology, terrain analysis, temporal data modeling, scripting with Python</p>
+</div>
+</div>
+</div></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="geoda" class="level3">
+<h3 class="anchored" data-anchor-id="geoda"><a href="https://geodacenter.github.io/index.html"><strong>Geoda</strong></a></h3>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td><img src="images/geoda.png" class="img-fluid" width="500"></td>
+<td><p><strong>GeoDa</strong> is a free and open source software tool that serves as an introduction to spatial data science. It is designed to facilitate new insights from data analysis by exploring and modeling spatial patterns. GeoDa is a user-friendly application that introduces spatial data science through spatial autocorrelation and regression modeling.</p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Website:</strong> <a href="https://grass.osgeo.org" class="uri">https://grass.osgeo.org</a><br>
+<strong>Platform:</strong> Windows, macOS, Linux<br>
+<strong>Use it for:</strong> Hydrology, terrain analysis, temporal data modeling, scripting with Python</p>
+</div>
+</div>
+</div></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="data-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualization">Data Visualization</h2>
+<section id="flourish" class="level3">
+<h3 class="anchored" data-anchor-id="flourish"><a href="https://flourish.studio/"><strong>Flourish</strong></a></h3>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td><img src="..\images/logos/Flourish.png" class="img-fluid" width="500"></td>
+<td><p><strong>Flourish</strong> lets users create interactive visualizations with minimal coding, ideal for storytelling and journalism. Flourish&nbsp;<a href="https://flourish.studio/company/#story">was created</a>&nbsp;to enable everyone to tell stories with data. Launched in 2018, the tool is used by a huge community of creators to inform tens of millions of viewers every day.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>While Flourish offers a free tier, it is not open-source. For fully open alternatives, see below.</strong></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Website:</strong> <a href="https://flourish.studio" class="uri">https://flourish.studio</a><br>
+<strong>Use it for:</strong> Charts, maps, scrollytelling, presentations</p>
+</div>
+</div>
+</div></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="rawgraphs" class="level3">
+<h3 class="anchored" data-anchor-id="rawgraphs"><a href="https://www.rawgraphs.io/">Rawgraphs</a></h3>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td><img src="..\images/logos/rawgraphs.png" class="img-fluid" width="500"></td>
+<td><p><strong>RAWGraphs</strong> is an open source data visualization framework built with the goal of making the visual representation of complex data easy for everyone.<br>
+Primarily conceived as a tool for designers and vis geeks, RAWGraphs aims at providing a missing link between spreadsheet applications (e.g.&nbsp;Microsoft Excel, Apple Numbers, OpenRefine) and vector graphics editors (e.g.&nbsp;Adobe Illustrator, Inkscape, Figma).<br>
+RAWGraphs is an open source framework for visualizing complex datasets directly from spreadsheets and CSV files.</p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Website:</strong> <a href="https://rawgraphs.io" class="uri">https://rawgraphs.io</a><br>
+<strong>Platform:</strong> Web-based, self-hostable<br>
+<strong>Use it for:</strong> Alluvial diagrams, treemaps, scatterplots, circular plots<br>
+<strong>Codebase:</strong> <a href="https://github.com/rawgraphs/rawgraphs-core">GitHub - RAWGraphs</a></p>
+</div>
+</div>
+</div></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="statistical-and-data-science-tools" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-and-data-science-tools">Statistical and Data Science Tools</h2>
+<section id="rstudio-desktop" class="level3">
+<h3 class="anchored" data-anchor-id="rstudio-desktop"><a href="https://posit.co/download/rstudio-desktop/">RStudio Desktop</a></h3>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td><img src="..\images/logos/rstudio.png" class="img-fluid" width="500"></td>
+<td><p><strong>RStudio</strong> is a powerful IDE for R and Python. While the core IDE is open source, RStudio now exists under the Posit brand with both open and pro versions.</p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Website:</strong> <a href="https://posit.co" class="uri">https://posit.co</a><br>
+<strong>Platform:</strong> Windows, macOS, Linux<br>
+<strong>Use it for:</strong> Statistical computing, spatial modeling (via <code>sf</code>, <code>terra</code>, <code>tmap</code>, <code>leaflet</code>, etc.)</p>
+</div>
+</div>
+</div></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="other-useful-tools" class="level2">
+<h2 class="anchored" data-anchor-id="other-useful-tools">Other Useful Tools</h2>
+<section id="openrefine" class="level3">
+<h3 class="anchored" data-anchor-id="openrefine">OpenRefine</h3>
+<p>A powerful tool for cleaning messy datasets, especially tabular data.</p>
+<ul>
+<li><strong>Website:</strong> <a href="https://openrefine.org" class="uri">https://openrefine.org</a></li>
+<li><strong>Platform:</strong> Web-based, runs locally</li>
+<li><strong>Use it for:</strong> Data cleaning, transformation, reconciling datasets</li>
+</ul>
+</section>
+<section id="inkscape" class="level3">
+<h3 class="anchored" data-anchor-id="inkscape">Inkscape</h3>
+<p>Free and open source vector graphics editor. Useful for refining maps exported from QGIS or RAWGraphs.</p>
+<ul>
+<li><strong>Website:</strong> <a href="https://inkscape.org" class="uri">https://inkscape.org</a></li>
+<li><strong>Platform:</strong> Windows, macOS, Linux</li>
+<li><strong>Use it for:</strong> Map post-processing, infographic design</li>
+</ul>
+</section>
+<section id="jupyterlab" class="level3">
+<h3 class="anchored" data-anchor-id="jupyterlab">JupyterLab</h3>
+<p>An open-source notebook environment for coding, visualization, and documentation in Python and R.</p>
+<ul>
+<li><strong>Website:</strong> <a href="https://jupyter.org" class="uri">https://jupyter.org</a></li>
+<li><strong>Use it for:</strong> Data analysis, Python scripting, integrating with <code>geopandas</code>, <code>matplotlib</code>, <code>folium</code>, etc.</li>
+</ul>
+<hr>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright 2025, SDGIS@tudelft.nl</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

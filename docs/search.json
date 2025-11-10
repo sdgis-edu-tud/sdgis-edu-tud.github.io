@@ -1,9 +1,908 @@
 [
   {
+    "objectID": "pages/sources/ahn.html",
+    "href": "pages/sources/ahn.html",
+    "title": "AHN 4",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "pages/software_and_tools.html",
+    "href": "pages/software_and_tools.html",
+    "title": "Software and Tools for GIS and Data Visualization",
+    "section": "",
+    "text": "QGIS is a professional GIS application that is built on top of and proud to be itself Free and Open Source Software (FOSS). QGIS is a user friendly Open Source Geographic Information System (GIS) licensed under the GNU General Public License. QGIS is an official project of the Open Source Geospatial Foundation (OSGeo). It runs on Linux, Unix, Mac OSX, Windows and Android and supports numerous vector, raster, and database formats and functionalities.\n\n\n\n\n\n\nWebsite: https://qgis.org\nPlatform: Windows, macOS, Linux, Android\nUse it for: General GIS, cartography, spatial analysis, plugins like TimeManager and Processing toolbox\n\n\n\n\n\n\n\n\n\n\n\n\n\nGRASS, Geographic Resources Analysis Support System, is a powerful computational engine for raster, vector, and geospatial processing. It supports terrain and ecosystem modeling, hydrology, data management, and imagery processing. With a built-in temporal framework and Python API, it enables advanced time series analysis and rapid geospatial programming, optimized for large-scale analysis on various hardware configurations. GRASS GIS (Geographic Resources Analysis Support System) is a powerful spatial modeling tool with support for raster, vector, and temporal data.\n\n\n\n\n\n\nWebsite: https://grass.osgeo.org\nPlatform: Windows, macOS, Linux\nUse it for: Hydrology, terrain analysis, temporal data modeling, scripting with Python\n\n\n\n\n\n\n\n\n\n\n\n\n\nGeoDa is a free and open source software tool that serves as an introduction to spatial data science. It is designed to facilitate new insights from data analysis by exploring and modeling spatial patterns. GeoDa is a user-friendly application that introduces spatial data science through spatial autocorrelation and regression modeling.\n\n\n\n\n\n\nWebsite: https://grass.osgeo.org\nPlatform: Windows, macOS, Linux\nUse it for: Hydrology, terrain analysis, temporal data modeling, scripting with Python"
+  },
+  {
+    "objectID": "pages/software_and_tools.html#geographic-information-systems-gis",
+    "href": "pages/software_and_tools.html#geographic-information-systems-gis",
+    "title": "Software and Tools for GIS and Data Visualization",
+    "section": "",
+    "text": "QGIS is a professional GIS application that is built on top of and proud to be itself Free and Open Source Software (FOSS). QGIS is a user friendly Open Source Geographic Information System (GIS) licensed under the GNU General Public License. QGIS is an official project of the Open Source Geospatial Foundation (OSGeo). It runs on Linux, Unix, Mac OSX, Windows and Android and supports numerous vector, raster, and database formats and functionalities.\n\n\n\n\n\n\nWebsite: https://qgis.org\nPlatform: Windows, macOS, Linux, Android\nUse it for: General GIS, cartography, spatial analysis, plugins like TimeManager and Processing toolbox\n\n\n\n\n\n\n\n\n\n\n\n\n\nGRASS, Geographic Resources Analysis Support System, is a powerful computational engine for raster, vector, and geospatial processing. It supports terrain and ecosystem modeling, hydrology, data management, and imagery processing. With a built-in temporal framework and Python API, it enables advanced time series analysis and rapid geospatial programming, optimized for large-scale analysis on various hardware configurations. GRASS GIS (Geographic Resources Analysis Support System) is a powerful spatial modeling tool with support for raster, vector, and temporal data.\n\n\n\n\n\n\nWebsite: https://grass.osgeo.org\nPlatform: Windows, macOS, Linux\nUse it for: Hydrology, terrain analysis, temporal data modeling, scripting with Python\n\n\n\n\n\n\n\n\n\n\n\n\n\nGeoDa is a free and open source software tool that serves as an introduction to spatial data science. It is designed to facilitate new insights from data analysis by exploring and modeling spatial patterns. GeoDa is a user-friendly application that introduces spatial data science through spatial autocorrelation and regression modeling.\n\n\n\n\n\n\nWebsite: https://grass.osgeo.org\nPlatform: Windows, macOS, Linux\nUse it for: Hydrology, terrain analysis, temporal data modeling, scripting with Python"
+  },
+  {
+    "objectID": "pages/software_and_tools.html#data-visualization",
+    "href": "pages/software_and_tools.html#data-visualization",
+    "title": "Software and Tools for GIS and Data Visualization",
+    "section": "Data Visualization",
+    "text": "Data Visualization\n\nFlourish\n\n\n\n\nFlourish lets users create interactive visualizations with minimal coding, ideal for storytelling and journalism. Flourish was created to enable everyone to tell stories with data. Launched in 2018, the tool is used by a huge community of creators to inform tens of millions of viewers every day.\n\n\n\n\n\n\nWhile Flourish offers a free tier, it is not open-source. For fully open alternatives, see below.\n\n\n\n\n\n\n\n\n\nWebsite: https://flourish.studio\nUse it for: Charts, maps, scrollytelling, presentations\n\n\n\n\n\n\n\n\nRawgraphs\n\n\n\n\nRAWGraphs is an open source data visualization framework built with the goal of making the visual representation of complex data easy for everyone.\nPrimarily conceived as a tool for designers and vis geeks, RAWGraphs aims at providing a missing link between spreadsheet applications (e.g. Microsoft Excel, Apple Numbers, OpenRefine) and vector graphics editors (e.g. Adobe Illustrator, Inkscape, Figma).\nRAWGraphs is an open source framework for visualizing complex datasets directly from spreadsheets and CSV files.\n\n\n\n\n\n\nWebsite: https://rawgraphs.io\nPlatform: Web-based, self-hostable\nUse it for: Alluvial diagrams, treemaps, scatterplots, circular plots\nCodebase: GitHub - RAWGraphs"
+  },
+  {
+    "objectID": "pages/software_and_tools.html#statistical-and-data-science-tools",
+    "href": "pages/software_and_tools.html#statistical-and-data-science-tools",
+    "title": "Software and Tools for GIS and Data Visualization",
+    "section": "Statistical and Data Science Tools",
+    "text": "Statistical and Data Science Tools\n\nRStudio Desktop\n\n\n\n\nRStudio is a powerful IDE for R and Python. While the core IDE is open source, RStudio now exists under the Posit brand with both open and pro versions.\n\n\n\n\n\n\nWebsite: https://posit.co\nPlatform: Windows, macOS, Linux\nUse it for: Statistical computing, spatial modeling (via sf, terra, tmap, leaflet, etc.)"
+  },
+  {
+    "objectID": "pages/software_and_tools.html#other-useful-tools",
+    "href": "pages/software_and_tools.html#other-useful-tools",
+    "title": "Software and Tools for GIS and Data Visualization",
+    "section": "Other Useful Tools",
+    "text": "Other Useful Tools\n\nOpenRefine\nA powerful tool for cleaning messy datasets, especially tabular data.\n\nWebsite: https://openrefine.org\nPlatform: Web-based, runs locally\nUse it for: Data cleaning, transformation, reconciling datasets\n\n\n\nInkscape\nFree and open source vector graphics editor. Useful for refining maps exported from QGIS or RAWGraphs.\n\nWebsite: https://inkscape.org\nPlatform: Windows, macOS, Linux\nUse it for: Map post-processing, infographic design\n\n\n\nJupyterLab\nAn open-source notebook environment for coding, visualization, and documentation in Python and R.\n\nWebsite: https://jupyter.org\nUse it for: Data analysis, Python scripting, integrating with geopandas, matplotlib, folium, etc."
+  },
+  {
+    "objectID": "pages/main/main_learn_gis.html",
+    "href": "pages/main/main_learn_gis.html",
+    "title": "Learn GIS",
+    "section": "",
+    "text": "Geographic Information Systems (GIS) are essential tools for visualizing, analyzing, and interpreting spatial data to understand patterns, relationships, and trends. Whether you are an architecture and urbanism student or a professional looking to enhance your skills, this section provides comprehensive resources to help you master GIS.\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "pages/learn_gis_introduction.html",
+    "href": "pages/learn_gis_introduction.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Back to top",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "pages/landscape_analysis/visibility_analysis.html",
+    "href": "pages/landscape_analysis/visibility_analysis.html",
+    "title": "visibility_analysis",
+    "section": "",
+    "text": "Back to top",
+    "crumbs": [
+      "Landscape analysis",
+      "visibility_analysis"
+    ]
+  },
+  {
+    "objectID": "pages/landscape_analysis/hydrological_analysis.html",
+    "href": "pages/landscape_analysis/hydrological_analysis.html",
+    "title": "hydrological_analysis",
+    "section": "",
+    "text": "Back to top",
+    "crumbs": [
+      "Landscape analysis",
+      "hydrological_analysis"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup.html",
+    "href": "pages/installation_setup.html",
+    "title": "Qgis Installation and Setup",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "pages/installation_setup/install_qgis.html#getting-started-installing-qgis",
+    "href": "pages/installation_setup/install_qgis.html#getting-started-installing-qgis",
+    "title": "Install QGIS",
+    "section": "Getting Started: Installing QGIS",
+    "text": "Getting Started: Installing QGIS\nTo begin using QGIS, you’ll need to download and install it on your computer. The process depends on your operating system.",
+    "crumbs": [
+      "Installation and setup",
+      "Install QGIS"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/install_qgis.html#installing-qgis-on-windows",
+    "href": "pages/installation_setup/install_qgis.html#installing-qgis-on-windows",
+    "title": "Install QGIS",
+    "section": "Installing QGIS on Windows",
+    "text": "Installing QGIS on Windows\n\nDownload QGIS\n\nGo to the official QGIS website: qgis.org\nClick on the Download Now button.\nChoose Windows and download the Long Term Release (LTR) version. This version is more stable and recommended for beginners.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nWe recommend the Long Term Release (LTR) version for stability and compatibility.\n\n\n\n\n\nScreenshot of the QGIS download page highlighting the “Long Term Version for Windows (3.40 LTR)” standalone installer, recommended for users prioritizing stability over the latest features.\n\n\n\nRun the Installer\n\nAfter the download is complete, double-click the installer file.\nFollow the installation wizard — you can safely accept the default settings.\n\nSelect Components\n\nIf asked, keep the default components selected. These will include QGIS and essential libraries.\n\nInstall Plugins\n\nYou might be asked to select optional plugins. Beginners can stick with the defaults.\n\nFinish the Installation\n\nOnce the process is done, click Finish and launch QGIS from the Start Menu.",
+    "crumbs": [
+      "Installation and setup",
+      "Install QGIS"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/install_qgis.html#installing-qgis-on-macos",
+    "href": "pages/installation_setup/install_qgis.html#installing-qgis-on-macos",
+    "title": "Install QGIS",
+    "section": "Installing QGIS on macOS",
+    "text": "Installing QGIS on macOS\n\nDownload QGIS\n\nVisit qgis.org\nClick the Download Now button and select the macOS version (Long Term Release recommended).\n\nMount the Disk Image\n\nOpen the downloaded .dmg file.\n\nMove QGIS to Applications\n\nDrag the QGIS icon into your Applications folder.\n\nInstall Dependencies (if needed)\n\nIf prompted, follow the instructions to install any required frameworks or libraries.\n\nComplete Installation\n\nEject the disk image, then open QGIS from the Applications folder.",
+    "crumbs": [
+      "Installation and setup",
+      "Install QGIS"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/install_qgis.html#installing-qgis-on-linux-example-ubuntu",
+    "href": "pages/installation_setup/install_qgis.html#installing-qgis-on-linux-example-ubuntu",
+    "title": "Install QGIS",
+    "section": "Installing QGIS on Linux (Example: Ubuntu)",
+    "text": "Installing QGIS on Linux (Example: Ubuntu)\n\nAdd the QGIS Repository Open a terminal and enter the following:\nsudo add-apt-repository ppa:ubuntugis/ppa\nsudo apt-get update\nInstall QGIS\nsudo apt-get install qgis\nInstall Extra Dependencies (if required) If prompted, install any suggested packages to ensure full functionality.\nLaunch QGIS You can now open QGIS from your applications menu.",
+    "crumbs": [
+      "Installation and setup",
+      "Install QGIS"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/install_qgis.html#post-installation-whats-next",
+    "href": "pages/installation_setup/install_qgis.html#post-installation-whats-next",
+    "title": "Install QGIS",
+    "section": "Post-Installation: What’s Next?",
+    "text": "Post-Installation: What’s Next?\n\nCheck Your Version\n\nOpen QGIS and go to Help &gt; About to confirm that the correct version has been installed.\n\nStart Exploring\n\nTry opening a sample project or load a basic shapefile (e.g., world countries or your city boundaries).\nGet familiar with tools like the Layer Panel, Map Canvas, and Attribute Table.\n\nLearn by Doing\n\nThere are many beginner tutorials online to help you start working with QGIS (including official training at https://docs.qgis.org/).",
+    "crumbs": [
+      "Installation and setup",
+      "Install QGIS"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/install_qgis.html#youre-ready-to-go",
+    "href": "pages/installation_setup/install_qgis.html#youre-ready-to-go",
+    "title": "Install QGIS",
+    "section": "You’re Ready to Go!",
+    "text": "You’re Ready to Go!\nCongratulations — you’ve installed QGIS! As you continue your architecture studies, QGIS will help you understand spatial relationships, analyze urban systems, and communicate your ideas more effectively. Remember: it’s okay to start small — load a map, try out basic tools, and learn step by step.\n\n💡 Tip: Bookmark https://docs.qgis.org for tutorials, documentation, and user guides.",
+    "crumbs": [
+      "Installation and setup",
+      "Install QGIS"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/connecting_folders.html",
+    "href": "pages/installation_setup/connecting_folders.html",
+    "title": "Connecting Folders to Browser Panel’s Favorites",
+    "section": "",
+    "text": "Connecting folders to QGIS Browser Panel’s Favorites offers several benefits in terms of workflow efficiency, project management, and ease of access. Here are some reasons why connecting folders to the QGIS Browser Panel’s Favorites is important:",
+    "crumbs": [
+      "Installation and setup",
+      "Connecting Folders to Browser Panel's Favorites"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/connecting_folders.html#connecting-a-folder-to-the-qgis-browser-panels-favorites",
+    "href": "pages/installation_setup/connecting_folders.html#connecting-a-folder-to-the-qgis-browser-panels-favorites",
+    "title": "Connecting Folders to Browser Panel’s Favorites",
+    "section": "Connecting a folder to the QGIS Browser Panel’s Favorites",
+    "text": "Connecting a folder to the QGIS Browser Panel’s Favorites\n\nOpen QGIS:\n\nLaunch QGIS on your computer.\n\nOpen the Browser Panel:\n\nLocate the Browser Panel, which is typically on the left side of the QGIS window. If it’s not visible, go to View &gt; Panels &gt; Browser Panel to activate it.\n\nNavigate to the Folder:\n\nUse the Browser Panel to navigate to the folder you want to add to favorites. You can explore your computer’s file system by expanding the available nodes.\n\nAdd to Favorites:\n\nRight-click on the folder you want to add to favorites.\n\nSelect “Add to Favorites”:\n\nFrom the context menu, choose the option that says “Add to Favorites.” This action will add the selected folder to the list of favorites in the Browser Panel.\n\n\n\n\nConnecting Folders to QGIS Browser Panel’s Favorites 1.PNG\n\n\nAccessing Favorites:\n\nTo access your favorites, look for the “Favorites” node in the Browser Panel. Your added folder should appear there.\n\n\n\n\nConnecting Folders to QGIS Browser Panel’s Favorites 2a.PNG\n\n\nManage Favorites:\n\nYou can manage your favorites by right-clicking on the “Favorites” node and selecting options like “Remove from Favorites” or “Manage Favorites.” The latter allows you to edit or remove existing favorites.\n\nAccess Favorite Folders Easily:\n\nNow, you can easily access your favorite folders directly from the Browser Panel, making it convenient to load data into your QGIS projects.",
+    "crumbs": [
+      "Installation and setup",
+      "Connecting Folders to Browser Panel's Favorites"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/connecting_folders.html#additional-tips",
+    "href": "pages/installation_setup/connecting_folders.html#additional-tips",
+    "title": "Connecting Folders to Browser Panel’s Favorites",
+    "section": "Additional Tips",
+    "text": "Additional Tips\n\nMultiple Favorites:\n\nYou can add multiple folders to favorites, creating a quick-access list tailored to your project needs.\n\nOrganize Favorites:\n\nConsider organizing your favorites into subfolders within the “Favorites” node if you have a large number of them.\n\nRemove Unused Favorites:\n\nPeriodically review and remove folders from favorites that are no longer relevant to keep your list organized.\n\n\nBy following these steps, you can connect folders to the QGIS Browser Panel’s favorites, streamlining your workflow and making it easier to access and manage your geospatial data.",
+    "crumbs": [
+      "Installation and setup",
+      "Connecting Folders to Browser Panel's Favorites"
+    ]
+  },
+  {
+    "objectID": "pages/getting_started.html",
+    "href": "pages/getting_started.html",
+    "title": "Getting started with QGIS",
+    "section": "",
+    "text": "Back to top",
+    "crumbs": [
+      "Gettin started with QGIS",
+      "Getting started with QGIS"
+    ]
+  },
+  {
+    "objectID": "pages/find_data.html",
+    "href": "pages/find_data.html",
+    "title": "Find Data",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n3D BAG\n\n\n\n3D Data\n\nBuilding Models\n\nNetherlands\n\nGeospatial Data\n\nUrban Planning\n\nGIS Datasets\n\nOpen Data\n\nDigital Twins\n\n\n\n\n\n\nurl\n\n\nhttps://3dbag.bk.tudelft.nl/\n\n\n\n\n\nextent\n\n\nNetherlands\n\n\n\n\n\nyear\n\n\n2023\n\n\n\n\n\nresolution\n\n\nBuilding-level (LOD1–2)\n\n\n\n\n\ndata_format\n\n\nCityJSON,3D Tiles\n\n\n\n\n\n\n\n\n\n\n\n\nAHN 4\n\n\n\nElevation Data\n\nDigital Terrain Models\n\nNetherlands\n\nGeospatial Data\n\nRemote Sensing\n\nGIS Datasets\n\nOpen Data\n\n\n\n\n\n\nurl\n\n\n \n\n\n\n\n\nextent\n\n\nNetherlands\n\n\n\n\n\nyear\n\n\n2023\n\n\n\n\n\nresolution\n\n\n0.5 m (DSM and DTM)\n\n\n\n\n\ndata_format\n\n\nPoint Cloud,Raster (GeoTIFF)\n\n\n\n\n\n\n\n\nNo matching items\n Back to top"
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/types_of_maps.html",
+    "href": "pages/cartography_and_mapping/types_of_maps.html",
+    "title": "Types of Maps",
+    "section": "",
+    "text": "Back to top",
+    "crumbs": [
+      "Cartography and mapping",
+      "Types of Maps"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_elements.html",
+    "href": "pages/cartography_and_mapping/map_elements.html",
+    "title": "Map elements",
+    "section": "",
+    "text": "Scale is the relationship between a distance on a map and the corresponding distance on the ground.\nIt affects the level of detail that can be shown and the map’s overall purpose.\nIt affects generalization: as scale decreases (i.e., becomes smaller), map makers must generalize features. This means they simplify, aggregate, or omit certain details to keep the map legible and useful.\nWhile scales in GIS are exactly defined and represented on the map as s scale bar or ratio, general discussions about map scale often use the relative terms: large scale, medium scale, and small scale.\n\n\nIn spatial design disciplines, we offer associate the terms “small” and “large” in relation to the portion of territory that maps frame. A small scale map indicates a “zoom-in” area,\nIn Cartographic terms, Large-scale maps show things as big and small-scsale maps show things as small.\n\n\n\n\n\n\n\nscales\n\n\n\n\nSmall scale: 1:250,000 and smaller\nMedium scale: 1:50,000 to 1:250,000\nLarge scale: 1:50,000 and larger\n\n\n\n\n\n\nSpatial data are produced with a scale. An example is the dataset from Natural Earth1\n\n\n\n\nit is hard to represent our spherical world on a flat piece of paper. That is why cartographers use projections: to morph the globe into 2D map.\nProjection is a method of transforming the three-dimensional surface of the Earth into a two-dimensional map.\nBecause a curved surface cannot be flattened without distortion, every projection results in some form of distortion. The type and extend of this distortion depend on the projection method used.\nThese pictures from 1921 compare how the drwaing of a man’s head changes in different projections, resulting in different distoritions.\n\n\n\n\n\n\n\nThe True Size of allows you to understand how distortion affects shapes proportions. You can drag and drop countries’ shapes around the map and explore the effect that distortion does.\nCountries more in the north, such as Russia or Canada, or to the sout, such argentina and australia, are depicted way bigger than they are in the Mercator Projection. Similarly, countries lying on the equator look smaller.\nQuesto significa che ogni mappa, seppur geometricamente e matematicamente inecceplibile, non puo’ non produrre distorsioni che affect la reppresentazione di geographical fitures sul nostro pianeta quando proiettate su una mappa piatta.\nQuesto tipo di rappresentazione affect anche il modo in cui noi percepiamo il mondo, attraverso la nostra mappa mentale. Per questo motivo la mappa di mercatore e’ stata molto criticata\nOn the Mercator projection, greenland appears to be roughly the same size as Africa. In reality, Greenland is 0.8 million sq. miles, and Africa is 11.6 million sq. miles, nearly 14 and a half times larger.\nGerardus Mercator revolutionized map making2. His Mercator projection map, invented in 1569, was the primary map that navigators used for years. It’s the form that many maps still come in today. And the name he chose for his massive collection of maps — “Atlas” — is widely used.\nThis map was designed only for navigation, but when used incorrectly, can cause people to misudnderstand the sizes of continents and nations.\nHis new map was a revelation, because:\n\nthe projection kept the latitude and longitude lines at consistent 90 degree angles.\nmade it easier for sailors to plot their course without constantly adjusting for mapping mistakes.\nEasier to see the relationships between landmasses.\nThe downside was that it distorted the size of land masses, particularly near the poles\nThis map was designed only for navigation, but when used incorrectly, can cause people to misudnderstand the sizes of continents and nations.\n\nThat achievement was followed by the publication of Mercator’s Atlas. Though it wasn’t the first book of maps, the name Mercator chose came to define the type of book.\nIn recent years, the Mercator projection has come under fire for distorting the real shape of the world’s continents — objects closer to the poles appear larger than they should. That results in North America looking larger than Africa, or China looking smaller than Greenland, when really the opposite is true.\n\n\n\n\nGeographic Misconceptions: The distortion inherent in the Mercator projection has led to widespread misconceptions. People have the wrong idea about the relative size of countries and continents. Africa, for example, is vastly larger than Greenland in reality, yet on a Mercator map, they comparable in size. This skewed perception has implications for how people understand global geography. It can reinforce Eurocentric views of the world. Europe appears larger and more centrally located than it is in reality.\nCultural and Political Impacts: The Mercator projection has been critiqued for reinforcing colonial and imperialist worldviews. The projection enlarges Europe and North America while minimizing the Global South. This effect perpetuates a sense of dominance and importance for the countries in the Northern Hemisphere. This bias can subtly influence political and cultural attitudes. It contributes to a worldview that overemphasizes the power and significance of the North at the expense of the South.\nEducational Consequences: The Mercator projection’s prevalence in educational settings, particularly in classrooms, has had lasting impacts. These impacts affect students’ understanding of world geography. The distorted sizes of continents and countries can lead to misconceptions that persist into adulthood. These misconceptions can influence everything from personal worldviews to policy decisions. An inaccurate understanding of geography can lead to flawed strategic and economic considerations.\n\n\n\n\n\nThe visual representation of geographic data on a map using various symbols to depict different types of features\nIt includes the choice of symbols, their sizes, colors, styles, and labels to represent different map elements like roads, rivers, cities, elevation, land use, and more\nGraphic symbols complement map scale and projections, by making visible the features, places, and other locational information represented on the map.\nMap symbols serve as a graphic code for storing and retrieving data\n\n\n\nBasic cartographical visual variables. Source: Krygier and Wood (2005)"
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_elements.html#map-elements",
+    "href": "pages/cartography_and_mapping/map_elements.html#map-elements",
+    "title": "Map elements",
+    "section": "",
+    "text": "Scale is the relationship between a distance on a map and the corresponding distance on the ground.\nIt affects the level of detail that can be shown and the map’s overall purpose.\nIt affects generalization: as scale decreases (i.e., becomes smaller), map makers must generalize features. This means they simplify, aggregate, or omit certain details to keep the map legible and useful.\nWhile scales in GIS are exactly defined and represented on the map as s scale bar or ratio, general discussions about map scale often use the relative terms: large scale, medium scale, and small scale.\n\n\nIn spatial design disciplines, we offer associate the terms “small” and “large” in relation to the portion of territory that maps frame. A small scale map indicates a “zoom-in” area,\nIn Cartographic terms, Large-scale maps show things as big and small-scsale maps show things as small.\n\n\n\n\n\n\n\nscales\n\n\n\n\nSmall scale: 1:250,000 and smaller\nMedium scale: 1:50,000 to 1:250,000\nLarge scale: 1:50,000 and larger\n\n\n\n\n\n\nSpatial data are produced with a scale. An example is the dataset from Natural Earth1\n\n\n\n\nit is hard to represent our spherical world on a flat piece of paper. That is why cartographers use projections: to morph the globe into 2D map.\nProjection is a method of transforming the three-dimensional surface of the Earth into a two-dimensional map.\nBecause a curved surface cannot be flattened without distortion, every projection results in some form of distortion. The type and extend of this distortion depend on the projection method used.\nThese pictures from 1921 compare how the drwaing of a man’s head changes in different projections, resulting in different distoritions.\n\n\n\n\n\n\n\nThe True Size of allows you to understand how distortion affects shapes proportions. You can drag and drop countries’ shapes around the map and explore the effect that distortion does.\nCountries more in the north, such as Russia or Canada, or to the sout, such argentina and australia, are depicted way bigger than they are in the Mercator Projection. Similarly, countries lying on the equator look smaller.\nQuesto significa che ogni mappa, seppur geometricamente e matematicamente inecceplibile, non puo’ non produrre distorsioni che affect la reppresentazione di geographical fitures sul nostro pianeta quando proiettate su una mappa piatta.\nQuesto tipo di rappresentazione affect anche il modo in cui noi percepiamo il mondo, attraverso la nostra mappa mentale. Per questo motivo la mappa di mercatore e’ stata molto criticata\nOn the Mercator projection, greenland appears to be roughly the same size as Africa. In reality, Greenland is 0.8 million sq. miles, and Africa is 11.6 million sq. miles, nearly 14 and a half times larger.\nGerardus Mercator revolutionized map making2. His Mercator projection map, invented in 1569, was the primary map that navigators used for years. It’s the form that many maps still come in today. And the name he chose for his massive collection of maps — “Atlas” — is widely used.\nThis map was designed only for navigation, but when used incorrectly, can cause people to misudnderstand the sizes of continents and nations.\nHis new map was a revelation, because:\n\nthe projection kept the latitude and longitude lines at consistent 90 degree angles.\nmade it easier for sailors to plot their course without constantly adjusting for mapping mistakes.\nEasier to see the relationships between landmasses.\nThe downside was that it distorted the size of land masses, particularly near the poles\nThis map was designed only for navigation, but when used incorrectly, can cause people to misudnderstand the sizes of continents and nations.\n\nThat achievement was followed by the publication of Mercator’s Atlas. Though it wasn’t the first book of maps, the name Mercator chose came to define the type of book.\nIn recent years, the Mercator projection has come under fire for distorting the real shape of the world’s continents — objects closer to the poles appear larger than they should. That results in North America looking larger than Africa, or China looking smaller than Greenland, when really the opposite is true.\n\n\n\n\nGeographic Misconceptions: The distortion inherent in the Mercator projection has led to widespread misconceptions. People have the wrong idea about the relative size of countries and continents. Africa, for example, is vastly larger than Greenland in reality, yet on a Mercator map, they comparable in size. This skewed perception has implications for how people understand global geography. It can reinforce Eurocentric views of the world. Europe appears larger and more centrally located than it is in reality.\nCultural and Political Impacts: The Mercator projection has been critiqued for reinforcing colonial and imperialist worldviews. The projection enlarges Europe and North America while minimizing the Global South. This effect perpetuates a sense of dominance and importance for the countries in the Northern Hemisphere. This bias can subtly influence political and cultural attitudes. It contributes to a worldview that overemphasizes the power and significance of the North at the expense of the South.\nEducational Consequences: The Mercator projection’s prevalence in educational settings, particularly in classrooms, has had lasting impacts. These impacts affect students’ understanding of world geography. The distorted sizes of continents and countries can lead to misconceptions that persist into adulthood. These misconceptions can influence everything from personal worldviews to policy decisions. An inaccurate understanding of geography can lead to flawed strategic and economic considerations.\n\n\n\n\n\nThe visual representation of geographic data on a map using various symbols to depict different types of features\nIt includes the choice of symbols, their sizes, colors, styles, and labels to represent different map elements like roads, rivers, cities, elevation, land use, and more\nGraphic symbols complement map scale and projections, by making visible the features, places, and other locational information represented on the map.\nMap symbols serve as a graphic code for storing and retrieving data\n\n\n\nBasic cartographical visual variables. Source: Krygier and Wood (2005)"
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_elements.html#footnotes",
+    "href": "pages/cartography_and_mapping/map_elements.html#footnotes",
+    "title": "Map elements",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nNatural Earth is a public domain map dataset available at 1:10m, 1:50m, and 1:110 million scales. Featuring tightly integrated vector and raster data, with Natural Earth you can make a variety of visually pleasing, well-crafted maps with cartography or GIS software.\nNatural Earth was built through a collaboration of many volunteers and is supported by NACIS (North American Cartographic Information Society), and is free for use in any type of project (see our Terms of Use page for more information).Get the Data↩︎\nhttps://kaiserscience.wordpress.com/earth-science/maps/mercator-maps-use-and-criticism/↩︎\nhttps://thecartographicinstitute.com/the-mercator-projection-history-implications-and-drawbacks/↩︎"
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/making_a_map.html#overview-of-the-task",
+    "href": "pages/cartography_and_mapping/making_a_map.html#overview-of-the-task",
+    "title": "Making a map",
+    "section": "Overview of the task",
+    "text": "Overview of the task",
+    "crumbs": [
+      "Cartography and mapping",
+      "Making a map"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/making_a_map.html#what-you-will-learn",
+    "href": "pages/cartography_and_mapping/making_a_map.html#what-you-will-learn",
+    "title": "Making a map",
+    "section": "What you will learn",
+    "text": "What you will learn",
+    "crumbs": [
+      "Cartography and mapping",
+      "Making a map"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/making_a_map.html#get-the-data",
+    "href": "pages/cartography_and_mapping/making_a_map.html#get-the-data",
+    "title": "Making a map",
+    "section": "Get the data",
+    "text": "Get the data",
+    "crumbs": [
+      "Cartography and mapping",
+      "Making a map"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/making_a_map.html#procedure",
+    "href": "pages/cartography_and_mapping/making_a_map.html#procedure",
+    "title": "Making a map",
+    "section": "Procedure",
+    "text": "Procedure",
+    "crumbs": [
+      "Cartography and mapping",
+      "Making a map"
+    ]
+  },
+  {
+    "objectID": "pages/basic_operations.html",
+    "href": "pages/basic_operations.html",
+    "title": "Basic operations",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Spatial Data and GIS Edu Platform",
     "section": "",
     "text": "Introducing the Spatial Data and GIS platform, a cutting-edge initiative crafted by the Department of Urbanism at TU Delft. Our platform serves as a hub for the collection, editing, publication, and dissemination of invaluable teaching resources pertinent to the dynamic realms of Geographic Information Systems (GIS) and Digital Tools. Catering to both Bachelor’s and Master’s programs within the Faculty of Architecture and the Built Environment, our mission is to empower students with meticulously curated educational materials.\nTailored to the needs of aspiring scholars, our platform offers a comprehensive array of resources meticulously developed by esteemed educators and researchers at TU Delft, supplemented by external contributions. Designed to foster an enriching learning experience, students gain access to a wealth of knowledge, enhancing their understanding of GIS and digital tools.\nFurthermore, our platform extends its reach to educators, providing them with an open forum to share and repurpose teaching materials, fostering collaboration and innovation within the academic community. Embracing a spirit of inclusivity and collaboration, we invite both students and instructors to embark on a journey of discovery and growth through the Spatial Data and GIS platform.\n\nLearn GIS\nGeographic Information Systems (GIS) are essential tools for visualizing, analyzing, and interpreting spatial data to understand patterns, relationships, and trends. Whether you are an architecture and urbanism student or a professional looking to enhance your skills, this section provides comprehensive resources to help you master GIS.\n\n\nFind Data\nAccessing high-quality spatial data is crucial for effective analysis and decision-making in GIS. This section provides you with the resources and guidance needed to discover, obtain, and manage spatial data for your projects in architecture, urbanism and landscape architecture.\n\n\nSoftware and Tools for GIS and Data Visualization\nCurated list os open software and tools\n\n\nData-Informed Design for Sustainable Urban Futures\n\n\nCollaborate\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "courses/mscu_q2.html",
+    "href": "courses/mscu_q2.html",
+    "title": "Master of Urbanism - Q2 - GIS Workshop",
+    "section": "",
+    "text": "Exercise: Using the Data Source Manager with WFS and WMS\n[pages/][Using the Data Source Manager with WFS and WMS](pages/misc/using_data_source_manager.qmd “Using the Data Source Manager with WFS and WMS”)[/]"
+  },
+  {
+    "objectID": "courses/mscu_q2.html#importing-data-from-portals",
+    "href": "courses/mscu_q2.html#importing-data-from-portals",
+    "title": "Master of Urbanism - Q2 - GIS Workshop",
+    "section": "",
+    "text": "Exercise: Using the Data Source Manager with WFS and WMS\n[pages/][Using the Data Source Manager with WFS and WMS](pages/misc/using_data_source_manager.qmd “Using the Data Source Manager with WFS and WMS”)[/]"
+  },
+  {
+    "objectID": "pages/about.html",
+    "href": "pages/about.html",
+    "title": "About",
+    "section": "",
+    "text": "Finley Malloc is the Chief Data Scientist at Wengo Analytics. When not innovating on data platforms, Finley enjoys spending time unicycling and playing with her pet iguana."
+  },
+  {
+    "objectID": "pages/about.html#education",
+    "href": "pages/about.html#education",
+    "title": "About",
+    "section": "Education",
+    "text": "Education\nUniversity of California, San Diego | San Diego, CA PhD in Mathematics | Sept 2011 - June 2015\nMacalester College | St. Paul, MN B.A in Economics | Sept 2007 - June 2011"
+  },
+  {
+    "objectID": "pages/about.html#experience",
+    "href": "pages/about.html#experience",
+    "title": "About",
+    "section": "Experience",
+    "text": "Experience\nWengo Analytics | Head Data Scientist | April 2018 - present\nGeoScynce | Chief Analyst | Spet 2012 - April 2018"
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/cartographic_principles.html",
+    "href": "pages/cartography_and_mapping/cartographic_principles.html",
+    "title": "Cartographic principles",
+    "section": "",
+    "text": "Introduction\n\nwhat is a map?\nwhat is cartography?\nwhy do we map?",
+    "crumbs": [
+      "Cartography and mapping",
+      "Cartographic principles"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/cartographic_principles.html#principi-di-map-design",
+    "href": "pages/cartography_and_mapping/cartographic_principles.html#principi-di-map-design",
+    "title": "Cartographic principles",
+    "section": "Principi di map design",
+    "text": "Principi di map design\nQuando si progetta una mappa, l’obiettivo principale e’ quello di comunicare un messaggio.\n\nche domande bisogna porsi quando si disegna una mappa?\n\nCinque di questi principi principali sono legibility, visual contrast, figure-ground, hierarchical organization, and balance (https://www.esri.com/arcgis-blog/products/arcgis-pro/mapping/design-principles-for-cartography). Quando usati in maniera appropriata, questo sistema di principi favorisce e guida la lettura di una mappa sulla pagina in maniera chiara e in grado di comunicare il messaggio che il map maker vuole comunicare.\n\nVisual Contrast\nVisual contrast relates to how map featrues and page elements contrast with each other and their background. A well-designed map with a high visual contrast can result in a crisp, cleanm sharp-looking map. The higher the contrast between features, the more something will stand out. This is ususally the feature that is darker or brighter. Conversely, a map that has low visual contrast can be used to promote a more subtle impression. Features that have less contrast will appear to belong together.\n\n\nLegibility\nLegibility is “the ability to be seen and understood”. It depends on good decision-making for selecting symbols that are familiar to the rider, and choosing appropriate sizes so that the results are effortlessy seen and easily understood (example image). Geometric symbols are easier to read at smaller sizes; more complex symbols or incons require larger amounts of space to be legible (examples).\nIn linea di principio questi aspetti sono controllabili quando la mappa e’ stampata su un foglio di carta - un media ormai passato quasi obsoleto, dal momento che la gran parte della comunicazione visiva, mappe incluse, passa attraverso altri media come schermi digitali. Nel processo di mappatura, si effettuano diverse iterazioni - prove di stampa - per rifinire il contenuto e l’aspetto di una mappa, la grandezza dei simboli e delle labels, la dimensione e posizione della legenda, l’adeguatezza della scala di rappresentazione, eccetera. L’uso di strumenti e software digitale, come gis, cad, o graphica visiva (es. senza nominare illustrator o photoshop), nella costruzione della mappa, e l’uso di schermi per la sua comunicazione, spesso fanno tralasciare questi aspetti, risultando in immagini difficilmente legibili perche’ troppo piccole, o altro.\nIn questo senso, bisogna sempre considerare il supporto finale che ospitera’ la mappa. Finira’ in un libro? Che dimensioni avra’ questo libro? Quanto spazio posso usare nella pagina? Finira’ in un articolo scientifico? Sara’ proiettata su uno schermo di grandi dimensioni o di piccole dimensioni? eccetera.\nQuesti due principi sono propedetuici to other design principles: figure-ground, hierarchical organization, and balance.\nA map is a graphic representation, drawn to scale and traditionaly on a flat surface, of features of an area of the Earth. Such features can vary, they can be geographical - for instance, landforms, rivers, or geopolitical - administrative boundaries.\nDa un punto di vista tecnico, mappare significa riportare degli elementi\n\n\nFigure-ground\nFigure-ground organization is the spontaneous separation of the figure in the foreground from an “amorphous” background. Cartographers use this design principle to help their map readers find the area of the map or page to focus on.\nThere are many to promote figure-ground organization, such as adding detail to the map or using a white wash, a drop shadow, or feathering.\n\n\nHierarchical organization\nThe internal graphic structuring of the map - and the page layout more generally - is fundamental to helping people read your map. A hierarchy is the visual separation of your map into layers of information. Some types of features will be seen as more important that other kinds of features, and some features will seem more important than other features of the same type.\novviamente, questo dipende dal tipo di mappa sui cui dovete lavorare.\nHieararchical organization on reference maps (add link) works differently than on thematic maps (add link). For reference maps, many of the features should be no more important than one another and so, visually, they should lie on essentially the same visual plane. In reference maps, hierarchy is ususally more subtle and the map reader brings elements to the forefront by focusing attention on them.\nExample: a topographic map\nFor thematic maps, the theme is more important than the base that provides geographic context.\nExample: choroplet map\n\n\nBalance\nBalance involves the organization of the map and other elements on the page. A well-balanced map page results in an impression of equilibrium and harmony.\nWe can also use balance in different ways to promote “edginess” or “tension” or create an impression that is more “organic”. Balance results from two primary factors, visual weight and visual direction.\nIf you imagine that the center of your map page is balancing on a fulcrum, the factors that will “tip” the map in a particular direction include the relative location, shape, size, and subject matter of elements on the page.",
+    "crumbs": [
+      "Cartography and mapping",
+      "Cartographic principles"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/cartographic_principles.html#time",
+    "href": "pages/cartography_and_mapping/cartographic_principles.html#time",
+    "title": "Cartographic principles",
+    "section": "Time",
+    "text": "Time\nan additional principle in map makin is time.\nAs illustrated in\nInvestire tempo in una mappa - o, per esteso, in un progetto cartografico piu’ complesso come la creazione di un atlante - significa avere expectations realistiche su una project timeline.\n\n\n\nhttps://youtu.be/x9wn633vl_c?si=wAzIYQ8RMxIrRgKe",
+    "crumbs": [
+      "Cartography and mapping",
+      "Cartographic principles"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/cartographic_principles.html#exercise-choose-and-assess-a-map",
+    "href": "pages/cartography_and_mapping/cartographic_principles.html#exercise-choose-and-assess-a-map",
+    "title": "Cartographic principles",
+    "section": "Exercise: choose and assess a map",
+    "text": "Exercise: choose and assess a map\nGo to the internet or books, and look for maps. Pick three maps that caught your attention - either in a good or a bad way. Assess the maps according to these principles described above.\nAsk yourselves:\n\ndoes the map has good visual contrast?\nIs it legible?\nFigure ground?\nHierarchical organization?\nBalance?",
+    "crumbs": [
+      "Cartography and mapping",
+      "Cartographic principles"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_aesthetics.html",
+    "href": "pages/cartography_and_mapping/map_aesthetics.html",
+    "title": "Visual Variables and Map Aesthetics",
+    "section": "",
+    "text": "This chapter focuses on the stylistic and perceptual aspects of map design—those that influence clarity, hierarchy, emotion, and interpretation. These elements translate cartographic principles (Chapter 1) into concrete design decisions across the map elements (Chapter 2) and layout (Chapter 3).\n\n\n\n\nserif, sans-serif, decorative ### Font syze and hierarchy\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRGB\nCMYK\nHSL\nHEX ### Color theory ### Sequential, diverging, and categorical schemes ### Color perception and accessibility ### Psychological and caltural meaning of colors\n\n\n\n\n\nLine weight and hierarchy\nDash types and meanings (e.g., administrative boundaries vs physical features)\nContour and flow line visualization\nEdge sharpness and layering\n\n\n\nTypes of symbols: point, line, area\nPictorial vs geometric symbols\nSymbol scaling and abstraction\nSemiotics of symbols (iconic/indexical/symbolic)\n\n\n\nUse of hatching, shading, dotted fills\nSurface texture to suggest terrain, land use, or density\nInteractions with color and scale\n\n\n\nVisual hierarchy via opacity\nOverlapping elements\nTechniques for depth and dimensionality\n\n\n\nAnimated transitions for layers or zoom\nInteractive color and symbol changes\nMouseover and click-based symbol variation\nTime-based variables (e.g., animated flows or change detection)\n\n\n\nHow all these elements work together in design systems\nUsing style guides or cartographic templates\nCreating and applying cartographic identities (e.g., for institutions, atlases, or web platforms)",
+    "crumbs": [
+      "Cartography and mapping",
+      "Visual Variables and Map Aesthetics"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_aesthetics.html#fonts-and-typography",
+    "href": "pages/cartography_and_mapping/map_aesthetics.html#fonts-and-typography",
+    "title": "Visual Variables and Map Aesthetics",
+    "section": "",
+    "text": "serif, sans-serif, decorative ### Font syze and hierarchy",
+    "crumbs": [
+      "Cartography and mapping",
+      "Visual Variables and Map Aesthetics"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_aesthetics.html#color-use-in-maps",
+    "href": "pages/cartography_and_mapping/map_aesthetics.html#color-use-in-maps",
+    "title": "Visual Variables and Map Aesthetics",
+    "section": "",
+    "text": "RGB\nCMYK\nHSL\nHEX ### Color theory ### Sequential, diverging, and categorical schemes ### Color perception and accessibility ### Psychological and caltural meaning of colors",
+    "crumbs": [
+      "Cartography and mapping",
+      "Visual Variables and Map Aesthetics"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_aesthetics.html#line-and-stroke-styles",
+    "href": "pages/cartography_and_mapping/map_aesthetics.html#line-and-stroke-styles",
+    "title": "Visual Variables and Map Aesthetics",
+    "section": "",
+    "text": "Line weight and hierarchy\nDash types and meanings (e.g., administrative boundaries vs physical features)\nContour and flow line visualization\nEdge sharpness and layering",
+    "crumbs": [
+      "Cartography and mapping",
+      "Visual Variables and Map Aesthetics"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_aesthetics.html#symbols-and-iconography",
+    "href": "pages/cartography_and_mapping/map_aesthetics.html#symbols-and-iconography",
+    "title": "Visual Variables and Map Aesthetics",
+    "section": "",
+    "text": "Types of symbols: point, line, area\nPictorial vs geometric symbols\nSymbol scaling and abstraction\nSemiotics of symbols (iconic/indexical/symbolic)",
+    "crumbs": [
+      "Cartography and mapping",
+      "Visual Variables and Map Aesthetics"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_aesthetics.html#texture-and-pattern",
+    "href": "pages/cartography_and_mapping/map_aesthetics.html#texture-and-pattern",
+    "title": "Visual Variables and Map Aesthetics",
+    "section": "",
+    "text": "Use of hatching, shading, dotted fills\nSurface texture to suggest terrain, land use, or density\nInteractions with color and scale",
+    "crumbs": [
+      "Cartography and mapping",
+      "Visual Variables and Map Aesthetics"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_aesthetics.html#transparency-and-layering",
+    "href": "pages/cartography_and_mapping/map_aesthetics.html#transparency-and-layering",
+    "title": "Visual Variables and Map Aesthetics",
+    "section": "",
+    "text": "Visual hierarchy via opacity\nOverlapping elements\nTechniques for depth and dimensionality",
+    "crumbs": [
+      "Cartography and mapping",
+      "Visual Variables and Map Aesthetics"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_aesthetics.html#animation-and-interactivity",
+    "href": "pages/cartography_and_mapping/map_aesthetics.html#animation-and-interactivity",
+    "title": "Visual Variables and Map Aesthetics",
+    "section": "",
+    "text": "Animated transitions for layers or zoom\nInteractive color and symbol changes\nMouseover and click-based symbol variation\nTime-based variables (e.g., animated flows or change detection)",
+    "crumbs": [
+      "Cartography and mapping",
+      "Visual Variables and Map Aesthetics"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_aesthetics.html#design-cohesion-and-style-guides",
+    "href": "pages/cartography_and_mapping/map_aesthetics.html#design-cohesion-and-style-guides",
+    "title": "Visual Variables and Map Aesthetics",
+    "section": "",
+    "text": "How all these elements work together in design systems\nUsing style guides or cartographic templates\nCreating and applying cartographic identities (e.g., for institutions, atlases, or web platforms)",
+    "crumbs": [
+      "Cartography and mapping",
+      "Visual Variables and Map Aesthetics"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_layout.html",
+    "href": "pages/cartography_and_mapping/map_layout.html",
+    "title": "Map layout",
+    "section": "",
+    "text": "Map layout or map composition is the part of cartographic design that involves assembling various map elements on a page.\nCommon map elements include one or more data frames (each containing an ordered set of map layers), a scale bar, north arrow, map title, descriptive text, and a legend. \nFor geographic reference, you can add grids or graticules.\nWhen designin a map, several questions can be asked:\n\n\nWill the map stand alone, or will it be part of a series of maps that share a similar design?\nWhat size will the printed map be? How will the page be oriented?\nHow many data frames will your map have?\nWill the map have other elements such as a title, north arrow, and legend?\nWill the map contain graphs or reports to complement the geographic data?\nHow will scale be indicated on the map?\nHow will the map elements be organized on the page?\nWho are the end-users of our map?\nAre there any ‘unintended’ audiences (e.g., future employees, other colleagues, etc)?\n\n\n\n\n\n\n\n\nmap layout checklist\n\n\n\n\n\n\n\n\n\n\n\nPrimary Elements\nSecondary Elements\n\n\n\n\n\n\nTitle\nSubtitle\nLegend\nMap(s)\nScale bars\nNorth arrow\nDate\nAutorship\n\n\nInset maps\nGraticules\nTables\nPhotographs\nGraphics\nDescriptive Text\nNeat lines\nGraphs\nLogos\n\n\nDisclaimer\nData sources\nData citations\nMap numbers (if series)\nCopyright\nProjection\nNetwork path\nPage Borders\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMap title describes the theme or subject of a map.\nIt should instantly give the viewer a good idea of what the map is depicting.\nThe title is either the primary or secondary layout element (if secondary, it is only second to the map element)\nIt summarizes (in ten words or less) the primary findings of the analysis\nAvoid any obvious and redundant terms (e.g., ‘map of…’, ‘analysis of…’)\n\n\n\n\n\n\nThe subtitle is comprised of any spillover text that is slightly less important than the title but still somewhat necessary to fully understand the map\nIdeally, the subtitle provides further detail that the viewer needs to know prior to being able to understand the map\nIt is placed directly below or to the right of the title\n\nIt is displayed in the same font as the title but carries slightly less emphasis than the title\n\n\n\n\nIt is comprised of items (icons, points, lines, polygons) and their associated descriptions\nOnly exclude map layers from a legend—or the legend itself from the layout—purposefully\nBest practices: Items look best when placed to the left of their corresponding label.\n\nComplicated legends with many items necessitate grouping levels.\nMost common grouping levels are the categorical group (e.g., all land-use colors placed separately from all stream-level colors) and the shape-type  group (e.g., all polygon features placed separately from all line features)\n\n\n\n\nAn inset map in cartography is a smaller map featured within a larger map.\nZooming in on a specific area: It shows a detailed view of a particular region that may be too small to clearly represent on the main map. For example, an inset might zoom in on a city or area of interest within a larger regional or national map.\nProviding context: It shows the location of the main map’s area within a broader geographic context. For example, a small world map might be inset in a detailed country map to show where the country is located globally.\n\nHighlighting related information: Inset maps can show additional data or thematic content that complements the main map. For example, a weather map of a country may include an inset showing temperature trends in a specific region.\n\n\n\n\nIdentification of features\nLabels provide names for cities, rivers, roads, landmarks.\nBenefit: Helps users recognize and interpret map features.\nContext and Orientation\nLabels offer a spatial frame of reference.\nBenefit: Aids in understanding relationships between areas and features.\nClarifying Thematic Data\nLabels explain data on maps like population or climate zones.\nBenefit: Helps users grasp patterns or trends in the data.\nPrioritizing Information\nHighlights key features (e.g., capital cities, major roads).\nBenefit: Directs focus to the most relevant parts of the map.\n\nConveying Additional Information\nCan include extra data (e.g., population, distances).\nBenefit: Enriches the map with supplementary details.\n\n\n\n\nVisualizing Complex Data\nSimplifies large datasets for easy understanding.\nBenefit: Highlights patterns and trends.\nEnhancing Data Interpretation\nShows relationships between geographic locations and data.\nBenefit: Provides clear insight into spatial patterns.\nCombining Spatial and Quantitative Insights\nMerges location with numbers.\nBenefit: Analyzes how data varies by region.\nSupporting Thematic Analysis\nAdds context to thematic maps (e.g., demographics, economics).\nBenefit: Offers detailed insights on specific topics.\nFacilitating Comparisons Between Regions\nEasy comparison of regions using charts like bar or pie charts.\nBenefit: Shows socio-economic differences between areas.",
+    "crumbs": [
+      "Cartography and mapping",
+      "Map layout"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_layout.html#map-layout-elements",
+    "href": "pages/cartography_and_mapping/map_layout.html#map-layout-elements",
+    "title": "Map layout",
+    "section": "",
+    "text": "Map title describes the theme or subject of a map.\nIt should instantly give the viewer a good idea of what the map is depicting.\nThe title is either the primary or secondary layout element (if secondary, it is only second to the map element)\nIt summarizes (in ten words or less) the primary findings of the analysis\nAvoid any obvious and redundant terms (e.g., ‘map of…’, ‘analysis of…’)",
+    "crumbs": [
+      "Cartography and mapping",
+      "Map layout"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_layout.html#subtitle",
+    "href": "pages/cartography_and_mapping/map_layout.html#subtitle",
+    "title": "Map layout",
+    "section": "",
+    "text": "The subtitle is comprised of any spillover text that is slightly less important than the title but still somewhat necessary to fully understand the map\nIdeally, the subtitle provides further detail that the viewer needs to know prior to being able to understand the map\nIt is placed directly below or to the right of the title\n\nIt is displayed in the same font as the title but carries slightly less emphasis than the title",
+    "crumbs": [
+      "Cartography and mapping",
+      "Map layout"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_layout.html#legend",
+    "href": "pages/cartography_and_mapping/map_layout.html#legend",
+    "title": "Map layout",
+    "section": "",
+    "text": "It is comprised of items (icons, points, lines, polygons) and their associated descriptions\nOnly exclude map layers from a legend—or the legend itself from the layout—purposefully\nBest practices: Items look best when placed to the left of their corresponding label.\n\nComplicated legends with many items necessitate grouping levels.\nMost common grouping levels are the categorical group (e.g., all land-use colors placed separately from all stream-level colors) and the shape-type  group (e.g., all polygon features placed separately from all line features)",
+    "crumbs": [
+      "Cartography and mapping",
+      "Map layout"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_layout.html#inset-maps",
+    "href": "pages/cartography_and_mapping/map_layout.html#inset-maps",
+    "title": "Map layout",
+    "section": "",
+    "text": "An inset map in cartography is a smaller map featured within a larger map.\nZooming in on a specific area: It shows a detailed view of a particular region that may be too small to clearly represent on the main map. For example, an inset might zoom in on a city or area of interest within a larger regional or national map.\nProviding context: It shows the location of the main map’s area within a broader geographic context. For example, a small world map might be inset in a detailed country map to show where the country is located globally.\n\nHighlighting related information: Inset maps can show additional data or thematic content that complements the main map. For example, a weather map of a country may include an inset showing temperature trends in a specific region.",
+    "crumbs": [
+      "Cartography and mapping",
+      "Map layout"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_layout.html#labels",
+    "href": "pages/cartography_and_mapping/map_layout.html#labels",
+    "title": "Map layout",
+    "section": "",
+    "text": "Identification of features\nLabels provide names for cities, rivers, roads, landmarks.\nBenefit: Helps users recognize and interpret map features.\nContext and Orientation\nLabels offer a spatial frame of reference.\nBenefit: Aids in understanding relationships between areas and features.\nClarifying Thematic Data\nLabels explain data on maps like population or climate zones.\nBenefit: Helps users grasp patterns or trends in the data.\nPrioritizing Information\nHighlights key features (e.g., capital cities, major roads).\nBenefit: Directs focus to the most relevant parts of the map.\n\nConveying Additional Information\nCan include extra data (e.g., population, distances).\nBenefit: Enriches the map with supplementary details.",
+    "crumbs": [
+      "Cartography and mapping",
+      "Map layout"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping/map_layout.html#charts-and-graphs",
+    "href": "pages/cartography_and_mapping/map_layout.html#charts-and-graphs",
+    "title": "Map layout",
+    "section": "",
+    "text": "Visualizing Complex Data\nSimplifies large datasets for easy understanding.\nBenefit: Highlights patterns and trends.\nEnhancing Data Interpretation\nShows relationships between geographic locations and data.\nBenefit: Provides clear insight into spatial patterns.\nCombining Spatial and Quantitative Insights\nMerges location with numbers.\nBenefit: Analyzes how data varies by region.\nSupporting Thematic Analysis\nAdds context to thematic maps (e.g., demographics, economics).\nBenefit: Offers detailed insights on specific topics.\nFacilitating Comparisons Between Regions\nEasy comparison of regions using charts like bar or pie charts.\nBenefit: Shows socio-economic differences between areas.",
+    "crumbs": [
+      "Cartography and mapping",
+      "Map layout"
+    ]
+  },
+  {
+    "objectID": "pages/cartography_and_mapping.html",
+    "href": "pages/cartography_and_mapping.html",
+    "title": "Cartography and Mapping",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "pages/getting_started/folder_structure.html",
+    "href": "pages/getting_started/folder_structure.html",
+    "title": "folder_structure",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "pages/installation_setup/activating_panels.html",
+    "href": "pages/installation_setup/activating_panels.html",
+    "title": "Activating Panels",
+    "section": "",
+    "text": "QGIS has a flexible and customizable interface. One of the most important parts of that interface is panels — tool windows that give you access to data, tools, and project controls.\nThis tutorial will guide you through activating three essential panels:\n🔍 Browser Panel\n📂 Layer Panel\n🛠️ Processing Toolbox",
+    "crumbs": [
+      "Installation and setup",
+      "Activating Panels"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/activating_panels.html#activating-panels-in-qgis",
+    "href": "pages/installation_setup/activating_panels.html#activating-panels-in-qgis",
+    "title": "Activating Panels",
+    "section": "",
+    "text": "QGIS has a flexible and customizable interface. One of the most important parts of that interface is panels — tool windows that give you access to data, tools, and project controls.\nThis tutorial will guide you through activating three essential panels:\n🔍 Browser Panel\n📂 Layer Panel\n🛠️ Processing Toolbox",
+    "crumbs": [
+      "Installation and setup",
+      "Activating Panels"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/activating_panels.html#what-are-panels",
+    "href": "pages/installation_setup/activating_panels.html#what-are-panels",
+    "title": "Activating Panels",
+    "section": "🧱 What Are Panels?",
+    "text": "🧱 What Are Panels?\nPanels are parts of the QGIS interface that appear on the sides of the main window. Each panel has a specific function:\n\nBrowser Panel – Lets you quickly browse your computer for spatial files and databases to add to your project.\nLayer Panel – Displays all the map layers you’re currently using. You can show/hide, reorder, or manage them from here.\nProcessing Toolbox – Gives you access to powerful spatial analysis tools, like buffering, clipping, and merging layers.\n\n\n💡 If your screen looks empty or confusing when you first open QGIS, some of these panels might be hidden. Let’s turn them on!",
+    "crumbs": [
+      "Installation and setup",
+      "Activating Panels"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/activating_panels.html#turn-on-the-browser-panel",
+    "href": "pages/installation_setup/activating_panels.html#turn-on-the-browser-panel",
+    "title": "Activating Panels",
+    "section": "🔍 Turn On the Browser Panel",
+    "text": "🔍 Turn On the Browser Panel\n\nLaunch QGIS on your computer.\nOn the top menu bar, click View.\nHover over Panels.\nClick Browser Panel to activate it.\n\n✅ The Browser Panel should now appear (usually on the left). You can now explore folders and add spatial data files by dragging them into the map.",
+    "crumbs": [
+      "Installation and setup",
+      "Activating Panels"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/activating_panels.html#turn-on-the-layer-panel",
+    "href": "pages/installation_setup/activating_panels.html#turn-on-the-layer-panel",
+    "title": "Activating Panels",
+    "section": "📂 Turn On the Layer Panel",
+    "text": "📂 Turn On the Layer Panel\n\nIn QGIS, go to the View menu again.\nHover over Panels.\nClick Layer Panel.\n\n✅ The Layer Panel should appear — this is where you can manage what’s shown on your map. Right-click layers here to rename, style, or remove them.",
+    "crumbs": [
+      "Installation and setup",
+      "Activating Panels"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/activating_panels.html#turn-on-the-processing-toolbox",
+    "href": "pages/installation_setup/activating_panels.html#turn-on-the-processing-toolbox",
+    "title": "Activating Panels",
+    "section": "🛠️ Turn On the Processing Toolbox",
+    "text": "🛠️ Turn On the Processing Toolbox\n\nClick the Processing menu on the top bar.\nSelect Toolbox from the dropdown.\n\n✅ The Processing Toolbox will appear (usually on the right). This panel gives you access to dozens of analysis tools, from simple measurements to advanced geospatial functions.",
+    "crumbs": [
+      "Installation and setup",
+      "Activating Panels"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/activating_panels.html#bonus-customize-your-layout",
+    "href": "pages/installation_setup/activating_panels.html#bonus-customize-your-layout",
+    "title": "Activating Panels",
+    "section": "🧩 Bonus: Customize Your Layout",
+    "text": "🧩 Bonus: Customize Your Layout\n\nDocking Panels: Drag panels around and dock them where it feels comfortable — left, right, top, or bottom.\nFloating Panels: You can also leave a panel floating like a separate window.\nSave Layout: Once you’re happy with the setup, go to\nView \\&gt; Panels \\&gt; Save Panel Layout to save your interface for future sessions.\n\n\n📌 Tip: If your panels disappear by accident, just reopen them using the steps above!",
+    "crumbs": [
+      "Installation and setup",
+      "Activating Panels"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/activating_panels.html#youre-ready",
+    "href": "pages/installation_setup/activating_panels.html#youre-ready",
+    "title": "Activating Panels",
+    "section": "✅ You’re Ready!",
+    "text": "✅ You’re Ready!\nNow your QGIS workspace is organized and ready to use. These three panels — Browser, Layer, and Processing Toolbox — are the foundation of your QGIS workflow.\n\n🎓 Tip for architecture students: Keeping your panels organized helps when managing multiple layers like building footprints, zoning areas, or transport networks.",
+    "crumbs": [
+      "Installation and setup",
+      "Activating Panels"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/installing_plugins.html",
+    "href": "pages/installation_setup/installing_plugins.html",
+    "title": "Installing Plugins (QMS & PDOK)",
+    "section": "",
+    "text": "QGIS supports many useful plugins that help you add extra data and tools to your projects. In this tutorial, you’ll learn how to install two popular plugins:\n\nQMS (QuickMapServices) — gives you access to base maps like OpenStreetMap, Google, and more.\n\nPDOK (Publieke Dienstverlening Op de Kaart) — provides Dutch geospatial datasets (such as cadastral, administrative, and aerial layers).",
+    "crumbs": [
+      "Installation and setup",
+      "Installing Plugins (QMS & PDOK)"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/installing_plugins.html#installing-plugins-in-qgis",
+    "href": "pages/installation_setup/installing_plugins.html#installing-plugins-in-qgis",
+    "title": "Installing Plugins (QMS & PDOK)",
+    "section": "",
+    "text": "QGIS supports many useful plugins that help you add extra data and tools to your projects. In this tutorial, you’ll learn how to install two popular plugins:\n\nQMS (QuickMapServices) — gives you access to base maps like OpenStreetMap, Google, and more.\n\nPDOK (Publieke Dienstverlening Op de Kaart) — provides Dutch geospatial datasets (such as cadastral, administrative, and aerial layers).",
+    "crumbs": [
+      "Installation and setup",
+      "Installing Plugins (QMS & PDOK)"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/installing_plugins.html#what-youll-learn",
+    "href": "pages/installation_setup/installing_plugins.html#what-youll-learn",
+    "title": "Installing Plugins (QMS & PDOK)",
+    "section": "✅ What You’ll Learn",
+    "text": "✅ What You’ll Learn\n\nHow to use the Plugin Manager\n\nHow to install QMS and PDOK plugins\n\nHow to load layers from each plugin into your map",
+    "crumbs": [
+      "Installation and setup",
+      "Installing Plugins (QMS & PDOK)"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/installing_plugins.html#before-you-start",
+    "href": "pages/installation_setup/installing_plugins.html#before-you-start",
+    "title": "Installing Plugins (QMS & PDOK)",
+    "section": "📦 Before You Start",
+    "text": "📦 Before You Start\nMake sure you have QGIS installed.\n👉 You can download the latest version here: https://qgis.org",
+    "crumbs": [
+      "Installation and setup",
+      "Installing Plugins (QMS & PDOK)"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/installing_plugins.html#step-by-step-guide",
+    "href": "pages/installation_setup/installing_plugins.html#step-by-step-guide",
+    "title": "Installing Plugins (QMS & PDOK)",
+    "section": "🔧 Step-by-Step Guide",
+    "text": "🔧 Step-by-Step Guide\n\nOpen QGIS and Access the Plugin Manager\n\nLaunch QGIS\n\nIn the top menu, go to:\nPlugins → Manage and Install Plugins\n\n\n\n\nSearch for and Install QMS (QuickMapServices)\n\nIn the Plugins window, go to the All tab\n\nIn the search bar, type QMS\n\nSelect QuickMapServices from the list\n\nClick Install Plugin\n\nClose the window after installation\n\n✅ You’ll now see a new icon or find QMS under the Web or Plugins menu.\n\n\n\nSearch for and Install PDOK Services Plugin\n\nOpen the Plugin Manager again (Plugins &gt; Manage and Install Plugins)\nSearch for PDOK\nSelect PDOK Services Plugin\nClick Install Plugin\nClose the window after installation\n\n✅ The PDOK plugin may also appear under the Web menu after installation.",
+    "crumbs": [
+      "Installation and setup",
+      "Installing Plugins (QMS & PDOK)"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/installing_plugins.html#load-layers-using-the-plugins",
+    "href": "pages/installation_setup/installing_plugins.html#load-layers-using-the-plugins",
+    "title": "Installing Plugins (QMS & PDOK)",
+    "section": "🌍 Load Layers Using the Plugins",
+    "text": "🌍 Load Layers Using the Plugins\n\n🗺️ Using QMS (QuickMapServices)\n\nClick the QMS icon in the toolbar or go to Web &gt; QuickMapServices\n\nSearch for a base map (e.g., “OpenStreetMap”)\n\nClick on the map name to load it into your project\n\n\n\n🧭 Using PDOK\n\nGo to Web &gt; PDOK Services Plugin\n\nBrowse the list of layers (e.g., base maps, cadastral, boundaries)\n\nSelect a layer and click Add Layer",
+    "crumbs": [
+      "Installation and setup",
+      "Installing Plugins (QMS & PDOK)"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/installing_plugins.html#extra-tips",
+    "href": "pages/installation_setup/installing_plugins.html#extra-tips",
+    "title": "Installing Plugins (QMS & PDOK)",
+    "section": "💡 Extra Tips",
+    "text": "💡 Extra Tips\n\nYou can add both plugins to your toolbar for quick access.\n\nUse QMS for global base maps, and PDOK for Dutch-specific data.\n\nTo remove or update plugins, go back to Plugins &gt; Manage and Install Plugins.",
+    "crumbs": [
+      "Installation and setup",
+      "Installing Plugins (QMS & PDOK)"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/installing_plugins.html#youre-done",
+    "href": "pages/installation_setup/installing_plugins.html#youre-done",
+    "title": "Installing Plugins (QMS & PDOK)",
+    "section": "🎉 You’re Done!",
+    "text": "🎉 You’re Done!\nYou’ve successfully installed the QMS and PDOK plugins in QGIS.\nYou now have access to powerful tools and rich datasets to support your spatial design work.\n\n🏗️ Tip for architecture students: Use QMS base maps for site context and PDOK layers for official boundaries and parcel data when analyzing Dutch locations.",
+    "crumbs": [
+      "Installation and setup",
+      "Installing Plugins (QMS & PDOK)"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/switch_language.html",
+    "href": "pages/installation_setup/switch_language.html",
+    "title": "Change Language to English",
+    "section": "",
+    "text": "QGIS supports many languages and allows you to easily switch the interface to the one you’re most comfortable with. If QGIS opens in a different language by default, follow the steps below to change it to English (or any other language of your choice).",
+    "crumbs": [
+      "Installation and setup",
+      "Change Language to English"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/switch_language.html#change-language-to-english-in-qgis",
+    "href": "pages/installation_setup/switch_language.html#change-language-to-english-in-qgis",
+    "title": "Change Language to English",
+    "section": "",
+    "text": "QGIS supports many languages and allows you to easily switch the interface to the one you’re most comfortable with. If QGIS opens in a different language by default, follow the steps below to change it to English (or any other language of your choice).",
+    "crumbs": [
+      "Installation and setup",
+      "Change Language to English"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/switch_language.html#step-by-step-changing-the-interface-language",
+    "href": "pages/installation_setup/switch_language.html#step-by-step-changing-the-interface-language",
+    "title": "Change Language to English",
+    "section": "🔄 Step-by-Step: Changing the Interface Language",
+    "text": "🔄 Step-by-Step: Changing the Interface Language\n\nOpen QGIS\nLaunch the QGIS application on your computer.\n\n\nOpen the Settings/Preferences Window\n\nOn Windows: Click on the Settings menu in the top menu bar.\nOn macOS: Click on the QGIS menu in the top-left corner of the screen.\n\n\n\nAccess Options (Windows) or Preferences (macOS)\n\nSelect Options (Windows) or Preferences (macOS) from the drop-down menu.\n\nThis opens the QGIS Settings dialog where you can change various preferences.\n\n\nGo to Locale Settings\nIn the settings window, navigate to the tab or section labeled Locale, Locale Settings, or General, depending on your QGIS version.\n\n\nChange the Language\n\nFind the Language or Locale dropdown menu.\nSelect English (or another preferred language) from the list.\n\n\n💡 Tip: QGIS uses your system language by default. To override it, make sure the “Override system locale” checkbox is selected (if available).\n\n\n\nApply the Changes\nClick Apply or OK to save your settings.\n\n\nRestart QGIS\nClose and reopen QGIS for the new language settings to take full effect.",
+    "crumbs": [
+      "Installation and setup",
+      "Change Language to English"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/switch_language.html#additional-notes",
+    "href": "pages/installation_setup/switch_language.html#additional-notes",
+    "title": "Change Language to English",
+    "section": "📝 Additional Notes",
+    "text": "📝 Additional Notes\n\nLanguage Packs: QGIS usually comes with common language packs pre-installed. If English doesn’t appear as an option, make sure you’re using a standard version of QGIS or reinstall it with all components.\nUpdates: Language support improves with new releases. Make sure you’re using the latest version of QGIS from qgis.org.\nNeed Help?: If you encounter issues or can’t find the setting, check the official QGIS documentation for your version.",
+    "crumbs": [
+      "Installation and setup",
+      "Change Language to English"
+    ]
+  },
+  {
+    "objectID": "pages/installation_setup/switch_language.html#thats-it",
+    "href": "pages/installation_setup/switch_language.html#thats-it",
+    "title": "Change Language to English",
+    "section": "✅ That’s It!",
+    "text": "✅ That’s It!\nYou’ve successfully changed the QGIS interface language to English! This can make it easier to follow tutorials and use the software more comfortably — especially when you’re just getting started.\n\n📘 Tip for beginners: Keeping QGIS in English will help you follow most online guides, documentation, and community support threads.",
+    "crumbs": [
+      "Installation and setup",
+      "Change Language to English"
+    ]
+  },
+  {
+    "objectID": "pages/landscape_analysis/cross_profiles.html",
+    "href": "pages/landscape_analysis/cross_profiles.html",
+    "title": "Cross Profiles",
+    "section": "",
+    "text": "Cross profiles - also known as elevation profiles or terrain transects - are vertical slices of the terrain that show changes in elevation along a line across a landscape. They are fundamental tools in environmental analysis, geomorphology, hydrology, landscape design, and urban planning.\nCross profiles help us:",
+    "crumbs": [
+      "Landscape analysis",
+      "Cross Profiles"
+    ]
+  },
+  {
+    "objectID": "pages/landscape_analysis/cross_profiles.html#cross-profiles-in-qgis",
+    "href": "pages/landscape_analysis/cross_profiles.html#cross-profiles-in-qgis",
+    "title": "Cross Profiles",
+    "section": "Cross profiles in QGIS",
+    "text": "Cross profiles in QGIS\nQGIS allows you to combine raster data (like elevation models), vector layers (like contour lines), and point clouds (such as LiDAR data) to generate highly informative profiles. With the right tools and plugins, you can visualize, compare, and extract insights from these profiles—at both site-specific and regional scales.\nsoftware: Excel, QGIS level: basic courses: Untitled",
+    "crumbs": [
+      "Landscape analysis",
+      "Cross Profiles"
+    ]
+  },
+  {
+    "objectID": "pages/landscape_analysis/cross_profiles.html#watch-video-tutorials",
+    "href": "pages/landscape_analysis/cross_profiles.html#watch-video-tutorials",
+    "title": "Cross Profiles",
+    "section": "Watch video tutorials",
+    "text": "Watch video tutorials\n\nCross section detection Using Profile Tool\n\n\n\nCompare raster DTM’s, contour lines and a point cloud for different transects\n\n\n\nElevation Profiles using .laz data\n\n\n\nMultiple cross-sectional profiles",
+    "crumbs": [
+      "Landscape analysis",
+      "Cross Profiles"
+    ]
+  },
+  {
+    "objectID": "pages/landscape_analysis/cross_profiles.html#exercise.-create-3d-terrain-with-qgis-and-gimp-optional",
+    "href": "pages/landscape_analysis/cross_profiles.html#exercise.-create-3d-terrain-with-qgis-and-gimp-optional",
+    "title": "Cross Profiles",
+    "section": "Exercise. Create 3D Terrain with QGIS and GIMP (Optional)",
+    "text": "Exercise. Create 3D Terrain with QGIS and GIMP (Optional)\nhttps://www.youtube.com/watch?v=rgFI5WiXOl8&ab_channel=GeoDeltaLabs\n\nDownload / select data\n\nDownload elevation data\n\nAccess https://ahn.arcgisonline.nl/ahnviewer/ and click the Layer List button (fig.1)\nCheck the AHN4 - Downloads per kaartblad layer\nTiles with orange outlines will appear on the viewer. Click on the your study area tile to download the raster and point cloud files. The tile outline will turn turquoise, and a pop-up window will appear (fig.2).\nDownload AHN4_DSM_5m, AHN4_DTM_5m and AHN4_Puntenwolk (LAZ). Laz files are quite large, so it will take a while to dowload them.\n\n\n\n\nUntitled\n\n\n\n\n\nUntitled\n\n\n\n\n\nDownload complementary data\n\n\nSoil and water tables and groundwater levels, geomorphology and soils\nOndergrondmodellen | BROloket\n\n\nWater management (Waterboard Delfland)\nLegger Delfland AGOL\n\n\nHistorical maps\n\n\n\nCreate cross profiles for your study area\n\nCreate a cross profile at the small scale using .laz data\nCreate a cross profile at the landscape scale",
+    "crumbs": [
+      "Landscape analysis",
+      "Cross Profiles"
+    ]
+  },
+  {
+    "objectID": "pages/landscape_analysis/terrain_data.html",
+    "href": "pages/landscape_analysis/terrain_data.html",
+    "title": "terrain_data",
+    "section": "",
+    "text": "Back to top",
+    "crumbs": [
+      "Landscape analysis",
+      "terrain_data"
+    ]
+  },
+  {
+    "objectID": "pages/learn_gis.html",
+    "href": "pages/learn_gis.html",
+    "title": "learn_GIS",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "pages/main/main_find_data.html",
+    "href": "pages/main/main_find_data.html",
+    "title": "main_find_data",
+    "section": "",
+    "text": "Find Data\nAccessing high-quality spatial data is crucial for effective analysis and decision-making in GIS. This section provides you with the resources and guidance needed to discover, obtain, and manage spatial data for your projects in architecture, urbanism and landscape architecture.\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "pages/misc/using_data_source_manager.html",
+    "href": "pages/misc/using_data_source_manager.html",
+    "title": "Using the Data Source Manager with WFS and WMS",
+    "section": "",
+    "text": "Duration: ~20 minutes"
+  },
+  {
+    "objectID": "pages/misc/using_data_source_manager.html#introduction",
+    "href": "pages/misc/using_data_source_manager.html#introduction",
+    "title": "Using the Data Source Manager with WFS and WMS",
+    "section": "Introduction",
+    "text": "Introduction\nIn this exercise, you will learn how to connect to external geospatial data sources using QGIS’s Data Source Manager. You’ll work with real Dutch open data, combining different data layers to create a focused analysis area around Rotterdam neighbourhoods.\nYou will retrieve neighbourhood boundaries via WFS, perform spatial operations to create a study area, and then use this area to clip climate adaptation data. Finally, you’ll add aerial imagery via WMS to visualize your results.\nThis workflow demonstrates a common GIS task: defining a study area, retrieving relevant data, and preparing it for analysis.\n\n\n\n\n\n\nWhat is WFS?\n\n\n\nWFS (Web Feature Service) provides access to vector data (points, lines, polygons) that you can query, style, analyze, and edit in QGIS. Think of it as downloading the actual geographic features with all their attributes. WFS is ideal when you need to perform spatial analysis or select specific features.\n\n\n\n\n\n\n\n\nWhat is WMS?\n\n\n\nWMS (Web Map Service) provides access to pre-rendered map images - essentially picture tiles of maps. You cannot query individual features or access attributes, but WMS layers load quickly and are perfect for background/reference maps. Think of it as viewing a map image rather than working with the data itself.\n\n\n\n\n\n\n\n\nKey Differences Between WFS and WMS\n\n\n\n\n\n\n\n\n\n\n\nFeature\nWFS\nWMS\n\n\n\n\nData type\nVector (features)\nRaster (images)\n\n\nFile size\nCan be large\nSmaller\n\n\nQueryable\nYes\nNo\n\n\nStylable in QGIS\nYes\nLimited\n\n\nEditable\nYes\nNo\n\n\nBest for\nAnalysis, editing, selection\nBackground maps, visualization"
+  },
+  {
+    "objectID": "pages/misc/using_data_source_manager.html#steps",
+    "href": "pages/misc/using_data_source_manager.html#steps",
+    "title": "Using the Data Source Manager with WFS and WMS",
+    "section": "Steps",
+    "text": "Steps\n\nPart 1: Setting Up Your Project and Retrieving Neighbourhood Data\n\nOpen QGIS and create a new project\nSet the project CRS (Coordinate Reference System) to EPSG:28992 (Amersfoort / RD New - the Dutch standard projection)\n\nGo to Project &gt; Properties &gt; CRS\nSearch for “28992” and select “Amersfoort / RD New”\nClick OK\n\nUsing the PDOK Services plugin, retrieve data via WFS of this dataset:\n\nOpen the PDOK Services Plugin (look for the PDOK icon in the toolbar or go to Web &gt; PDOK Services Plugin)\nIn the plugin window, search for “CBS Wijken en Buurten 2024”\nSelect the WFS option (not WMS!)\nChoose the layer: cbs_buurten_2024 (neighbourhoods)\nClick to add it to your map\n\n\n\n\n\n\n\nImportant\n\n\n\nPlease pay attention to retrieve the correct data, as there are many buurten layers, both for WFS and WMS! What you need is a vector layer containing all 14,668 buurten (neighbourhoods) in the Netherlands. After loading, check the feature count in the layer properties to confirm you have the complete dataset.\n\n\n\n\n\nFigure 1 - PDOK Services Plugin showing CBS Buurten 2024 WFS\n\n\nYou must now select only the 6 buurten that obey to these criteria:\n\nThey belong to the municipality of Rotterdam (gemeentenaam = “Rotterdam”) AND\nTheir name (buurtnaam) is one of the following: “Blijdorp”, “Centrum”, “Cool”, “Dijkzigt”, “Nieuwe Werk”, “Oude Westen”\n\nTo select these neighbourhoods:\n\nOpen the attribute table (right-click on layer &gt; Open Attribute Table)\nClick on Select features using an expression (the yellow icon with ε)\nEnter this expression:\n\n\"gemeentenaam\" = 'Rotterdam' AND \n\"buurtnaam\" IN ('Blijdorp', 'Centrum', 'Cool', 'Dijkzigt', 'Nieuwe Werk', 'Oude Westen')\n\nClick Select Features\nVerify that 6 features are selected (shown at the top of the attribute table)\n\nNow save the selected features:\n\nRight-click on the layer &gt; Export &gt; Save Selected Features As...\nFormat: GeoPackage\nFile name: Navigate to folder part1_data and name it buurten.gpkg\nLayer name: buurten\nCRS: EPSG:28992\nBefore saving, we need to add the area calculation and drop unwanted columns:\n\nClick on the fields list and uncheck all columns except:\n\nbuurtnaam (name of the neighbourhood)\nbuurtcode (code of the neighbourhood)\ngemeentenaam (name of the municipality)\n\n\nClick OK to save\n\nAdd the area column:\n\nOpen the attribute table of the newly saved buurten layer\nEnable editing mode (click the pencil icon)\nOpen the Field Calculator (Ctrl+I or click the abacus icon)\nCheck Create a new field\nOutput field name: buurt_area\nOutput field type: Decimal number (real)\nPrecision: 2\nIn the expression box, enter: round($area, 2)\nClick OK\nSave edits and disable editing mode\n\n\n\n\nFigure 2 - Selected Rotterdam neighbourhoods with area calculation\n\n\nDissolve now the geometries of the 6 buurten:\n\nGo to Vector &gt; Geoprocessing Tools &gt; Dissolve\nInput layer: buurten\nLeave “Dissolve field(s)” empty (this will dissolve all features into one)\nClick Run\nAfter the temporary layer is created, right-click on it &gt; Export &gt; Save Features As...\nFormat: GeoPackage\nFile name: Select the existing buurten.gpkg file\nLayer name: buurten_dissolved\nIn the fields section, uncheck all attributes\nClick OK\n\n\n\n\nFigure 3 - Dissolved neighbourhood boundary\n\n\nCompute the bounding box/extents of buurten_dissolved:\n\nGo to Vector &gt; Research Tools &gt; Extract layer extent\nInput layer: buurten_dissolved\nClick Run\nExport this layer to the GeoPackage:\n\nRight-click &gt; Export &gt; Save Features As...\nFile name: Select buurten.gpkg\nLayer name: bbox\nKeep only columns: minx, miny, maxx, maxy\nClick OK\n\n\n\n\n\nFigure 4 - Bounding box of the study area\n\n\nFinally, compute a buffer of 200 m around the bbox layer:\n\nGo to Vector &gt; Geoprocessing Tools &gt; Buffer\nInput layer: bbox\nDistance: 200 (meters)\nEnd cap style: Flat (The end cap style parameter controls how line endings are handled in the buffer.)\nJoin style: Miter\nClick Run\nExport the result to the GeoPackage:\n\nRight-click on the buffered layer &gt; Export &gt; Save Features As...\nFile name: Select buurten.gpkg\nLayer name: bbox_buffered\nUncheck all attributes in the fields section\nClick OK\n\n\n\n\n\nFigure 5 - 200m buffer around bounding box\n\n\n\n\n\nPart 2: Connecting to WFS for Climate Adaptation Data\n\nOpen the Data Source Manager\n\nClick the “Open Data Source Manager” button in the toolbar, OR\nGo to Layer &gt; Data Source Manager, OR\nPress Ctrl+L\n\nSelect the WFS / OGC API - Features tab on the left\nCreate a new WFS connection to Zuid-Holland climate data:\n\nClick New to create a new connection\nName: Zuid-Holland Climate Adaptation\nURL: https://geodata.zuid-holland.nl/geoserver/klimaat/wfs?service=WFS&version=2.0.0&request=GetCapabilities\nClick OK\n\nLoad a WFS layer:\n\nSelect the “Zuid-Holland Climate Adaptation” connection and click Connect\nWait for the available layers to load\nFind and select klimaat:klimaatpanden_2022 (Basiskaarten klimaatadaptatie panden - wateroverlast, hitte en biodiversiteit 2022)\nClick Add at the bottom\nClick Close\n\nClip the layer to your study area:\n\nGo to Vector &gt; Geoprocessing Tools &gt; Clip\nInput layer: klimaat:klimaatpanden_2022 (the climate buildings layer)\nOverlay layer: bbox_buffered\nClick Run\nThis will create a new layer containing only the climate data within your buffered study area\nYou can now remove the original (unclipped) WFS layer to improve performance\n\nExplore the layer:\n\nZoom to your study area (the Rotterdam neighbourhoods you selected)\nNotice that buildings are vector features you can select and query\nOpen the attribute table (right-click layer &gt; Open Attribute Table)\nExplore the climate adaptation attributes like water overlay risk, heat stress, and biodiversity scores\n\n\n\n\nPart 3: Connecting to WMS for Background Imagery\nWhat is WMS? WMS provides access to pre-rendered map images - like a background map. You cannot query individual features, but it loads faster for large areas.\n\nOpen the Data Source Manager again (Ctrl+L)\nSelect the WMS / WMTS tab on the left\nCreate a new WMS connection:\n\nClick New to create a new connection\nName: PDOK Aerial Photos\nURL: https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts\nClick OK\n\nLoad a WMS layer:\n\nSelect the “PDOK Aerial Photos” connection and click Connect\nSelect Luchtfoto 2025 Ortho 25cm RGB (current high-resolution aerial photos. Please select EPSG:28992)\nClick Add\nClick Close\n\n\n\n\n\n\nImportant\n\n\n\nImportant: Before retrieving it, you should first zoom to the bbox_buffered layer, in order to automatically reduce the size of the data to be retrieved.\n\n\n\nSave a local copy of the orthophoto. Please save it into folder \\part1_data. Select the orthophoto layer name, right click on it and choose Export\\Save As…\nIn the resulting dialog GUI, choose/set the following parameters\n\nOutput mode: Raw data\nFormat: GeoTIFF. Important: Uncheck “Create VRT”!\nFile name: ortho_25cm.tif. Save the file in folder \\raster\nCRS: EPSG:28992\nWhen it comes to the extents, set them to be taken from the bbox_buffered layer.\nResolution: 0.25 m for both horizontal and vertical.\n\nArrange your layers:\n\nIn the Layers panel, drag layers so the order from top to bottom is:\n\nbuurten (neighbourhood boundaries)\nClipped climate buildings layer\nbbox_buffered (buffer outline)\nLuchtfoto 2025 Ortho 25cm RGB (aerial photos - at the bottom)\n\nAdjust the transparency of the buildings layer if needed (Right-click &gt; Properties &gt; Symbology &gt; Layer Rendering &gt; adjust opacity slider)\nStyle the neighbourhood boundaries with a bold outline and no fill to see the aerial photo underneath"
+  },
+  {
+    "objectID": "pages/misc/using_data_source_manager.html#recap",
+    "href": "pages/misc/using_data_source_manager.html#recap",
+    "title": "Using the Data Source Manager with WFS and WMS",
+    "section": "Recap",
+    "text": "Recap\nWhat you’ve learned:\n\nThe Data Source Manager is your central hub for connecting to external data sources in QGIS\nWFS provides vector data that you can style, query, and analyze - great for operational data and spatial analysis\nWMS provides raster map images - great for background maps and visualization\nHow to use the PDOK Services Plugin to easily access Dutch open geospatial data\nBasic geoprocessing workflows: selection, dissolve, buffer, and clip operations\nHow to organize and save multiple layers in a GeoPackage for efficient data management\nDutch PDOK (Publieke Dienstverlening Op de Kaart) offers free, reliable geospatial web services\nProvincial and municipal data portals (like Zuid-Holland) provide specialized datasets\nSaved connections can be reused in future projects\n\nKey differences between WFS and WMS:\n\n\n\nFeature\nWFS\nWMS\n\n\n\n\nData type\nVector (features)\nRaster (images)\n\n\nFile size\nCan be large\nSmaller\n\n\nQueryable\nYes\nNo\n\n\nStylable in QGIS\nYes\nLimited\n\n\nBest for\nAnalysis, editing\nBackground maps\n\n\n\nUseful Dutch Data Portals:\n\nPDOK: https://www.pdok.nl/ (national geospatial infrastructure)\nData.overheid.nl: Open data from Dutch government\nNationaal Georegister: https://www.nationaalgeoregister.nl/ (search for geospatial services)\nMost Dutch provinces and municipalities also offer their own WFS/WMS services"
+  },
+  {
+    "objectID": "pages/misc/using_data_source_manager.html#extension-activities-optional",
+    "href": "pages/misc/using_data_source_manager.html#extension-activities-optional",
+    "title": "Using the Data Source Manager with WFS and WMS",
+    "section": "Extension Activities (Optional)",
+    "text": "Extension Activities (Optional)\n\nExplore other PDOK services at https://www.pdok.nl/datasets\nTry filtering WFS layers using the Data Source Manager’s “SQL” or “Filter” options\nAnalyze the climate adaptation scores in your selected Rotterdam neighbourhoods\nCompare different neighbourhoods’ vulnerability to heat, water, or biodiversity loss\nAdd the RIVM Energy Labels WMS (https://data.rivm.nl/geo/nl/wms?request=GetCapabilities, layer rvo_energielabels) to see building energy performance\nCreate a styled map showing the relationship between neighbourhood characteristics and climate risks"
+  },
+  {
+    "objectID": "pages/sources/3dbag.html",
+    "href": "pages/sources/3dbag.html",
+    "title": "3D BAG",
+    "section": "",
+    "text": "Visit the official 3D BAG website{:target=“_blank”}\n\n\n\n Back to top"
   }
 ]
