@@ -1,0 +1,572 @@
+---
+title: "Calculating Statistics and Visualizing Data"
+format: html
+editor: visual
+---
+
+**Duration:** 30-40 minutes
+
+------------------------------------------------------------------------
+
+::: callout-note
+## Learning Goals
+
+By the end of this tutorial, you will be able to:
+
+-   Calculate basic statistics from attribute data in QGIS
+-   Use the Field Calculator to create derived attributes
+-   Aggregate data by categories (group by operations)
+-   Export attribute data to CSV format
+-   Understand interoperability between GIS and visualization tools
+-   Import data into RAWGraphs 2.0
+-   Create effective data visualizations (bar charts, treemaps, scatter plots)
+-   Interpret spatial data through non-spatial visualizations
+:::
+
+::: callout-note
+## Software and Data Required
+
+-   **QGIS** (version 3.x or higher)
+-   Web browser with internet access
+-   **RAWGraphs 2.0** (web-based tool): https://app.rawgraphs.io/
+-   **Data files:**
+    -   `buurten.gpkg` (from previous exercises with Rotterdam neighbourhoods)
+    -   Climate adaptation data (WFS layer from previous exercise), OR
+    -   Any vector layer with attribute data
+:::
+
+## Introduction
+
+Geographic data isn't just about maps - it's also about the **attributes** and **statistics** that describe spatial features. Understanding the underlying data through statistics and visualizations is crucial for spatial analysis and decision-making.
+
+**Why calculate statistics in GIS?**
+-   Summarize large datasets into meaningful insights
+-   Identify patterns, trends, and outliers
+-   Compare different areas or time periods
+-   Support evidence-based decision making
+-   Communicate findings to non-technical audiences
+
+**Why use external visualization tools?**
+While QGIS has built-in charting capabilities, specialized visualization tools like **RAWGraphs** offer:
+-   More chart types and customization options
+-   Interactive, web-friendly outputs
+-   Better design for presentations and reports
+-   Easier sharing with non-GIS users
+
+This tutorial demonstrates **interoperability** - the ability to move data between different software tools to leverage their respective strengths.
+
+::: callout-tip
+## What is RAWGraphs?
+
+RAWGraphs 2.0 is a free, open-source web application for creating custom vector-based visualizations. It works entirely in your browser (your data never leaves your computer) and supports various chart types beyond standard bar/line charts. It's particularly good for exploratory data analysis and creating publication-ready graphics.
+
+Access it at: https://app.rawgraphs.io/
+:::
+
+------------------------------------------------------------------------
+
+## Steps
+
+### Part 1: Preparing Your Data in QGIS
+
+1.  **Open your project and load data:**
+    -   Start QGIS and open the project from your previous exercise, OR
+    -   Create a new project with EPSG:28992 CRS
+    -   Load the `buurten.gpkg` layer (Rotterdam neighbourhoods)
+    -   Load the climate adaptation buildings layer from Zuid-Holland WFS:
+        -   Data Source Manager > WFS
+        -   Connection: `https://geodata.zuid-holland.nl/geoserver/klimaat/wfs?service=WFS&version=2.0.0&request=GetCapabilities`
+        -   Layer: `klimaat:klimaatpanden_2022`
+        -   Add to map
+
+    ![Figure 1 - Loaded data layers](/images/misc/placeholder_ss.png)
+
+2.  **Explore the attribute table:**
+    -   Right-click on the climate buildings layer > `Open Attribute Table`
+    -   Examine the available fields:
+        -   Look for climate-related scores (heat stress, water overlay, biodiversity)
+        -   Building characteristics (area, type, construction year)
+        -   Geographic identifiers (neighbourhood codes, municipality names)
+    -   Notice the data types (numbers, text, dates)
+
+    ::: callout-tip
+    ## Understanding Your Data
+    Before calculating statistics, always explore your data:
+    -   What fields are available?
+    -   What do they represent?
+    -   Are there null/missing values?
+    -   What is the range of values?
+    :::
+
+### Part 2: Calculating Basic Statistics
+
+3.  **Use the Statistics Panel for quick overview:**
+    -   In the attribute table, click on any numeric field (e.g., a climate score field)
+    -   At the bottom of the attribute table, you'll see automatic statistics:
+        -   Count, Sum, Mean, Median
+        -   Standard Deviation, Min, Max
+    -   Try this for different fields to get a quick overview
+
+    ![Figure 2 - Basic statistics in attribute table](/images/misc/placeholder_ss.png)
+
+4.  **Calculate statistics by category using Group Stats plugin:**
+    
+    First, install the plugin if you haven't already:
+    -   Go to `Plugins` > `Manage and Install Plugins...`
+    -   Search for "Group Stats"
+    -   Install the plugin
+    
+    Then use it:
+    -   Go to `Vector` > `Group Stats` > `Group Stats`
+    -   **Drag fields** from the left panel to configure:
+        -   **Rows:** Drag a categorical field (e.g., neighbourhood name or climate risk category)
+        -   **Columns:** Drag "Value" (this is where statistics will appear)
+        -   **Value:** Drag a numeric field you want to analyze (e.g., building area, heat stress score)
+    -   Click `Calculate` at the bottom
+    -   View statistics grouped by your chosen categories
+
+    ![Figure 3 - Group Stats plugin interface](/images/misc/placeholder_ss.png)
+
+5.  **Create derived attributes using Field Calculator:**
+    
+    Let's create some new calculated fields:
+    
+    -   Open the attribute table of your climate buildings layer
+    -   Enable editing mode (pencil icon)
+    -   Click `Open Field Calculator` (Ctrl+I or abacus icon)
+    
+    **Example 1: Categorize building size**
+    -   Check `Create a new field`
+    -   **Output field name:** `size_category`
+    -   **Output field type:** `Text (string)`
+    -   **Length:** 20
+    -   **Expression:**
+    ```
+    CASE 
+        WHEN "building_area" < 100 THEN 'Small'
+        WHEN "building_area" >= 100 AND "building_area" < 500 THEN 'Medium'
+        WHEN "building_area" >= 500 THEN 'Large'
+        ELSE 'Unknown'
+    END
+    ```
+    -   Click `OK`
+    
+    **Example 2: Calculate climate risk score composite**
+    -   Create another new field
+    -   **Output field name:** `climate_risk_avg`
+    -   **Output field type:** `Decimal number (real)`
+    -   **Precision:** 2
+    -   **Expression:** (adjust field names to match your data)
+    ```
+    ("heat_stress_score" + "water_overlay_score" + "biodiversity_score") / 3
+    ```
+    -   Click `OK`
+    
+    **Example 3: Categorize climate risk**
+    -   Create another field
+    -   **Output field name:** `risk_category`
+    -   **Output field type:** `Text (string)`
+    -   **Length:** 20
+    -   **Expression:**
+    ```
+    CASE 
+        WHEN "climate_risk_avg" < 3 THEN 'Low Risk'
+        WHEN "climate_risk_avg" >= 3 AND "climate_risk_avg" < 7 THEN 'Medium Risk'
+        WHEN "climate_risk_avg" >= 7 THEN 'High Risk'
+        ELSE 'Unknown'
+    END
+    ```
+    -   Click `OK`
+    
+    -   Save your edits and disable editing mode
+
+    ![Figure 4 - Field Calculator creating derived attributes](/images/misc/placeholder_ss.png)
+
+### Part 3: Aggregating Data for Visualization
+
+6.  **Aggregate data by neighbourhood:**
+    
+    To create meaningful visualizations, we often need to summarize data at a higher level:
+    
+    -   Go to `Vector` > `Analysis Tools` > `Statistics by Categories`
+    -   **Input vector layer:** Climate buildings layer
+    -   **Field to calculate statistics on:** Select a numeric field (e.g., `climate_risk_avg`)
+    -   **Field(s) with categories:** Select the neighbourhood identifier field
+    -   **Statistics to calculate:** Check all that are relevant:
+        -   Count, Sum, Mean, Median, Min, Max, Standard Deviation
+    -   **Output:** Save as `climate_stats_by_neighbourhood.csv` in your working folder
+    -   Click `Run`
+
+    ![Figure 5 - Statistics by categories dialog](/images/misc/placeholder_ss.png)
+
+7.  **Create a summary table with multiple statistics:**
+    
+    For more control, use the **Aggregate** tool:
+    
+    -   Go to `Vector` > `Analysis Tools` > `Aggregate`
+    -   **Input layer:** Climate buildings layer
+    -   **Group by expression:** Field containing neighbourhood names or codes
+    -   **Aggregates:** Click the `...` button to configure:
+        -   Add multiple aggregations:
+            -   `count("building_id")` → Name: `building_count`
+            -   `mean("building_area")` → Name: `avg_building_area`
+            -   `mean("climate_risk_avg")` → Name: `avg_climate_risk`
+            -   `sum("building_area")` → Name: `total_building_area`
+            -   `max("heat_stress_score")` → Name: `max_heat_stress`
+    -   **Aggregated:** Save as temporary layer first to review
+    -   Click `Run`
+    -   Review the results in the attribute table
+
+    ![Figure 6 - Aggregate tool with multiple statistics](/images/misc/placeholder_ss.png)
+
+### Part 4: Exporting Data to CSV
+
+8.  **Export your aggregated data:**
+    
+    -   Right-click on the aggregated layer (or any layer you want to export)
+    -   Select `Export` > `Save Features As...`
+    -   **Format:** `Comma Separated Value [CSV]`
+    -   **File name:** Click `...` and save as `rotterdam_climate_stats.csv`
+    -   **CRS:** You can leave as-is (won't matter for CSV without geometry)
+    -   **Layer Options:**
+        -   **Geometry:** Select `AS_WKT` if you want to keep geometry, or `No geometry` for pure tabular data
+        -   For visualization purposes, choose `No geometry`
+    -   **Select fields to export:**
+        -   Uncheck any fields you don't need
+        -   Keep: neighbourhood name, building count, average scores, totals
+    -   Click `OK`
+
+    ::: callout-important
+    ## CSV Export Tips
+    -   **Remove geometry** for cleaner data visualization (unless you need it)
+    -   **Remove unnecessary fields** to reduce file size and complexity
+    -   **Use meaningful field names** - rename fields if needed before export
+    -   **Check for special characters** in text fields that might cause issues
+    -   **Verify decimal separators** match your regional settings
+    :::
+
+9.  **Verify your CSV export:**
+    -   Open the CSV file in a text editor or spreadsheet program
+    -   Check that:
+        -   Headers are present and clear
+        -   Data is properly separated by commas
+        -   No corrupted or missing values
+        -   Numeric values use decimal points (not commas, if that's your locale)
+
+    ![Figure 7 - Exported CSV file preview](/images/misc/placeholder_ss.png)
+
+### Part 5: Creating Visualizations in RAWGraphs 2.0
+
+10. **Open RAWGraphs:**
+    -   Open your web browser
+    -   Navigate to: https://app.rawgraphs.io/
+    -   You'll see a clean interface with three main steps: Load data → Choose a chart → Customize
+
+    ::: callout-note
+    ## Privacy Note
+    RAWGraphs runs entirely in your browser. Your data is NOT uploaded to any server - it stays on your computer. This makes it safe for working with sensitive data.
+    :::
+
+11. **Load your data into RAWGraphs:**
+    -   In the "Load your data" section, you have several options:
+        -   **Upload a file:** Click and select your `rotterdam_climate_stats.csv`
+        -   **Copy/paste:** Open the CSV in a text editor, copy all content, and paste it
+        -   **URL:** If your data is online (not applicable here)
+    -   After loading, RAWGraphs will automatically detect your columns
+    -   You should see a data preview table at the bottom
+
+    ![Figure 8 - RAWGraphs data loading interface](/images/misc/placeholder_ss.png)
+
+12. **Choose a chart type:**
+    
+    RAWGraphs offers many chart types. Here are some good options for our climate data:
+    
+    **For comparing neighbourhoods:**
+    -   **Bar chart** - Simple comparison of values across neighbourhoods
+    -   **Circular dendrogram** - Hierarchical comparison
+    -   **Bump chart** - Ranking changes (if you have time-series data)
+    
+    **For showing distributions:**
+    -   **Box plot** - Show data distribution and outliers
+    -   **Violin plot** - Distribution shape across categories
+    
+    **For showing proportions:**
+    -   **Treemap** - Hierarchical proportional areas
+    -   **Circle packing** - Nested proportional circles
+    -   **Sunburst** - Radial hierarchical diagram
+    
+    **For relationships:**
+    -   **Scatter plot** - Correlation between two variables
+    -   **Alluvial diagram** - Flow between categories
+    
+    Let's start with a **Bar chart**:
+    -   Scroll through the chart options
+    -   Click on `Bar chart`
+
+    ![Figure 9 - RAWGraphs chart type selection](/images/misc/placeholder_ss.png)
+
+13. **Map your data to visual variables:**
+    
+    For a bar chart showing average climate risk by neighbourhood:
+    
+    -   **X axis:** Drag your neighbourhood name field here
+    -   **Y axis:** Drag `avg_climate_risk` (or your chosen metric) here
+    -   **Color:** (optional) Drag `risk_category` or another categorical field to color bars
+    -   **Series:** Leave empty for now
+    
+    You should immediately see a preview of your chart below
+
+14. **Customize your visualization:**
+    
+    RAWGraphs provides many customization options:
+    
+    **Layout:**
+    -   **Width & Height:** Adjust canvas size
+    -   **Margins:** Adjust spacing around the chart
+    -   **Sort by:** Choose how to order bars (alphabetical, by value ascending/descending)
+    
+    **Axes:**
+    -   **Show axis labels:** Enable/disable
+    -   **Axis title:** Customize text
+    -   **Grid:** Show/hide grid lines
+    
+    **Colors:**
+    -   **Color scheme:** Choose from predefined palettes or create custom colors
+    -   Click on color swatches to change individual colors
+    
+    **Labels:**
+    -   **Show values:** Display numbers on bars
+    -   **Font size:** Adjust text size
+    
+    Experiment with these settings until you're happy with the result
+
+    ![Figure 10 - RAWGraphs customization options](/images/misc/placeholder_ss.png)
+
+15. **Export your visualization:**
+    
+    RAWGraphs offers multiple export formats:
+    
+    -   **SVG (Scalable Vector Graphics):** Best for further editing in design software (Illustrator, Inkscape)
+    -   **PNG:** Raster image, good for presentations and documents
+    -   **JSON:** Save your chart configuration to reload later
+    
+    To export:
+    -   Scroll down to the "Export" section
+    -   Choose your format (SVG recommended for quality)
+    -   Click `Download` button
+    -   Save the file to your working folder
+
+    ![Figure 11 - Exported bar chart](/images/misc/placeholder_ss.png)
+
+### Part 6: Creating Additional Visualizations
+
+16. **Create a Treemap to show building area distribution:**
+    
+    -   Click `Back` or refresh RAWGraphs to start over
+    -   Load the same CSV data
+    -   Choose `Treemap` chart type
+    -   **Hierarchy:** Drag neighbourhood name field
+    -   **Size:** Drag `total_building_area`
+    -   **Color:** Drag `avg_climate_risk` to color by risk level
+    -   **Label:** Drag neighbourhood name
+    -   Customize:
+        -   Choose a diverging color scheme (e.g., blue to red)
+        -   Adjust padding between rectangles
+        -   Enable/disable labels based on readability
+    -   Export your treemap
+
+    ![Figure 12 - Treemap showing building areas](/images/misc/placeholder_ss.png)
+
+17. **Create a Scatter plot to explore relationships:**
+    
+    If you have multiple numeric variables, explore their relationships:
+    
+    -   Start a new chart in RAWGraphs
+    -   Choose `Scatter plot`
+    -   **X axis:** Drag `avg_building_area`
+    -   **Y axis:** Drag `avg_climate_risk`
+    -   **Size:** (optional) Drag `building_count` to size points by number of buildings
+    -   **Color:** (optional) Drag `risk_category`
+    -   **Label:** Drag neighbourhood name to label points
+    -   Customize and export
+    
+    This chart helps identify if there's a relationship between building size and climate risk
+
+    ![Figure 13 - Scatter plot exploring variable relationships](/images/misc/placeholder_ss.png)
+
+18. **Create a Box plot to show data distribution:**
+    
+    Box plots are excellent for comparing distributions across categories:
+    
+    -   Start a new chart
+    -   Choose `Box plot`
+    -   **Groups:** Drag `risk_category` (Low/Medium/High Risk)
+    -   **Values:** Drag a numeric field (e.g., `building_area`)
+    -   This shows how building sizes are distributed across different risk categories
+    -   Customize and export
+
+    ![Figure 14 - Box plot showing distributions](/images/misc/placeholder_ss.png)
+
+------------------------------------------------------------------------
+
+## Recap
+
+**What you've learned:**
+
+-   How to explore attribute data using QGIS's **statistics panel**
+-   Using the **Group Stats plugin** for categorical analysis
+-   Creating **derived attributes** with Field Calculator
+-   Using **Statistics by Categories** and **Aggregate** tools for data summarization
+-   **Exporting data to CSV** format with proper configuration
+-   Understanding **interoperability** between GIS and visualization tools
+-   Loading data into **RAWGraphs 2.0**
+-   Creating multiple types of **data visualizations** (bar charts, treemaps, scatter plots, box plots)
+-   Customizing and **exporting visualizations** for reports and presentations
+
+**Key concepts:**
+
+| Concept | Description |
+|---------|-------------|
+| Descriptive statistics | Summary measures (mean, median, std dev, min, max) |
+| Aggregation | Combining multiple records into summary statistics |
+| Derived attributes | New fields calculated from existing data |
+| Interoperability | Ability to exchange data between different software systems |
+| Data visualization | Graphical representation of data to reveal patterns |
+| CSV format | Comma-Separated Values - universal tabular data format |
+
+**Statistics you calculated:**
+
+-   **Count:** Number of features/records
+-   **Sum:** Total of all values
+-   **Mean (Average):** Sum divided by count
+-   **Median:** Middle value when sorted
+-   **Min/Max:** Smallest and largest values
+-   **Standard Deviation:** Measure of variability/spread
+
+**Visualization types and their uses:**
+
+| Chart Type | Best For | Example Use |
+|------------|----------|-------------|
+| Bar chart | Comparing categories | Compare climate risk across neighbourhoods |
+| Treemap | Hierarchical proportions | Show relative building areas by neighbourhood |
+| Scatter plot | Relationships between variables | Explore correlation between size and risk |
+| Box plot | Distributions and outliers | Compare building size distributions |
+| Circle packing | Nested hierarchies | Show neighbourhood groupings |
+| Sunburst | Part-to-whole relationships | Hierarchical risk categories |
+
+------------------------------------------------------------------------
+
+## Best Practices
+
+::: callout-tip
+## Data Preparation for Visualization
+
+-   **Clean your data** before export (remove nulls, fix inconsistencies)
+-   **Use meaningful field names** that are self-explanatory
+-   **Remove unnecessary fields** to keep data focused
+-   **Round numeric values** to appropriate precision (2-3 decimal places usually sufficient)
+-   **Aggregate appropriately** - don't visualize raw data when summaries are more meaningful
+-   **Document your calculations** - keep notes on derived fields
+:::
+
+::: callout-tip
+## Choosing the Right Chart
+
+-   **Bar/Column charts:** Best for comparing quantities across categories
+-   **Line charts:** Best for showing trends over time
+-   **Scatter plots:** Best for exploring relationships between two variables
+-   **Treemaps/Circle packing:** Best for showing hierarchical proportions
+-   **Box plots:** Best for comparing distributions
+-   **Avoid pie charts** for more than 5 categories or when precise comparison is needed
+-   **Consider your audience:** Choose simpler charts for general audiences
+:::
+
+::: callout-tip
+## Design Tips for Effective Visualizations
+
+-   **Use color purposefully:** Color should encode meaning, not just decoration
+-   **Maintain contrast:** Ensure text is readable against backgrounds
+-   **Label clearly:** All axes, legends, and data points should be clearly labeled
+-   **Keep it simple:** Remove unnecessary elements (chartjunk)
+-   **Tell a story:** Your visualization should have a clear message
+-   **Provide context:** Include titles, units, and source information
+-   **Test with others:** Show your visualization to colleagues for feedback
+:::
+
+------------------------------------------------------------------------
+
+## Common Issues and Solutions
+
+::: callout-warning
+## Problem: CSV export has garbled characters or wrong decimal separators
+
+**Cause:** Regional settings mismatch between QGIS and RAWGraphs
+
+**Solution:** 
+-   In QGIS export dialog, check "Geometry" settings
+-   Try changing locale settings in QGIS preferences
+-   Manually edit CSV in a text editor if needed
+-   Use point (.) as decimal separator, not comma
+:::
+
+::: callout-warning
+## Problem: RAWGraphs doesn't recognize numeric fields
+
+**Cause:** Numbers formatted as text, or contains non-numeric characters
+
+**Solution:**
+-   Check your data in QGIS attribute table
+-   Ensure numeric fields don't contain text
+-   Remove any special characters or units (e.g., "m²", "€")
+-   Use Field Calculator to convert: `to_real("field_name")`
+:::
+
+::: callout-warning
+## Problem: Too many categories make visualization unreadable
+
+**Cause:** Trying to visualize detailed data without aggregation
+
+**Solution:**
+-   Aggregate data to higher level (e.g., group neighbourhoods by district)
+-   Filter to show only top N categories
+-   Use hierarchical chart types (treemap, sunburst)
+-   Create multiple focused visualizations instead of one crowded chart
+:::
+
+------------------------------------------------------------------------
+
+## Extension Activities
+
+-   **Time series analysis:** If you have multi-temporal data, create animations or trend visualizations
+-   **Comparative analysis:** Export data from multiple municipalities and compare
+-   **Correlation analysis:** Explore relationships between climate risk and socio-economic factors
+-   **Dashboard creation:** Combine multiple visualizations into a comprehensive dashboard
+-   **Interactive maps:** Use tools like Flourish or Datawrapper to create interactive web maps
+-   **Statistical testing:** Perform hypothesis tests in R or Python to validate observations
+-   **Advanced RAWGraphs:** Explore more complex chart types like Alluvial diagrams or Circular dendrograms
+-   **Story maps:** Combine maps, charts, and narrative in ArcGIS StoryMaps or QGIS2Web
+
+------------------------------------------------------------------------
+
+## Additional Resources
+
+**QGIS Documentation:**
+-   Statistics functions: https://docs.qgis.org/latest/en/docs/user_manual/working_with_vector/functions_list.html
+-   Processing tools: https://docs.qgis.org/latest/en/docs/user_manual/processing_algs/
+
+**RAWGraphs:**
+-   Official website: https://www.rawgraphs.io/
+-   Learning resources: https://www.rawgraphs.io/learning
+-   Gallery of examples: https://www.rawgraphs.io/gallery
+
+**Data Visualization Theory:**
+-   "The Visual Display of Quantitative Information" by Edward Tufte
+-   "Information is Beautiful" by David McCandless
+-   ColorBrewer for choosing color schemes: https://colorbrewer2.org/
+
+**Alternative Visualization Tools:**
+-   **Flourish:** https://flourish.studio/ (interactive web visualizations)
+-   **Datawrapper:** https://www.datawrapper.de/ (charts and maps for journalism)
+-   **Plotly:** https://plotly.com/ (interactive graphs)
+-   **Tableau Public:** https://public.tableau.com/ (comprehensive analytics)
+-   **D3.js:** https://d3js.org/ (for custom programming-based visualizations)

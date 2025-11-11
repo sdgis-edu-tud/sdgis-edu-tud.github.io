@@ -1,0 +1,28 @@
+---
+title: "Omgevingsloket"
+description: "The Omgevingsloket is the official Dutch online portal for managing and applying for environmental and spatial permits under the Omgevingswet (Environment and Planning Act)."
+image: https://www.ahn.nl/sites/default/files/styles/open_graph/public/2022-12/AHN4.jpg
+word-count: 100
+categories:
+  - Spatial Planning
+  - Zoning
+  - Environmental
+  - Nature
+  - Building and Construction
+  - Administrative
+  - Netherlands
+  - Geospatial Data
+  - GIS Datasets
+  - Open Data
+extent: "Netherlands"
+coverage: "National"
+year: 2023
+resolution: "-"
+data_format: 
+  - WMS
+  - WFS
+  - WMTS
+  - WCS
+source: "AHN / Waterschappen"
+external_link: https://www.ahn.nl
+---

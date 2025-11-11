@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Using the Data Source Manager with WFS and WMS – sdgistud</title>
+<title>Georeferencing and Digitizing Historical Maps – sdgistud</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -214,12 +214,16 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps">Steps</a>
   <ul class="collapse">
-  <li><a href="#part-1-setting-up-your-project-and-retrieving-neighbourhood-data" id="toc-part-1-setting-up-your-project-and-retrieving-neighbourhood-data" class="nav-link" data-scroll-target="#part-1-setting-up-your-project-and-retrieving-neighbourhood-data">Part 1: Setting Up Your Project and Retrieving Neighbourhood Data</a></li>
-  <li><a href="#part-2-connecting-to-wfs-for-climate-adaptation-data" id="toc-part-2-connecting-to-wfs-for-climate-adaptation-data" class="nav-link" data-scroll-target="#part-2-connecting-to-wfs-for-climate-adaptation-data">Part 2: Connecting to WFS for Climate Adaptation Data</a></li>
-  <li><a href="#part-3-connecting-to-wms-for-background-imagery" id="toc-part-3-connecting-to-wms-for-background-imagery" class="nav-link" data-scroll-target="#part-3-connecting-to-wms-for-background-imagery">Part 3: Connecting to WMS for Background Imagery</a></li>
+  <li><a href="#part-1-setting-up-your-project" id="toc-part-1-setting-up-your-project" class="nav-link" data-scroll-target="#part-1-setting-up-your-project">Part 1: Setting Up Your Project</a></li>
+  <li><a href="#part-2-loading-reference-data" id="toc-part-2-loading-reference-data" class="nav-link" data-scroll-target="#part-2-loading-reference-data">Part 2: Loading Reference Data</a></li>
+  <li><a href="#part-3-georeferencing-with-freehand-raster-georeferencer" id="toc-part-3-georeferencing-with-freehand-raster-georeferencer" class="nav-link" data-scroll-target="#part-3-georeferencing-with-freehand-raster-georeferencer">Part 3: Georeferencing with Freehand Raster Georeferencer</a></li>
+  <li><a href="#part-4-digitizing-features-from-the-georeferenced-map" id="toc-part-4-digitizing-features-from-the-georeferenced-map" class="nav-link" data-scroll-target="#part-4-digitizing-features-from-the-georeferenced-map">Part 4: Digitizing Features from the Georeferenced Map</a></li>
+  <li><a href="#part-5-analysis-and-comparison-optional" id="toc-part-5-analysis-and-comparison-optional" class="nav-link" data-scroll-target="#part-5-analysis-and-comparison-optional">Part 5: Analysis and Comparison (Optional)</a></li>
   </ul></li>
   <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
-  <li><a href="#extension-activities-optional" id="toc-extension-activities-optional" class="nav-link" data-scroll-target="#extension-activities-optional">Extension Activities (Optional)</a></li>
+  <li><a href="#common-issues-and-solutions" id="toc-common-issues-and-solutions" class="nav-link" data-scroll-target="#common-issues-and-solutions">Common Issues and Solutions</a></li>
+  <li><a href="#extension-activities" id="toc-extension-activities" class="nav-link" data-scroll-target="#extension-activities">Extension Activities</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
   </ul>
 </nav>
     </div>
@@ -228,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Using the Data Source Manager with WFS and WMS</h1>
+<h1 class="title">Georeferencing and Digitizing Historical Maps</h1>
 </div>
 
 
@@ -245,7 +249,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Duration:</strong> ~20 minutes</p>
+<p><strong>Duration:</strong> 30-40 minutes</p>
 <hr>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -257,14 +261,14 @@ Learning Goals
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>By the end of this exercise, you will be able to:</p>
+<p>By the end of this tutorial, you will be able to:</p>
 <ul>
-<li>Navigate and use the QGIS Data Source Manager</li>
-<li>Connect to and load WFS (Web Feature Service) layers from Dutch data portals</li>
-<li>Connect to and load WMS (Web Map Service) layers from Dutch data portals</li>
-<li>Understand the difference between WFS and WMS services</li>
-<li>Save connections for future use</li>
-<li>Perform basic geoprocessing operations (selection, clipping, dissolve, buffer)</li>
+<li>Install and use the Freehand Raster Georeferencer plugin</li>
+<li>Georeference a scanned map or image to real-world coordinates</li>
+<li>Use control points to align historical maps with current data</li>
+<li>Digitize vector features (points, lines, polygons) from georeferenced maps</li>
+<li>Create and edit vector layers with proper attributes</li>
+<li>Understand transformation types and their appropriate uses</li>
 </ul>
 </div>
 </div>
@@ -274,33 +278,38 @@ Learning Goals
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Software and Plugins Required
+Software and Data Required
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
 <li><strong>QGIS</strong> (version 3.x or higher)</li>
-<li><strong>PDOK Services Plugin</strong> for QGIS</li>
-<li>Active internet connection</li>
+<li><strong>Freehand Raster Georeferencer</strong> plugin</li>
+<li>Active internet connection (for PDOK aerial photos)</li>
+<li><strong>Data files:</strong>
+<ul>
+<li><code>buurten.gpkg</code> (from previous exercise with Rotterdam neighbourhoods)</li>
+<li><code>print.jpg</code> (historical map or plan to be georeferenced)</li>
+</ul></li>
 </ul>
 </div>
 </div>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>In this exercise, you will learn how to connect to external geospatial data sources using QGIS’s Data Source Manager. You’ll work with real Dutch open data, combining different data layers to create a focused analysis area around Rotterdam neighbourhoods.</p>
-<p>You will retrieve neighbourhood boundaries via WFS, perform spatial operations to create a study area, and then use this area to clip climate adaptation data. Finally, you’ll add aerial imagery via WMS to visualize your results.</p>
-<p>This workflow demonstrates a common GIS task: defining a study area, retrieving relevant data, and preparing it for analysis.</p>
+<p><strong>Georeferencing</strong> is the process of assigning real-world coordinates to a scanned map, aerial photo, or any image that doesn’t have spatial reference information. This is essential when working with historical maps, old plans, paper maps, or any non-digital cartographic material.</p>
+<p><strong>Digitizing</strong> is the process of tracing features from a georeferenced image to create vector data (points, lines, or polygons). This allows you to extract information from maps and make it usable for spatial analysis.</p>
+<p>In this tutorial, you’ll georeference a historical map of part of Rotterdam and digitize features from it, comparing them with current aerial imagery.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-What is WFS?
+What is Georeferencing?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>WFS (Web Feature Service)</strong> provides access to <strong>vector data</strong> (points, lines, polygons) that you can query, style, analyze, and edit in QGIS. Think of it as downloading the actual geographic features with all their attributes. WFS is ideal when you need to perform spatial analysis or select specific features.</p>
+<p>Georeferencing links the pixels of a raster image to real-world geographic coordinates. You do this by identifying <strong>Ground Control Points (GCPs)</strong> - locations that you can identify both on your unreferenced image and on a georeferenced map or layer. QGIS then uses these points to calculate a mathematical transformation that warps your image to fit the coordinate system.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -309,327 +318,363 @@ What is WFS?
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-What is WMS?
+Types of Transformations
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>WMS (Web Map Service)</strong> provides access to <strong>pre-rendered map images</strong> - essentially picture tiles of maps. You cannot query individual features or access attributes, but WMS layers load quickly and are perfect for background/reference maps. Think of it as viewing a map image rather than working with the data itself.</p>
+<ul>
+<li><strong>Linear</strong>: Requires 3+ points. Simple scaling, rotation, and translation. Good for maps that are already fairly accurate.</li>
+<li><strong>Helmert</strong>: Requires 2+ points. Preserves angles and scale uniformity. Good for scanned maps.</li>
+<li><strong>Polynomial (1st, 2nd, 3rd order)</strong>: Requires increasing numbers of points (6, 10, 15+). Can handle more complex distortions. Higher orders can introduce warping artifacts.</li>
+<li><strong>Thin Plate Spline (TPS)</strong>: Requires 10+ points. Flexible local warping. Good for maps with local distortions.</li>
+</ul>
+<p>For most historical maps, <strong>Polynomial 1st or 2nd order</strong> works well.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Key Differences Between WFS and WMS
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>WFS</th>
-<th>WMS</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Data type</td>
-<td>Vector (features)</td>
-<td>Raster (images)</td>
-</tr>
-<tr class="even">
-<td>File size</td>
-<td>Can be large</td>
-<td>Smaller</td>
-</tr>
-<tr class="odd">
-<td>Queryable</td>
-<td>Yes</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>Stylable in QGIS</td>
-<td>Yes</td>
-<td>Limited</td>
-</tr>
-<tr class="odd">
-<td>Editable</td>
-<td>Yes</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>Best for</td>
-<td>Analysis, editing, selection</td>
-<td>Background maps, visualization</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<hr>
 </section>
 <section id="steps" class="level2">
 <h2 class="anchored" data-anchor-id="steps">Steps</h2>
-<section id="part-1-setting-up-your-project-and-retrieving-neighbourhood-data" class="level3">
-<h3 class="anchored" data-anchor-id="part-1-setting-up-your-project-and-retrieving-neighbourhood-data">Part 1: Setting Up Your Project and Retrieving Neighbourhood Data</h3>
+<section id="part-1-setting-up-your-project" class="level3">
+<h3 class="anchored" data-anchor-id="part-1-setting-up-your-project">Part 1: Setting Up Your Project</h3>
 <ol type="1">
-<li><p>Open QGIS and create a new project</p></li>
-<li><p>Set the project CRS (Coordinate Reference System) to <strong>EPSG:28992</strong> (Amersfoort / RD New - the Dutch standard projection)</p>
+<li><p><strong>Install the Freehand Raster Georeferencer plugin:</strong></p>
+<ul>
+<li>Go to <code>Plugins</code> &gt; <code>Manage and Install Plugins...</code></li>
+<li>Click on the <code>All</code> tab</li>
+<li>Search for “Freehand raster georeferencer”</li>
+<li>Select the plugin and click <code>Install Plugin</code></li>
+<li>Click <code>Close</code></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Freehand Raster Georeferencer plugin provides an interactive way to georeference images directly in the QGIS map canvas, making it easier to align your image with reference data in real-time.</p>
+</div>
+</div></li>
+<li><p><strong>Start a new QGIS project:</strong></p>
+<ul>
+<li>Go to <code>Project</code> &gt; <code>New</code> (or press Ctrl+N)</li>
+<li>Save your project immediately: <code>Project</code> &gt; <code>Save As...</code></li>
+<li>Name it <code>georeferencing_exercise.qgz</code> in your working folder</li>
+</ul></li>
+<li><p><strong>Set the project CRS:</strong></p>
 <ul>
 <li>Go to <code>Project</code> &gt; <code>Properties</code> &gt; <code>CRS</code></li>
-<li>Search for “28992” and select “Amersfoort / RD New”</li>
+<li>Set to <strong>EPSG:28992</strong> (Amersfoort / RD New - Dutch coordinate system)</li>
 <li>Click <code>OK</code></li>
-</ul></li>
-<li><p>Using the PDOK Services plugin, retrieve data via WFS of this dataset:</p>
-<ul>
-<li>Open the PDOK Services Plugin (look for the PDOK icon in the toolbar or go to <code>Web</code> &gt; <code>PDOK Services Plugin</code>)</li>
-<li>In the plugin window, search for “CBS Wijken en Buurten 2024”</li>
-<li>Select the <strong>WFS</strong> option (not WMS!)</li>
-<li>Choose the layer: <code>cbs_buurten_2024</code> (neighbourhoods)</li>
-<li>Click to add it to your map</li>
-</ul>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Please pay attention to retrieve the correct data, as there are many buurten layers, both for WFS and WMS! What you need is a <strong>vector layer</strong> containing all 14,668 buurten (neighbourhoods) in the Netherlands. After loading, check the feature count in the layer properties to confirm you have the complete dataset.</p>
-</div>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 1 - PDOK Services Plugin showing CBS Buurten 2024 WFS</figcaption>
-</figure>
-</div></li>
-<li><p>You must now select only the 6 buurten that obey to these criteria:</p>
-<ul>
-<li>They belong to the municipality of Rotterdam (<code>gemeentenaam</code> = “Rotterdam”) <strong>AND</strong></li>
-<li>Their name (<code>buurtnaam</code>) is one of the following: “Blijdorp”, “Centrum”, “Cool”, “Dijkzigt”, “Nieuwe Werk”, “Oude Westen”</li>
-</ul>
-<p><strong>To select these neighbourhoods:</strong></p>
-<ul>
-<li>Open the attribute table (right-click on layer &gt; <code>Open Attribute Table</code>)</li>
-<li>Click on <code>Select features using an expression</code> (the yellow icon with ε)</li>
-<li>Enter this expression:</li>
-</ul>
-<pre><code>"gemeentenaam" = 'Rotterdam' AND 
-"buurtnaam" IN ('Blijdorp', 'Centrum', 'Cool', 'Dijkzigt', 'Nieuwe Werk', 'Oude Westen')</code></pre>
-<ul>
-<li>Click <code>Select Features</code></li>
-<li>Verify that 6 features are selected (shown at the top of the attribute table)</li>
-</ul>
-<p><strong>Now save the selected features:</strong></p>
-<ul>
-<li>Right-click on the layer &gt; <code>Export</code> &gt; <code>Save Selected Features As...</code></li>
-<li>Format: <code>GeoPackage</code></li>
-<li>File name: Navigate to folder <code>part1_data</code> and name it <code>buurten.gpkg</code></li>
-<li>Layer name: <code>buurten</code></li>
-<li>CRS: <code>EPSG:28992</code></li>
-<li>Before saving, we need to add the area calculation and drop unwanted columns:
-<ul>
-<li>Click on the fields list and uncheck all columns except:
-<ul>
-<li><code>buurtnaam</code> (name of the neighbourhood)</li>
-<li><code>buurtcode</code> (code of the neighbourhood)</li>
-<li><code>gemeentenaam</code> (name of the municipality)</li>
-</ul></li>
-</ul></li>
-<li>Click <code>OK</code> to save</li>
-</ul>
-<p><strong>Add the area column:</strong></p>
-<ul>
-<li>Open the attribute table of the newly saved <code>buurten</code> layer</li>
-<li>Enable editing mode (click the pencil icon)</li>
-<li>Open the Field Calculator (Ctrl+I or click the abacus icon)</li>
-<li>Check <code>Create a new field</code></li>
-<li>Output field name: <code>buurt_area</code></li>
-<li>Output field type: <code>Decimal number (real)</code></li>
-<li>Precision: 2</li>
-<li>In the expression box, enter: <code>round($area, 2)</code></li>
-<li>Click <code>OK</code></li>
-<li>Save edits and disable editing mode</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 2 - Selected Rotterdam neighbourhoods with area calculation</figcaption>
-</figure>
-</div></li>
-<li><p>Dissolve now the geometries of the 6 buurten:</p>
-<ul>
-<li>Go to <code>Vector</code> &gt; <code>Geoprocessing Tools</code> &gt; <code>Dissolve</code></li>
-<li>Input layer: <code>buurten</code></li>
-<li>Leave “Dissolve field(s)” empty (this will dissolve all features into one)</li>
-<li>Click <code>Run</code></li>
-<li>After the temporary layer is created, right-click on it &gt; <code>Export</code> &gt; <code>Save Features As...</code></li>
-<li>Format: <code>GeoPackage</code></li>
-<li>File name: Select the existing <code>buurten.gpkg</code> file</li>
-<li>Layer name: <code>buurten_dissolved</code></li>
-<li>In the fields section, uncheck all attributes</li>
-<li>Click <code>OK</code></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 3 - Dissolved neighbourhood boundary</figcaption>
-</figure>
-</div></li>
-<li><p>Compute the bounding box/extents of <code>buurten_dissolved</code>:</p>
-<ul>
-<li>Go to <code>Vector</code> &gt; <code>Research Tools</code> &gt; <code>Extract layer extent</code></li>
-<li>Input layer: <code>buurten_dissolved</code></li>
-<li>Click <code>Run</code></li>
-<li>Export this layer to the GeoPackage:
-<ul>
-<li>Right-click &gt; <code>Export</code> &gt; <code>Save Features As...</code></li>
-<li>File name: Select <code>buurten.gpkg</code></li>
-<li>Layer name: <code>bbox</code></li>
-<li>Keep only columns: <code>minx</code>, <code>miny</code>, <code>maxx</code>, <code>maxy</code></li>
-<li>Click <code>OK</code></li>
-</ul></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 4 - Bounding box of the study area</figcaption>
-</figure>
-</div></li>
-<li><p>Finally, compute a buffer of 200 m around the bbox layer:</p>
-<ul>
-<li>Go to <code>Vector</code> &gt; <code>Geoprocessing Tools</code> &gt; <code>Buffer</code></li>
-<li>Input layer: <code>bbox</code></li>
-<li>Distance: <code>200</code> (meters)</li>
-<li>End cap style: <code>Flat (The end cap style parameter controls how line endings are handled in the buffer.)</code></li>
-<li>Join style: <code>Miter</code></li>
-<li>Click <code>Run</code></li>
-<li>Export the result to the GeoPackage:
-<ul>
-<li>Right-click on the buffered layer &gt; <code>Export</code> &gt; <code>Save Features As...</code></li>
-<li>File name: Select <code>buurten.gpkg</code></li>
-<li>Layer name: <code>bbox_buffered</code></li>
-<li>Uncheck all attributes in the fields section</li>
-<li>Click <code>OK</code></li>
-</ul></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 5 - 200m buffer around bounding box</figcaption>
-</figure>
-</div></li>
-</ol>
-</section>
-<section id="part-2-connecting-to-wfs-for-climate-adaptation-data" class="level3">
-<h3 class="anchored" data-anchor-id="part-2-connecting-to-wfs-for-climate-adaptation-data">Part 2: Connecting to WFS for Climate Adaptation Data</h3>
-<ol start="8" type="1">
-<li><p>Open the <strong>Data Source Manager</strong></p>
-<ul>
-<li>Click the “Open Data Source Manager” button in the toolbar, OR</li>
-<li>Go to <code>Layer</code> &gt; <code>Data Source Manager</code>, OR</li>
-<li>Press <code>Ctrl+L</code></li>
-</ul></li>
-<li><p>Select the <strong>WFS / OGC API - Features</strong> tab on the left</p></li>
-<li><p>Create a new WFS connection to Zuid-Holland climate data:</p>
-<ul>
-<li>Click <code>New</code> to create a new connection</li>
-<li><strong>Name:</strong> Zuid-Holland Climate Adaptation</li>
-<li><strong>URL:</strong> <code>https://geodata.zuid-holland.nl/geoserver/klimaat/wfs?service=WFS&amp;version=2.0.0&amp;request=GetCapabilities</code></li>
-<li>Click <code>OK</code></li>
-</ul></li>
-<li><p>Load a WFS layer:</p>
-<ul>
-<li>Select the “Zuid-Holland Climate Adaptation” connection and click <code>Connect</code></li>
-<li>Wait for the available layers to load</li>
-<li>Find and select <code>klimaat:klimaatpanden_2022</code> (Basiskaarten klimaatadaptatie panden - wateroverlast, hitte en biodiversiteit 2022)</li>
-<li>Click <code>Add</code> at the bottom</li>
-<li>Click <code>Close</code></li>
-</ul></li>
-<li><p>Clip the layer to your study area:</p>
-<ul>
-<li>Go to <code>Vector</code> &gt; <code>Geoprocessing Tools</code> &gt; <code>Clip</code></li>
-<li>Input layer: <code>klimaat:klimaatpanden_2022</code> (the climate buildings layer)</li>
-<li>Overlay layer: <code>bbox_buffered</code></li>
-<li>Click <code>Run</code></li>
-<li>This will create a new layer containing only the climate data within your buffered study area</li>
-<li>You can now remove the original (unclipped) WFS layer to improve performance</li>
-</ul></li>
-<li><p>Explore the layer:</p>
-<ul>
-<li>Zoom to your study area (the Rotterdam neighbourhoods you selected)</li>
-<li>Notice that buildings are vector features you can select and query</li>
-<li>Open the attribute table (right-click layer &gt; <code>Open Attribute Table</code>)</li>
-<li>Explore the climate adaptation attributes like water overlay risk, heat stress, and biodiversity scores</li>
 </ul></li>
 </ol>
 </section>
-<section id="part-3-connecting-to-wms-for-background-imagery" class="level3">
-<h3 class="anchored" data-anchor-id="part-3-connecting-to-wms-for-background-imagery">Part 3: Connecting to WMS for Background Imagery</h3>
-<p><strong>What is WMS?</strong> WMS provides access to pre-rendered map images - like a background map. You cannot query individual features, but it loads faster for large areas.</p>
-<ol start="14" type="1">
-<li><p>Open the <strong>Data Source Manager</strong> again (<code>Ctrl+L</code>)</p></li>
-<li><p>Select the <strong>WMS / WMTS</strong> tab on the left</p></li>
-<li><p>Create a new WMS connection:</p>
+<section id="part-2-loading-reference-data" class="level3">
+<h3 class="anchored" data-anchor-id="part-2-loading-reference-data">Part 2: Loading Reference Data</h3>
+<ol start="4" type="1">
+<li><p><strong>Import neighbourhood boundaries:</strong></p>
 <ul>
-<li>Click <code>New</code> to create a new connection</li>
+<li>Go to <code>Layer</code> &gt; <code>Add Layer</code> &gt; <code>Add Vector Layer...</code></li>
+<li>Click the <code>...</code> button next to “Vector Dataset(s)”</li>
+<li>Navigate to your <code>part1_data</code> folder and select <code>buurten.gpkg</code></li>
+<li>Select the <code>buurten</code> layer (the individual neighbourhoods, not dissolved)</li>
+<li>Click <code>Add</code> then <code>Close</code></li>
+<li>Style this layer with a transparent fill and a visible boundary (e.g., red outline, 0.5mm width)</li>
+</ul></li>
+<li><p><strong>Import orthophoto (aerial imagery):</strong></p>
+<p>You have two options:</p>
+<p><strong>Option A: Use locally saved orthophoto</strong> (if you exported one in the previous exercise)</p>
+<ul>
+<li>Go to <code>Layer</code> &gt; <code>Add Layer</code> &gt; <code>Add Raster Layer...</code></li>
+<li>Navigate to your exported orthophoto file</li>
+<li>Click <code>Add</code></li>
+</ul>
+<p><strong>Option B: Import from PDOK</strong> (recommended for this exercise)</p>
+<ul>
+<li>Open the <strong>Data Source Manager</strong> (Ctrl+L)</li>
+<li>Select the <strong>WMS / WMTS</strong> tab</li>
+<li>If you already have the PDOK Aerial Photos connection from the previous exercise, select it</li>
+<li>If not, create a new connection:
+<ul>
+<li>Click <code>New</code></li>
 <li><strong>Name:</strong> PDOK Aerial Photos</li>
-<li><strong>URL:</strong> <code>https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&amp;service=wmts</code></li>
+<li><strong>URL:</strong> <code>https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0</code></li>
 <li>Click <code>OK</code></li>
 </ul></li>
-<li><p>Load a WMS layer:</p>
+<li>Select the connection and click <code>Connect</code></li>
+<li>Select the <code>Actueel_orthoHR</code> layer</li>
+<li>Click <code>Add</code> then <code>Close</code></li>
+</ul></li>
+<li><p><strong>Arrange your reference layers:</strong></p>
 <ul>
-<li><p>Select the “PDOK Aerial Photos” connection and click <code>Connect</code></p></li>
-<li><p>Select <code>Luchtfoto 2025 Ortho 25cm RGB</code> (current high-resolution aerial photos. Please select <code>EPSG:28992</code>)</p></li>
-<li><p>Click <code>Add</code></p></li>
-<li><p>Click <code>Close</code></p>
-<div class="callout callout-style-default callout-important callout-titled">
+<li>In the Layers panel, ensure the order is:
+<ol type="1">
+<li><code>buurten</code> (on top)</li>
+<li>Aerial photo (at bottom)</li>
+</ol></li>
+<li>Zoom to the extent of your Rotterdam neighbourhoods</li>
+<li>This will be your reference for georeferencing</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1 - Reference layers: boundaries and aerial photo</figcaption>
+</figure>
+</div></li>
+</ol>
+</section>
+<section id="part-3-georeferencing-with-freehand-raster-georeferencer" class="level3">
+<h3 class="anchored" data-anchor-id="part-3-georeferencing-with-freehand-raster-georeferencer">Part 3: Georeferencing with Freehand Raster Georeferencer</h3>
+<ol start="7" type="1">
+<li><p><strong>Import the map to be georeferenced:</strong></p>
+<ul>
+<li>Locate the <code>print.jpg</code> file in your working folder</li>
+<li><strong>Do NOT add it as a regular raster layer</strong> (it has no coordinate information yet)</li>
+</ul></li>
+<li><p><strong>Launch the Freehand Raster Georeferencer:</strong></p>
+<ul>
+<li>Go to <code>Raster</code> &gt; <code>Freehand Raster Georeferencer</code> &gt; <code>Freehand Raster Georeferencer</code></li>
+<li>Or look for the plugin icon in the toolbar</li>
+</ul></li>
+<li><p><strong>Add the raster for interactive georeferencing:</strong></p>
+<ul>
+<li>In the Freehand Raster Georeferencer panel that appears, click <code>Add Raster</code></li>
+<li>Navigate to and select <code>print.jpg</code></li>
+<li>The image will appear in the map canvas as a semi-transparent overlay</li>
+<li>It will initially appear at an arbitrary location</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 2 - Unreferenced map loaded in the canvas</figcaption>
+</figure>
+</div></li>
+<li><p><strong>Interactively position and scale the map:</strong></p>
+<p>The plugin provides tools to manipulate the image directly in the map canvas:</p>
+<ul>
+<li><strong>Move</strong>: Click and drag the image to roughly position it over the corresponding area in your reference data</li>
+<li><strong>Rotate</strong>: Use the rotation handle (or tool) to align the image with the aerial photo</li>
+<li><strong>Scale</strong>: Use the corner handles to resize the image to match the scale of your reference data</li>
+</ul>
+<p><strong>Tips for initial positioning:</strong></p>
+<ul>
+<li>Look for distinctive features that appear in both the historical map and current aerial photo (buildings, streets, canals, landmarks)</li>
+<li>Start with rough positioning, then refine</li>
+<li>Use major roads or canals as alignment guides</li>
+<li>Adjust transparency if needed to see both layers clearly</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3 - Initial rough positioning of the map</figcaption>
+</figure>
+</div></li>
+<li><p><strong>Add Ground Control Points (GCPs):</strong></p>
+<p>Once the image is roughly positioned, you need to add precise control points:</p>
+<ul>
+<li>In the Freehand Raster Georeferencer panel, click <code>Add Point</code> (or switch to GCP mode)</li>
+<li>Click on a distinctive, identifiable feature on your <code>print.jpg</code> image</li>
+<li>Then click on the same feature in your reference data (aerial photo)</li>
+<li>Repeat for multiple points across the image</li>
+</ul>
+<p><strong>Best practices for GCPs:</strong></p>
+<ul>
+<li>Use <strong>at least 6-10 points</strong> for good results</li>
+<li>Distribute points <strong>evenly across the entire image</strong> (not clustered in one area)</li>
+<li>Choose <strong>sharp, precise features</strong>: building corners, road intersections, bridges</li>
+<li>Avoid features that may have changed over time</li>
+<li>More points generally = better accuracy, but with diminishing returns</li>
+</ul>
+<p><strong>Good GCP locations:</strong></p>
+<ul>
+<li><label><input type="checkbox" checked="">Building corners (if buildings still exist)</label></li>
+<li><label><input type="checkbox" checked="">Road intersections</label></li>
+<li><label><input type="checkbox" checked="">Bridge corners or endpoints</label></li>
+<li><label><input type="checkbox" checked="">Monument centers</label></li>
+<li>✗ Trees or vegetation (changes over time)</li>
+<li>✗ Shorelines (may have changed)</li>
+<li>✗ Vague or unclear features</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 4 - Adding ground control points</figcaption>
+</figure>
+</div></li>
+<li><p><strong>Configure transformation settings:</strong></p>
+<ul>
+<li>In the plugin panel, look for transformation type settings</li>
+<li>Select <strong>Polynomial 2</strong> (2nd order polynomial) for most historical maps</li>
+<li>Choose <strong>Lanczos</strong> or <strong>Cubic</strong> for resampling method (better quality)</li>
+<li>Set the output CRS to <strong>EPSG:28992</strong></li>
+</ul></li>
+<li><p><strong>Review GCP error:</strong></p>
+<ul>
+<li>The plugin should show residual error for each point</li>
+<li><strong>Residual error</strong> indicates how well each point fits the transformation</li>
+<li>Look for outliers (points with high error)</li>
+<li>If a point has very high error compared to others:
+<ul>
+<li>Check if you placed it correctly</li>
+<li>Delete and re-add it if necessary</li>
+<li>It might indicate a feature that has changed location</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+What’s a good error?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Important</strong>: Before retrieving it, you should first zoom to the <em>bbox_buffered</em> layer, in order to automatically reduce the size of the data to be retrieved.</p>
+<p>For historical maps at neighborhood scale, <strong>residual errors under 5 meters</strong> are generally good. Errors under 2 meters are excellent. If you see errors above 10 meters, review your GCPs.</p>
 </div>
 </div></li>
-</ul></li>
-<li><p>Save a local copy of the orthophoto. Please save it into folder \part1_data. Select the orthophoto layer name, right click on it and choose Export\Save As…</p>
-<p>In the resulting dialog GUI, choose/set the following parameters</p>
+<li><p><strong>Apply the georeferencing:</strong></p>
 <ul>
-<li><p>Output mode: <code>Raw data</code></p></li>
-<li><p>Format: <code>GeoTIFF</code>. <strong>Important</strong>: Uncheck “Create VRT”!</p></li>
-<li><p>File name: <strong>ortho_25cm.tif</strong>. Save the file in folder <code>\raster</code></p></li>
-<li><p>CRS: <code>EPSG:28992</code></p></li>
-<li><p>When it comes to the extents, set them to be taken from the <code>bbox_buffered</code> layer.</p></li>
-<li><p>Resolution: <code>0.25 m</code> for both horizontal and vertical.</p></li>
-</ul></li>
-<li><p>Arrange your layers:</p>
+<li>Click <code>Export Raster</code> or <code>Apply</code> (depending on plugin version)</li>
+<li>Choose output settings:
 <ul>
-<li>In the Layers panel, drag layers so the order from top to bottom is:
-<ol type="1">
-<li><code>buurten</code> (neighbourhood boundaries)</li>
-<li>Clipped climate buildings layer</li>
-<li><code>bbox_buffered</code> (buffer outline)</li>
-<li><code>Luchtfoto 2025 Ortho 25cm RGB</code> (aerial photos - at the bottom)</li>
-</ol></li>
-<li>Adjust the transparency of the buildings layer if needed (Right-click &gt; <code>Properties</code> &gt; <code>Symbology</code> &gt; <code>Layer Rendering</code> &gt; adjust opacity slider)</li>
-<li>Style the neighbourhood boundaries with a bold outline and no fill to see the aerial photo underneath</li>
+<li><strong>Output file:</strong> Save as <code>print_georeferenced.tif</code> in your working folder</li>
+<li><strong>CRS:</strong> EPSG:28992</li>
+<li><strong>Resampling:</strong> Lanczos or Cubic</li>
 </ul></li>
+<li>Click <code>OK</code></li>
+<li>The georeferenced raster will be added to your map</li>
+</ul></li>
+<li><p><strong>Verify the result:</strong></p>
+<ul>
+<li>Toggle the georeferenced layer on/off to compare with the aerial photo</li>
+<li>Check different areas of the image</li>
+<li>If alignment is poor, you may need to add more GCPs or adjust existing ones</li>
+<li>You can save the GCP points for future reference: <code>File</code> &gt; <code>Save GCP Points As...</code></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 5 - Final georeferenced map overlay</figcaption>
+</figure>
+</div></li>
+</ol>
+</section>
+<section id="part-4-digitizing-features-from-the-georeferenced-map" class="level3">
+<h3 class="anchored" data-anchor-id="part-4-digitizing-features-from-the-georeferenced-map">Part 4: Digitizing Features from the Georeferenced Map</h3>
+<p>Now that your map is georeferenced, you can extract information by digitizing vector features.</p>
+<ol start="16" type="1">
+<li><p><strong>Create a new vector layer for digitizing:</strong></p>
+<p><strong>Example: Digitizing buildings</strong></p>
+<ul>
+<li>Go to <code>Layer</code> &gt; <code>Create Layer</code> &gt; <code>New GeoPackage Layer...</code></li>
+<li><strong>Database:</strong> Click <code>...</code> and save as <code>digitized_features.gpkg</code></li>
+<li><strong>Layer name:</strong> <code>buildings_historical</code></li>
+<li><strong>Geometry type:</strong> <code>Polygon</code></li>
+<li><strong>CRS:</strong> EPSG:28992</li>
+</ul>
+<p><strong>Add attribute fields:</strong></p>
+<ul>
+<li>Click <code>New Field</code> to add attributes:
+<ul>
+<li><strong>Name:</strong> <code>building_id</code> | Type: <code>Whole number</code> (Integer)</li>
+<li><strong>Name:</strong> <code>building_type</code> | Type: <code>Text data</code> | Length: 50</li>
+<li><strong>Name:</strong> <code>notes</code> | Type: <code>Text data</code> | Length: 100</li>
+</ul></li>
+<li>Click <code>OK</code> to create the layer</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 6 - Creating a new vector layer for digitizing</figcaption>
+</figure>
+</div></li>
+<li><p><strong>Start digitizing:</strong></p>
+<ul>
+<li>Select the <code>buildings_historical</code> layer in the Layers panel</li>
+<li>Click the <code>Toggle Editing</code> button (pencil icon) or press Ctrl+E</li>
+<li>Click the <code>Add Polygon Feature</code> button (or press Ctrl+.)</li>
+</ul>
+<p><strong>Digitizing workflow:</strong></p>
+<ul>
+<li>Left-click to place vertices around the building outline</li>
+<li>Right-click to finish the polygon</li>
+<li>Enter attribute values in the pop-up form:
+<ul>
+<li><code>building_id</code>: 1, 2, 3, etc.</li>
+<li><code>building_type</code>: e.g., “residential”, “church”, “warehouse”</li>
+<li><code>notes</code>: any observations</li>
+</ul></li>
+<li>Click <code>OK</code></li>
+</ul>
+<p><strong>Digitizing tips:</strong></p>
+<ul>
+<li>Zoom in close for precision</li>
+<li>Use the mouse wheel to zoom in/out while digitizing</li>
+<li>Press <code>Backspace</code> to remove the last vertex</li>
+<li>Press <code>Esc</code> to cancel the current feature</li>
+<li>Enable snapping (<code>Settings</code> &gt; <code>Snapping Options</code>) to connect features precisely</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 7 - Digitizing building polygons</figcaption>
+</figure>
+</div></li>
+<li><p><strong>Digitize multiple features:</strong></p>
+<ul>
+<li>Digitize at least 5-10 buildings from your georeferenced map</li>
+<li>Try to choose buildings of different types or sizes</li>
+<li>Make sure each feature has complete attributes</li>
+</ul></li>
+<li><p><strong>Edit existing features (if needed):</strong></p>
+<ul>
+<li>With editing enabled, select the <code>Vertex Tool</code> (or press V)</li>
+<li>Click on a feature to see its vertices</li>
+<li>Click and drag vertices to adjust position</li>
+<li>Click between vertices to add new ones</li>
+<li>Click on a vertex and press <code>Delete</code> to remove it</li>
+</ul></li>
+<li><p><strong>Save your edits:</strong></p>
+<ul>
+<li>Click the <code>Save Layer Edits</code> button (floppy disk icon)</li>
+<li>Click <code>Toggle Editing</code> again to stop editing</li>
+<li>Your digitized features are now permanently saved in the GeoPackage</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 8 - Completed digitized buildings</figcaption>
+</figure>
+</div></li>
+</ol>
+</section>
+<section id="part-5-analysis-and-comparison-optional" class="level3">
+<h3 class="anchored" data-anchor-id="part-5-analysis-and-comparison-optional">Part 5: Analysis and Comparison (Optional)</h3>
+<ol start="21" type="1">
+<li><p><strong>Compare historical vs.&nbsp;current:</strong></p>
+<ul>
+<li>Style your digitized historical buildings with a semi-transparent fill (e.g., red, 50% opacity)</li>
+<li>Toggle between the georeferenced map and current aerial photo</li>
+<li>Identify buildings that:
+<ul>
+<li>Still exist in the same form</li>
+<li>Have been demolished</li>
+<li>Have changed in size or shape</li>
+</ul></li>
+</ul></li>
+<li><p><strong>Create additional layers:</strong></p>
+<p>You can create separate layers for different feature types:</p>
+<ul>
+<li><strong>Lines:</strong> Roads, canals, railways</li>
+<li><strong>Points:</strong> Trees, monuments, street furniture</li>
+<li><strong>Polygons:</strong> Parks, building footprints, land use areas</li>
+</ul>
+<p>Follow the same process as steps 16-20, adjusting the geometry type as needed.</p></li>
 </ol>
 <hr>
 </section>
@@ -638,71 +683,144 @@ Important
 <h2 class="anchored" data-anchor-id="recap">Recap</h2>
 <p><strong>What you’ve learned:</strong></p>
 <ul>
-<li>The <strong>Data Source Manager</strong> is your central hub for connecting to external data sources in QGIS</li>
-<li><strong>WFS</strong> provides vector data that you can style, query, and analyze - great for operational data and spatial analysis</li>
-<li><strong>WMS</strong> provides raster map images - great for background maps and visualization</li>
-<li>How to use the <strong>PDOK Services Plugin</strong> to easily access Dutch open geospatial data</li>
-<li>Basic <strong>geoprocessing workflows</strong>: selection, dissolve, buffer, and clip operations</li>
-<li>How to organize and save multiple layers in a <strong>GeoPackage</strong> for efficient data management</li>
-<li>Dutch <strong>PDOK</strong> (Publieke Dienstverlening Op de Kaart) offers free, reliable geospatial web services</li>
-<li>Provincial and municipal data portals (like Zuid-Holland) provide specialized datasets</li>
-<li>Saved connections can be reused in future projects</li>
+<li>How to install and use the <strong>Freehand Raster Georeferencer</strong> plugin for interactive georeferencing</li>
+<li>The concept of <strong>Ground Control Points (GCPs)</strong> and how to place them effectively</li>
+<li>Different <strong>transformation types</strong> and when to use them</li>
+<li>How to assess georeferencing <strong>accuracy</strong> using residual errors</li>
+<li>Creating new <strong>vector layers</strong> with custom attributes</li>
+<li><strong>Digitizing</strong> techniques for points, lines, and polygons</li>
+<li>Using the <strong>vertex tool</strong> to edit geometries</li>
+<li>Comparing historical and current spatial data</li>
 </ul>
-<p><strong>Key differences between WFS and WMS:</strong></p>
+<p><strong>Key concepts:</strong></p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 41%">
+<col style="width: 58%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Feature</th>
-<th>WFS</th>
-<th>WMS</th>
+<th>Concept</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Data type</td>
-<td>Vector (features)</td>
-<td>Raster (images)</td>
+<td>Georeferencing</td>
+<td>Assigning real-world coordinates to an image</td>
 </tr>
 <tr class="even">
-<td>File size</td>
-<td>Can be large</td>
-<td>Smaller</td>
+<td>GCP</td>
+<td>Ground Control Point - a known location used for georeferencing</td>
 </tr>
 <tr class="odd">
-<td>Queryable</td>
-<td>Yes</td>
-<td>No</td>
+<td>Residual error</td>
+<td>The difference between predicted and actual GCP locations</td>
 </tr>
 <tr class="even">
-<td>Stylable in QGIS</td>
-<td>Yes</td>
-<td>Limited</td>
+<td>Digitizing</td>
+<td>Creating vector features by tracing from a raster image</td>
 </tr>
 <tr class="odd">
-<td>Best for</td>
-<td>Analysis, editing</td>
-<td>Background maps</td>
+<td>Snapping</td>
+<td>Automatic alignment of vertices to other features</td>
+</tr>
+<tr class="even">
+<td>Topology</td>
+<td>Spatial relationships between features</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Useful Dutch Data Portals:</strong></p>
+<p><strong>Best practices for georeferencing:</strong></p>
 <ul>
-<li><strong>PDOK:</strong> https://www.pdok.nl/ (national geospatial infrastructure)</li>
-<li><strong>Data.overheid.nl:</strong> Open data from Dutch government</li>
-<li><strong>Nationaal Georegister:</strong> https://www.nationaalgeoregister.nl/ (search for geospatial services)</li>
-<li>Most Dutch provinces and municipalities also offer their own WFS/WMS services</li>
+<li>Use <strong>6-10+ control points</strong> distributed evenly</li>
+<li>Choose <strong>permanent, precise features</strong> (building corners, intersections)</li>
+<li>Check <strong>residual errors</strong> and remove/adjust problematic points</li>
+<li>Save your <strong>GCP points</strong> for future reference or refinement</li>
+<li>Use appropriate <strong>transformation type</strong> for your data</li>
+<li>Always <strong>verify</strong> the result by toggling layers and checking alignment</li>
+</ul>
+<p><strong>Best practices for digitizing:</strong></p>
+<ul>
+<li><strong>Zoom in</strong> close for precision</li>
+<li>Enable <strong>snapping</strong> to connect features properly</li>
+<li>Use consistent <strong>attribution</strong> for all features</li>
+<li><strong>Save frequently</strong> during editing</li>
+<li>Follow <strong>topology rules</strong> (e.g., no gaps, no overlaps for land parcels)</li>
+<li>Document your <strong>methodology</strong> and any uncertainties</li>
 </ul>
 <hr>
 </section>
-<section id="extension-activities-optional" class="level2">
-<h2 class="anchored" data-anchor-id="extension-activities-optional">Extension Activities (Optional)</h2>
+<section id="common-issues-and-solutions" class="level2">
+<h2 class="anchored" data-anchor-id="common-issues-and-solutions">Common Issues and Solutions</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Problem: Map doesn’t align well after georeferencing
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Possible causes:</strong> - Not enough GCPs (add more, aim for 8-10+) - GCPs not evenly distributed (add points to corners and edges) - Wrong features selected (choose features that haven’t changed) - Inappropriate transformation type (try Polynomial 2 or 3)</p>
+<p><strong>Solution:</strong> Review your GCPs, add more points, ensure even distribution, and try different transformation types.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Problem: Some areas align well, others don’t
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Cause:</strong> Local distortions in the original map (common in historical maps)</p>
+<p><strong>Solution:</strong> Use <strong>Thin Plate Spline (TPS)</strong> transformation with 15+ GCPs, or georeference the image in sections.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Problem: High residual errors on specific points
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Cause:</strong> GCP placed incorrectly, or the feature has actually moved/changed</p>
+<p><strong>Solution:</strong> Review the point placement. If correct, the feature may have genuinely changed position - this is valuable historical information!</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="extension-activities" class="level2">
+<h2 class="anchored" data-anchor-id="extension-activities">Extension Activities</h2>
 <ul>
-<li>Explore other PDOK services at https://www.pdok.nl/datasets</li>
-<li>Try filtering WFS layers using the Data Source Manager’s “SQL” or “Filter” options</li>
-<li>Analyze the climate adaptation scores in your selected Rotterdam neighbourhoods</li>
-<li>Compare different neighbourhoods’ vulnerability to heat, water, or biodiversity loss</li>
-<li>Add the RIVM Energy Labels WMS (<code>https://data.rivm.nl/geo/nl/wms?request=GetCapabilities</code>, layer <code>rvo_energielabels</code>) to see building energy performance</li>
-<li>Create a styled map showing the relationship between neighbourhood characteristics and climate risks</li>
+<li>Georeference multiple historical maps from different time periods and compare changes</li>
+<li>Calculate the area of buildings that have been demolished or added</li>
+<li>Create a time-series animation showing urban development</li>
+<li>Use the <strong>Georeferencer</strong> tool (built into QGIS) instead of the plugin to compare workflows</li>
+<li>Digitize a complete street network and perform network analysis</li>
+<li>Research historical sources to add rich attribute data to your digitized features</li>
+<li>Create a web map showing historical vs.&nbsp;current imagery side-by-side</li>
+</ul>
+<hr>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<ul>
+<li><strong>QGIS Georeferencing documentation:</strong> https://docs.qgis.org/latest/en/docs/user_manual/working_with_raster/georeferencer.html</li>
+<li><strong>Digitizing documentation:</strong> https://docs.qgis.org/latest/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html</li>
+<li><strong>Historical maps of the Netherlands:</strong>
+<ul>
+<li>Beeldbank Rotterdam: https://www.gemeentearchief.rotterdam.nl/</li>
+<li>Geheugen van Nederland: https://www.geheugenvannederland.nl/</li>
+<li>Topotijdreis: https://www.topotijdreis.nl/</li>
+</ul></li>
 </ul>
 
 
