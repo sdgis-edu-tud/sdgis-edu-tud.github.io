@@ -4,6 +4,13 @@ project:
 
 website:
   title: "sdgistud"
+  bread-crumbs: true
+  announcement: 
+    icon: info-circle
+    dismissable: true
+    content: "**Alert** - this website is still under construction. Some content could not be still available, or out of date."
+    type: primary
+    position: below-navbar
   navbar:
     left:
       - href: index.qmd
@@ -122,7 +129,7 @@ website:
   back-to-top-navigation: true
   reader-mode: true
   page-footer: 
-    left: "Copyright 2025, SDGIS@tudelft.nl"
+    left: "Copyright 2025, SDGIS-BK@tudelft.nl"
     right: 
       - icon: github
         href: https://github.com/
@@ -134,8 +141,12 @@ website:
 format:
   html:
     theme: 
-      - cosmo
+      light: cosmo
+      dark: cyborg 
     css: styles.css
     toc: true
+    code-tools: true
+    code-copy: true
+    include-after-body: _print-button.html
 
 editor: visual

@@ -290,9 +290,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Spatial Data and GIS Edu Platform",
+    "title": "Spatial Data & GIS",
     "section": "",
-    "text": "Introducing the Spatial Data and GIS platform, a cutting-edge initiative crafted by the Department of Urbanism at TU Delft. Our platform serves as a hub for the collection, editing, publication, and dissemination of invaluable teaching resources pertinent to the dynamic realms of Geographic Information Systems (GIS) and Digital Tools. Catering to both Bachelor’s and Master’s programs within the Faculty of Architecture and the Built Environment, our mission is to empower students with meticulously curated educational materials.\nTailored to the needs of aspiring scholars, our platform offers a comprehensive array of resources meticulously developed by esteemed educators and researchers at TU Delft, supplemented by external contributions. Designed to foster an enriching learning experience, students gain access to a wealth of knowledge, enhancing their understanding of GIS and digital tools.\nFurthermore, our platform extends its reach to educators, providing them with an open forum to share and repurpose teaching materials, fostering collaboration and innovation within the academic community. Embracing a spirit of inclusivity and collaboration, we invite both students and instructors to embark on a journey of discovery and growth through the Spatial Data and GIS platform.\n\nLearn GIS\nGeographic Information Systems (GIS) are essential tools for visualizing, analyzing, and interpreting spatial data to understand patterns, relationships, and trends. Whether you are an architecture and urbanism student or a professional looking to enhance your skills, this section provides comprehensive resources to help you master GIS.\n\n\nFind Data\nAccessing high-quality spatial data is crucial for effective analysis and decision-making in GIS. This section provides you with the resources and guidance needed to discover, obtain, and manage spatial data for your projects in architecture, urbanism and landscape architecture.\n\n\nSoftware and Tools for GIS and Data Visualization\nCurated list os open software and tools\n\n\nData-Informed Design for Sustainable Urban Futures\n\n\nCollaborate\n\n\n\n\n Back to top"
+    "text": "Your comprehensive resource hub for Geographic Information Systems and spatial analysis in architecture and urbanism at TU Delft."
   },
   {
     "objectID": "courses/mscu_q2.html",
@@ -1072,5 +1072,33 @@
     "title": "Calculating Statistics and Visualizing Data",
     "section": "Additional Resources",
     "text": "Additional Resources\nQGIS Documentation: - Statistics functions: https://docs.qgis.org/latest/en/docs/user_manual/working_with_vector/functions_list.html - Processing tools: https://docs.qgis.org/latest/en/docs/user_manual/processing_algs/\nRAWGraphs: - Official website: https://www.rawgraphs.io/ - Learning resources: https://www.rawgraphs.io/learning - Gallery of examples: https://www.rawgraphs.io/gallery\nData Visualization Theory: - “The Visual Display of Quantitative Information” by Edward Tufte - “Information is Beautiful” by David McCandless - ColorBrewer for choosing color schemes: https://colorbrewer2.org/\nAlternative Visualization Tools: - Flourish: https://flourish.studio/ (interactive web visualizations) - Datawrapper: https://www.datawrapper.de/ (charts and maps for journalism) - Plotly: https://plotly.com/ (interactive graphs) - Tableau Public: https://public.tableau.com/ (comprehensive analytics) - D3.js: https://d3js.org/ (for custom programming-based visualizations)"
+  },
+  {
+    "objectID": "index.html#welcome-to-the-spatial-data-gis-platform",
+    "href": "index.html#welcome-to-the-spatial-data-gis-platform",
+    "title": "Spatial Data & GIS",
+    "section": "",
+    "text": "Your comprehensive resource hub for Geographic Information Systems and spatial analysis in architecture and urbanism at TU Delft."
+  },
+  {
+    "objectID": "index.html#about-the-platform",
+    "href": "index.html#about-the-platform",
+    "title": "Spatial Data & GIS",
+    "section": "About the Platform",
+    "text": "About the Platform\nThe Spatial Data & GIS Platform is developed by the Department of Urbanism at TU Delft to support students and educators in the Faculty of Architecture and the Built Environment. We provide curated teaching materials, datasets, and tools for both Bachelor’s and Master’s programs.\nWhat we offer:\n\nHigh-quality educational resources curated and developed by TU Delft faculty and external experts\nOpen access to spatial datasets relevant to urban design and planning\nGuides for GIS software and data visualization tools\nA collaborative space for educators to share and adapt teaching materials\n\n\n\n\n🗺️ Learn GIS\nMaster the fundamentals of Geographic Information Systems. Access tutorials, workshops, and hands-on exercises designed for architecture and urbanism students.\nExplore learning resources →\n\n\n📊 Find Data\nDiscover curated spatial datasets for the Netherlands and beyond. Learn where to find reliable data sources for your urban analysis projects.\nBrowse data sources →\n\n\n🛠️ Software & Tools\nExplore open-source GIS software and data visualization tools. Get started with QGIS, Python, R, and other essential platforms.\nView tool guides →\n\n\n🤝 Collaborate\nJoin our community of educators and researchers. Share teaching materials, contribute resources, and connect with peers.\nGet involved →"
+  },
+  {
+    "objectID": "index.html#data-informed-design-for-sustainable-urban-futures",
+    "href": "index.html#data-informed-design-for-sustainable-urban-futures",
+    "title": "Spatial Data & GIS",
+    "section": "Data-Informed Design for Sustainable Urban Futures",
+    "text": "Data-Informed Design for Sustainable Urban Futures\nThis platform supports evidence-based urban design by connecting spatial data analysis with sustainable development goals. Learn how to integrate GIS into your design process to create more resilient, equitable, and livable cities.\n\n\n\n\n\n\n\nFor Educators\n\n\n\nLooking to contribute teaching materials or collaborate? We welcome contributions from faculty members and researchers. Learn more about contributing →\n\n\n\n\n\n\n\n\nGetting Started\n\n\n\nNew to GIS? Start with our beginner-friendly tutorials or explore our recommended learning path for urbanism students.\n\n\n\n\nQuestions or feedback?\nContact the Department of Urbanism at TU Delft"
+  },
+  {
+    "objectID": "index.html#data-informed-design-for-sustainable-urban-futures-graduation-cluster",
+    "href": "index.html#data-informed-design-for-sustainable-urban-futures-graduation-cluster",
+    "title": "Spatial Data & GIS",
+    "section": "Data-Informed Design for Sustainable Urban Futures Graduation Cluster",
+    "text": "Data-Informed Design for Sustainable Urban Futures Graduation Cluster\nThe Data-Informed Design for Sustainable Urban Futures graduation cluster explores how spatial data, GIS, and computational methods can shape more sustainable and resilient cities. Students work at the intersection of urban design, data science, and environmental analysis to address complex challenges like climate adaptation, social equity, and urban transformation. What makes this cluster unique:\nIntegration of quantitative analysis with design thinking Focus on evidence-based approaches to urban sustainability Collaboration with municipalities, research institutes, and community organizations Development of innovative methods for spatial analysis and visualization\nWhether you’re interested in climate-responsive design, participatory planning, or smart city innovations, this cluster provides the tools and mentorship to develop research-driven graduation projects that contribute to sustainable urban futures.\nLearn more about graduation opportunities →\n\n\n\n\n\n\n\nFor Educators\n\n\n\nLooking to contribute teaching materials or collaborate? We welcome contributions from faculty members and researchers. Learn more about contributing →\n\n\n\n\n\n\n\n\nGetting Started\n\n\n\nNew to GIS? Start with our beginner-friendly tutorials or explore our recommended learning path for urbanism students.\n\n\n\n\nQuestions or feedback?\nContact us at sdgis-BK@tudelft.nl"
   }
 ]
