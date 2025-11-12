@@ -5,11 +5,11 @@ format: html
 
 ## 👩‍🏫👨‍🏫🎓Instructors
 
--   Daniele Cannatella
+- Daniele Cannatella
 
--   Rob van Houten
+- Rob van Houten
 
--    Ines Zaid
+- Ines Zaid
 
 ## 👩‍🏫👨‍🏫🎓Helpers
 
@@ -34,9 +34,14 @@ format: html
 
 -   **Exercise 2: [Georeferencing and Digitizing](/pages/misc/georeferencing_and_digitizing.qmd)**
 
-#### Building and Analyzing sections
+### Building and Analyzing sections
 
--   
+- Video Tutorial: [Cross section detection using Profile Tool](https://www.youtube.com/watch?v=jwbsdLuxyAY&t=110s&ab_channel=GeoDeltaLabs)
+- Video Tutorial: [Compare raster DTM's, contour lines and a point cloud for different transects](https://www.youtube.com/watch?time_continue=66&v=jqDm1RpGpVE&embeds_referring_euri=https%3A%2F%2Fwww.notion.so%2F&source_ve_path=Mjg2NjY)
+- Video Tutorial: [Elevation Profiles using .laz data](https://www.youtube.com/watch?v=8fsMyj1nxpE&ab_channel=OpenSourceOptions)
+- Video Tutorial: [Multiple cross sectional profiles](https://www.youtube.com/watch?v=HCO7Ugfc_0w&t=184s&ab_channel=WebStoryMap)
+- Video Tutorial: [Create 3D Terrain with QGIS and GIMP](https://www.youtube.com/watch?v=rgFI5WiXOl8&ab_channel=GeoDeltaLabs) 
+
 
 ### Data Interoperability and Visualization
 

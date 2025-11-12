@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Software and Tools for GIS and Data Visualization – Spatial Data &amp; GIS</title>
+<title>Spatial Data &amp; GIS – sdgistud</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,30 +20,65 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-08799928d293638fe9563d5c5a2794e5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-bb05f5d0074da2129d766b238819cd35.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-02fc4e8dd319f994f075e0950478fe35.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-bb05f5d0074da2129d766b238819cd35.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -245,8 +280,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Spatial Data &amp; GIS</span>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">sdgistud</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -256,11 +291,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../pages/software_and_tools.html" aria-current="page"> 
+    <a class="nav-link" href="./pages/software_and_tools.html"> 
 <span class="menu-text">Software and Tools</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -269,23 +304,23 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-learn-qgis">    
         <li>
-    <a class="dropdown-item" href="../pages/installation_setup/install_qgis.html">
+    <a class="dropdown-item" href="./pages/installation_setup/install_qgis.html">
  <span class="dropdown-text">Installation and setup</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../pages/getting_started.html">
+    <a class="dropdown-item" href="./pages/getting_started.html">
  <span class="dropdown-text">Getting started with QGIS</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../pages/cartography_and_mapping/cartographic_principles.html">
+    <a class="dropdown-item" href="./pages/cartography_and_mapping/cartographic_principles.html">
  <span class="dropdown-text">Cartography and mapping</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../pages/density_analysis/land_cover_density_in_grid.qmd">
+    <a class="dropdown-item" href="./pages/density_analysis/land_cover_density_in_grid.qmd">
  <span class="dropdown-text">Density analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../pages/landscape_analysis/terrain_data.html">
+    <a class="dropdown-item" href="./pages/landscape_analysis/terrain_data.html">
  <span class="dropdown-text">Landscape analysis</span></a>
   </li>  
     </ul>
@@ -314,7 +349,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="dropdown-header">WV5 -</li>
         <li class="dropdown-header">MSc Urbanism Q1 - GIS workshop</li>
         <li>
-    <a class="dropdown-item" href="../courses/mscu_q2.html">
+    <a class="dropdown-item" href="./courses/mscu_q2.html">
  <span class="dropdown-text">MSc Urbanism Q2 - GIS workshop</span></a>
   </li>  
         <li class="dropdown-header">MSc Urbanism Q3 - GIS workshop</li>
@@ -323,21 +358,21 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../pages/find_data.html"> 
+    <a class="nav-link" href="./pages/find_data.html"> 
 <span class="menu-text">Find Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../pages/about.html"> 
+    <a class="nav-link" href="./pages/about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../contact.qmd"> 
+    <a class="nav-link" href="./contact.qmd"> 
 <span class="menu-text">Contact us</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../contribute.qmd"> 
+    <a class="nav-link" href="./contribute.qmd"> 
 <span class="menu-text">Contribute</span></a>
   </li>  
 </ul>
@@ -373,50 +408,23 @@ ul.task-list li input[type="checkbox"] {
 </div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#geographic-information-systems-gis" id="toc-geographic-information-systems-gis" class="nav-link active" data-scroll-target="#geographic-information-systems-gis">Geographic Information Systems (GIS)</a>
-  <ul class="collapse">
-  <li><a href="#qgis" id="toc-qgis" class="nav-link" data-scroll-target="#qgis"><strong>QGIS</strong></a></li>
-  <li><a href="#grass-gis" id="toc-grass-gis" class="nav-link" data-scroll-target="#grass-gis"><strong>Grass GIS</strong></a></li>
-  <li><a href="#geoda" id="toc-geoda" class="nav-link" data-scroll-target="#geoda"><strong>Geoda</strong></a></li>
-  </ul></li>
-  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data Visualization</a>
-  <ul class="collapse">
-  <li><a href="#flourish" id="toc-flourish" class="nav-link" data-scroll-target="#flourish"><strong>Flourish</strong></a></li>
-  <li><a href="#rawgraphs" id="toc-rawgraphs" class="nav-link" data-scroll-target="#rawgraphs">Rawgraphs</a></li>
-  </ul></li>
-  <li><a href="#statistical-and-data-science-tools" id="toc-statistical-and-data-science-tools" class="nav-link" data-scroll-target="#statistical-and-data-science-tools">Statistical and Data Science Tools</a>
-  <ul class="collapse">
-  <li><a href="#rstudio-desktop" id="toc-rstudio-desktop" class="nav-link" data-scroll-target="#rstudio-desktop">RStudio Desktop</a></li>
-  </ul></li>
-  <li><a href="#other-useful-tools" id="toc-other-useful-tools" class="nav-link" data-scroll-target="#other-useful-tools">Other Useful Tools</a>
-  <ul class="collapse">
-  <li><a href="#openrefine" id="toc-openrefine" class="nav-link" data-scroll-target="#openrefine">OpenRefine</a></li>
-  <li><a href="#inkscape" id="toc-inkscape" class="nav-link" data-scroll-target="#inkscape">Inkscape</a></li>
-  <li><a href="#jupyterlab" id="toc-jupyterlab" class="nav-link" data-scroll-target="#jupyterlab">JupyterLab</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Software and Tools for GIS and Data Visualization</h1>
+<div class="quarto-title-block"><div><h1 class="title">Spatial Data &amp; GIS</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Educational Platform for TU Delft Urbanism</p>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -428,199 +436,87 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="geographic-information-systems-gis" class="level2">
-<h2 class="anchored" data-anchor-id="geographic-information-systems-gis">Geographic Information Systems (GIS)</h2>
-<section id="qgis" class="level3">
-<h3 class="anchored" data-anchor-id="qgis"><a href="https://qgis.org/en/site/"><strong>QGIS</strong></a></h3>
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><img src="images/qgis.png" class="img-fluid" width="500"></td>
-<td><p><strong>QGIS</strong> is a professional GIS application that is built on top of and proud to be itself Free and Open Source Software (FOSS). QGIS is a user friendly <strong>Open Source Geographic Information System (GIS)</strong> licensed under the GNU General Public License. QGIS is an official project of the Open Source Geospatial Foundation (OSGeo). It runs on Linux, Unix, Mac OSX, Windows and Android and supports numerous vector, raster, and database formats and functionalities.</p>
-<div class="callout callout-style-simple callout-tip no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Website:</strong> <a href="https://qgis.org" class="uri">https://qgis.org</a><br>
-<strong>Platform:</strong> Windows, macOS, Linux, Android<br>
-<strong>Use it for:</strong> General GIS, cartography, spatial analysis, plugins like TimeManager and Processing toolbox</p>
-</div>
-</div>
-</div></td>
-</tr>
-</tbody>
-</table>
+<section id="welcome-to-the-spatial-data-gis-platform" class="level2 hero-banner">
+<h2 class="anchored" data-anchor-id="welcome-to-the-spatial-data-gis-platform">Welcome to the Spatial Data &amp; GIS Platform</h2>
+<p>Your comprehensive resource hub for Geographic Information Systems and spatial analysis in architecture and urbanism at TU Delft.</p>
 </section>
-<section id="grass-gis" class="level3">
-<h3 class="anchored" data-anchor-id="grass-gis"><a href="https://grass.osgeo.org/"><strong>Grass GIS</strong></a></h3>
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><img src="images/grass.png" class="img-fluid" width="500"></td>
-<td><p><strong>GRASS</strong>, Geographic Resources Analysis Support System, is a powerful computational engine for raster, vector, and geospatial processing. It supports terrain and ecosystem modeling, hydrology, data management, and imagery processing. With a built-in temporal framework and Python API, it enables advanced time series analysis and rapid geospatial programming, optimized for large-scale analysis on various hardware configurations. GRASS GIS (Geographic Resources Analysis Support System) is a powerful spatial modeling tool with support for raster, vector, and temporal data.</p>
-<div class="callout callout-style-simple callout-tip no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Website:</strong> <a href="https://grass.osgeo.org" class="uri">https://grass.osgeo.org</a><br>
-<strong>Platform:</strong> Windows, macOS, Linux<br>
-<strong>Use it for:</strong> Hydrology, terrain analysis, temporal data modeling, scripting with Python</p>
-</div>
-</div>
-</div></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="geoda" class="level3">
-<h3 class="anchored" data-anchor-id="geoda"><a href="https://geodacenter.github.io/index.html"><strong>Geoda</strong></a></h3>
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><img src="images/geoda.png" class="img-fluid" width="500"></td>
-<td><p><strong>GeoDa</strong> is a free and open source software tool that serves as an introduction to spatial data science. It is designed to facilitate new insights from data analysis by exploring and modeling spatial patterns. GeoDa is a user-friendly application that introduces spatial data science through spatial autocorrelation and regression modeling.</p>
-<div class="callout callout-style-simple callout-tip no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Website:</strong> <a href="https://grass.osgeo.org" class="uri">https://grass.osgeo.org</a><br>
-<strong>Platform:</strong> Windows, macOS, Linux<br>
-<strong>Use it for:</strong> Hydrology, terrain analysis, temporal data modeling, scripting with Python</p>
-</div>
-</div>
-</div></td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-</section>
-<section id="data-visualization" class="level2">
-<h2 class="anchored" data-anchor-id="data-visualization">Data Visualization</h2>
-<section id="flourish" class="level3">
-<h3 class="anchored" data-anchor-id="flourish"><a href="https://flourish.studio/"><strong>Flourish</strong></a></h3>
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><img src="..\images/logos/Flourish.png" class="img-fluid" width="500"></td>
-<td><p><strong>Flourish</strong> lets users create interactive visualizations with minimal coding, ideal for storytelling and journalism. Flourish&nbsp;<a href="https://flourish.studio/company/#story">was created</a>&nbsp;to enable everyone to tell stories with data. Launched in 2018, the tool is used by a huge community of creators to inform tens of millions of viewers every day.</p>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>While Flourish offers a free tier, it is not open-source. For fully open alternatives, see below.</strong></p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-tip no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Website:</strong> <a href="https://flourish.studio" class="uri">https://flourish.studio</a><br>
-<strong>Use it for:</strong> Charts, maps, scrollytelling, presentations</p>
-</div>
-</div>
-</div></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="rawgraphs" class="level3">
-<h3 class="anchored" data-anchor-id="rawgraphs"><a href="https://www.rawgraphs.io/">Rawgraphs</a></h3>
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><img src="..\images/logos/rawgraphs.png" class="img-fluid" width="500"></td>
-<td><p><strong>RAWGraphs</strong> is an open source data visualization framework built with the goal of making the visual representation of complex data easy for everyone.<br>
-Primarily conceived as a tool for designers and vis geeks, RAWGraphs aims at providing a missing link between spreadsheet applications (e.g.&nbsp;Microsoft Excel, Apple Numbers, OpenRefine) and vector graphics editors (e.g.&nbsp;Adobe Illustrator, Inkscape, Figma).<br>
-RAWGraphs is an open source framework for visualizing complex datasets directly from spreadsheets and CSV files.</p>
-<div class="callout callout-style-simple callout-tip no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Website:</strong> <a href="https://rawgraphs.io" class="uri">https://rawgraphs.io</a><br>
-<strong>Platform:</strong> Web-based, self-hostable<br>
-<strong>Use it for:</strong> Alluvial diagrams, treemaps, scatterplots, circular plots<br>
-<strong>Codebase:</strong> <a href="https://github.com/rawgraphs/rawgraphs-core">GitHub - RAWGraphs</a></p>
-</div>
-</div>
-</div></td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-</section>
-<section id="statistical-and-data-science-tools" class="level2">
-<h2 class="anchored" data-anchor-id="statistical-and-data-science-tools">Statistical and Data Science Tools</h2>
-<section id="rstudio-desktop" class="level3">
-<h3 class="anchored" data-anchor-id="rstudio-desktop"><a href="https://posit.co/download/rstudio-desktop/">RStudio Desktop</a></h3>
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td><img src="..\images/logos/rstudio.png" class="img-fluid" width="500"></td>
-<td><p><strong>RStudio</strong> is a powerful IDE for R and Python. While the core IDE is open source, RStudio now exists under the Posit brand with both open and pro versions.</p>
-<div class="callout callout-style-simple callout-tip no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Website:</strong> <a href="https://posit.co" class="uri">https://posit.co</a><br>
-<strong>Platform:</strong> Windows, macOS, Linux<br>
-<strong>Use it for:</strong> Statistical computing, spatial modeling (via <code>sf</code>, <code>terra</code>, <code>tmap</code>, <code>leaflet</code>, etc.)</p>
-</div>
-</div>
-</div></td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-</section>
-<section id="other-useful-tools" class="level2">
-<h2 class="anchored" data-anchor-id="other-useful-tools">Other Useful Tools</h2>
-<section id="openrefine" class="level3">
-<h3 class="anchored" data-anchor-id="openrefine">OpenRefine</h3>
-<p>A powerful tool for cleaning messy datasets, especially tabular data.</p>
+<section id="about-the-platform" class="level2">
+<h2 class="anchored" data-anchor-id="about-the-platform">About the Platform</h2>
+<p>The Spatial Data &amp; GIS Platform is developed by the Department of Urbanism at TU Delft to support students and educators in the Faculty of Architecture and the Built Environment. We provide curated teaching materials, datasets, and tools for both Bachelor’s and Master’s programs.</p>
+<p><strong>What we offer:</strong></p>
 <ul>
-<li><strong>Website:</strong> <a href="https://openrefine.org" class="uri">https://openrefine.org</a></li>
-<li><strong>Platform:</strong> Web-based, runs locally</li>
-<li><strong>Use it for:</strong> Data cleaning, transformation, reconciling datasets</li>
-</ul>
-</section>
-<section id="inkscape" class="level3">
-<h3 class="anchored" data-anchor-id="inkscape">Inkscape</h3>
-<p>Free and open source vector graphics editor. Useful for refining maps exported from QGIS or RAWGraphs.</p>
-<ul>
-<li><strong>Website:</strong> <a href="https://inkscape.org" class="uri">https://inkscape.org</a></li>
-<li><strong>Platform:</strong> Windows, macOS, Linux</li>
-<li><strong>Use it for:</strong> Map post-processing, infographic design</li>
-</ul>
-</section>
-<section id="jupyterlab" class="level3">
-<h3 class="anchored" data-anchor-id="jupyterlab">JupyterLab</h3>
-<p>An open-source notebook environment for coding, visualization, and documentation in Python and R.</p>
-<ul>
-<li><strong>Website:</strong> <a href="https://jupyter.org" class="uri">https://jupyter.org</a></li>
-<li><strong>Use it for:</strong> Data analysis, Python scripting, integrating with <code>geopandas</code>, <code>matplotlib</code>, <code>folium</code>, etc.</li>
+<li>High-quality educational resources curated and developed by TU Delft faculty and external experts</li>
+<li>Open access to spatial datasets relevant to urban design and planning</li>
+<li>Guides for GIS software and data visualization tools</li>
+<li>A collaborative space for educators to share and adapt teaching materials</li>
 </ul>
 <hr>
+<div class="grid">
+<section id="learn-gis" class="level3 g-col-12 g-col-md-6">
+<h3 class="anchored" data-anchor-id="learn-gis">🗺️ Learn GIS</h3>
+<p>Master the fundamentals of Geographic Information Systems. Access tutorials, workshops, and hands-on exercises designed for architecture and urbanism students.</p>
+<p><a href="#">Explore learning resources →</a></p>
+</section>
+<section id="find-data" class="level3 g-col-12 g-col-md-6">
+<h3 class="anchored" data-anchor-id="find-data">📊 Find Data</h3>
+<p>Discover curated spatial datasets for the Netherlands and beyond. Learn where to find reliable data sources for your urban analysis projects.</p>
+<p><a href="./pages/find_data.html">Browse data sources →</a></p>
+</section>
+<section id="software-tools" class="level3 g-col-12 g-col-md-6">
+<h3 class="anchored" data-anchor-id="software-tools">🛠️ Software &amp; Tools</h3>
+<p>Explore open-source GIS software and data visualization tools. Get started with QGIS, Python, R, and other essential platforms.</p>
+<p><a href="./pages/software_and_tools.html">View tool guides →</a></p>
+</section>
+<section id="collaborate" class="level3 g-col-12 g-col-md-6">
+<h3 class="anchored" data-anchor-id="collaborate">🤝 Collaborate</h3>
+<p>Join our community of educators and researchers. Share teaching materials, contribute resources, and connect with peers.</p>
+<p><a href="#">Get involved →</a></p>
+</section>
+</div>
+<hr>
+</section>
+<section id="data-informed-design-for-sustainable-urban-futures-graduation-cluster" class="level2">
+<h2 class="anchored" data-anchor-id="data-informed-design-for-sustainable-urban-futures-graduation-cluster">Data-Informed Design for Sustainable Urban Futures Graduation Cluster</h2>
+<p>The Data-Informed Design for Sustainable Urban Futures graduation cluster explores how spatial data, GIS, and computational methods can shape more sustainable and resilient cities. Students work at the intersection of urban design, data science, and environmental analysis to address complex challenges like climate adaptation, social equity, and urban transformation. What makes this cluster unique:</p>
+<p>Integration of quantitative analysis with design thinking Focus on evidence-based approaches to urban sustainability Collaboration with municipalities, research institutes, and community organizations Development of innovative methods for spatial analysis and visualization</p>
+<p>Whether you’re interested in climate-responsive design, participatory planning, or smart city innovations, this cluster provides the tools and mentorship to develop research-driven graduation projects that contribute to sustainable urban futures.</p>
+<p><a href="https://dissuf.github.io/">Learn more about graduation opportunities →</a></p>
+<hr>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+For Educators
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Looking to contribute teaching materials or collaborate? We welcome contributions from faculty members and researchers. <a href="#">Learn more about contributing →</a></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Getting Started
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>New to GIS? Start with our <a href="#">beginner-friendly tutorials</a> or explore our <a href="#">recommended learning path</a> for urbanism students.</p>
+</div>
+</div>
+<hr>
+<div style="text-align: center; margin-top: 3rem; padding: 2rem; background-color: #f8f9fa; border-radius: 8px;">
+<p><strong>Questions or feedback?</strong><br>
+Contact us at sdgis-BK@tudelft.nl</p>
+</div>
 
 
-</section>
+<!-- -->
+
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -706,6 +602,57 @@ RAWGraphs is an open source framework for visualizing complex datasets directly 
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1035,7 +982,102 @@ RAWGraphs is an open source framework for visualizing complex datasets directly 
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Spatial Data &amp; GIS"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Educational Platform for TU Delft Urbanism"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: false</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    page-layout: full</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>::: hero-banner</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Welcome to the Spatial Data &amp; GIS Platform</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>Your comprehensive resource hub for Geographic Information Systems and spatial analysis in architecture and urbanism at TU Delft.</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## About the Platform</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>The Spatial Data &amp; GIS Platform is developed by the Department of Urbanism at TU Delft to support students and educators in the Faculty of Architecture and the Built Environment. We provide curated teaching materials, datasets, and tools for both Bachelor's and Master's programs.</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>**What we offer:**</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>High-quality educational resources curated and developed by TU Delft faculty and external experts</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Open access to spatial datasets relevant to urban design and planning</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Guides for GIS software and data visualization tools</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>A collaborative space for educators to share and adapt teaching materials</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>::::::: grid</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>::: {.g-col-12 .g-col-md-6}</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🗺️ Learn GIS</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>Master the fundamentals of Geographic Information Systems. Access tutorials, workshops, and hands-on exercises designed for architecture and urbanism students.</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Explore learning resources →</span><span class="co">](#)</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>::: {.g-col-12 .g-col-md-6}</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📊 Find Data</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>Discover curated spatial datasets for the Netherlands and beyond. Learn where to find reliable data sources for your urban analysis projects.</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Browse data sources →</span><span class="co">](/pages/find_data.qmd)</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>::: {.g-col-12 .g-col-md-6}</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🛠️ Software &amp; Tools</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>Explore open-source GIS software and data visualization tools. Get started with QGIS, Python, R, and other essential platforms.</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">View tool guides →</span><span class="co">](/pages/software_and_tools.qmd)</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>::: {.g-col-12 .g-col-md-6}</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🤝 Collaborate</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>Join our community of educators and researchers. Share teaching materials, contribute resources, and connect with peers.</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Get involved →</span><span class="co">](#)</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>:::::::</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data-Informed Design for Sustainable Urban Futures Graduation Cluster</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>The Data-Informed Design for Sustainable Urban Futures graduation cluster explores how spatial data, GIS, and computational methods can shape more sustainable and resilient cities. Students work at the intersection of urban design, data science, and environmental analysis to address complex challenges like climate adaptation, social equity, and urban transformation. What makes this cluster unique:</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>Integration of quantitative analysis with design thinking Focus on evidence-based approaches to urban sustainability Collaboration with municipalities, research institutes, and community organizations Development of innovative methods for spatial analysis and visualization</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>Whether you're interested in climate-responsive design, participatory planning, or smart city innovations, this cluster provides the tools and mentorship to develop research-driven graduation projects that contribute to sustainable urban futures.</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Learn more about graduation opportunities →</span><span class="co">](https://dissuf.github.io/)</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>::: {.callout-note icon="false"}</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="fu">## For Educators</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>Looking to contribute teaching materials or collaborate? We welcome contributions from faculty members and researchers. <span class="co">[</span><span class="ot">Learn more about contributing →</span><span class="co">](#)</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip icon="false"}</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## Getting Started</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>New to GIS? Start with our <span class="co">[</span><span class="ot">beginner-friendly tutorials</span><span class="co">](#)</span> or explore our <span class="co">[</span><span class="ot">recommended learning path</span><span class="co">](#)</span> for urbanism students.</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>::: {style="text-align: center; margin-top: 3rem; padding: 2rem; background-color: #f8f9fa; border-radius: 8px;"}</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>**Questions or feedback?**\</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>Contact us at sdgis-BK\@tudelft.nl</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

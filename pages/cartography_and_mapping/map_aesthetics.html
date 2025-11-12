@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Activating Panels – sdgistud</title>
+<title>Visual Variables and Map Aesthetics – sdgistud</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,18 +65,22 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../pages/installation_setup/connecting_folders.html" rel="next">
-<link href="../../pages/installation_setup/switch_language.html" rel="prev">
+<link href="../../pages/cartography_and_mapping/types_of_maps.html" rel="next">
+<link href="../../pages/cartography_and_mapping/map_layout.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-bb05f5d0074da2129d766b238819cd35.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-02fc4e8dd319f994f075e0950478fe35.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-bb05f5d0074da2129d766b238819cd35.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,7 +113,169 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -195,6 +396,7 @@ ul.task-list li input[type="checkbox"] {
           </li>
       </ul>
     </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -208,7 +410,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../pages/installation_setup/install_qgis.html">Installation and setup</a></li><li class="breadcrumb-item"><a href="../../pages/installation_setup/activating_panels.html">Activating Panels</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../pages/cartography_and_mapping/making_a_map.html">Cartography and mapping</a></li><li class="breadcrumb-item"><a href="../../pages/cartography_and_mapping/map_aesthetics.html">Visual Variables and Map Aesthetics</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -216,6 +418,9 @@ ul.task-list li input[type="checkbox"] {
       </button>
     </div>
   </nav>
+  <div id="quarto-announcement" data-announcement-id="ca87ad3b719b7710ec1bcbd277d43888" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p><strong>Alert</strong> - this website is still under construction. Some content could not be still available, or out of date.</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
@@ -236,13 +441,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Installation and setup</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../pages/installation_setup/install_qgis.html" class="sidebar-item-text sidebar-link">
@@ -257,7 +462,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../pages/installation_setup/activating_panels.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../pages/installation_setup/activating_panels.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Activating Panels</span></a>
   </div>
 </li>
@@ -309,13 +514,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Cartography and mapping</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../pages/cartography_and_mapping/making_a_map.html" class="sidebar-item-text sidebar-link">
@@ -339,7 +544,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../pages/cartography_and_mapping/map_aesthetics.html" class="sidebar-item-text sidebar-link">
+  <a href="../../pages/cartography_and_mapping/map_aesthetics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Visual Variables and Map Aesthetics</span></a>
   </div>
 </li>
@@ -422,22 +627,36 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#activating-panels-in-qgis" id="toc-activating-panels-in-qgis" class="nav-link active" data-scroll-target="#activating-panels-in-qgis">🧭 Activating Panels in QGIS</a></li>
-  <li><a href="#what-are-panels" id="toc-what-are-panels" class="nav-link" data-scroll-target="#what-are-panels">🧱 What Are Panels?</a></li>
-  <li><a href="#turn-on-the-browser-panel" id="toc-turn-on-the-browser-panel" class="nav-link" data-scroll-target="#turn-on-the-browser-panel">🔍 Turn On the <strong>Browser Panel</strong></a></li>
-  <li><a href="#turn-on-the-layer-panel" id="toc-turn-on-the-layer-panel" class="nav-link" data-scroll-target="#turn-on-the-layer-panel">📂 Turn On the <strong>Layer Panel</strong></a></li>
-  <li><a href="#turn-on-the-processing-toolbox" id="toc-turn-on-the-processing-toolbox" class="nav-link" data-scroll-target="#turn-on-the-processing-toolbox">🛠️ Turn On the <strong>Processing Toolbox</strong></a></li>
-  <li><a href="#bonus-customize-your-layout" id="toc-bonus-customize-your-layout" class="nav-link" data-scroll-target="#bonus-customize-your-layout">🧩 Bonus: Customize Your Layout</a></li>
-  <li><a href="#youre-ready" id="toc-youre-ready" class="nav-link" data-scroll-target="#youre-ready">✅ You’re Ready!</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#fonts-and-typography" id="toc-fonts-and-typography" class="nav-link" data-scroll-target="#fonts-and-typography">Fonts and Typography</a>
+  <ul class="collapse">
+  <li><a href="#font-types" id="toc-font-types" class="nav-link" data-scroll-target="#font-types">Font types</a></li>
+  <li><a href="#font-weight-and-emphasis" id="toc-font-weight-and-emphasis" class="nav-link" data-scroll-target="#font-weight-and-emphasis">Font weight and emphasis</a></li>
+  <li><a href="#kerning-spacing-readability" id="toc-kerning-spacing-readability" class="nav-link" data-scroll-target="#kerning-spacing-readability">Kerning, spacing, readability</a></li>
+  <li><a href="#typographic-conventions-in-cartography" id="toc-typographic-conventions-in-cartography" class="nav-link" data-scroll-target="#typographic-conventions-in-cartography">Typographic conventions in cartography</a></li>
+  </ul></li>
+  <li><a href="#color-use-in-maps" id="toc-color-use-in-maps" class="nav-link" data-scroll-target="#color-use-in-maps">Color Use in Maps</a>
+  <ul class="collapse">
+  <li><a href="#color-systems" id="toc-color-systems" class="nav-link" data-scroll-target="#color-systems">Color systems</a></li>
+  </ul></li>
+  <li><a href="#line-and-stroke-styles" id="toc-line-and-stroke-styles" class="nav-link" data-scroll-target="#line-and-stroke-styles">Line and Stroke Styles</a></li>
+  <li><a href="#symbols-and-iconography" id="toc-symbols-and-iconography" class="nav-link" data-scroll-target="#symbols-and-iconography">Symbols and Iconography</a></li>
+  <li><a href="#texture-and-pattern" id="toc-texture-and-pattern" class="nav-link" data-scroll-target="#texture-and-pattern">Texture and Pattern</a></li>
+  <li><a href="#transparency-and-layering" id="toc-transparency-and-layering" class="nav-link" data-scroll-target="#transparency-and-layering">Transparency and Layering</a></li>
+  <li><a href="#animation-and-interactivity" id="toc-animation-and-interactivity" class="nav-link" data-scroll-target="#animation-and-interactivity">Animation and Interactivity</a></li>
+  <li><a href="#design-cohesion-and-style-guides" id="toc-design-cohesion-and-style-guides" class="nav-link" data-scroll-target="#design-cohesion-and-style-guides">Design Cohesion and Style Guides</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../pages/installation_setup/install_qgis.html">Installation and setup</a></li><li class="breadcrumb-item"><a href="../../pages/installation_setup/activating_panels.html">Activating Panels</a></li></ol></nav>
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../pages/cartography_and_mapping/making_a_map.html">Cartography and mapping</a></li><li class="breadcrumb-item"><a href="../../pages/cartography_and_mapping/map_aesthetics.html">Visual Variables and Map Aesthetics</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Activating Panels</h1>
+<div class="quarto-title-block"><div><h1 class="title">Visual Variables and Map Aesthetics</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -454,85 +673,98 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="activating-panels-in-qgis" class="level2">
-<h2 class="anchored" data-anchor-id="activating-panels-in-qgis">🧭 Activating Panels in QGIS</h2>
-<p>QGIS has a flexible and customizable interface. One of the most important parts of that interface is <strong>panels</strong> — tool windows that give you access to data, tools, and project controls.</p>
-<p>This tutorial will guide you through activating three essential panels:<br>
-🔍 <strong>Browser Panel</strong><br>
-📂 <strong>Layer Panel</strong><br>
-🛠️ <strong>Processing Toolbox</strong></p>
-<hr>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This chapter focuses on the stylistic and perceptual aspects of map design—those that influence clarity, hierarchy, emotion, and interpretation. These elements translate cartographic principles (Chapter 1) into concrete design decisions across the map elements (Chapter 2) and layout (Chapter 3).</p>
+<section id="fonts-and-typography" class="level2">
+<h2 class="anchored" data-anchor-id="fonts-and-typography">Fonts and Typography</h2>
+<section id="font-types" class="level3">
+<h3 class="anchored" data-anchor-id="font-types">Font types</h3>
+<p>serif, sans-serif, decorative ### Font syze and hierarchy</p>
 </section>
-<section id="what-are-panels" class="level2">
-<h2 class="anchored" data-anchor-id="what-are-panels">🧱 What Are Panels?</h2>
-<p>Panels are parts of the QGIS interface that appear on the sides of the main window. Each panel has a specific function:</p>
+<section id="font-weight-and-emphasis" class="level3">
+<h3 class="anchored" data-anchor-id="font-weight-and-emphasis">Font weight and emphasis</h3>
+</section>
+<section id="kerning-spacing-readability" class="level3">
+<h3 class="anchored" data-anchor-id="kerning-spacing-readability">Kerning, spacing, readability</h3>
+</section>
+<section id="typographic-conventions-in-cartography" class="level3">
+<h3 class="anchored" data-anchor-id="typographic-conventions-in-cartography">Typographic conventions in cartography</h3>
+</section>
+</section>
+<section id="color-use-in-maps" class="level2">
+<h2 class="anchored" data-anchor-id="color-use-in-maps">Color Use in Maps</h2>
+<section id="color-systems" class="level3">
+<h3 class="anchored" data-anchor-id="color-systems">Color systems</h3>
 <ul>
-<li><strong>Browser Panel</strong> – Lets you quickly browse your computer for spatial files and databases to add to your project.</li>
-<li><strong>Layer Panel</strong> – Displays all the map layers you’re currently using. You can show/hide, reorder, or manage them from here.</li>
-<li><strong>Processing Toolbox</strong> – Gives you access to powerful spatial analysis tools, like buffering, clipping, and merging layers.</li>
+<li>RGB</li>
+<li>CMYK</li>
+<li>HSL</li>
+<li>HEX ### Color theory ### Sequential, diverging, and categorical schemes ### Color perception and accessibility ### Psychological and caltural meaning of colors</li>
 </ul>
-<blockquote class="blockquote">
-<p>💡 If your screen looks empty or confusing when you first open QGIS, some of these panels might be hidden. Let’s turn them on!</p>
-</blockquote>
-<hr>
 </section>
-<section id="turn-on-the-browser-panel" class="level2">
-<h2 class="anchored" data-anchor-id="turn-on-the-browser-panel">🔍 Turn On the <strong>Browser Panel</strong></h2>
-<ol type="1">
-<li><strong>Launch QGIS</strong> on your computer.</li>
-<li>On the top menu bar, click <strong><code>View</code></strong>.</li>
-<li>Hover over <strong><code>Panels</code></strong>.</li>
-<li>Click <strong><code>Browser Panel</code></strong> to activate it.</li>
-</ol>
-<p>✅ The <strong>Browser Panel</strong> should now appear (usually on the left). You can now explore folders and add spatial data files by dragging them into the map.</p>
-<hr>
 </section>
-<section id="turn-on-the-layer-panel" class="level2">
-<h2 class="anchored" data-anchor-id="turn-on-the-layer-panel">📂 Turn On the <strong>Layer Panel</strong></h2>
-<ol type="1">
-<li>In QGIS, go to the <strong><code>View</code></strong> menu again.</li>
-<li>Hover over <strong><code>Panels</code></strong>.</li>
-<li>Click <strong><code>Layer Panel</code></strong>.</li>
-</ol>
-<p>✅ The <strong>Layer Panel</strong> should appear — this is where you can manage what’s shown on your map. Right-click layers here to rename, style, or remove them.</p>
-<hr>
+<section id="line-and-stroke-styles" class="level2">
+<h2 class="anchored" data-anchor-id="line-and-stroke-styles">Line and Stroke Styles</h2>
+<p>Line weight and hierarchy</p>
+<p>Dash types and meanings (e.g., administrative boundaries vs physical features)</p>
+<p>Contour and flow line visualization</p>
+<p>Edge sharpness and layering</p>
 </section>
-<section id="turn-on-the-processing-toolbox" class="level2">
-<h2 class="anchored" data-anchor-id="turn-on-the-processing-toolbox">🛠️ Turn On the <strong>Processing Toolbox</strong></h2>
-<ol type="1">
-<li>Click the <strong><code>Processing</code></strong> menu on the top bar.</li>
-<li>Select <strong><code>Toolbox</code></strong> from the dropdown.</li>
-</ol>
-<p>✅ The <strong>Processing Toolbox</strong> will appear (usually on the right). This panel gives you access to dozens of analysis tools, from simple measurements to advanced geospatial functions.</p>
-<hr>
+<section id="symbols-and-iconography" class="level2">
+<h2 class="anchored" data-anchor-id="symbols-and-iconography">Symbols and Iconography</h2>
+<p>Types of symbols: point, line, area</p>
+<p>Pictorial vs geometric symbols</p>
+<p>Symbol scaling and abstraction</p>
+<p>Semiotics of symbols (iconic/indexical/symbolic)</p>
 </section>
-<section id="bonus-customize-your-layout" class="level2">
-<h2 class="anchored" data-anchor-id="bonus-customize-your-layout">🧩 Bonus: Customize Your Layout</h2>
-<ul>
-<li><strong>Docking Panels</strong>: Drag panels around and dock them where it feels comfortable — left, right, top, or bottom.</li>
-<li><strong>Floating Panels</strong>: You can also leave a panel floating like a separate window.</li>
-<li><strong>Save Layout</strong>: Once you’re happy with the setup, go to<br>
-<code>View \&gt; Panels \&gt; Save Panel Layout</code> to save your interface for future sessions.</li>
-</ul>
-<blockquote class="blockquote">
-<p>📌 Tip: If your panels disappear by accident, just reopen them using the steps above!</p>
-</blockquote>
-<hr>
+<section id="texture-and-pattern" class="level2">
+<h2 class="anchored" data-anchor-id="texture-and-pattern">Texture and Pattern</h2>
+<p>Use of hatching, shading, dotted fills</p>
+<p>Surface texture to suggest terrain, land use, or density</p>
+<p>Interactions with color and scale</p>
 </section>
-<section id="youre-ready" class="level2">
-<h2 class="anchored" data-anchor-id="youre-ready">✅ You’re Ready!</h2>
-<p>Now your QGIS workspace is organized and ready to use. These three panels — <strong>Browser</strong>, <strong>Layer</strong>, and <strong>Processing Toolbox</strong> — are the foundation of your QGIS workflow.</p>
-<blockquote class="blockquote">
-<p>🎓 <em>Tip for architecture students: Keeping your panels organized helps when managing multiple layers like building footprints, zoning areas, or transport networks.</em></p>
-</blockquote>
-<hr>
+<section id="transparency-and-layering" class="level2">
+<h2 class="anchored" data-anchor-id="transparency-and-layering">Transparency and Layering</h2>
+<p>Visual hierarchy via opacity</p>
+<p>Overlapping elements</p>
+<p>Techniques for depth and dimensionality</p>
+</section>
+<section id="animation-and-interactivity" class="level2">
+<h2 class="anchored" data-anchor-id="animation-and-interactivity">Animation and Interactivity</h2>
+<p>Animated transitions for layers or zoom</p>
+<p>Interactive color and symbol changes</p>
+<p>Mouseover and click-based symbol variation</p>
+<p>Time-based variables (e.g., animated flows or change detection)</p>
+</section>
+<section id="design-cohesion-and-style-guides" class="level2">
+<h2 class="anchored" data-anchor-id="design-cohesion-and-style-guides">Design Cohesion and Style Guides</h2>
+<p>How all these elements work together in design systems</p>
+<p>Using style guides or cartographic templates</p>
+<p>Creating and applying cartographic identities (e.g., for institutions, atlases, or web platforms)</p>
 
 
+<!-- -->
+
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -601,9 +833,60 @@ ul.task-list li input[type="checkbox"] {
       });
       clipboardModal.on('success', onCopySuccess);
     }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/sdgis-edu-tud\.github\.io\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -932,21 +1215,105 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../pages/installation_setup/switch_language.html" class="pagination-link" aria-label="Change Language to English">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Change Language to English</span>
+      <a href="../../pages/cartography_and_mapping/map_layout.html" class="pagination-link" aria-label="Map layout">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Map layout</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../pages/installation_setup/connecting_folders.html" class="pagination-link" aria-label="Connecting Folders to Browser Panel's Favorites">
-        <span class="nav-page-text">Connecting Folders to Browser Panel’s Favorites</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../pages/cartography_and_mapping/types_of_maps.html" class="pagination-link" aria-label="Types of Maps">
+        <span class="nav-page-text">Types of Maps</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Visual Variables and Map Aesthetics"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>This chapter focuses on the stylistic and perceptual aspects of map design—those that influence clarity, hierarchy, emotion, and interpretation. These elements translate cartographic principles (Chapter 1) into concrete design decisions across the map elements (Chapter 2) and layout (Chapter 3).</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fonts and Typography</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">### Font types</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>serif, sans-serif, decorative <span class="sc">\#</span>## Font syze and hierarchy</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">### Font weight and emphasis</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">### Kerning, spacing, readability</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">### Typographic conventions in cartography</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Color Use in Maps</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### Color systems</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>RGB</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>CMYK</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>HSL</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>HEX <span class="sc">\#</span>## Color theory <span class="sc">\#</span>## Sequential, diverging, and categorical schemes <span class="sc">\#</span>## Color perception and accessibility <span class="sc">\#</span>## Psychological and caltural meaning of colors</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Line and Stroke Styles</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>Line weight and hierarchy</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>Dash types and meanings (e.g., administrative boundaries vs physical features)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>Contour and flow line visualization</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>Edge sharpness and layering</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Symbols and Iconography</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>Types of symbols: point, line, area</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>Pictorial vs geometric symbols</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>Symbol scaling and abstraction</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>Semiotics of symbols (iconic/indexical/symbolic)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## Texture and Pattern</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>Use of hatching, shading, dotted fills</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>Surface texture to suggest terrain, land use, or density</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>Interactions with color and scale</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="fu">## Transparency and Layering</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>Visual hierarchy via opacity</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>Overlapping elements</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>Techniques for depth and dimensionality</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## Animation and Interactivity</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>Animated transitions for layers or zoom</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>Interactive color and symbol changes</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>Mouseover and click-based symbol variation</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>Time-based variables (e.g., animated flows or change detection)</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="fu">## Design Cohesion and Style Guides</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>How all these elements work together in design systems</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>Using style guides or cartographic templates</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>Creating and applying cartographic identities (e.g., for institutions, atlases, or web platforms)</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright 2025, SDGIS@tudelft.nl</p>
+<p>Copyright 2025, SDGIS-BK@tudelft.nl</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
