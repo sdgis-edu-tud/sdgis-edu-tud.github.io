@@ -142,7 +142,7 @@ For most historical maps, **Polynomial 1st or 2nd order** works well.
 
 7.  **Import the map to be georeferenced:**
 
-    -   Locate the `print.jpg` file in your working folder
+    -   Locate the `Ruimte_voor_toekomstige_dijkversterking.jpg` file in your working folder
     -   **Do NOT add it as a regular raster layer** (it has no coordinate information yet)
 
 8.  **Launch the Freehand Raster Georeferencer:**
@@ -153,7 +153,7 @@ For most historical maps, **Polynomial 1st or 2nd order** works well.
 9.  **Add the raster for interactive georeferencing:**
 
     -   In the Freehand Raster Georeferencer panel that appears, click `Add Raster`
-    -   Navigate to and select `print.jpg`
+    -   Navigate to and select ``` Ruimte_voor_toekomstige_dijkversterking.j``pg ```
     -   The image will appear in the map canvas as a semi-transparent overlay
     -   It will initially appear at an arbitrary location
 
@@ -176,74 +176,81 @@ For most historical maps, **Polynomial 1st or 2nd order** works well.
 
     ![Figure 3 - Initial rough positioning of the map](/images/misc/placeholder_ss.png)
 
-11. **Add Ground Control Points (GCPs):**
+Precise georeferencing with 2 control points: Once the image is roughly positioned, you need to use the "Georeference raster with 2 Points" tool for precise alignment. This tool allows you to combine move, rotate, and uniform scale to georeference using 2 points that are identified in both the background layers and the raster to georeference. ::: callout-note How the 2-Point Tool Works
 
-    Once the image is roughly positioned, you need to add precise control points:
+Point 1: Moves the entire raster to align this point Point 2: Rotates and scales the raster around point 1 to align this second point This is sufficient for maps that don't have complex distortions :::
 
-    -   In the Freehand Raster Georeferencer panel, click `Add Point` (or switch to GCP mode)
-    -   Click on a distinctive, identifiable feature on your `print.jpg` image
-    -   Then click on the same feature in your reference data (aerial photo)
-    -   Repeat for multiple points across the image
+Steps:
 
-    **Best practices for GCPs:**
+In the Freehand Raster Georeferencer toolbar, click the "Georeference raster with 2 Points" tool icon First point:
 
-    -   Use **at least 6-10 points** for good results
-    -   Distribute points **evenly across the entire image** (not clustered in one area)
-    -   Choose **sharp, precise features**: building corners, road intersections, bridges
-    -   Avoid features that may have changed over time
-    -   More points generally = better accuracy, but with diminishing returns
+Click on a distinctive feature on your print.jpg image (e.g., a sharp building corner) Drag it to the exact same location on the reference data (aerial photo/map) The raster will move with your cursor, just like the Move tool The selected point will stay highlighted in red
 
-    **Good GCP locations:**
+Second point:
 
-    -   [x] Building corners (if buildings still exist)
-    -   [x] Road intersections
-    -   [x] Bridge corners or endpoints
-    -   [x] Monument centers
-    -   ✗ Trees or vegetation (changes over time)
-    -   ✗ Shorelines (may have changed)
-    -   ✗ Vague or unclear features
+Click on another distinctive feature on your print.jpg image Drag it to the corresponding location on the reference data This time, the raster will rotate and scale instead of moving The image will adjust to align both points simultaneously
 
-    ![Figure 4 - Adding ground control points](/images/misc/placeholder_ss.png)
+Best practices for selecting the 2 points:
 
-12. **Configure transformation settings:**
+Distribute points evenly - Choose points at opposite corners or edges of the image (not close together) Maximum distance - The farther apart your points are, the more accurate the rotation and scale Choose sharp, precise features: building corners, road intersections, bridge endpoints Avoid features that may have changed over time (temporary structures, vegetation) Use features that are clearly visible in both the historical map and current reference data
 
-    -   In the plugin panel, look for transformation type settings
-    -   Select **Polynomial 2** (2nd order polynomial) for most historical maps
-    -   Choose **Lanczos** or **Cubic** for resampling method (better quality)
-    -   Set the output CRS to **EPSG:28992**
+Good point locations:
 
-13. **Review GCP error:**
+✓ Building corners (if buildings still exist in the same location) ✓ Road intersections (especially T-junctions or crossroads) ✓ Bridge corners or endpoints ✓ Monument centers or distinctive landmarks ✓ Canal locks, church spires, or other permanent structures ✗ Trees or vegetation (changes over time) ✗ Shorelines (may have changed due to development) ✗ Vague or unclear features ✗ Features that are too close together
 
-    -   The plugin should show residual error for each point
-    -   **Residual error** indicates how well each point fits the transformation
-    -   Look for outliers (points with high error)
-    -   If a point has very high error compared to others:
-        -   Check if you placed it correctly
-        -   Delete and re-add it if necessary
-        -   It might indicate a feature that has changed location
+Show Image Refine the georeferencing if needed:
 
-    ::: callout-tip
-    ## What's a good error?
+After applying the 2-point tool, toggle the georeferenced layer on/off Check alignment at different locations across the map If certain areas don't align well:
 
-    For historical maps at neighborhood scale, **residual errors under 5 meters** are generally good. Errors under 2 meters are excellent. If you see errors above 10 meters, review your GCPs.
-    :::
+You can repeat the 2-point process with different points Try selecting points in areas that previously didn't align well For maps with complex distortions, you might need to use QGIS's built-in Georeferencer tool with more points (see Extension Activities)
 
-14. **Apply the georeferencing:**
+::: callout-tip
+When 2 Points Isn't Enough The 2-point method works well for:
 
-    -   Click `Export Raster` or `Apply` (depending on plugin version)
+Modern, accurately printed maps Maps without significant distortion Small-scale maps or portions of larger maps
+
+If your map has:
+
+Local distortions or warping Non-uniform scale across the image Poor printing quality with irregular stretching
+
+Then consider using QGIS's built-in Georeferencer tool which allows multiple control points and polynomial transformations.
+:::
+
+13. **Apply the georeferencing:**
+
+    -   Click the `Export Raster with world file` button
     -   Choose output settings:
-        -   **Output file:** Save as `print_georeferenced.tif` in your working folder
-        -   **CRS:** EPSG:28992
-        -   **Resampling:** Lanczos or Cubic
+        -   **Output file:** Save as `map_georeferenced.tif` in your working folder
     -   Click `OK`
     -   The georeferenced raster will be added to your map
 
-15. **Verify the result:**
+14. **Verify the result:**
 
     -   Toggle the georeferenced layer on/off to compare with the aerial photo
-    -   Check different areas of the image
-    -   If alignment is poor, you may need to add more GCPs or adjust existing ones
-    -   You can save the GCP points for future reference: `File` \> `Save GCP Points As...`
+
+    -   Check different areas of the image, especially:
+
+    ```         
+    -   The corners and edges (farthest from your control points)
+
+    -   Major landmarks and intersections
+
+    -   The black boundary outline
+    ```
+
+    -   Zoom to different scales to verify alignment accuracy
+
+    -   If alignment is poor in certain areas, note where the discrepancies occur
+
+    **Quality check questions:**
+
+    -   Do buildings align with their current locations?
+
+    -   Do roads and intersections match?
+
+    -   Are the colored protection zone outlines clearly visible?
+
+    -   Is the scale roughly correct across the entire map?
 
     ![Figure 5 - Final georeferenced map overlay](/images/misc/placeholder_ss.png)
 
@@ -257,23 +264,31 @@ Now that your map is georeferenced, you can extract information by digitizing ve
 
     -   Go to `Layer` \> `Create Layer` \> `New GeoPackage Layer...`
     -   **Database:** Click `...` and save as `digitized_features.gpkg`
-    -   **Layer name:** `buildings_historical`
+    -   **Layer name:** `housing_dev_protection_zone`
     -   **Geometry type:** `Polygon`
     -   **CRS:** EPSG:28992
 
     **Add attribute fields:**
 
     -   Click `New Field` to add attributes:
-        -   **Name:** `building_id` \| Type: `Whole number` (Integer)
-        -   **Name:** `building_type` \| Type: `Text data` \| Length: 50
+        -   **Name:** `area_id` \| Type: `Whole number` (Integer)
+        -   **Name:** `area_type` \| Type: `Text data` \| Length: 50
         -   **Name:** `notes` \| Type: `Text data` \| Length: 100
     -   Click `OK` to create the layer
 
     ![Figure 6 - Creating a new vector layer for digitizing](/images/misc/placeholder_ss.png)
 
+17. **Identify the three perimeters to digitize:**
+
+The georeferenced map shows "**Woningbouwontwikkelingen in beschermingszone: rekening houden met profiel waterkering**" (Housing Development in Protection Zone: Taking into Account Water Defense Profile). Before you start digitizing, carefully examine the georeferenced map:
+
+-   Zoom to the area within the thick black boundary
+
+-   Look for the three polygons with the purple outline
+
 17. **Start digitizing:**
 
-    -   Select the `buildings_historical` layer in the Layers panel
+    -   Select the `housing_dev_protection_zone`layer in the Layers panel
     -   Click the `Toggle Editing` button (pencil icon) or press Ctrl+E
     -   Click the `Add Polygon Feature` button (or press Ctrl+.)
 
@@ -282,8 +297,8 @@ Now that your map is georeferenced, you can extract information by digitizing ve
     -   Left-click to place vertices around the building outline
     -   Right-click to finish the polygon
     -   Enter attribute values in the pop-up form:
-        -   `building_id`: 1, 2, 3, etc.
-        -   `building_type`: e.g., "residential", "church", "warehouse"
+        -   `area_id`: 1, 2, 3, etc.
+        -   `area_type`: e.g., "housing development
         -   `notes`: any observations
     -   Click `OK`
 
@@ -299,8 +314,7 @@ Now that your map is georeferenced, you can extract information by digitizing ve
 
 18. **Digitize multiple features:**
 
-    -   Digitize at least 5-10 buildings from your georeferenced map
-    -   Try to choose buildings of different types or sizes
+    -   Digitize the 3 areas from your georeferenced map
     -   Make sure each feature has complete attributes
 
 19. **Edit existing features (if needed):**
@@ -321,16 +335,7 @@ Now that your map is georeferenced, you can extract information by digitizing ve
 
 ### Part 5: Analysis and Comparison (Optional)
 
-21. **Compare historical vs. current:**
-
-    -   Style your digitized historical buildings with a semi-transparent fill (e.g., red, 50% opacity)
-    -   Toggle between the georeferenced map and current aerial photo
-    -   Identify buildings that:
-        -   Still exist in the same form
-        -   Have been demolished
-        -   Have changed in size or shape
-
-22. **Create additional layers:**
+21. **Create additional layers:**
 
     You can create separate layers for different feature types:
 
@@ -349,16 +354,14 @@ Now that your map is georeferenced, you can extract information by digitizing ve
 -   How to install and use the **Freehand Raster Georeferencer** plugin for interactive georeferencing
 -   The concept of **Ground Control Points (GCPs)** and how to place them effectively
 -   Different **transformation types** and when to use them
--   How to assess georeferencing **accuracy** using residual errors
 -   Creating new **vector layers** with custom attributes
 -   **Digitizing** techniques for points, lines, and polygons
 -   Using the **vertex tool** to edit geometries
--   Comparing historical and current spatial data
 
 **Key concepts:**
 
 | Concept | Description |
-|----|----|
+|------------------------------------|------------------------------------|
 | Georeferencing | Assigning real-world coordinates to an image |
 | GCP | Ground Control Point - a known location used for georeferencing |
 | Residual error | The difference between predicted and actual GCP locations |
@@ -368,7 +371,6 @@ Now that your map is georeferenced, you can extract information by digitizing ve
 
 **Best practices for georeferencing:**
 
--   Use **6-10+ control points** distributed evenly
 -   Choose **permanent, precise features** (building corners, intersections)
 -   Check **residual errors** and remove/adjust problematic points
 -   Save your **GCP points** for future reference or refinement
@@ -387,14 +389,6 @@ Now that your map is georeferenced, you can extract information by digitizing ve
 ------------------------------------------------------------------------
 
 ## Common Issues and Solutions
-
-::: callout-warning
-## Problem: Map doesn't align well after georeferencing
-
-**Possible causes:** - Not enough GCPs (add more, aim for 8-10+) - GCPs not evenly distributed (add points to corners and edges) - Wrong features selected (choose features that haven't changed) - Inappropriate transformation type (try Polynomial 2 or 3)
-
-**Solution:** Review your GCPs, add more points, ensure even distribution, and try different transformation types.
-:::
 
 ::: callout-warning
 ## Problem: Some areas align well, others don't

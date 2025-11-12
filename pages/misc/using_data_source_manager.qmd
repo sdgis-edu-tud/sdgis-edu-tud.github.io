@@ -52,7 +52,7 @@ This workflow demonstrates a common GIS task: defining a study area, retrieving 
 ## Key Differences Between WFS and WMS
 
 | Feature | WFS | WMS |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | Data type | Vector (features) | Raster (images) |
 | File size | Can be large | Smaller |
 | Queryable | Yes | No |

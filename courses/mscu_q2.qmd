@@ -30,7 +30,7 @@ format: html
 
 -   **Exercise 1: [Using the Data Source Manager with WFS and WMS](/pages/misc/using_data_source_manager.qmd)**
 
-### Georeferencing and Digitalizing
+#### Georeferencing and Digitalizing
 
 -   **Exercise 2: [Georeferencing and Digitizing](/pages/misc/georeferencing_and_digitizing.qmd)**
 
