@@ -358,7 +358,7 @@ Now that your map is georeferenced, you can extract information by digitizing ve
 **Key concepts:**
 
 | Concept | Description |
-|------------------------------|------------------------------------------|
+|----|----|
 | Georeferencing | Assigning real-world coordinates to an image |
 | GCP | Ground Control Point - a known location used for georeferencing |
 | Residual error | The difference between predicted and actual GCP locations |

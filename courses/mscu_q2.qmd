@@ -3,20 +3,41 @@ title: "Master of Urbanism - Q2 - GIS Workshop"
 format: html
 ---
 
-# Data Sources and Formats
+## 👩‍🏫👨‍🏫🎓Instructors
 
-## Importing Data from Portals
+-   Daniele Cannatella
+
+-   Rob van Houten
+
+-    Ines Zaid
+
+## 👩‍🏫👨‍🏫🎓Helpers
+
+-   Faried Nurmohamed
+
+-   Stepan Prikazcicov
+
+## Dates and Deadlines
+
+- GIS workshop: Wednesday 19 November 2025, 08:45
+
+
+## Resources
+
+### Data Sources and Formats
+
+#### Importing Data from Portals
 
 -   **Exercise 1: [Using the Data Source Manager with WFS and WMS](/pages/misc/using_data_source_manager.qmd)**
 
-## Georeferencing and Digitalizing
+### Georeferencing and Digitalizing
 
 -   **Exercise 2: [Georeferencing and Digitizing](/pages/misc/georeferencing_and_digitizing.qmd)**
 
-# Building and Analyzing sections
+#### Building and Analyzing sections
 
 -   
 
-# Data Interoperability and Visualization
+### Data Interoperability and Visualization
 
-- **Exercise 4: [Calculating Basic Statistics](/pages/misc/statistics_and_data_visualization.qmd)**
+-   **Exercise 4: [Calculating Basic Statistics](/pages/misc/statistics_and_data_visualization.qmd)**

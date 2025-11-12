@@ -24,4 +24,4 @@ source: "TU Delft & Kadaster"
 external_link: https://3dbag.bk.tudelft.nl/
 ---
 
-[Visit the official 3D BAG website](https://3dbag.bk.tudelft.nl/){:target="_blank"}
+[Visit the official 3D BAG website](https://3dbag.bk.tudelft.nl/){:target="\_blank"}
