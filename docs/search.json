@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "courses/mscu_q2.html",
+    "href": "courses/mscu_q2.html",
+    "title": "Master of Urbanism - Q2 - GIS Workshop",
+    "section": "",
+    "text": "Daniele Cannatella\nRob van Houten\nInes Zaid"
+  },
+  {
+    "objectID": "courses/mscu_q2.html#instructors",
+    "href": "courses/mscu_q2.html#instructors",
+    "title": "Master of Urbanism - Q2 - GIS Workshop",
+    "section": "",
+    "text": "Daniele Cannatella\nRob van Houten\nInes Zaid"
+  },
+  {
+    "objectID": "courses/mscu_q2.html#helpers",
+    "href": "courses/mscu_q2.html#helpers",
+    "title": "Master of Urbanism - Q2 - GIS Workshop",
+    "section": "👩‍🏫👨‍🏫🎓Helpers",
+    "text": "👩‍🏫👨‍🏫🎓Helpers\n\nFaried Nurmohamed\nStepan Prikazcicov"
+  },
+  {
+    "objectID": "courses/mscu_q2.html#dates-and-deadlines",
+    "href": "courses/mscu_q2.html#dates-and-deadlines",
+    "title": "Master of Urbanism - Q2 - GIS Workshop",
+    "section": "Dates and Deadlines",
+    "text": "Dates and Deadlines\n\nGIS workshop: Wednesday 19 November 2025, 08:45"
+  },
+  {
+    "objectID": "courses/mscu_q2.html#resources",
+    "href": "courses/mscu_q2.html#resources",
+    "title": "Master of Urbanism - Q2 - GIS Workshop",
+    "section": "Resources",
+    "text": "Resources\n\nData Sources and Formats\n\nImporting Data from Portals\n\nExercise 1: Using the Data Source Manager with WFS and WMS\n\n\n\n\nGeoreferencing and Digitalizing\n\nExercise 2: Georeferencing and Digitizing\n\n\n\nBuilding and Analyzing sections\n\nVideo Tutorial: Cross section detection using Profile Tool\nVideo Tutorial: Compare raster DTM’s, contour lines and a point cloud for different transects\nVideo Tutorial: Elevation Profiles using .laz data\nVideo Tutorial: Multiple cross sectional profiles\nVideo Tutorial: Create 3D Terrain with QGIS and GIMP\n\n\n\nData Interoperability and Visualization\n\nExercise 4: Calculating Basic Statistics"
+  },
+  {
+    "objectID": "pages/find_data.html",
+    "href": "pages/find_data.html",
+    "title": "Find Data",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n3D BAG\n\n\n\n3D Data\n\nBuilding Models\n\nNetherlands\n\nGeospatial Data\n\nUrban Planning\n\nGIS Datasets\n\nOpen Data\n\nDigital Twins\n\n\n\n\n\n\nurl\n\n\nhttps://3dbag.bk.tudelft.nl/\n\n\n\n\n\nextent\n\n\nNetherlands\n\n\n\n\n\nyear\n\n\n2023\n\n\n\n\n\nresolution\n\n\nBuilding-level (LOD1–2)\n\n\n\n\n\ndata_format\n\n\nCityJSON,3D Tiles\n\n\n\n\n\n\n\n\n\n\n\n\nAHN 4\n\n\n\nElevation Data\n\nDigital Terrain Models\n\nNetherlands\n\nGeospatial Data\n\nRemote Sensing\n\nGIS Datasets\n\nOpen Data\n\n\n\n\n\n\nurl\n\n\n \n\n\n\n\n\nextent\n\n\nNetherlands\n\n\n\n\n\nyear\n\n\n2023\n\n\n\n\n\nresolution\n\n\n0.5 m (DSM and DTM)\n\n\n\n\n\ndata_format\n\n\nPoint Cloud,Raster (GeoTIFF)\n\n\n\n\n\n\n\n\n\n\n\n\nOmgevingsloket\n\n\n\nSpatial Planning\n\nZoning\n\nEnvironmental\n\nNature\n\nBuilding and Construction\n\nAdministrative\n\nNetherlands\n\nGeospatial Data\n\nGIS Datasets\n\nOpen Data\n\n\n\n\n\n\nurl\n\n\n \n\n\n\n\n\nextent\n\n\nNetherlands\n\n\n\n\n\nyear\n\n\n2023\n\n\n\n\n\nresolution\n\n\n-\n\n\n\n\n\ndata_format\n\n\nWMS,WFS,WMTS,WCS\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nurl\n\n\n \n\n\n\n\n\nextent\n\n\n \n\n\n\n\n\nyear\n\n\n \n\n\n\n\n\nresolution\n\n\n \n\n\n\n\n\ndata_format\n\n\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nurl\n\n\n \n\n\n\n\n\nextent\n\n\n \n\n\n\n\n\nyear\n\n\n \n\n\n\n\n\nresolution\n\n\n \n\n\n\n\n\ndata_format\n\n\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nurl\n\n\n \n\n\n\n\n\nextent\n\n\n \n\n\n\n\n\nyear\n\n\n \n\n\n\n\n\nresolution\n\n\n \n\n\n\n\n\ndata_format\n\n\n \n\n\n\n\n\n\n\n\nNo matching items\n Back to top"
+  },
+  {
+    "objectID": "pages/sources/ahn.html",
+    "href": "pages/sources/ahn.html",
+    "title": "AHN 4",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "pages/sources/omgevingsloket.html",
+    "href": "pages/sources/omgevingsloket.html",
+    "title": "Omgevingsloket",
+    "section": "",
+    "text": "Back to top"
+  }
+]
