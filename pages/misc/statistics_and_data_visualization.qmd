@@ -1,572 +1,505 @@
 ---
-title: "Calculating Statistics and Visualizing Data"
+title: "Analyzing Building Functions by Neighborhood"
 format: html
 editor: visual
 ---
 
-**Duration:** 30-40 minutes
+Duration: 45-60 minutes
 
-------------------------------------------------------------------------
-
-::: callout-note
 ## Learning Goals
 
 By the end of this tutorial, you will be able to:
 
--   Calculate basic statistics from attribute data in QGIS
--   Use the Field Calculator to create derived attributes
--   Aggregate data by categories (group by operations)
--   Export attribute data to CSV format
--   Understand interoperability between GIS and visualization tools
--   Import data into RAWGraphs 2.0
--   Create effective data visualizations (bar charts, treemaps, scatter plots)
--   Interpret spatial data through non-spatial visualizations
-:::
+-   Classify buildings by function type (single vs. multi-functional)
+-   Use Field Calculator to create conditional classifications
+-   Perform spatial selection based on location (within/intersect)
+-   Execute spatial joins to append neighborhood attributes
+-   Calculate geometric attributes (area)
+-   Generate statistics by category (count and sum)
+-   Export and visualize aggregated data
 
-::: callout-note
 ## Software and Data Required
 
--   **QGIS** (version 3.x or higher)
--   Web browser with internet access
--   **RAWGraphs 2.0** (web-based tool): https://app.rawgraphs.io/
--   **Data files:**
-    -   `buurten.gpkg` (from previous exercises with Rotterdam neighbourhoods)
-    -   Climate adaptation data (WFS layer from previous exercise), OR
-    -   Any vector layer with attribute data
-:::
+**Software:** - QGIS (version 3.x or higher) - Web browser with internet access - RAWGraphs 2.0: https://app.rawgraphs.io/
 
-## Introduction
-
-Geographic data isn't just about maps - it's also about the **attributes** and **statistics** that describe spatial features. Understanding the underlying data through statistics and visualizations is crucial for spatial analysis and decision-making.
-
-**Why calculate statistics in GIS?**
--   Summarize large datasets into meaningful insights
--   Identify patterns, trends, and outliers
--   Compare different areas or time periods
--   Support evidence-based decision making
--   Communicate findings to non-technical audiences
-
-**Why use external visualization tools?**
-While QGIS has built-in charting capabilities, specialized visualization tools like **RAWGraphs** offer:
--   More chart types and customization options
--   Interactive, web-friendly outputs
--   Better design for presentations and reports
--   Easier sharing with non-GIS users
-
-This tutorial demonstrates **interoperability** - the ability to move data between different software tools to leverage their respective strengths.
-
-::: callout-tip
-## What is RAWGraphs?
-
-RAWGraphs 2.0 is a free, open-source web application for creating custom vector-based visualizations. It works entirely in your browser (your data never leaves your computer) and supports various chart types beyond standard bar/line charts. It's particularly good for exploratory data analysis and creating publication-ready graphics.
-
-Access it at: https://app.rawgraphs.io/
-:::
+**Data files:** - `buildings.gpkg` - Rotterdam building footprints with function data - `buurten.gpkg` - Rotterdam neighborhoods (buurten)
 
 ------------------------------------------------------------------------
 
-## Steps
+## Part 1: Preparing Building Function Data
 
-### Part 1: Preparing Your Data in QGIS
+### Step 1.1: Load and Explore Your Data
 
-1.  **Open your project and load data:**
-    -   Start QGIS and open the project from your previous exercise, OR
-    -   Create a new project with EPSG:28992 CRS
-    -   Load the `buurten.gpkg` layer (Rotterdam neighbourhoods)
-    -   Load the climate adaptation buildings layer from Zuid-Holland WFS:
-        -   Data Source Manager > WFS
-        -   Connection: `https://geodata.zuid-holland.nl/geoserver/klimaat/wfs?service=WFS&version=2.0.0&request=GetCapabilities`
-        -   Layer: `klimaat:klimaatpanden_2022`
-        -   Add to map
+1.  **Start QGIS** and create a new project
+2.  **Set the CRS** to EPSG:28992 (Amersfoort / RD New - Dutch national grid)
+3.  **Load the layers:**
+    -   Add `buildings.gpkg`
+    -   Add `buurten.gpkg`
 
-    ![Figure 1 - Loaded data layers](/images/misc/placeholder_ss.png)
+![Figure 1 - Loaded building and neighborhood layers](images/loaded_layers.png)
 
-2.  **Explore the attribute table:**
-    -   Right-click on the climate buildings layer > `Open Attribute Table`
-    -   Examine the available fields:
-        -   Look for climate-related scores (heat stress, water overlay, biodiversity)
-        -   Building characteristics (area, type, construction year)
-        -   Geographic identifiers (neighbourhood codes, municipality names)
-    -   Notice the data types (numbers, text, dates)
+4.  **Explore the building attribute table:**
+    -   Right-click `buildings` layer → **Open Attribute Table**
+    -   Identify the column containing building functions (e.g., `functie`, `function`, or `gebruiksdoel`)
+    -   Notice how functions are stored:
+        -   Single function: `"woonfunctie"` (residential)
+        -   Multiple functions: `"woonfunctie, winkelfunctie"` (residential, retail)
 
-    ::: callout-tip
-    ## Understanding Your Data
-    Before calculating statistics, always explore your data:
-    -   What fields are available?
-    -   What do they represent?
-    -   Are there null/missing values?
-    -   What is the range of values?
-    :::
+![Figure 2 - Building attribute table showing function column](images/attribute_table.png)
 
-### Part 2: Calculating Basic Statistics
+### Step 1.2: Classify Buildings by Function Type
 
-3.  **Use the Statistics Panel for quick overview:**
-    -   In the attribute table, click on any numeric field (e.g., a climate score field)
-    -   At the bottom of the attribute table, you'll see automatic statistics:
-        -   Count, Sum, Mean, Median
-        -   Standard Deviation, Min, Max
-    -   Try this for different fields to get a quick overview
+We'll create a new field that identifies whether a building has a single function or multiple functions.
 
-    ![Figure 2 - Basic statistics in attribute table](/images/misc/placeholder_ss.png)
+1.  **Open the attribute table** of the `buildings` layer
 
-4.  **Calculate statistics by category using Group Stats plugin:**
-    
-    First, install the plugin if you haven't already:
-    -   Go to `Plugins` > `Manage and Install Plugins...`
-    -   Search for "Group Stats"
-    -   Install the plugin
-    
-    Then use it:
-    -   Go to `Vector` > `Group Stats` > `Group Stats`
-    -   **Drag fields** from the left panel to configure:
-        -   **Rows:** Drag a categorical field (e.g., neighbourhood name or climate risk category)
-        -   **Columns:** Drag "Value" (this is where statistics will appear)
-        -   **Value:** Drag a numeric field you want to analyze (e.g., building area, heat stress score)
-    -   Click `Calculate` at the bottom
-    -   View statistics grouped by your chosen categories
+2.  **Enable editing mode** (click the pencil icon or press `Ctrl+E`)
 
-    ![Figure 3 - Group Stats plugin interface](/images/misc/placeholder_ss.png)
+3.  **Open Field Calculator** (click the abacus icon or press `Ctrl+I`)
 
-5.  **Create derived attributes using Field Calculator:**
-    
-    Let's create some new calculated fields:
-    
-    -   Open the attribute table of your climate buildings layer
-    -   Enable editing mode (pencil icon)
-    -   Click `Open Field Calculator` (Ctrl+I or abacus icon)
-    
-    **Example 1: Categorize building size**
-    -   Check `Create a new field`
-    -   **Output field name:** `size_category`
+4.  **Configure the new field:**
+
+    -   ☑ Check **Create a new field**
+    -   **Output field name:** `function_type`
     -   **Output field type:** `Text (string)`
-    -   **Length:** 20
-    -   **Expression:**
-    ```
-    CASE 
-        WHEN "building_area" < 100 THEN 'Small'
-        WHEN "building_area" >= 100 AND "building_area" < 500 THEN 'Medium'
-        WHEN "building_area" >= 500 THEN 'Large'
-        ELSE 'Unknown'
-    END
-    ```
-    -   Click `OK`
-    
-    **Example 2: Calculate climate risk score composite**
-    -   Create another new field
-    -   **Output field name:** `climate_risk_avg`
+    -   **Length:** `50`
+
+5.  **Enter this expression:**
+
+``` sql
+CASE 
+    WHEN "function_column" IS NULL OR "function_column" = '' THEN 'Unknown'
+    WHEN length("function_column") - length(replace("function_column", ',', '')) >= 1 
+        THEN 'Multi-functional'
+    ELSE trim("function_column")
+END
+```
+
+**⚠️ Important:** Replace `"function_column"` with your actual field name (e.g., `"functie"` or `"gebruiksdoel"`)
+
+**What this does:** - Counts commas to detect multiple functions - If 1 or more commas found → labels as "Multi-functional" - If no commas → uses the single function name - Handles null/empty values → labels as "Unknown"
+
+![Figure 3 - Field Calculator creating function_type field](images/field_calculator_function.png)
+
+6.  Click **OK**
+
+7.  **Save edits** (click the save icon)
+
+8.  **Toggle off editing mode** (click the pencil icon again)
+
+9.  **Verify your results:**
+
+    -   Scroll through the attribute table
+    -   Check that buildings with multiple functions are labeled "Multi-functional"
+    -   Check that single-function buildings show their specific function name
+
+------------------------------------------------------------------------
+
+## Part 2: Spatial Selection and Join
+
+### Step 2.1: Select Buildings Within Neighborhoods
+
+We need to identify which buildings fall within neighborhood boundaries.
+
+1.  **Go to:** `Vector` → `Research Tools` → `Select by Location`
+
+2.  **Configure the selection:**
+
+    -   **Select features from:** `buildings`
+    -   **Where the features:** `are within` (or `intersect` if you want to include partially overlapping buildings)
+    -   **By comparing to features from:** `buurten`
+    -   **Modify current selection by:** `creating new selection`
+
+![Figure 4 - Select by Location dialog](images/select_by_location.png)
+
+**Understanding the geometric predicates:** - **Are within:** Only buildings completely inside neighborhood boundaries (recommended for accuracy) - **Intersect:** Buildings that touch or overlap boundaries (may include buildings on borders)
+
+3.  Click **Run**
+
+4.  **Check your selection:**
+
+    -   Look at the status bar: it shows "X features selected"
+    -   Selected buildings are highlighted in yellow on the map
+    -   In the attribute table, selected rows are highlighted
+
+**💡 Tip:** If you want to keep only buildings within neighborhoods, you can export the selection as a new layer: Right-click `buildings` → `Export` → `Save Selected Features As...`
+
+### Step 2.2: Spatial Join - Append Neighborhood Names
+
+Now we'll add the neighborhood name to each building record.
+
+1.  **Go to:** `Vector` → `Data Management Tools` → `Join Attributes by Location`
+
+2.  **Configure the spatial join:**
+
+    -   **Input layer:** `buildings` (or your selected buildings if exported)
+    -   **Join layer:** `buurten`
+    -   **Geometric predicate:** ☑ `within` (or `intersects`)
+    -   **Fields to add:** Click the `...` button
+        -   ☑ Select only the neighborhood name field (e.g., `buurt_naam`, `BU_NAAM`)
+        -   ☑ You may also want neighborhood code (e.g., `BU_CODE`)
+        -   Uncheck other fields to keep the data clean
+    -   **Join type:** `Create separate feature for each matching feature (one-to-many)`
+    -   **Joined layer:** Save as `buildings_with_neighborhoods.gpkg`
+
+![Figure 5 - Join Attributes by Location dialog](images/spatial_join.png)
+
+3.  Click **Run**
+
+4.  **Verify the join:**
+
+    -   Open the attribute table of the new `buildings_with_neighborhoods` layer
+    -   Check that the neighborhood name column has been added
+    -   Verify that buildings have the correct neighborhood assigned
+
+**⚠️ Troubleshooting:** - If buildings show NULL in neighborhood field: They may be outside all neighborhood boundaries - If you see duplicate buildings: Check your geometric predicate and join type settings
+
+------------------------------------------------------------------------
+
+## Part 3: Calculate Building Areas
+
+### Step 3.1: Add Area Field
+
+1.  **Open the attribute table** of `buildings_with_neighborhoods`
+
+2.  **Enable editing mode**
+
+3.  **Open Field Calculator**
+
+4.  **Configure the area field:**
+
+    -   ☑ **Create a new field**
+    -   **Output field name:** `area_m2`
     -   **Output field type:** `Decimal number (real)`
-    -   **Precision:** 2
-    -   **Expression:** (adjust field names to match your data)
-    ```
-    ("heat_stress_score" + "water_overlay_score" + "biodiversity_score") / 3
-    ```
-    -   Click `OK`
-    
-    **Example 3: Categorize climate risk**
-    -   Create another field
-    -   **Output field name:** `risk_category`
-    -   **Output field type:** `Text (string)`
-    -   **Length:** 20
-    -   **Expression:**
-    ```
-    CASE 
-        WHEN "climate_risk_avg" < 3 THEN 'Low Risk'
-        WHEN "climate_risk_avg" >= 3 AND "climate_risk_avg" < 7 THEN 'Medium Risk'
-        WHEN "climate_risk_avg" >= 7 THEN 'High Risk'
-        ELSE 'Unknown'
-    END
-    ```
-    -   Click `OK`
-    
-    -   Save your edits and disable editing mode
+    -   **Precision:** `2` (decimal places)
 
-    ![Figure 4 - Field Calculator creating derived attributes](/images/misc/placeholder_ss.png)
+5.  **Enter this expression:**
 
-### Part 3: Aggregating Data for Visualization
+``` sql
+$area
+```
 
-6.  **Aggregate data by neighbourhood:**
-    
-    To create meaningful visualizations, we often need to summarize data at a higher level:
-    
-    -   Go to `Vector` > `Analysis Tools` > `Statistics by Categories`
-    -   **Input vector layer:** Climate buildings layer
-    -   **Field to calculate statistics on:** Select a numeric field (e.g., `climate_risk_avg`)
-    -   **Field(s) with categories:** Select the neighbourhood identifier field
-    -   **Statistics to calculate:** Check all that are relevant:
-        -   Count, Sum, Mean, Median, Min, Max, Standard Deviation
-    -   **Output:** Save as `climate_stats_by_neighbourhood.csv` in your working folder
-    -   Click `Run`
+This calculates the area in square meters (since your CRS is EPSG:28992).
 
-    ![Figure 5 - Statistics by categories dialog](/images/misc/placeholder_ss.png)
+6.  Click **OK**
+7.  **Save edits** and **disable editing mode**
 
-7.  **Create a summary table with multiple statistics:**
-    
-    For more control, use the **Aggregate** tool:
-    
-    -   Go to `Vector` > `Analysis Tools` > `Aggregate`
-    -   **Input layer:** Climate buildings layer
-    -   **Group by expression:** Field containing neighbourhood names or codes
-    -   **Aggregates:** Click the `...` button to configure:
-        -   Add multiple aggregations:
-            -   `count("building_id")` → Name: `building_count`
-            -   `mean("building_area")` → Name: `avg_building_area`
-            -   `mean("climate_risk_avg")` → Name: `avg_climate_risk`
-            -   `sum("building_area")` → Name: `total_building_area`
-            -   `max("heat_stress_score")` → Name: `max_heat_stress`
-    -   **Aggregated:** Save as temporary layer first to review
-    -   Click `Run`
-    -   Review the results in the attribute table
+![Figure 6 - Calculating building areas](images/calculate_area.png)
 
-    ![Figure 6 - Aggregate tool with multiple statistics](/images/misc/placeholder_ss.png)
+**💡 Alternative expressions:** - `round($area, 2)` - Round to 2 decimal places - `$area / 10000` - Convert to hectares - For other CRS: `area($geometry)` is more explicit
 
-### Part 4: Exporting Data to CSV
+------------------------------------------------------------------------
 
-8.  **Export your aggregated data:**
-    
-    -   Right-click on the aggregated layer (or any layer you want to export)
-    -   Select `Export` > `Save Features As...`
+## Part 4: Calculate Statistics by Function and Neighborhood
+
+Now we'll aggregate the data to answer key questions: - How many buildings of each function type are in each neighborhood? - What is the total area of each function type per neighborhood?
+
+### Step 4.1: Statistics by Categories - Building Count
+
+1.  **Go to:** `Vector` → `Analysis Tools` → `Statistics by Categories`
+
+2.  **Configure for building counts:**
+
+    -   **Input vector layer:** `buildings_with_neighborhoods`
+    -   **Field to calculate statistics on:** `fid` (or any unique ID field)
+    -   **Field(s) with categories:**
+        -   Click `...` and select **both:**
+            1.  `buurt_naam` (neighborhood name)
+            2.  `function_type` (our created classification)
+    -   **Statistics to calculate:**
+        -   ☑ **Count** (this counts buildings)
+    -   **Output:** `building_count_by_function.csv`
+
+![Figure 7 - Statistics by Categories for counts](images/stats_count.png)
+
+3.  Click **Run**
+
+4.  **Review the output:**
+
+    -   Open the CSV in QGIS or a text editor
+    -   You should see columns: `buurt_naam`, `function_type`, `count`
+    -   Each row represents: X buildings of type Y in neighborhood Z
+
+### Step 4.2: Statistics by Categories - Area Sum
+
+1.  **Run Statistics by Categories again** with different settings:
+
+2.  **Configure for area totals:**
+
+    -   **Input vector layer:** `buildings_with_neighborhoods`
+    -   **Field to calculate statistics on:** `area_m2`
+    -   **Field(s) with categories:**
+        -   `buurt_naam`
+        -   `function_type`
+    -   **Statistics to calculate:**
+        -   ☑ **Sum** (total area)
+        -   ☑ **Mean** (average building size - optional but useful)
+        -   ☑ **Count** (number of buildings - to verify)
+    -   **Output:** `building_area_by_function.csv`
+
+![Figure 8 - Statistics by Categories for areas](images/stats_area.png)
+
+3.  Click **Run**
+
+### Step 4.3: Create a Comprehensive Summary Table (Alternative Method)
+
+For more control, use the **Aggregate** tool:
+
+1.  **Go to:** `Vector` → `Geoprocessing Tools` → `Aggregate`
+
+2.  **Configure:**
+
+    -   **Input layer:** `buildings_with_neighborhoods`
+    -   **Group by expression:** Click `ε` button and build expression:
+
+``` sql
+"buurt_naam" || ' - ' || "function_type"
+```
+
+This creates unique groups for each neighborhood-function combination.
+
+3.  **Aggregates:** Click `...` to configure multiple statistics:
+
+    **Add these aggregations:**
+
+    | Expression  | Aggregate | Name             |
+    |-------------|-----------|------------------|
+    | `count(*)`  | \-        | `building_count` |
+    | `"area_m2"` | `sum`     | `total_area_m2`  |
+    | `"area_m2"` | `mean`    | `avg_area_m2`    |
+    | `"area_m2"` | `min`     | `min_area_m2`    |
+    | `"area_m2"` | `max`     | `max_area_m2`    |
+
+4.  **Also add these to preserve grouping info:**
+
+    | Expression        | Aggregate     | Name           |
+    |-------------------|---------------|----------------|
+    | `"buurt_naam"`    | `first_value` | `neighborhood` |
+    | `"function_type"` | `first_value` | `function`     |
+
+![Figure 9 - Aggregate tool configuration](images/aggregate_config.png)
+
+5.  **Aggregated layer:** Save as `building_stats_summary.gpkg`
+
+6.  Click **Run**
+
+7.  **Review the results:**
+
+    -   Open the attribute table
+    -   You now have comprehensive statistics for each neighborhood-function combination
+    -   Each row = one function type in one neighborhood with count, total area, and size statistics
+
+------------------------------------------------------------------------
+
+## Part 5: Export and Visualize Data
+
+### Step 5.1: Prepare Data for Visualization
+
+1.  **Open the attribute table** of your statistics layer (`building_stats_summary`)
+
+2.  **Export to CSV:**
+
+    -   Right-click the layer → `Export` → `Save Features As...`
     -   **Format:** `Comma Separated Value [CSV]`
-    -   **File name:** Click `...` and save as `rotterdam_climate_stats.csv`
-    -   **CRS:** You can leave as-is (won't matter for CSV without geometry)
-    -   **Layer Options:**
-        -   **Geometry:** Select `AS_WKT` if you want to keep geometry, or `No geometry` for pure tabular data
-        -   For visualization purposes, choose `No geometry`
+    -   **File name:** `rotterdam_building_stats.csv`
+    -   **Geometry:** Select `No geometry` (we only need the statistics)
     -   **Select fields to export:**
-        -   Uncheck any fields you don't need
-        -   Keep: neighbourhood name, building count, average scores, totals
-    -   Click `OK`
+        -   ☑ `neighborhood`
+        -   ☑ `function`
+        -   ☑ `building_count`
+        -   ☑ `total_area_m2`
+        -   ☑ `avg_area_m2`
+        -   Uncheck `fid` and other unnecessary fields
 
-    ::: callout-important
-    ## CSV Export Tips
-    -   **Remove geometry** for cleaner data visualization (unless you need it)
-    -   **Remove unnecessary fields** to reduce file size and complexity
-    -   **Use meaningful field names** - rename fields if needed before export
-    -   **Check for special characters** in text fields that might cause issues
-    -   **Verify decimal separators** match your regional settings
-    :::
+![Figure 10 - Export CSV configuration](images/export_csv.png)
 
-9.  **Verify your CSV export:**
-    -   Open the CSV file in a text editor or spreadsheet program
-    -   Check that:
-        -   Headers are present and clear
-        -   Data is properly separated by commas
-        -   No corrupted or missing values
-        -   Numeric values use decimal points (not commas, if that's your locale)
+3.  Click **OK**
 
-    ![Figure 7 - Exported CSV file preview](/images/misc/placeholder_ss.png)
+4.  **Verify your export:**
 
-### Part 5: Creating Visualizations in RAWGraphs 2.0
+    -   Open the CSV in a text editor or spreadsheet
+    -   Check headers are clear
+    -   Verify data looks correct
 
-10. **Open RAWGraphs:**
-    -   Open your web browser
-    -   Navigate to: https://app.rawgraphs.io/
-    -   You'll see a clean interface with three main steps: Load data → Choose a chart → Customize
+### Step 5.2: Create Visualizations in RAWGraphs
 
-    ::: callout-note
-    ## Privacy Note
-    RAWGraphs runs entirely in your browser. Your data is NOT uploaded to any server - it stays on your computer. This makes it safe for working with sensitive data.
-    :::
+#### Visualization 1: Bar Chart - Building Count by Function
 
-11. **Load your data into RAWGraphs:**
-    -   In the "Load your data" section, you have several options:
-        -   **Upload a file:** Click and select your `rotterdam_climate_stats.csv`
-        -   **Copy/paste:** Open the CSV in a text editor, copy all content, and paste it
-        -   **URL:** If your data is online (not applicable here)
-    -   After loading, RAWGraphs will automatically detect your columns
-    -   You should see a data preview table at the bottom
+1.  **Open RAWGraphs:** https://app.rawgraphs.io/
+2.  **Load your data:** Upload `rotterdam_building_stats.csv`
+3.  **Choose chart:** Select **Bar chart**
+4.  **Map dimensions:**
+    -   **X axis:** `function`
+    -   **Y axis:** `building_count`
+    -   **Color:** `neighborhood` (optional - will show stacked bars)
+5.  **Customize:**
+    -   **Sort by:** Value (descending) to show most common functions first
+    -   **Orientation:** Horizontal (easier to read function names)
+    -   **Color scheme:** Choose a categorical palette
+6.  **Export:** Download as SVG
 
-    ![Figure 8 - RAWGraphs data loading interface](/images/misc/placeholder_ss.png)
+![Figure 11 - Bar chart of building counts by function](images/barchart_count.png)
 
-12. **Choose a chart type:**
-    
-    RAWGraphs offers many chart types. Here are some good options for our climate data:
-    
-    **For comparing neighbourhoods:**
-    -   **Bar chart** - Simple comparison of values across neighbourhoods
-    -   **Circular dendrogram** - Hierarchical comparison
-    -   **Bump chart** - Ranking changes (if you have time-series data)
-    
-    **For showing distributions:**
-    -   **Box plot** - Show data distribution and outliers
-    -   **Violin plot** - Distribution shape across categories
-    
-    **For showing proportions:**
-    -   **Treemap** - Hierarchical proportional areas
-    -   **Circle packing** - Nested proportional circles
-    -   **Sunburst** - Radial hierarchical diagram
-    
-    **For relationships:**
-    -   **Scatter plot** - Correlation between two variables
-    -   **Alluvial diagram** - Flow between categories
-    
-    Let's start with a **Bar chart**:
-    -   Scroll through the chart options
-    -   Click on `Bar chart`
+#### Visualization 2: Treemap - Area Distribution
 
-    ![Figure 9 - RAWGraphs chart type selection](/images/misc/placeholder_ss.png)
+1.  **Start new chart** in RAWGraphs
+2.  **Choose chart:** Select **Treemap**
+3.  **Map dimensions:**
+    -   **Hierarchy:**
+        1.  First level: `function`
+        2.  Second level: `neighborhood`
+    -   **Size:** `total_area_m2`
+    -   **Color:** `function`
+    -   **Label:** `neighborhood`
+4.  **Customize:**
+    -   Adjust padding for readability
+    -   Choose color scheme (qualitative)
+    -   Enable/disable labels based on size
+5.  **Export:** Download as SVG
 
-13. **Map your data to visual variables:**
-    
-    For a bar chart showing average climate risk by neighbourhood:
-    
-    -   **X axis:** Drag your neighbourhood name field here
-    -   **Y axis:** Drag `avg_climate_risk` (or your chosen metric) here
-    -   **Color:** (optional) Drag `risk_category` or another categorical field to color bars
-    -   **Series:** Leave empty for now
-    
-    You should immediately see a preview of your chart below
+![Figure 12 - Treemap showing area distribution](images/treemap_area.png)
 
-14. **Customize your visualization:**
-    
-    RAWGraphs provides many customization options:
-    
-    **Layout:**
-    -   **Width & Height:** Adjust canvas size
-    -   **Margins:** Adjust spacing around the chart
-    -   **Sort by:** Choose how to order bars (alphabetical, by value ascending/descending)
-    
-    **Axes:**
-    -   **Show axis labels:** Enable/disable
-    -   **Axis title:** Customize text
-    -   **Grid:** Show/hide grid lines
-    
-    **Colors:**
-    -   **Color scheme:** Choose from predefined palettes or create custom colors
-    -   Click on color swatches to change individual colors
-    
-    **Labels:**
-    -   **Show values:** Display numbers on bars
-    -   **Font size:** Adjust text size
-    
-    Experiment with these settings until you're happy with the result
+#### Visualization 3: Grouped Bar Chart - Compare Neighborhoods
 
-    ![Figure 10 - RAWGraphs customization options](/images/misc/placeholder_ss.png)
+1.  **Start new chart**
+2.  **Choose chart:** Select **Bar chart**
+3.  **Map dimensions:**
+    -   **X axis:** `neighborhood`
+    -   **Y axis:** `building_count`
+    -   **Color:** `function`
+    -   **Series:** Leave empty for grouped bars
+4.  **Customize:**
+    -   **Sort by:** Total value to rank neighborhoods
+    -   Enable legend
+    -   Adjust colors for function types
+5.  **Export:** Download as SVG
 
-15. **Export your visualization:**
-    
-    RAWGraphs offers multiple export formats:
-    
-    -   **SVG (Scalable Vector Graphics):** Best for further editing in design software (Illustrator, Inkscape)
-    -   **PNG:** Raster image, good for presentations and documents
-    -   **JSON:** Save your chart configuration to reload later
-    
-    To export:
-    -   Scroll down to the "Export" section
-    -   Choose your format (SVG recommended for quality)
-    -   Click `Download` button
-    -   Save the file to your working folder
-
-    ![Figure 11 - Exported bar chart](/images/misc/placeholder_ss.png)
-
-### Part 6: Creating Additional Visualizations
-
-16. **Create a Treemap to show building area distribution:**
-    
-    -   Click `Back` or refresh RAWGraphs to start over
-    -   Load the same CSV data
-    -   Choose `Treemap` chart type
-    -   **Hierarchy:** Drag neighbourhood name field
-    -   **Size:** Drag `total_building_area`
-    -   **Color:** Drag `avg_climate_risk` to color by risk level
-    -   **Label:** Drag neighbourhood name
-    -   Customize:
-        -   Choose a diverging color scheme (e.g., blue to red)
-        -   Adjust padding between rectangles
-        -   Enable/disable labels based on readability
-    -   Export your treemap
-
-    ![Figure 12 - Treemap showing building areas](/images/misc/placeholder_ss.png)
-
-17. **Create a Scatter plot to explore relationships:**
-    
-    If you have multiple numeric variables, explore their relationships:
-    
-    -   Start a new chart in RAWGraphs
-    -   Choose `Scatter plot`
-    -   **X axis:** Drag `avg_building_area`
-    -   **Y axis:** Drag `avg_climate_risk`
-    -   **Size:** (optional) Drag `building_count` to size points by number of buildings
-    -   **Color:** (optional) Drag `risk_category`
-    -   **Label:** Drag neighbourhood name to label points
-    -   Customize and export
-    
-    This chart helps identify if there's a relationship between building size and climate risk
-
-    ![Figure 13 - Scatter plot exploring variable relationships](/images/misc/placeholder_ss.png)
-
-18. **Create a Box plot to show data distribution:**
-    
-    Box plots are excellent for comparing distributions across categories:
-    
-    -   Start a new chart
-    -   Choose `Box plot`
-    -   **Groups:** Drag `risk_category` (Low/Medium/High Risk)
-    -   **Values:** Drag a numeric field (e.g., `building_area`)
-    -   This shows how building sizes are distributed across different risk categories
-    -   Customize and export
-
-    ![Figure 14 - Box plot showing distributions](/images/misc/placeholder_ss.png)
+![Figure 13 - Grouped bar chart comparing neighborhoods](images/grouped_barchart.png)
 
 ------------------------------------------------------------------------
 
-## Recap
+## Summary Table: Statistics You've Calculated
 
-**What you've learned:**
-
--   How to explore attribute data using QGIS's **statistics panel**
--   Using the **Group Stats plugin** for categorical analysis
--   Creating **derived attributes** with Field Calculator
--   Using **Statistics by Categories** and **Aggregate** tools for data summarization
--   **Exporting data to CSV** format with proper configuration
--   Understanding **interoperability** between GIS and visualization tools
--   Loading data into **RAWGraphs 2.0**
--   Creating multiple types of **data visualizations** (bar charts, treemaps, scatter plots, box plots)
--   Customizing and **exporting visualizations** for reports and presentations
-
-**Key concepts:**
-
-| Concept | Description |
-|---------|-------------|
-| Descriptive statistics | Summary measures (mean, median, std dev, min, max) |
-| Aggregation | Combining multiple records into summary statistics |
-| Derived attributes | New fields calculated from existing data |
-| Interoperability | Ability to exchange data between different software systems |
-| Data visualization | Graphical representation of data to reveal patterns |
-| CSV format | Comma-Separated Values - universal tabular data format |
-
-**Statistics you calculated:**
-
--   **Count:** Number of features/records
--   **Sum:** Total of all values
--   **Mean (Average):** Sum divided by count
--   **Median:** Middle value when sorted
--   **Min/Max:** Smallest and largest values
--   **Standard Deviation:** Measure of variability/spread
-
-**Visualization types and their uses:**
-
-| Chart Type | Best For | Example Use |
-|------------|----------|-------------|
-| Bar chart | Comparing categories | Compare climate risk across neighbourhoods |
-| Treemap | Hierarchical proportions | Show relative building areas by neighbourhood |
-| Scatter plot | Relationships between variables | Explore correlation between size and risk |
-| Box plot | Distributions and outliers | Compare building size distributions |
-| Circle packing | Nested hierarchies | Show neighbourhood groupings |
-| Sunburst | Part-to-whole relationships | Hierarchical risk categories |
+| Statistic | Method | Answers the Question |
+|-------------------|-----------------|------------------------------------|
+| **Building Count by Function** | Statistics by Categories | How many buildings of each type in each neighborhood? |
+| **Total Area by Function** | Statistics by Categories | What's the total floor area per function type? |
+| **Average Building Size** | Aggregate tool | What's the typical building size per function? |
+| **Neighborhood Rankings** | Sort aggregated data | Which neighborhoods have most buildings/area? |
 
 ------------------------------------------------------------------------
 
-## Best Practices
+## Key QGIS Concepts Used
 
-::: callout-tip
-## Data Preparation for Visualization
+### 1. Field Calculator Expressions
 
--   **Clean your data** before export (remove nulls, fix inconsistencies)
--   **Use meaningful field names** that are self-explanatory
--   **Remove unnecessary fields** to keep data focused
--   **Round numeric values** to appropriate precision (2-3 decimal places usually sufficient)
--   **Aggregate appropriately** - don't visualize raw data when summaries are more meaningful
--   **Document your calculations** - keep notes on derived fields
-:::
+**Conditional Classification:**
 
-::: callout-tip
-## Choosing the Right Chart
+``` sql
+CASE 
+    WHEN condition THEN result
+    ELSE alternative
+END
+```
 
--   **Bar/Column charts:** Best for comparing quantities across categories
--   **Line charts:** Best for showing trends over time
--   **Scatter plots:** Best for exploring relationships between two variables
--   **Treemaps/Circle packing:** Best for showing hierarchical proportions
--   **Box plots:** Best for comparing distributions
--   **Avoid pie charts** for more than 5 categories or when precise comparison is needed
--   **Consider your audience:** Choose simpler charts for general audiences
-:::
+**String Functions:** - `length()` - Count characters - `replace()` - Replace text - `trim()` - Remove whitespace
 
-::: callout-tip
-## Design Tips for Effective Visualizations
+### 2. Spatial Predicates
 
--   **Use color purposefully:** Color should encode meaning, not just decoration
--   **Maintain contrast:** Ensure text is readable against backgrounds
--   **Label clearly:** All axes, legends, and data points should be clearly labeled
--   **Keep it simple:** Remove unnecessary elements (chartjunk)
--   **Tell a story:** Your visualization should have a clear message
--   **Provide context:** Include titles, units, and source information
--   **Test with others:** Show your visualization to colleagues for feedback
-:::
+| Predicate | Description | Use Case |
+|-----------------------|---------------------------|---------------------|
+| **within** | Feature completely inside | Buildings entirely within neighborhoods |
+| **intersects** | Features touch or overlap | Include buildings on borders |
+| **contains** | Opposite of within | Which neighborhood contains building |
+
+### 3. Aggregation Functions
+
+| Function        | Purpose           |
+|-----------------|-------------------|
+| `count()`       | Count features    |
+| `sum()`         | Add up values     |
+| `mean()`        | Calculate average |
+| `min()`/`max()` | Find extremes     |
 
 ------------------------------------------------------------------------
 
 ## Common Issues and Solutions
 
-::: callout-warning
-## Problem: CSV export has garbled characters or wrong decimal separators
+### Issue 1: Buildings missing neighborhood names after join
 
-**Cause:** Regional settings mismatch between QGIS and RAWGraphs
+**Cause:** Buildings are outside all neighborhood boundaries
 
-**Solution:** 
--   In QGIS export dialog, check "Geometry" settings
--   Try changing locale settings in QGIS preferences
--   Manually edit CSV in a text editor if needed
--   Use point (.) as decimal separator, not comma
-:::
+**Solution:** - Check your spatial selection first - Verify CRS matches for both layers - Use "intersects" instead of "within" if buildings are on boundaries - Inspect the map visually to confirm coverage
 
-::: callout-warning
-## Problem: RAWGraphs doesn't recognize numeric fields
+### Issue 2: Duplicate buildings in results
 
-**Cause:** Numbers formatted as text, or contains non-numeric characters
+**Cause:** Join type is set to "one-to-many" and buildings overlap multiple neighborhoods
 
-**Solution:**
--   Check your data in QGIS attribute table
--   Ensure numeric fields don't contain text
--   Remove any special characters or units (e.g., "m²", "€")
--   Use Field Calculator to convert: `to_real("field_name")`
-:::
+**Solution:** - Use "within" predicate (more strict) - Check for buildings actually on boundaries - decide which neighborhood they should belong to - Use "Create separate features for each located feature (one-to-one)" join type
 
-::: callout-warning
-## Problem: Too many categories make visualization unreadable
+### Issue 3: Area values are enormous or tiny
 
-**Cause:** Trying to visualize detailed data without aggregation
+**Cause:** CRS is in degrees instead of meters, or area unit confusion
 
-**Solution:**
--   Aggregate data to higher level (e.g., group neighbourhoods by district)
--   Filter to show only top N categories
--   Use hierarchical chart types (treemap, sunburst)
--   Create multiple focused visualizations instead of one crowded chart
-:::
+**Solution:** - Verify your CRS is EPSG:28992 (projected coordinate system) - Check Project → Properties → CRS - Reproject layers if needed: Vector → Data Management Tools → Reproject Layer
+
+### Issue 4: Function names are inconsistent
+
+**Cause:** Raw data has variations in naming or spelling
+
+**Solution:** - Use Field Calculator to standardize:
+
+``` sql
+CASE 
+    WHEN "function" ILIKE '%woon%' THEN 'Residential'
+    WHEN "function" ILIKE '%winkel%' THEN 'Retail'
+    -- etc.
+END
+```
 
 ------------------------------------------------------------------------
 
 ## Extension Activities
 
--   **Time series analysis:** If you have multi-temporal data, create animations or trend visualizations
--   **Comparative analysis:** Export data from multiple municipalities and compare
--   **Correlation analysis:** Explore relationships between climate risk and socio-economic factors
--   **Dashboard creation:** Combine multiple visualizations into a comprehensive dashboard
--   **Interactive maps:** Use tools like Flourish or Datawrapper to create interactive web maps
--   **Statistical testing:** Perform hypothesis tests in R or Python to validate observations
--   **Advanced RAWGraphs:** Explore more complex chart types like Alluvial diagrams or Circular dendrograms
--   **Story maps:** Combine maps, charts, and narrative in ArcGIS StoryMaps or QGIS2Web
+1.  **Temporal Analysis:** If you have multi-year building data, compare how building functions change over time
+
+2.  **Density Calculations:** Calculate building density (buildings per hectare) and function diversity per neighborhood
+
+3.  **Advanced Classification:** Create more detailed function categories:
+
+    -   Residential (single-family vs. multi-family)
+    -   Commercial (retail vs. office)
+    -   Create a function_category hierarchy
+
+4.  **Spatial Statistics:** Calculate nearest neighbor distances for each function type
+
+5.  **Dashboard Creation:** Combine multiple visualizations with descriptive text in a report
+
+6.  **Interactive Mapping:** Use QGIS2Web or qgis2threejs to create interactive maps showing statistics
 
 ------------------------------------------------------------------------
 
+## Checklist
+
+Before finishing, verify you have:
+
+-   ☑ Created `function_type` field classifying single vs. multi-functional buildings
+-   ☑ Performed spatial selection of buildings within neighborhoods
+-   ☑ Executed spatial join to append neighborhood names
+-   ☑ Calculated building areas in square meters
+-   ☑ Generated statistics: building count per function per neighborhood
+-   ☑ Generated statistics: total area per function per neighborhood
+-   ☑ Exported clean CSV with relevant fields only
+-   ☑ Created at least 2 different visualizations in RAWGraphs
+-   ☑ Saved all intermediate and final outputs in your project folder
+
+------------------------------------------------------------------------
+
+
 ## Additional Resources
 
-**QGIS Documentation:**
--   Statistics functions: https://docs.qgis.org/latest/en/docs/user_manual/working_with_vector/functions_list.html
--   Processing tools: https://docs.qgis.org/latest/en/docs/user_manual/processing_algs/
+**QGIS Documentation:** - [Vector analysis tools](https://docs.qgis.org/latest/en/docs/user_manual/processing_algs/qgis/vectoranalysis.html) - [Field calculator functions](https://docs.qgis.org/latest/en/docs/user_manual/working_with_vector/expression.html) - [Spatial queries](https://docs.qgis.org/latest/en/docs/user_manual/processing_algs/qgis/vectorselection.html)
 
-**RAWGraphs:**
--   Official website: https://www.rawgraphs.io/
--   Learning resources: https://www.rawgraphs.io/learning
--   Gallery of examples: https://www.rawgraphs.io/gallery
+**RAWGraphs:** - [Learning resources](https://www.rawgraphs.io/learning) - [Chart gallery](https://www.rawgraphs.io/gallery)
 
-**Data Visualization Theory:**
--   "The Visual Display of Quantitative Information" by Edward Tufte
--   "Information is Beautiful" by David McCandless
--   ColorBrewer for choosing color schemes: https://colorbrewer2.org/
-
-**Alternative Visualization Tools:**
--   **Flourish:** https://flourish.studio/ (interactive web visualizations)
--   **Datawrapper:** https://www.datawrapper.de/ (charts and maps for journalism)
--   **Plotly:** https://plotly.com/ (interactive graphs)
--   **Tableau Public:** https://public.tableau.com/ (comprehensive analytics)
--   **D3.js:** https://d3js.org/ (for custom programming-based visualizations)
+**Data Visualization:** - [ColorBrewer](https://colorbrewer2.org/) - Choose appropriate color schemes - [Data Viz Project](https://datavizproject.com/) - Encyclopedia of visualization types

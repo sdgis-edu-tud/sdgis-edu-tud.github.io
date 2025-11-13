@@ -424,7 +424,3 @@ The georeferenced map shows "**Woningbouwontwikkelingen in beschermingszone: rek
 
 -   **QGIS Georeferencing documentation:** https://docs.qgis.org/latest/en/docs/user_manual/working_with_raster/georeferencer.html
 -   **Digitizing documentation:** https://docs.qgis.org/latest/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html
--   **Historical maps of the Netherlands:**
-    -   Beeldbank Rotterdam: https://www.gemeentearchief.rotterdam.nl/
-    -   Geheugen van Nederland: https://www.geheugenvannederland.nl/
-    -   Topotijdreis: https://www.topotijdreis.nl/
