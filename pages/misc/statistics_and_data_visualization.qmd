@@ -34,9 +34,9 @@ By the end of this tutorial, you will be able to:
 2.  **Set the CRS** to EPSG:28992 (Amersfoort / RD New - Dutch national grid)
 3.  **Load the layers:**
     -   Add `buildings.gpkg`
-    -   Add `buurten.gpkg`
+    -   Add `buurten.gpkg` (You have created this file in the first exercise - [using data source manager](using_data_source_manager.qmd)))
 
-![Figure 1 - Loaded building and neighborhood layers](images/loaded_layers.png)
+![Figure 1 - Loaded building and neighborhood layers](statistics_and_data_visualization/fig 1.png)
 
 4.  **Explore the building attribute table:**
     -   Right-click `buildings` layer → **Open Attribute Table**
@@ -45,7 +45,7 @@ By the end of this tutorial, you will be able to:
         -   Single function: `"woonfunctie"` (residential)
         -   Multiple functions: `"woonfunctie, winkelfunctie"` (residential, retail)
 
-![Figure 2 - Building attribute table showing function column](images/attribute_table.png)
+![Figure 2 - Building attribute table showing function column](statistics_and_data_visualization/fig 2.png)
 
 ### Step 1.2: Classify Buildings by Function Type
 
@@ -79,7 +79,7 @@ END
 
 **What this does:** - Counts commas to detect multiple functions - If 1 or more commas found → labels as "Multi-functional" - If no commas → uses the single function name - Handles null/empty values → labels as "Unknown"
 
-![Figure 3 - Field Calculator creating function_type field](images/field_calculator_function.png)
+![Figure 3 - Field Calculator creating function_type field](statistics_and_data_visualization/fig 3.png)
 
 6.  Click **OK**
 
@@ -90,8 +90,12 @@ END
 9.  **Verify your results:**
 
     -   Scroll through the attribute table
+
     -   Check that buildings with multiple functions are labeled "Multi-functional"
+
     -   Check that single-function buildings show their specific function name
+
+        ![](statistics_and_data_visualization/fig x1.png)
 
 ------------------------------------------------------------------------
 
@@ -110,9 +114,13 @@ We need to identify which buildings fall within neighborhood boundaries.
     -   **By comparing to features from:** `buurten`
     -   **Modify current selection by:** `creating new selection`
 
-![Figure 4 - Select by Location dialog](images/select_by_location.png)
+![Figure 4 - Select by Location dialog](statistics_and_data_visualization/fig 4.png)
 
-**Understanding the geometric predicates:** - **Are within:** Only buildings completely inside neighborhood boundaries (recommended for accuracy) - **Intersect:** Buildings that touch or overlap boundaries (may include buildings on borders)
+::: callout-important
+## Understanding the geometric predicates:
+
+\- **Are within:** Only buildings completely inside neighborhood boundaries (recommended for accuracy) - **Intersect:** Buildings that touch or overlap boundaries (may include buildings on borders)
+:::
 
 3.  Click **Run**
 
@@ -142,15 +150,19 @@ Now we'll add the neighborhood name to each building record.
     -   **Join type:** `Create separate feature for each matching feature (one-to-many)`
     -   **Joined layer:** Save as `buildings_with_neighborhoods.gpkg`
 
-![Figure 5 - Join Attributes by Location dialog](images/spatial_join.png)
+![Figure 5 - Join Attributes by Location dialog](statistics_and_data_visualization/fig 5.png)
 
 3.  Click **Run**
 
 4.  **Verify the join:**
 
     -   Open the attribute table of the new `buildings_with_neighborhoods` layer
+
     -   Check that the neighborhood name column has been added
+
     -   Verify that buildings have the correct neighborhood assigned
+
+        ![](statistics_and_data_visualization/fig x2.png)
 
 **⚠️ Troubleshooting:** - If buildings show NULL in neighborhood field: They may be outside all neighborhood boundaries - If you see duplicate buildings: Check your geometric predicate and join type settings
 
@@ -171,7 +183,6 @@ Now we'll add the neighborhood name to each building record.
     -   ☑ **Create a new field**
     -   **Output field name:** `area_m2`
     -   **Output field type:** `Decimal number (real)`
-    -   **Precision:** `2` (decimal places)
 
 5.  **Enter this expression:**
 
@@ -184,7 +195,7 @@ This calculates the area in square meters (since your CRS is EPSG:28992).
 6.  Click **OK**
 7.  **Save edits** and **disable editing mode**
 
-![Figure 6 - Calculating building areas](images/calculate_area.png)
+![Figure 6 - Calculating building areas](statistics_and_data_visualization/fig 6.png)
 
 **💡 Alternative expressions:** - `round($area, 2)` - Round to 2 decimal places - `$area / 10000` - Convert to hectares - For other CRS: `area($geometry)` is more explicit
 
@@ -381,7 +392,7 @@ This creates unique groups for each neighborhood-function combination.
 ## Summary Table: Statistics You've Calculated
 
 | Statistic | Method | Answers the Question |
-|-------------------|-----------------|------------------------------------|
+|--------------------|-------------------|----------------------------------|
 | **Building Count by Function** | Statistics by Categories | How many buildings of each type in each neighborhood? |
 | **Total Area by Function** | Statistics by Categories | What's the total floor area per function type? |
 | **Average Building Size** | Aggregate tool | What's the typical building size per function? |
@@ -407,7 +418,7 @@ END
 ### 2. Spatial Predicates
 
 | Predicate | Description | Use Case |
-|-----------------------|---------------------------|---------------------|
+|-----------------------|---------------------------|----------------------|
 | **within** | Feature completely inside | Buildings entirely within neighborhoods |
 | **intersects** | Features touch or overlap | Include buildings on borders |
 | **contains** | Opposite of within | Which neighborhood contains building |
@@ -494,7 +505,6 @@ Before finishing, verify you have:
 -   ☑ Saved all intermediate and final outputs in your project folder
 
 ------------------------------------------------------------------------
-
 
 ## Additional Resources
 
