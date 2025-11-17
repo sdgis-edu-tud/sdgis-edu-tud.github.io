@@ -361,7 +361,7 @@ The georeferenced map shows "**Woningbouwontwikkelingen in beschermingszone: rek
 **Key concepts:**
 
 | Concept | Description |
-|------------------------------------|------------------------------------|
+|----|----|
 | Georeferencing | Assigning real-world coordinates to an image |
 | GCP | Ground Control Point - a known location used for georeferencing |
 | Residual error | The difference between predicted and actual GCP locations |

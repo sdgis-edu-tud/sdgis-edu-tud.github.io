@@ -89,8 +89,8 @@ This workflow demonstrates a common GIS task: defining a study area, retrieving 
 
 4.  You must now select only the 6 buurten that obey to these criteria:
 
-    -   They belong to the municipality of Rotterdam (`gemeentenaam` = "Rotterdam") **AND**
-    -   Their name (`buurtnaam`) is one of the following: "Blijdorp", "Centrum", "Cool", "Dijkzigt", "Nieuwe Werk", "Oude Westen"
+    -   They belong to the municipalities of Rotterdam and Schiedam (`gemeentenaam` = "Rotterdam" OR `gemeentenaam` = "Schiedam") **AND**
+    -   Their name (`buurtnaam`) is one of the following: "Stationsbuurt", "Singelkwartier", "Natuurkundigenbuurt", "Marconibuurt", "Glasbuurt", "Nieuw-Mathenesse", "Wetenschappersbuurt", "Newtonbuurt", "Boylebuurt", "Oud Mathenesse", "Nieuw Mathenesse", "Witte Dorp", "Spangen", "Tussendijken", "Bospolder", "Schiemond", "Nieuwe Westen", "Delfshaven", "Middelland", "Dijkzigt"
 
     **To select these neighbourhoods:**
 
@@ -99,12 +99,11 @@ This workflow demonstrates a common GIS task: defining a study area, retrieving 
     -   Enter this expression:
 
     ```         
-    "gemeentenaam" = 'Rotterdam' AND 
-    "buurtnaam" IN ('Blijdorp', 'Centrum', 'Cool', 'Dijkzigt', 'Nieuwe Werk', 'Oude Westen')
+    "gemeentenaam" IN ('Schiedam', 'Rotterdam') AND "buurtnaam" IN ('Stationsbuurt', 'Singelkwartier', 'Natuurkundigenbuurt', 'Marconibuurt', 'Glasbuurt', 'Nieuw-Mathenesse', 'Wetenschappersbuurt', 'Newtonbuurt', 'Boylebuurt', 'Oud Mathenesse', 'Nieuw Mathenesse', 'Witte Dorp', 'Spangen', 'Tussendijken', 'Bospolder', 'Schiemond', 'Nieuwe Westen', 'Delfshaven', 'Middelland', 'Dijkzigt')
     ```
 
     -   Click `Select Features`
-    -   Verify that 6 features are selected (shown at the top of the attribute table)
+    -   Verify that 20 features are selected (shown at the top of the attribute table)
 
     **Now save the selected features:**
 
@@ -116,8 +115,14 @@ This workflow demonstrates a common GIS task: defining a study area, retrieving 
     -   Before saving, we need to add the area calculation and drop unwanted columns:
         -   Click on the fields list and uncheck all columns except:
             -   `buurtnaam` (name of the neighbourhood)
+
             -   `buurtcode` (code of the neighbourhood)
+
             -   `gemeentenaam` (name of the municipality)
+
+                ::: callout-tip
+                You can use the `deselect all` button and then manually select only the 3 fields you want to keep.
+                :::
     -   Click `OK` to save
 
     **Add the area column:**
@@ -128,27 +133,41 @@ This workflow demonstrates a common GIS task: defining a study area, retrieving 
     -   Check `Create a new field`
     -   Output field name: `buurt_area`
     -   Output field type: `Decimal number (real)`
-    -   Precision: 2
     -   In the expression box, enter: `round($area, 2)`
     -   Click `OK`
     -   Save edits and disable editing mode
 
-    ![Figure 2 - Selected Rotterdam neighbourhoods with area calculation](/images/misc/placeholder_ss.png)
+    ![Figure 2 - Calculating the area in the expression box](using_data_source_manager/fig%202.png)
 
 5.  Dissolve now the geometries of the 6 buurten:
 
     -   Go to `Vector` \> `Geoprocessing Tools` \> `Dissolve`
+
     -   Input layer: `buurten`
+
     -   Leave "Dissolve field(s)" empty (this will dissolve all features into one)
+
     -   Click `Run`
+
     -   After the temporary layer is created, right-click on it \> `Export` \> `Save Features As...`
+
     -   Format: `GeoPackage`
+
     -   File name: Select the existing `buurten.gpkg` file
+
     -   Layer name: `buurten_dissolved`
-    -   In the fields section, uncheck all attributes
+
+    -   In the fields section, uncheck all attributes.
+
     -   Click `OK`
 
-    ![Figure 3 - Dissolved neighbourhood boundary](/images/misc/placeholder_ss.png)
+        ::: callout-note
+        ## note:
+
+        When unchecking all atributes, it will give you back an empty attribute table.
+        :::
+
+    ![Figure 3 - Dissolved neighbourhood boundary](using_data_source_manager/fig%203.png)
 
 6.  Compute the bounding box/extents of `buurten_dissolved`:
 
@@ -162,7 +181,7 @@ This workflow demonstrates a common GIS task: defining a study area, retrieving 
         -   Keep only columns: `minx`, `miny`, `maxx`, `maxy`
         -   Click `OK`
 
-    ![Figure 4 - Bounding box of the study area](/images/misc/placeholder_ss.png)
+    ![Figure 4 - Bounding box of the study area](using_data_source_manager/fig%204.png)
 
 7.  Finally, compute a buffer of 200 m around the bbox layer:
 
@@ -179,7 +198,7 @@ This workflow demonstrates a common GIS task: defining a study area, retrieving 
         -   Uncheck all attributes in the fields section
         -   Click `OK`
 
-    ![Figure 5 - 200m buffer around bounding box](/images/misc/placeholder_ss.png)
+    ![Figure 5 - 200m buffer around bounding box](using_data_source_manager/fig%205.png)
 
 ### Part 2: Connecting to WFS for Climate Adaptation Data
 
@@ -202,9 +221,11 @@ This workflow demonstrates a common GIS task: defining a study area, retrieving 
 
     -   Select the "Zuid-Holland Climate Adaptation" connection and click `Connect`
     -   Wait for the available layers to load
-    -   Find and select `klimaat:klimaatpanden_2022` (Basiskaarten klimaatadaptatie panden - wateroverlast, hitte en biodiversiteit 2022)
+    -   Find and select `klimaat:PANDEN_WATEROVERLAST_HITTE_GROEN` (Basiskaarten klimaatadaptatie panden - wateroverlast, hitte en biodiversiteit 2022)
     -   Click `Add` at the bottom
     -   Click `Close`
+
+    ![](using_data_source_manager/fig%206.png)
 
 12. Clip the layer to your study area:
 
@@ -213,14 +234,19 @@ This workflow demonstrates a common GIS task: defining a study area, retrieving 
     -   Overlay layer: `bbox_buffered`
     -   Click `Run`
     -   This will create a new layer containing only the climate data within your buffered study area
-    -   You can now remove the original (unclipped) WFS layer to improve performance
+    -   You can now remove the original (unclipped) WFS layer to improve performance. Make sure to save the temporary layers you want to keep.
 
 13. Explore the layer:
 
     -   Zoom to your study area (the Rotterdam neighbourhoods you selected)
+
     -   Notice that buildings are vector features you can select and query
+
     -   Open the attribute table (right-click layer \> `Open Attribute Table`)
+
     -   Explore the climate adaptation attributes like water overlay risk, heat stress, and biodiversity scores
+
+        ![](using_data_source_manager/fig 7.png)
 
 ### Part 3: Connecting to WMS for Background Imagery
 
