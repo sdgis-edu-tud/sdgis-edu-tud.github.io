@@ -136,7 +136,7 @@ For most historical maps, **Polynomial 1st or 2nd order** works well.
     -   Zoom to the extent of your Rotterdam neighbourhoods
     -   This will be your reference for georeferencing
 
-    ![Figure 1 - Reference layers: boundaries and aerial photo](/images/misc/placeholder_ss.png)
+    ![Figure 1 - Reference layers: boundaries and aerial photo](georeferencing_and_digitizing/fig%201.png)
 
 ### Part 3: Georeferencing with Freehand Raster Georeferencer
 
@@ -157,15 +157,21 @@ For most historical maps, **Polynomial 1st or 2nd order** works well.
     -   The image will appear in the map canvas as a semi-transparent overlay
     -   It will initially appear at an arbitrary location
 
-    ![Figure 2 - Unreferenced map loaded in the canvas](/images/misc/placeholder_ss.png)
+    ![Figure 2 - Unreferenced map loaded in the canvas](georeferencing_and_digitizing/fig%202.png)
 
 10. **Interactively position and scale the map:**
 
     The plugin provides tools to manipulate the image directly in the map canvas:
 
     -   **Move**: Click and drag the image to roughly position it over the corresponding area in your reference data
+
     -   **Rotate**: Use the rotation handle (or tool) to align the image with the aerial photo
+
     -   **Scale**: Use the corner handles to resize the image to match the scale of your reference data
+
+        ::: callout-note
+        It helps to zoom in to the extent that the raster must fit in to, saves some time
+        :::
 
     **Tips for initial positioning:**
 
@@ -174,15 +180,19 @@ For most historical maps, **Polynomial 1st or 2nd order** works well.
     -   Use major roads or canals as alignment guides
     -   Adjust transparency if needed to see both layers clearly
 
-    ![Figure 3 - Initial rough positioning of the map](/images/misc/placeholder_ss.png)
+    ![Figure 3 - Initial rough positioning of the map](georeferencing_and_digitizing/fig%203.png)
 
-Precise georeferencing with 2 control points: Once the image is roughly positioned, you need to use the "Georeference raster with 2 Points" tool for precise alignment. This tool allows you to combine move, rotate, and uniform scale to georeference using 2 points that are identified in both the background layers and the raster to georeference. ::: callout-note How the 2-Point Tool Works
+Precise georeferencing with 2 control points: Once the image is roughly positioned, you need to use the "Georeference raster with 2 Points" tool for precise alignment. This tool allows you to combine move, rotate, and uniform scale to georeference using 2 points that are identified in both the background layers and the raster to georeference.
 
-Point 1: Moves the entire raster to align this point Point 2: Rotates and scales the raster around point 1 to align this second point This is sufficient for maps that don't have complex distortions :::
+::: callout-note How the 2-Point Tool Works
+
+Point 1: Moves the entire raster to align this point Point 2: Rotates and scales the raster around point 1 to align this second point This is sufficient for maps that don't have complex distortions
+
+:::
 
 Steps:
 
-In the Freehand Raster Georeferencer toolbar, click the "Georeference raster with 2 Points" tool icon First point:
+In the Freehand Raster Georeferencer toolbar, click the `Georeference raster with 2 Points` tool icon First point:
 
 Click on a distinctive feature on your print.jpg image (e.g., a sharp building corner) Drag it to the exact same location on the reference data (aerial photo/map) The raster will move with your cursor, just like the Move tool The selected point will stay highlighted in red
 
@@ -190,15 +200,33 @@ Second point:
 
 Click on another distinctive feature on your print.jpg image Drag it to the corresponding location on the reference data This time, the raster will rotate and scale instead of moving The image will adjust to align both points simultaneously
 
-Best practices for selecting the 2 points:
+::: callout-tip
+**Best practices for selecting the 2 points:**
 
 Distribute points evenly - Choose points at opposite corners or edges of the image (not close together) Maximum distance - The farther apart your points are, the more accurate the rotation and scale Choose sharp, precise features: building corners, road intersections, bridge endpoints Avoid features that may have changed over time (temporary structures, vegetation) Use features that are clearly visible in both the historical map and current reference data
 
-Good point locations:
+**Good point locations:**
 
-✓ Building corners (if buildings still exist in the same location) ✓ Road intersections (especially T-junctions or crossroads) ✓ Bridge corners or endpoints ✓ Monument centers or distinctive landmarks ✓ Canal locks, church spires, or other permanent structures ✗ Trees or vegetation (changes over time) ✗ Shorelines (may have changed due to development) ✗ Vague or unclear features ✗ Features that are too close together
+✓ Building corners (if buildings still exist in the same location)
 
-Show Image Refine the georeferencing if needed:
+✓ Road intersections (especially T-junctions or crossroads)
+
+✓ Bridge corners or endpoints
+
+✓ Monument centers or distinctive landmarks
+
+✓ Canal locks, church spires, or other permanent structures
+
+✗ Trees or vegetation (changes over time)
+
+✗ Shorelines (may have changed due to development)
+
+✗ Vague or unclear features
+
+✗ Features that are too close together
+:::
+
+![fig 4](georeferencing_and_digitizing/fig%204a.png)
 
 After applying the 2-point tool, toggle the georeferenced layer on/off Check alignment at different locations across the map If certain areas don't align well:
 
@@ -252,7 +280,7 @@ Then consider using QGIS's built-in Georeferencer tool which allows multiple con
 
     -   Is the scale roughly correct across the entire map?
 
-    ![Figure 5 - Final georeferenced map overlay](/images/misc/placeholder_ss.png)
+    ![Figure 5 - Final georeferenced map overlay](georeferencing_and_digitizing/fig%204b.png)
 
 ### Part 4: Digitizing Features from the Georeferenced Map
 
@@ -272,11 +300,11 @@ Now that your map is georeferenced, you can extract information by digitizing ve
 
     -   Click `New Field` to add attributes:
         -   **Name:** `area_id` \| Type: `Whole number` (Integer)
-        -   **Name:** `area_type` \| Type: `Text data` \| Length: 50
-        -   **Name:** `notes` \| Type: `Text data` \| Length: 100
+        -   **Name:** `area_type` \| Type: `String` \| Length: 50
+        -   **Name:** `notes` \| Type: `String` \| Length: 100
     -   Click `OK` to create the layer
 
-    ![Figure 6 - Creating a new vector layer for digitizing](/images/misc/placeholder_ss.png)
+    ![Figure 6 - Creating a new vector layer for digitizing](georeferencing_and_digitizing/fig 5.png)
 
 17. **Identify the three perimeters to digitize:**
 
@@ -284,7 +312,7 @@ The georeferenced map shows "**Woningbouwontwikkelingen in beschermingszone: rek
 
 -   Zoom to the area within the thick black boundary
 
--   Look for the three polygons with the purple outline
+-   Look for the three polygons with the pink outline
 
 17. **Start digitizing:**
 
@@ -310,7 +338,7 @@ The georeferenced map shows "**Woningbouwontwikkelingen in beschermingszone: rek
     -   Press `Esc` to cancel the current feature
     -   Enable snapping (`Settings` \> `Snapping Options`) to connect features precisely
 
-    ![Figure 7 - Digitizing building polygons](/images/misc/placeholder_ss.png)
+    ![Figure 7 - Digitizing building polygons](georeferencing_and_digitizing/fig 6.png)
 
 18. **Digitize multiple features:**
 
@@ -331,7 +359,7 @@ The georeferenced map shows "**Woningbouwontwikkelingen in beschermingszone: rek
     -   Click `Toggle Editing` again to stop editing
     -   Your digitized features are now permanently saved in the GeoPackage
 
-    ![Figure 8 - Completed digitized buildings](/images/misc/placeholder_ss.png)
+    ![Figure 8 - Completed digitized buildings](georeferencing_and_digitizing/fig 7.png)
 
 ### Part 5: Analysis and Comparison (Optional)
 
@@ -361,7 +389,7 @@ The georeferenced map shows "**Woningbouwontwikkelingen in beschermingszone: rek
 **Key concepts:**
 
 | Concept | Description |
-|----|----|
+|------------------------------------|------------------------------------|
 | Georeferencing | Assigning real-world coordinates to an image |
 | GCP | Ground Control Point - a known location used for georeferencing |
 | Residual error | The difference between predicted and actual GCP locations |
