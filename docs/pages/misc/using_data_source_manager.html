@@ -493,7 +493,7 @@ Software and Plugins Required
 </div>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>In this exercise, you will learn how to connect to external geospatial data sources using QGIS’s Data Source Manager. You’ll work with real Dutch open data, combining different data layers to create a focused analysis area around Rotterdam neighbourhoods.</p>
+<p>In this exercise, you will learn how to connect to external geospatial data sources using QGIS’s Data Source Manager. You’ll work with real Dutch open data, combining different data layers to create a focused analysis area around Rotterdam and Schiedam neighbourhoods.</p>
 <p>You will retrieve neighbourhood boundaries via WFS, perform spatial operations to create a study area, and then use this area to clip climate adaptation data. Finally, you’ll add aerial imagery via WMS to visualize your results.</p>
 <p>This workflow demonstrates a common GIS task: defining a study area, retrieving relevant data, and preparing it for analysis.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -616,14 +616,14 @@ Important
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 1 - PDOK Services Plugin showing CBS Buurten 2024 WFS</figcaption>
+<p><img src="using_data_source_manager/fig 1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1 - PDOK Services Plugin showing CBS Buurten 2024 WFS layer ready to add</figcaption>
 </figure>
 </div></li>
-<li><p>You must now select only the 6 buurten that obey to these criteria:</p>
+<li><p>You must now select only the 20 buurten (neighbourhoods) that meet these criteria:</p>
 <ul>
-<li>They belong to the municipality of Rotterdam (<code>gemeentenaam</code> = “Rotterdam”) <strong>AND</strong></li>
-<li>Their name (<code>buurtnaam</code>) is one of the following: “Blijdorp”, “Centrum”, “Cool”, “Dijkzigt”, “Nieuwe Werk”, “Oude Westen”</li>
+<li>They belong to the municipalities of <strong>Rotterdam</strong> OR <strong>Schiedam</strong> (<code>gemeentenaam</code> = “Rotterdam” OR <code>gemeentenaam</code> = “Schiedam”) <strong>AND</strong></li>
+<li>Their name (<code>buurtnaam</code>) is one of the following: “Stationsbuurt”, “Singelkwartier”, “Natuurkundigenbuurt”, “Marconibuurt”, “Glasbuurt”, “Nieuw-Mathenesse”, “Wetenschappersbuurt”, “Newtonbuurt”, “Boylebuurt”, “Oud Mathenesse”, “Nieuw Mathenesse”, “Witte Dorp”, “Spangen”, “Tussendijken”, “Bospolder”, “Schiemond”, “Nieuwe Westen”, “Delfshaven”, “Middelland”, “Dijkzigt”</li>
 </ul>
 <p><strong>To select these neighbourhoods:</strong></p>
 <ul>
@@ -631,20 +631,24 @@ Important
 <li>Click on <code>Select features using an expression</code> (the yellow icon with ε)</li>
 <li>Enter this expression:</li>
 </ul>
-<pre><code>"gemeentenaam" = 'Rotterdam' AND 
-"buurtnaam" IN ('Blijdorp', 'Centrum', 'Cool', 'Dijkzigt', 'Nieuwe Werk', 'Oude Westen')</code></pre>
+<pre><code>"gemeentenaam" IN ('Schiedam', 'Rotterdam') AND 
+"buurtnaam" IN ('Stationsbuurt', 'Singelkwartier', 'Natuurkundigenbuurt', 
+'Marconibuurt', 'Glasbuurt', 'Nieuw-Mathenesse', 'Wetenschappersbuurt', 
+'Newtonbuurt', 'Boylebuurt', 'Oud Mathenesse', 'Nieuw Mathenesse', 
+'Witte Dorp', 'Spangen', 'Tussendijken', 'Bospolder', 'Schiemond', 
+'Nieuwe Westen', 'Delfshaven', 'Middelland', 'Dijkzigt')</code></pre>
 <ul>
 <li>Click <code>Select Features</code></li>
-<li>Verify that 6 features are selected (shown at the top of the attribute table)</li>
+<li>Verify that <strong>20 features are selected</strong> (shown at the top of the attribute table)</li>
 </ul>
 <p><strong>Now save the selected features:</strong></p>
 <ul>
-<li>Right-click on the layer &gt; <code>Export</code> &gt; <code>Save Selected Features As...</code></li>
-<li>Format: <code>GeoPackage</code></li>
-<li>File name: Navigate to folder <code>part1_data</code> and name it <code>buurten.gpkg</code></li>
-<li>Layer name: <code>buurten</code></li>
-<li>CRS: <code>EPSG:28992</code></li>
-<li>Before saving, we need to add the area calculation and drop unwanted columns:
+<li><p>Right-click on the layer &gt; <code>Export</code> &gt; <code>Save Selected Features As...</code></p></li>
+<li><p>Format: <code>GeoPackage</code></p></li>
+<li><p>File name: Navigate to folder <code>part1_data</code> and name it <code>buurten.gpkg</code></p></li>
+<li><p>Layer name: <code>buurten</code></p></li>
+<li><p>CRS: <code>EPSG:28992</code></p></li>
+<li><p><strong>Select fields to keep:</strong></p>
 <ul>
 <li>Click on the fields list and uncheck all columns except:
 <ul>
@@ -652,8 +656,21 @@ Important
 <li><code>buurtcode</code> (code of the neighbourhood)</li>
 <li><code>gemeentenaam</code> (name of the municipality)</li>
 </ul></li>
-</ul></li>
-<li>Click <code>OK</code> to save</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can use the <code>Deselect All</code> button and then manually check only the 3 fields you want to keep.</p>
+</div>
+</div></li>
+<li><p>Click <code>OK</code> to save</p></li>
 </ul>
 <p><strong>Add the area column:</strong></p>
 <ul>
@@ -666,74 +683,103 @@ Important
 <li>Precision: 2</li>
 <li>In the expression box, enter: <code>round($area, 2)</code></li>
 <li>Click <code>OK</code></li>
-<li>Save edits and disable editing mode</li>
+<li>Save edits (click the floppy disk icon) and disable editing mode (click the pencil icon again)</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 2 - Selected Rotterdam neighbourhoods with area calculation</figcaption>
+<p><img src="using_data_source_manager/fig 2.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 2 - Field Calculator showing the area calculation expression that rounds the area to 2 decimal places</figcaption>
 </figure>
 </div></li>
-<li><p>Dissolve now the geometries of the 6 buurten:</p>
+<li><p>Dissolve the geometries of the 20 buurten into a single polygon:</p>
 <ul>
 <li>Go to <code>Vector</code> &gt; <code>Geoprocessing Tools</code> &gt; <code>Dissolve</code></li>
 <li>Input layer: <code>buurten</code></li>
-<li>Leave “Dissolve field(s)” empty (this will dissolve all features into one)</li>
+<li>Leave “Dissolve field(s)” empty (this will dissolve all features into one polygon representing the entire study area)</li>
 <li>Click <code>Run</code></li>
 <li>After the temporary layer is created, right-click on it &gt; <code>Export</code> &gt; <code>Save Features As...</code></li>
 <li>Format: <code>GeoPackage</code></li>
 <li>File name: Select the existing <code>buurten.gpkg</code> file</li>
 <li>Layer name: <code>buurten_dissolved</code></li>
-<li>In the fields section, uncheck all attributes</li>
+<li>In the fields section, uncheck all attributes (we only need the geometry)</li>
 <li>Click <code>OK</code></li>
 </ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When unchecking all attributes, the resulting layer will have an empty attribute table containing only the feature ID (fid). This is expected - we only need the dissolved boundary geometry for further processing.</p>
+</div>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 3 - Dissolved neighbourhood boundary</figcaption>
+<p><img src="using_data_source_manager/fig 3.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3 - Dissolved neighbourhood boundary showing all 20 neighbourhoods merged into a single polygon</figcaption>
 </figure>
 </div></li>
-<li><p>Compute the bounding box/extents of <code>buurten_dissolved</code>:</p>
+<li><p>Compute the bounding box (rectangular extent) of <code>buurten_dissolved</code>:</p>
 <ul>
 <li>Go to <code>Vector</code> &gt; <code>Research Tools</code> &gt; <code>Extract layer extent</code></li>
 <li>Input layer: <code>buurten_dissolved</code></li>
 <li>Click <code>Run</code></li>
+<li>A temporary layer will be created showing a rectangle that encompasses your dissolved neighbourhoods</li>
 <li>Export this layer to the GeoPackage:
 <ul>
-<li>Right-click &gt; <code>Export</code> &gt; <code>Save Features As...</code></li>
-<li>File name: Select <code>buurten.gpkg</code></li>
+<li>Right-click on the extent layer &gt; <code>Export</code> &gt; <code>Save Features As...</code></li>
+<li>File name: Select the existing <code>buurten.gpkg</code></li>
 <li>Layer name: <code>bbox</code></li>
-<li>Keep only columns: <code>minx</code>, <code>miny</code>, <code>maxx</code>, <code>maxy</code></li>
+<li>Keep only columns: <code>minx</code>, <code>miny</code>, <code>maxx</code>, <code>maxy</code> (these represent the bounding box coordinates)</li>
 <li>Click <code>OK</code></li>
 </ul></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 4 - Bounding box of the study area</figcaption>
+<p><img src="using_data_source_manager/fig 4.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 4 - Bounding box (rectangular extent) of the dissolved study area shown as a red rectangle</figcaption>
 </figure>
 </div></li>
-<li><p>Finally, compute a buffer of 200 m around the bbox layer:</p>
+<li><p>Finally, compute a 200 meter buffer around the bbox layer:</p>
 <ul>
 <li>Go to <code>Vector</code> &gt; <code>Geoprocessing Tools</code> &gt; <code>Buffer</code></li>
 <li>Input layer: <code>bbox</code></li>
 <li>Distance: <code>200</code> (meters)</li>
-<li>End cap style: <code>Flat (The end cap style parameter controls how line endings are handled in the buffer.)</code></li>
-<li>Join style: <code>Miter</code></li>
+<li>Segments: 5 (default is fine)</li>
+<li>End cap style: <code>Flat</code> (the end cap style parameter controls how line endings are handled in the buffer)</li>
+<li>Join style: <code>Miter</code> (creates sharp corners at angles)</li>
+<li>Miter limit: 2.0 (default)</li>
 <li>Click <code>Run</code></li>
 <li>Export the result to the GeoPackage:
 <ul>
 <li>Right-click on the buffered layer &gt; <code>Export</code> &gt; <code>Save Features As...</code></li>
-<li>File name: Select <code>buurten.gpkg</code></li>
+<li>File name: Select the existing <code>buurten.gpkg</code></li>
 <li>Layer name: <code>bbox_buffered</code></li>
-<li>Uncheck all attributes in the fields section</li>
+<li>Uncheck all attributes in the fields section (we only need the geometry)</li>
 <li>Click <code>OK</code></li>
 </ul></li>
 </ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why create a buffer?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The 200m buffer extends our study area slightly beyond the neighbourhood boundaries. This ensures we capture climate data for buildings that are close to but just outside the neighbourhoods, providing better context for our analysis.</p>
+</div>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../..\images/misc/placeholder_ss.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 5 - 200m buffer around bounding box</figcaption>
+<p><img src="using_data_source_manager/fig 5.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 5 - 200m buffer around the bounding box, creating an expanded study area shown in green</figcaption>
 </figure>
 </div></li>
 </ol>
@@ -747,43 +793,110 @@ Important
 <li>Go to <code>Layer</code> &gt; <code>Data Source Manager</code>, OR</li>
 <li>Press <code>Ctrl+L</code></li>
 </ul></li>
-<li><p>Select the <strong>WFS / OGC API - Features</strong> tab on the left</p></li>
+<li><p>Select the <strong>WFS / OGC API - Features</strong> tab on the left side of the dialog</p></li>
 <li><p>Create a new WFS connection to Zuid-Holland climate data:</p>
 <ul>
 <li>Click <code>New</code> to create a new connection</li>
 <li><strong>Name:</strong> Zuid-Holland Climate Adaptation</li>
 <li><strong>URL:</strong> <code>https://geodata.zuid-holland.nl/geoserver/klimaat/wfs?service=WFS&amp;version=2.0.0&amp;request=GetCapabilities</code></li>
+<li>Leave other settings at default</li>
 <li>Click <code>OK</code></li>
 </ul></li>
 <li><p>Load a WFS layer:</p>
 <ul>
-<li>Select the “Zuid-Holland Climate Adaptation” connection and click <code>Connect</code></li>
-<li>Wait for the available layers to load</li>
-<li>Find and select <code>klimaat:klimaatpanden_2022</code> (Basiskaarten klimaatadaptatie panden - wateroverlast, hitte en biodiversiteit 2022)</li>
+<li>Select the “Zuid-Holland Climate Adaptation” connection from the dropdown and click <code>Connect</code></li>
+<li>Wait for the available layers to load (this may take a few seconds)</li>
+<li>Find and select <code>klimaat:PANDEN_WATEROVERLAST_HITTE_GROEN</code> (this layer contains climate adaptation data for buildings: water overlay risk, heat stress, and biodiversity indicators from 2022)</li>
 <li>Click <code>Add</code> at the bottom</li>
-<li>Click <code>Close</code></li>
-</ul></li>
+<li>Click <code>Close</code> to close the Data Source Manager</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Layer name explanation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>PANDEN_WATEROVERLAST_HITTE_GROEN</strong> translates to “Buildings - Water Overlay, Heat, Green” and contains climate vulnerability scores for individual buildings.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="using_data_source_manager/fig 6.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 6 - Data Source Manager showing the Zuid-Holland WFS connection with available climate layers</figcaption>
+</figure>
+</div></li>
 <li><p>Clip the layer to your study area:</p>
 <ul>
 <li>Go to <code>Vector</code> &gt; <code>Geoprocessing Tools</code> &gt; <code>Clip</code></li>
-<li>Input layer: <code>klimaat:klimaatpanden_2022</code> (the climate buildings layer)</li>
+<li>Input layer: <code>klimaat:PANDEN_WATEROVERLAST_HITTE_GROEN</code> (the climate buildings layer)</li>
 <li>Overlay layer: <code>bbox_buffered</code></li>
 <li>Click <code>Run</code></li>
-<li>This will create a new layer containing only the climate data within your buffered study area</li>
-<li>You can now remove the original (unclipped) WFS layer to improve performance</li>
+<li>This will create a new temporary layer containing only the climate data within your buffered study area</li>
+<li><strong>Save the clipped layer:</strong>
+<ul>
+<li>Right-click on the clipped temporary layer &gt; <code>Make Permanent...</code></li>
+<li>Format: <code>GeoPackage</code></li>
+<li>File name: Select or create <code>climate_data.gpkg</code> in your <code>part1_data</code> folder</li>
+<li>Layer name: <code>climate_buildings_clipped</code></li>
+<li>Click <code>OK</code></li>
 </ul></li>
+<li>You can now remove the original (unclipped) WFS layer to improve performance</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why clip the data?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The WFS layer contains data for all of Zuid-Holland province (thousands of buildings). Clipping reduces the dataset to only the buildings within our study area, making the data easier to work with and improving QGIS performance.</p>
+</div>
+</div></li>
 <li><p>Explore the layer:</p>
 <ul>
-<li>Zoom to your study area (the Rotterdam neighbourhoods you selected)</li>
-<li>Notice that buildings are vector features you can select and query</li>
+<li>Zoom to your study area: right-click on <code>bbox_buffered</code> layer &gt; <code>Zoom to Layer</code></li>
+<li>Notice that buildings are vector features (polygons) you can select and query</li>
 <li>Open the attribute table (right-click layer &gt; <code>Open Attribute Table</code>)</li>
-<li>Explore the climate adaptation attributes like water overlay risk, heat stress, and biodiversity scores</li>
+<li>Explore the climate adaptation attributes, such as:
+<ul>
+<li><code>wateroverlast_score</code> - Water overlay/flood risk score</li>
+<li><code>hittestress_score</code> - Heat stress vulnerability score<br>
+</li>
+<li><code>groen_score</code> - Green/biodiversity score</li>
 </ul></li>
+<li>Each building has multiple climate vulnerability indicators</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="using_data_source_manager/fig 7.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 7 - Attribute table of clipped climate buildings layer showing various climate risk scores for individual buildings</figcaption>
+</figure>
+</div></li>
 </ol>
 </section>
 <section id="part-3-connecting-to-wms-for-background-imagery" class="level3">
 <h3 class="anchored" data-anchor-id="part-3-connecting-to-wms-for-background-imagery">Part 3: Connecting to WMS for Background Imagery</h3>
 <p><strong>What is WMS?</strong> WMS provides access to pre-rendered map images - like a background map. You cannot query individual features, but it loads faster for large areas.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important: Optimize WMS Loading
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before retrieving the WMS layer, you should first <strong>zoom to the study area</strong> by right-clicking the <code>bbox_buffered</code> layer and selecting <code>Zoom to Layer(s)</code>. This ensures QGIS only requests tiles for your area of interest, reducing download time and file size.</p>
+</div>
+</div>
 <ol start="14" type="1">
 <li><p>Open the <strong>Data Source Manager</strong> again (<code>Ctrl+L</code>)</p></li>
 <li><p>Select the <strong>WMS / WMTS</strong> tab on the left</p></li>
@@ -792,50 +905,112 @@ Important
 <li>Click <code>New</code> to create a new connection</li>
 <li><strong>Name:</strong> PDOK Aerial Photos</li>
 <li><strong>URL:</strong> <code>https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&amp;service=wmts</code></li>
+<li>Leave other settings at default</li>
 <li>Click <code>OK</code></li>
 </ul></li>
-<li><p>Load a WMS layer:</p>
+<li><p>Load a WMTS layer:</p>
 <ul>
-<li><p>Select the “PDOK Aerial Photos” connection and click <code>Connect</code></p></li>
-<li><p>Select <code>Luchtfoto 2025 Ortho 25cm RGB</code> (current high-resolution aerial photos. Please select <code>EPSG:28992</code>)</p></li>
-<li><p>Click <code>Add</code></p></li>
-<li><p>Click <code>Close</code></p>
-<div class="callout callout-style-default callout-important callout-titled">
+<li>Select the “PDOK Aerial Photos” connection and click <code>Connect</code></li>
+<li>Wait for available layers to load</li>
+<li>Find and select <code>Luchtfoto 2025 Ortho 25cm RGB</code> (current high-resolution 25cm aerial photos)</li>
+<li><strong>Important:</strong> In the “Coordinate Reference System” section, select <code>EPSG:28992</code> from the dropdown</li>
+<li>Click <code>Add</code></li>
+<li>Click <code>Close</code></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+WMTS vs WMS
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Important</strong>: Before retrieving it, you should first zoom to the <em>bbox_buffered</em> layer, in order to automatically reduce the size of the data to be retrieved.</p>
+<p>WMTS (Web Map Tile Service) is a variant of WMS that serves pre-generated map tiles, making it faster for viewing at standard zoom levels.</p>
 </div>
 </div></li>
-</ul></li>
-<li><p>Save a local copy of the orthophoto. Please save it into folder \part1_data. Select the orthophoto layer name, right click on it and choose Export\Save As…</p>
-<p>In the resulting dialog GUI, choose/set the following parameters</p>
+<li><p>Save a local copy of the orthophoto:</p>
+<p>This step saves the aerial imagery as a permanent file that you can use offline and in future projects.</p>
 <ul>
-<li><p>Output mode: <code>Raw data</code></p></li>
-<li><p>Format: <code>GeoTIFF</code>. <strong>Important</strong>: Uncheck “Create VRT”!</p></li>
-<li><p>File name: <strong>ortho_25cm.tif</strong>. Save the file in folder <code>\raster</code></p></li>
-<li><p>CRS: <code>EPSG:28992</code></p></li>
-<li><p>When it comes to the extents, set them to be taken from the <code>bbox_buffered</code> layer.</p></li>
-<li><p>Resolution: <code>0.25 m</code> for both horizontal and vertical.</p></li>
-</ul></li>
-<li><p>Arrange your layers:</p>
+<li>Select the orthophoto layer in the Layers panel</li>
+<li>Right-click on it and choose <code>Export</code> &gt; <code>Save As...</code></li>
+</ul>
+<p>In the resulting dialog, set the following parameters:</p>
 <ul>
-<li>In the Layers panel, drag layers so the order from top to bottom is:
+<li><strong>Output mode:</strong> <code>Rendered image</code> (this saves what you see on screen)</li>
+<li><strong>Format:</strong> <code>GeoTIFF</code></li>
+<li><strong>Important:</strong> Uncheck “Create VRT” (we want a standard GeoTIFF file, not a virtual raster)</li>
+<li><strong>File name:</strong> Click <code>...</code> and navigate to the <code>\part1_data\raster</code> folder (create it if it doesn’t exist)
+<ul>
+<li>Name the file: <code>ortho_25cm.tif</code></li>
+</ul></li>
+<li><strong>CRS:</strong> <code>EPSG:28992</code> (should already be set)</li>
+<li><strong>Extent:</strong> Click the dropdown and select <code>Calculate from Layer</code> &gt; <code>bbox_buffered</code>
+<ul>
+<li>This ensures you only save imagery for your study area</li>
+</ul></li>
+<li><strong>Resolution:</strong>
+<ul>
+<li>Horizontal: <code>0.25</code> (meters per pixel)</li>
+<li>Vertical: <code>0.25</code> (meters per pixel)</li>
+</ul></li>
+<li>Click <code>OK</code> to start the export</li>
+<li>Wait for the export to complete (this may take 1-2 minutes depending on the area size)</li>
+<li>The saved GeoTIFF will be automatically added to your map</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Understanding Resolution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The 0.25m resolution means each pixel in the saved image represents 25cm × 25cm on the ground. This matches the native resolution of the PDOK aerial photos, ensuring no quality loss.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="using_data_source_manager/fig 8.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 8 - Export Raster dialog showing proper settings for saving the aerial photo with correct extent and resolution</figcaption>
+</figure>
+</div></li>
+<li><p>Arrange your layers for optimal visualization:</p>
+<ul>
+<li>In the Layers panel, drag layers to arrange them in this order from <strong>top to bottom</strong>:
 <ol type="1">
-<li><code>buurten</code> (neighbourhood boundaries)</li>
-<li>Clipped climate buildings layer</li>
-<li><code>bbox_buffered</code> (buffer outline)</li>
-<li><code>Luchtfoto 2025 Ortho 25cm RGB</code> (aerial photos - at the bottom)</li>
+<li><code>buurten</code> (neighbourhood boundaries - should be visible as outlines)</li>
+<li><code>climate_buildings_clipped</code> (climate data polygons)</li>
+<li><code>bbox_buffered</code> (buffer outline - optional, can be hidden)</li>
+<li><code>ortho_25cm.tif</code> or the WMTS aerial photo layer (<strong>at the bottom</strong> as background)</li>
 </ol></li>
-<li>Adjust the transparency of the buildings layer if needed (Right-click &gt; <code>Properties</code> &gt; <code>Symbology</code> &gt; <code>Layer Rendering</code> &gt; adjust opacity slider)</li>
-<li>Style the neighbourhood boundaries with a bold outline and no fill to see the aerial photo underneath</li>
+</ul>
+<p><strong>Style adjustments:</strong></p>
+<ul>
+<li><strong>Neighbourhood boundaries (<code>buurten</code>):</strong>
+<ul>
+<li>Right-click &gt; <code>Properties</code> &gt; <code>Symbology</code></li>
+<li>Set fill to “Simple fill”</li>
+<li>Fill style: <code>No Brush</code> (transparent)</li>
+<li>Stroke color: Red or dark blue</li>
+<li>Stroke width: 0.5 - 1.0 mm</li>
 </ul></li>
+<li><strong>Climate buildings:</strong>
+<ul>
+<li>Adjust transparency: Right-click &gt; <code>Properties</code> &gt; <code>Symbology</code> &gt; <code>Layer Rendering</code> tab</li>
+<li>Set opacity to 70-80% so you can see the aerial photo underneath</li>
+<li>Optionally, style by climate scores using categorized or graduated symbology</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="using_data_source_manager/fig 9.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 9 - Final map view showing neighbourhood boundaries, climate data, and aerial imagery properly layered with appropriate transparency</figcaption>
+</figure>
+</div></li>
 </ol>
 <hr>
 </section>
@@ -846,10 +1021,11 @@ Important
 <ul>
 <li>The <strong>Data Source Manager</strong> is your central hub for connecting to external data sources in QGIS</li>
 <li><strong>WFS</strong> provides vector data that you can style, query, and analyze - great for operational data and spatial analysis</li>
-<li><strong>WMS</strong> provides raster map images - great for background maps and visualization</li>
+<li><strong>WMS/WMTS</strong> provides raster map images - great for background maps and visualization</li>
 <li>How to use the <strong>PDOK Services Plugin</strong> to easily access Dutch open geospatial data</li>
-<li>Basic <strong>geoprocessing workflows</strong>: selection, dissolve, buffer, and clip operations</li>
+<li>Basic <strong>geoprocessing workflows</strong>: selection, dissolve, buffer, clip, and extract extent operations</li>
 <li>How to organize and save multiple layers in a <strong>GeoPackage</strong> for efficient data management</li>
+<li>How to <strong>export and save WMS/WMTS imagery</strong> as permanent GeoTIFF files</li>
 <li>Dutch <strong>PDOK</strong> (Publieke Dienstverlening Op de Kaart) offers free, reliable geospatial web services</li>
 <li>Provincial and municipal data portals (like Zuid-Holland) provide specialized datasets</li>
 <li>Saved connections can be reused in future projects</li>
@@ -860,7 +1036,7 @@ Important
 <tr class="header">
 <th>Feature</th>
 <th>WFS</th>
-<th>WMS</th>
+<th>WMS/WMTS</th>
 </tr>
 </thead>
 <tbody>
@@ -903,12 +1079,13 @@ Important
 <section id="extension-activities-optional" class="level2">
 <h2 class="anchored" data-anchor-id="extension-activities-optional">Extension Activities (Optional)</h2>
 <ul>
-<li>Explore other PDOK services at https://www.pdok.nl/datasets</li>
-<li>Try filtering WFS layers using the Data Source Manager’s “SQL” or “Filter” options</li>
-<li>Analyze the climate adaptation scores in your selected Rotterdam neighbourhoods</li>
-<li>Compare different neighbourhoods’ vulnerability to heat, water, or biodiversity loss</li>
-<li>Add the RIVM Energy Labels WMS (<code>https://data.rivm.nl/geo/nl/wms?request=GetCapabilities</code>, layer <code>rvo_energielabels</code>) to see building energy performance</li>
-<li>Create a styled map showing the relationship between neighbourhood characteristics and climate risks</li>
+<li>Explore other PDOK services at <a href="https://www.pdok.nl/datasets" class="uri">https://www.pdok.nl/datasets</a></li>
+<li>Try filtering WFS layers using the Data Source Manager’s “SQL” or “Filter” options before loading</li>
+<li>Analyze the climate adaptation scores in your selected Rotterdam and Schiedam neighbourhoods</li>
+<li>Compare different neighbourhoods’ vulnerability to heat, water, or biodiversity loss using statistics</li>
+<li>Add the RIVM Energy Labels WMS (<code>https://data.rivm.nl/geo/nl/wms?request=GetCapabilities</code>, layer <code>rvo_energielabels</code>) to see building energy performance ratings</li>
+<li>Create a styled thematic map showing the relationship between neighbourhood characteristics and climate risks</li>
+<li>Calculate summary statistics (mean, max, min) of climate scores by neighbourhood</li>
 </ul>
 
 
@@ -1412,7 +1589,7 @@ Important
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>In this exercise, you will learn how to connect to external geospatial data sources using QGIS's Data Source Manager. You'll work with real Dutch open data, combining different data layers to create a focused analysis area around Rotterdam neighbourhoods.</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>In this exercise, you will learn how to connect to external geospatial data sources using QGIS's Data Source Manager. You'll work with real Dutch open data, combining different data layers to create a focused analysis area around Rotterdam and Schiedam neighbourhoods.</span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>You will retrieve neighbourhood boundaries via WFS, perform spatial operations to create a study area, and then use this area to clip climate adaptation data. Finally, you'll add aerial imagery via WMS to visualize your results.</span>
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
@@ -1467,12 +1644,12 @@ Important
 <span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>    Please pay attention to retrieve the correct data, as there are many buurten layers, both for WFS and WMS! What you need is a **vector layer** containing all 14,668 buurten (neighbourhoods) in the Netherlands. After loading, check the feature count in the layer properties to confirm you have the complete dataset.</span>
 <span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>    :::</span>
 <span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="in">    ![Figure 1 - PDOK Services Plugin showing CBS Buurten 2024 WFS](/images/misc/placeholder_ss.png)</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="in">    ![Figure 1 - PDOK Services Plugin showing CBS Buurten 2024 WFS layer ready to add](using_data_source_manager/fig%201.png)</span></span>
 <span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>You must now select only the 6 buurten that obey to these criteria:</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>You must now select only the 20 buurten (neighbourhoods) that meet these criteria:</span>
 <span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>They belong to the municipality of Rotterdam (<span class="in">`gemeentenaam`</span> = "Rotterdam") **AND**</span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Their name (<span class="in">`buurtnaam`</span>) is one of the following: "Blijdorp", "Centrum", "Cool", "Dijkzigt", "Nieuwe Werk", "Oude Westen"</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>They belong to the municipalities of **Rotterdam** OR **Schiedam** (`gemeentenaam` = "Rotterdam" OR `gemeentenaam` = "Schiedam") **AND**</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Their name (<span class="in">`buurtnaam`</span>) is one of the following: "Stationsbuurt", "Singelkwartier", "Natuurkundigenbuurt", "Marconibuurt", "Glasbuurt", "Nieuw-Mathenesse", "Wetenschappersbuurt", "Newtonbuurt", "Boylebuurt", "Oud Mathenesse", "Nieuw Mathenesse", "Witte Dorp", "Spangen", "Tussendijken", "Bospolder", "Schiemond", "Nieuwe Westen", "Delfshaven", "Middelland", "Dijkzigt"</span>
 <span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>    **To select these neighbourhoods:**</span>
 <span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a></span>
@@ -1481,227 +1658,323 @@ Important
 <span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Enter this expression:</span></span>
 <span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a><span class="in">    ```         </span></span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a><span class="in">    "gemeentenaam" = 'Rotterdam' AND </span></span>
-<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a><span class="in">    "buurtnaam" IN ('Blijdorp', 'Centrum', 'Cool', 'Dijkzigt', 'Nieuwe Werk', 'Oude Westen')</span></span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a><span class="in">    ```</span></span>
-<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Click `Select Features`</span></span>
-<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Verify that 6 features are selected (shown at the top of the attribute table)</span></span>
-<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a><span class="in">    **Now save the selected features:**</span></span>
-<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Right-click on the layer \&gt; `Export` \&gt; `Save Selected Features As...`</span></span>
-<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Format: `GeoPackage`</span></span>
-<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a><span class="in">    -   File name: Navigate to folder `part1_data` and name it `buurten.gpkg`</span></span>
-<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Layer name: `buurten`</span></span>
-<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a><span class="in">    -   CRS: `EPSG:28992`</span></span>
-<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Before saving, we need to add the area calculation and drop unwanted columns:</span></span>
-<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a><span class="in">        -   Click on the fields list and uncheck all columns except:</span></span>
-<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a><span class="in">            -   `buurtnaam` (name of the neighbourhood)</span></span>
-<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a><span class="in">            -   `buurtcode` (code of the neighbourhood)</span></span>
-<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a><span class="in">            -   `gemeentenaam` (name of the municipality)</span></span>
-<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Click `OK` to save</span></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a><span class="in">    "gemeentenaam" IN ('Schiedam', 'Rotterdam') AND </span></span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a><span class="in">    "buurtnaam" IN ('Stationsbuurt', 'Singelkwartier', 'Natuurkundigenbuurt', </span></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a><span class="in">    'Marconibuurt', 'Glasbuurt', 'Nieuw-Mathenesse', 'Wetenschappersbuurt', </span></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a><span class="in">    'Newtonbuurt', 'Boylebuurt', 'Oud Mathenesse', 'Nieuw Mathenesse', </span></span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a><span class="in">    'Witte Dorp', 'Spangen', 'Tussendijken', 'Bospolder', 'Schiemond', </span></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a><span class="in">    'Nieuwe Westen', 'Delfshaven', 'Middelland', 'Dijkzigt')</span></span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a><span class="in">    ```</span></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Click `Select Features`</span></span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Verify that **20 features are selected** (shown at the top of the attribute table)</span></span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a><span class="in">    **Now save the selected features:**</span></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Right-click on the layer \&gt; `Export` \&gt; `Save Selected Features As...`</span></span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Format: `GeoPackage`</span></span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a><span class="in">    -   File name: Navigate to folder `part1_data` and name it `buurten.gpkg`</span></span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Layer name: `buurten`</span></span>
 <span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="in">    **Add the area column:**</span></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="in">    -   CRS: `EPSG:28992`</span></span>
 <span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Open the attribute table of the newly saved `buurten` layer</span></span>
-<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Enable editing mode (click the pencil icon)</span></span>
-<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Open the Field Calculator (Ctrl+I or click the abacus icon)</span></span>
-<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Check `Create a new field`</span></span>
-<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Output field name: `buurt_area`</span></span>
-<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Output field type: `Decimal number (real)`</span></span>
-<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Precision: 2</span></span>
-<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a><span class="in">    -   In the expression box, enter: `round($area, 2)`</span></span>
-<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Click `OK`</span></span>
-<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Save edits and disable editing mode</span></span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a><span class="in">    -   **Select fields to keep:**</span></span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a><span class="in">        -   Click on the fields list and uncheck all columns except:</span></span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a><span class="in">            -   `buurtnaam` (name of the neighbourhood)</span></span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a><span class="in">            -   `buurtcode` (code of the neighbourhood)</span></span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a><span class="in">            -   `gemeentenaam` (name of the municipality)</span></span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a><span class="in">        ::: callout-tip</span></span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a><span class="in">        You can use the `Deselect All` button and then manually check only the 3 fields you want to keep.</span></span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a><span class="in">        :::</span></span>
 <span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a><span class="in">    ![Figure 2 - Selected Rotterdam neighbourhoods with area calculation](/images/misc/placeholder_ss.png)</span></span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Click `OK` to save</span></span>
 <span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Dissolve now the geometries of the 6 buurten:</span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a><span class="in">    **Add the area column:**</span></span>
 <span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Vector`</span> <span class="sc">\&gt;</span> <span class="in">`Geoprocessing Tools`</span> <span class="sc">\&gt;</span> <span class="in">`Dissolve`</span></span>
-<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Input layer: <span class="in">`buurten`</span></span>
-<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Leave "Dissolve field(s)" empty (this will dissolve all features into one)</span>
-<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Run`</span></span>
-<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>After the temporary layer is created, right-click on it <span class="sc">\&gt;</span> <span class="in">`Export`</span> <span class="sc">\&gt;</span> <span class="in">`Save Features As...`</span></span>
-<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Format: <span class="in">`GeoPackage`</span></span>
-<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>File name: Select the existing <span class="in">`buurten.gpkg`</span> file</span>
-<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Layer name: <span class="in">`buurten_dissolved`</span></span>
-<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>In the fields section, uncheck all attributes</span>
-<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`OK`</span></span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Open the attribute table of the newly saved `buurten` layer</span></span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Enable editing mode (click the pencil icon)</span></span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Open the Field Calculator (Ctrl+I or click the abacus icon)</span></span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Check `Create a new field`</span></span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Output field name: `buurt_area`</span></span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Output field type: `Decimal number (real)`</span></span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Precision: 2</span></span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a><span class="in">    -   In the expression box, enter: `round($area, 2)`</span></span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Click `OK`</span></span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Save edits (click the floppy disk icon) and disable editing mode (click the pencil icon again)</span></span>
 <span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a>    <span class="al">![Figure 3 - Dissolved neighbourhood boundary](/images/misc/placeholder_ss.png)</span></span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a><span class="in">    ![Figure 2 - Field Calculator showing the area calculation expression that rounds the area to 2 decimal places](using_data_source_manager/fig%202.png)</span></span>
 <span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>Compute the bounding box/extents of <span class="in">`buurten_dissolved`</span>:</span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Dissolve the geometries of the 20 buurten into a single polygon:</span>
 <span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Vector`</span> <span class="sc">\&gt;</span> <span class="in">`Research Tools`</span> <span class="sc">\&gt;</span> <span class="in">`Extract layer extent`</span></span>
-<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Input layer: <span class="in">`buurten_dissolved`</span></span>
-<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Run`</span></span>
-<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Export this layer to the GeoPackage:</span>
-<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Right-click <span class="sc">\&gt;</span> <span class="in">`Export`</span> <span class="sc">\&gt;</span> <span class="in">`Save Features As...`</span></span>
-<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>File name: Select <span class="in">`buurten.gpkg`</span></span>
-<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Layer name: <span class="in">`bbox`</span></span>
-<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Keep only columns: <span class="in">`minx`</span>, <span class="in">`miny`</span>, <span class="in">`maxx`</span>, <span class="in">`maxy`</span></span>
-<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Click <span class="in">`OK`</span></span>
-<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a>    <span class="al">![Figure 4 - Bounding box of the study area](/images/misc/placeholder_ss.png)</span></span>
-<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a><span class="ss">7.  </span>Finally, compute a buffer of 200 m around the bbox layer:</span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Vector`</span> <span class="sc">\&gt;</span> <span class="in">`Geoprocessing Tools`</span> <span class="sc">\&gt;</span> <span class="in">`Dissolve`</span></span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Input layer: <span class="in">`buurten`</span></span>
+<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Leave "Dissolve field(s)" empty (this will dissolve all features into one polygon representing the entire study area)</span>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Run`</span></span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>After the temporary layer is created, right-click on it <span class="sc">\&gt;</span> <span class="in">`Export`</span> <span class="sc">\&gt;</span> <span class="in">`Save Features As...`</span></span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Format: <span class="in">`GeoPackage`</span></span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>File name: Select the existing <span class="in">`buurten.gpkg`</span> file</span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Layer name: <span class="in">`buurten_dissolved`</span></span>
+<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>In the fields section, uncheck all attributes (we only need the geometry)</span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`OK`</span></span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a>    ::: callout-note</span>
+<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a>    ## Note</span>
 <span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Vector`</span> <span class="sc">\&gt;</span> <span class="in">`Geoprocessing Tools`</span> <span class="sc">\&gt;</span> <span class="in">`Buffer`</span></span>
-<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Input layer: <span class="in">`bbox`</span></span>
-<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Distance: <span class="in">`200`</span> (meters)</span>
-<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>End cap style: <span class="in">`Flat (The end cap style parameter controls how line endings are handled in the buffer.)`</span></span>
-<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Join style: <span class="in">`Miter`</span></span>
-<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Run`</span></span>
-<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Export the result to the GeoPackage:</span>
-<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Right-click on the buffered layer <span class="sc">\&gt;</span> <span class="in">`Export`</span> <span class="sc">\&gt;</span> <span class="in">`Save Features As...`</span></span>
-<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>File name: Select <span class="in">`buurten.gpkg`</span></span>
-<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Layer name: <span class="in">`bbox_buffered`</span></span>
-<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Uncheck all attributes in the fields section</span>
-<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Click <span class="in">`OK`</span></span>
-<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a>    <span class="al">![Figure 5 - 200m buffer around bounding box](/images/misc/placeholder_ss.png)</span></span>
-<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 2: Connecting to WFS for Climate Adaptation Data</span></span>
-<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a><span class="ss">8.  </span>Open the **Data Source Manager**</span>
-<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click the "Open Data Source Manager" button in the toolbar, OR</span>
-<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Layer`</span> <span class="sc">\&gt;</span> <span class="in">`Data Source Manager`</span>, OR</span>
-<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Press <span class="in">`Ctrl+L`</span></span>
-<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a><span class="ss">9.  </span>Select the **WFS / OGC API - Features** tab on the left</span>
-<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a><span class="ss">10. </span>Create a new WFS connection to Zuid-Holland climate data:</span>
-<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`New`</span> to create a new connection</span>
-<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Name:** Zuid-Holland Climate Adaptation</span>
-<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**URL:** <span class="in">`https://geodata.zuid-holland.nl/geoserver/klimaat/wfs?service=WFS&amp;version=2.0.0&amp;request=GetCapabilities`</span></span>
-<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`OK`</span></span>
-<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a><span class="ss">11. </span>Load a WFS layer:</span>
-<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Select the "Zuid-Holland Climate Adaptation" connection and click <span class="in">`Connect`</span></span>
-<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Wait for the available layers to load</span>
-<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Find and select <span class="in">`klimaat:klimaatpanden_2022`</span> (Basiskaarten klimaatadaptatie panden - wateroverlast, hitte en biodiversiteit 2022)</span>
-<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Add`</span> at the bottom</span>
-<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Close`</span></span>
+<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a><span class="in">    When unchecking all attributes, the resulting layer will have an empty attribute table containing only the feature ID (fid). This is expected - we only need the dissolved boundary geometry for further processing.</span></span>
+<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a><span class="in">    :::</span></span>
+<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a><span class="in">    ![Figure 3 - Dissolved neighbourhood boundary showing all 20 neighbourhoods merged into a single polygon](using_data_source_manager/fig%203.png)</span></span>
+<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>Compute the bounding box (rectangular extent) of <span class="in">`buurten_dissolved`</span>:</span>
+<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Vector`</span> <span class="sc">\&gt;</span> <span class="in">`Research Tools`</span> <span class="sc">\&gt;</span> <span class="in">`Extract layer extent`</span></span>
+<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Input layer: <span class="in">`buurten_dissolved`</span></span>
+<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Run`</span></span>
+<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>A temporary layer will be created showing a rectangle that encompasses your dissolved neighbourhoods</span>
+<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Export this layer to the GeoPackage:</span>
+<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Right-click on the extent layer <span class="sc">\&gt;</span> <span class="in">`Export`</span> <span class="sc">\&gt;</span> <span class="in">`Save Features As...`</span></span>
+<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>File name: Select the existing <span class="in">`buurten.gpkg`</span></span>
+<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Layer name: <span class="in">`bbox`</span></span>
+<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Keep only columns: <span class="in">`minx`</span>, <span class="in">`miny`</span>, <span class="in">`maxx`</span>, <span class="in">`maxy`</span> (these represent the bounding box coordinates)</span>
+<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Click <span class="in">`OK`</span></span>
+<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>    <span class="al">![Figure 4 - Bounding box (rectangular extent) of the dissolved study area shown as a red rectangle](using_data_source_manager/fig%204.png)</span></span>
+<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a><span class="ss">7.  </span>Finally, compute a 200 meter buffer around the bbox layer:</span>
+<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Vector`</span> <span class="sc">\&gt;</span> <span class="in">`Geoprocessing Tools`</span> <span class="sc">\&gt;</span> <span class="in">`Buffer`</span></span>
+<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Input layer: <span class="in">`bbox`</span></span>
+<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Distance: <span class="in">`200`</span> (meters)</span>
+<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Segments: 5 (default is fine)</span>
+<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>End cap style: <span class="in">`Flat`</span> (the end cap style parameter controls how line endings are handled in the buffer)</span>
+<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Join style: <span class="in">`Miter`</span> (creates sharp corners at angles)</span>
+<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Miter limit: 2.0 (default)</span>
+<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Run`</span></span>
+<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Export the result to the GeoPackage:</span>
+<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Right-click on the buffered layer <span class="sc">\&gt;</span> <span class="in">`Export`</span> <span class="sc">\&gt;</span> <span class="in">`Save Features As...`</span></span>
+<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>File name: Select the existing <span class="in">`buurten.gpkg`</span></span>
+<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Layer name: <span class="in">`bbox_buffered`</span></span>
+<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Uncheck all attributes in the fields section (we only need the geometry)</span>
+<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Click <span class="in">`OK`</span></span>
+<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a>    ::: callout-tip</span>
+<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a>    ## Why create a buffer?</span>
 <span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a><span class="ss">12. </span>Clip the layer to your study area:</span>
-<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Vector`</span> <span class="sc">\&gt;</span> <span class="in">`Geoprocessing Tools`</span> <span class="sc">\&gt;</span> <span class="in">`Clip`</span></span>
-<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Input layer: <span class="in">`klimaat:klimaatpanden_2022`</span> (the climate buildings layer)</span>
-<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Overlay layer: <span class="in">`bbox_buffered`</span></span>
-<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Run`</span></span>
-<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>This will create a new layer containing only the climate data within your buffered study area</span>
-<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>You can now remove the original (unclipped) WFS layer to improve performance</span>
+<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a><span class="in">    The 200m buffer extends our study area slightly beyond the neighbourhood boundaries. This ensures we capture climate data for buildings that are close to but just outside the neighbourhoods, providing better context for our analysis.</span></span>
+<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a><span class="in">    :::</span></span>
+<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a><span class="in">    ![Figure 5 - 200m buffer around the bounding box, creating an expanded study area shown in green](using_data_source_manager/fig%205.png)</span></span>
+<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 2: Connecting to WFS for Climate Adaptation Data</span></span>
+<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a><span class="ss">8.  </span>Open the **Data Source Manager**</span>
 <span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a><span class="ss">13. </span>Explore the layer:</span>
-<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Zoom to your study area (the Rotterdam neighbourhoods you selected)</span>
-<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Notice that buildings are vector features you can select and query</span>
-<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Open the attribute table (right-click layer <span class="sc">\&gt;</span> <span class="in">`Open Attribute Table`</span>)</span>
-<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Explore the climate adaptation attributes like water overlay risk, heat stress, and biodiversity scores</span>
-<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 3: Connecting to WMS for Background Imagery</span></span>
-<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a>**What is WMS?** WMS provides access to pre-rendered map images - like a background map. You cannot query individual features, but it loads faster for large areas.</span>
-<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a><span class="ss">14. </span>Open the **Data Source Manager** again (<span class="in">`Ctrl+L`</span>)</span>
-<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a><span class="ss">15. </span>Select the **WMS / WMTS** tab on the left</span>
-<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a><span class="ss">16. </span>Create a new WMS connection:</span>
-<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`New`</span> to create a new connection</span>
-<span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Name:** PDOK Aerial Photos</span>
-<span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**URL:** <span class="in">`https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&amp;service=wmts`</span></span>
-<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`OK`</span></span>
+<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click the "Open Data Source Manager" button in the toolbar, OR</span>
+<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Layer`</span> <span class="sc">\&gt;</span> <span class="in">`Data Source Manager`</span>, OR</span>
+<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Press <span class="in">`Ctrl+L`</span></span>
+<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a><span class="ss">9.  </span>Select the **WFS / OGC API - Features** tab on the left side of the dialog</span>
+<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a><span class="ss">10. </span>Create a new WFS connection to Zuid-Holland climate data:</span>
+<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`New`</span> to create a new connection</span>
+<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Name:** Zuid-Holland Climate Adaptation</span>
+<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**URL:** <span class="in">`https://geodata.zuid-holland.nl/geoserver/klimaat/wfs?service=WFS&amp;version=2.0.0&amp;request=GetCapabilities`</span></span>
+<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Leave other settings at default</span>
+<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`OK`</span></span>
+<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a><span class="ss">11. </span>Load a WFS layer:</span>
+<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Select the "Zuid-Holland Climate Adaptation" connection from the dropdown and click <span class="in">`Connect`</span></span>
+<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Wait for the available layers to load (this may take a few seconds)</span>
+<span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Find and select <span class="in">`klimaat:PANDEN_WATEROVERLAST_HITTE_GROEN`</span> (this layer contains climate adaptation data for buildings: water overlay risk, heat stress, and biodiversity indicators from 2022)</span>
+<span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Add`</span> at the bottom</span>
+<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Close`</span> to close the Data Source Manager</span>
 <span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a><span class="ss">17. </span>Load a WMS layer:</span>
-<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Select the "PDOK Aerial Photos" connection and click <span class="in">`Connect`</span></span>
-<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Select <span class="in">`Luchtfoto 2025 Ortho 25cm RGB`</span> (current high-resolution aerial photos. Please select <span class="in">`EPSG:28992`</span>)</span>
+<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a>    ::: callout-note</span>
+<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a>    ## Layer name explanation</span>
+<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a><span class="in">    **PANDEN_WATEROVERLAST_HITTE_GROEN** translates to "Buildings - Water Overlay, Heat, Green" and contains climate vulnerability scores for individual buildings.</span></span>
+<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a><span class="in">    :::</span></span>
 <span id="cb2-245"><a href="#cb2-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Add`</span></span>
+<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a><span class="in">    ![Figure 6 - Data Source Manager showing the Zuid-Holland WFS connection with available climate layers](using_data_source_manager/fig%206.png)</span></span>
 <span id="cb2-247"><a href="#cb2-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Close`</span></span>
+<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a><span class="ss">12. </span>Clip the layer to your study area:</span>
 <span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a>        ::: callout-important</span>
-<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a>        **Important**: Before retrieving it, you should first zoom to the *bbox_buffered* layer, in order to automatically reduce the size of the data to be retrieved.</span>
-<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a>        :::</span>
-<span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a><span class="ss">18. </span>Save a local copy of the orthophoto. Please save it into folder <span class="sc">\\</span>part1_data. Select the orthophoto layer name, right click on it and choose Export<span class="sc">\\</span>Save As…</span>
-<span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a>    In the resulting dialog GUI, choose/set the following parameters</span>
-<span id="cb2-257"><a href="#cb2-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-258"><a href="#cb2-258" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Output mode: <span class="in">`Raw data`</span></span>
-<span id="cb2-259"><a href="#cb2-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-260"><a href="#cb2-260" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Format: <span class="in">`GeoTIFF`</span>. **Important**: Uncheck "Create VRT"!</span>
-<span id="cb2-261"><a href="#cb2-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-262"><a href="#cb2-262" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>File name: **ortho_25cm.tif**. Save the file in folder <span class="in">`\raster`</span></span>
-<span id="cb2-263"><a href="#cb2-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-264"><a href="#cb2-264" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>CRS: <span class="in">`EPSG:28992`</span></span>
+<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Vector`</span> <span class="sc">\&gt;</span> <span class="in">`Geoprocessing Tools`</span> <span class="sc">\&gt;</span> <span class="in">`Clip`</span></span>
+<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Input layer: <span class="in">`klimaat:PANDEN_WATEROVERLAST_HITTE_GROEN`</span> (the climate buildings layer)</span>
+<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Overlay layer: <span class="in">`bbox_buffered`</span></span>
+<span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Run`</span></span>
+<span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>This will create a new temporary layer containing only the climate data within your buffered study area</span>
+<span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Save the clipped layer:**</span>
+<span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Right-click on the clipped temporary layer <span class="sc">\&gt;</span> <span class="in">`Make Permanent...`</span></span>
+<span id="cb2-257"><a href="#cb2-257" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Format: <span class="in">`GeoPackage`</span></span>
+<span id="cb2-258"><a href="#cb2-258" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>File name: Select or create <span class="in">`climate_data.gpkg`</span> in your <span class="in">`part1_data`</span> folder</span>
+<span id="cb2-259"><a href="#cb2-259" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Layer name: <span class="in">`climate_buildings_clipped`</span></span>
+<span id="cb2-260"><a href="#cb2-260" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Click <span class="in">`OK`</span></span>
+<span id="cb2-261"><a href="#cb2-261" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>You can now remove the original (unclipped) WFS layer to improve performance</span>
+<span id="cb2-262"><a href="#cb2-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-263"><a href="#cb2-263" aria-hidden="true" tabindex="-1"></a>    ::: callout-tip</span>
+<span id="cb2-264"><a href="#cb2-264" aria-hidden="true" tabindex="-1"></a>    ## Why clip the data?</span>
 <span id="cb2-265"><a href="#cb2-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-266"><a href="#cb2-266" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>When it comes to the extents, set them to be taken from the <span class="in">`bbox_buffered`</span> layer.</span>
-<span id="cb2-267"><a href="#cb2-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-268"><a href="#cb2-268" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Resolution: <span class="in">`0.25 m`</span> for both horizontal and vertical.</span>
-<span id="cb2-269"><a href="#cb2-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-270"><a href="#cb2-270" aria-hidden="true" tabindex="-1"></a><span class="ss">19. </span>Arrange your layers:</span>
-<span id="cb2-271"><a href="#cb2-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-272"><a href="#cb2-272" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>In the Layers panel, drag layers so the order from top to bottom is:</span>
-<span id="cb2-273"><a href="#cb2-273" aria-hidden="true" tabindex="-1"></a><span class="ss">        1.  </span><span class="in">`buurten`</span> (neighbourhood boundaries)</span>
-<span id="cb2-274"><a href="#cb2-274" aria-hidden="true" tabindex="-1"></a><span class="ss">        2.  </span>Clipped climate buildings layer</span>
-<span id="cb2-275"><a href="#cb2-275" aria-hidden="true" tabindex="-1"></a><span class="ss">        3.  </span><span class="in">`bbox_buffered`</span> (buffer outline)</span>
-<span id="cb2-276"><a href="#cb2-276" aria-hidden="true" tabindex="-1"></a><span class="ss">        4.  </span><span class="in">`Luchtfoto 2025 Ortho 25cm RGB`</span> (aerial photos - at the bottom)</span>
-<span id="cb2-277"><a href="#cb2-277" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Adjust the transparency of the buildings layer if needed (Right-click <span class="sc">\&gt;</span> <span class="in">`Properties`</span> <span class="sc">\&gt;</span> <span class="in">`Symbology`</span> <span class="sc">\&gt;</span> <span class="in">`Layer Rendering`</span> <span class="sc">\&gt;</span> adjust opacity slider)</span>
-<span id="cb2-278"><a href="#cb2-278" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Style the neighbourhood boundaries with a bold outline and no fill to see the aerial photo underneath</span>
+<span id="cb2-266"><a href="#cb2-266" aria-hidden="true" tabindex="-1"></a><span class="in">    The WFS layer contains data for all of Zuid-Holland province (thousands of buildings). Clipping reduces the dataset to only the buildings within our study area, making the data easier to work with and improving QGIS performance.</span></span>
+<span id="cb2-267"><a href="#cb2-267" aria-hidden="true" tabindex="-1"></a><span class="in">    :::</span></span>
+<span id="cb2-268"><a href="#cb2-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-269"><a href="#cb2-269" aria-hidden="true" tabindex="-1"></a><span class="ss">13. </span>Explore the layer:</span>
+<span id="cb2-270"><a href="#cb2-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-271"><a href="#cb2-271" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Zoom to your study area: right-click on <span class="in">`bbox_buffered`</span> layer <span class="sc">\&gt;</span> <span class="in">`Zoom to Layer`</span></span>
+<span id="cb2-272"><a href="#cb2-272" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Notice that buildings are vector features (polygons) you can select and query</span>
+<span id="cb2-273"><a href="#cb2-273" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Open the attribute table (right-click layer <span class="sc">\&gt;</span> <span class="in">`Open Attribute Table`</span>)</span>
+<span id="cb2-274"><a href="#cb2-274" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Explore the climate adaptation attributes, such as:</span>
+<span id="cb2-275"><a href="#cb2-275" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span><span class="in">`wateroverlast_score`</span> - Water overlay/flood risk score</span>
+<span id="cb2-276"><a href="#cb2-276" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span><span class="in">`hittestress_score`</span> - Heat stress vulnerability score\</span>
+<span id="cb2-277"><a href="#cb2-277" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span><span class="in">`groen_score`</span> - Green/biodiversity score</span>
+<span id="cb2-278"><a href="#cb2-278" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Each building has multiple climate vulnerability indicators</span>
 <span id="cb2-279"><a href="#cb2-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-280"><a href="#cb2-280" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb2-280"><a href="#cb2-280" aria-hidden="true" tabindex="-1"></a>    <span class="al">![Figure 7 - Attribute table of clipped climate buildings layer showing various climate risk scores for individual buildings](using_data_source_manager/fig%207.png)</span></span>
 <span id="cb2-281"><a href="#cb2-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-282"><a href="#cb2-282" aria-hidden="true" tabindex="-1"></a><span class="fu">## Recap</span></span>
+<span id="cb2-282"><a href="#cb2-282" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 3: Connecting to WMS for Background Imagery</span></span>
 <span id="cb2-283"><a href="#cb2-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-284"><a href="#cb2-284" aria-hidden="true" tabindex="-1"></a>**What you've learned:**</span>
+<span id="cb2-284"><a href="#cb2-284" aria-hidden="true" tabindex="-1"></a>**What is WMS?** WMS provides access to pre-rendered map images - like a background map. You cannot query individual features, but it loads faster for large areas.</span>
 <span id="cb2-285"><a href="#cb2-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-286"><a href="#cb2-286" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>The **Data Source Manager** is your central hub for connecting to external data sources in QGIS</span>
-<span id="cb2-287"><a href="#cb2-287" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**WFS** provides vector data that you can style, query, and analyze - great for operational data and spatial analysis</span>
-<span id="cb2-288"><a href="#cb2-288" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**WMS** provides raster map images - great for background maps and visualization</span>
-<span id="cb2-289"><a href="#cb2-289" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How to use the **PDOK Services Plugin** to easily access Dutch open geospatial data</span>
-<span id="cb2-290"><a href="#cb2-290" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Basic **geoprocessing workflows**: selection, dissolve, buffer, and clip operations</span>
-<span id="cb2-291"><a href="#cb2-291" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How to organize and save multiple layers in a **GeoPackage** for efficient data management</span>
-<span id="cb2-292"><a href="#cb2-292" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Dutch **PDOK** (Publieke Dienstverlening Op de Kaart) offers free, reliable geospatial web services</span>
-<span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Provincial and municipal data portals (like Zuid-Holland) provide specialized datasets</span>
-<span id="cb2-294"><a href="#cb2-294" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Saved connections can be reused in future projects</span>
+<span id="cb2-286"><a href="#cb2-286" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
+<span id="cb2-287"><a href="#cb2-287" aria-hidden="true" tabindex="-1"></a><span class="fu">## Important: Optimize WMS Loading</span></span>
+<span id="cb2-288"><a href="#cb2-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-289"><a href="#cb2-289" aria-hidden="true" tabindex="-1"></a>Before retrieving the WMS layer, you should first **zoom to the study area** by right-clicking the <span class="in">`bbox_buffered`</span> layer and selecting <span class="in">`Zoom to Layer(s)`</span>. This ensures QGIS only requests tiles for your area of interest, reducing download time and file size.</span>
+<span id="cb2-290"><a href="#cb2-290" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-291"><a href="#cb2-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-292"><a href="#cb2-292" aria-hidden="true" tabindex="-1"></a><span class="ss">14. </span>Open the **Data Source Manager** again (<span class="in">`Ctrl+L`</span>)</span>
+<span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-294"><a href="#cb2-294" aria-hidden="true" tabindex="-1"></a><span class="ss">15. </span>Select the **WMS / WMTS** tab on the left</span>
 <span id="cb2-295"><a href="#cb2-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a>**Key differences between WFS and WMS:**</span>
+<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a><span class="ss">16. </span>Create a new WMS connection:</span>
 <span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-298"><a href="#cb2-298" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Feature          <span class="pp">|</span> WFS               <span class="pp">|</span> WMS             <span class="pp">|</span></span>
-<span id="cb2-299"><a href="#cb2-299" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------|-------------------|-----------------|</span></span>
-<span id="cb2-300"><a href="#cb2-300" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Data type        <span class="pp">|</span> Vector (features) <span class="pp">|</span> Raster (images) <span class="pp">|</span></span>
-<span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> File size        <span class="pp">|</span> Can be large      <span class="pp">|</span> Smaller         <span class="pp">|</span></span>
-<span id="cb2-302"><a href="#cb2-302" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Queryable        <span class="pp">|</span> Yes               <span class="pp">|</span> No              <span class="pp">|</span></span>
-<span id="cb2-303"><a href="#cb2-303" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Stylable in QGIS <span class="pp">|</span> Yes               <span class="pp">|</span> Limited         <span class="pp">|</span></span>
-<span id="cb2-304"><a href="#cb2-304" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Best for         <span class="pp">|</span> Analysis, editing <span class="pp">|</span> Background maps <span class="pp">|</span></span>
+<span id="cb2-298"><a href="#cb2-298" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`New`</span> to create a new connection</span>
+<span id="cb2-299"><a href="#cb2-299" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Name:** PDOK Aerial Photos</span>
+<span id="cb2-300"><a href="#cb2-300" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**URL:** <span class="in">`https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&amp;service=wmts`</span></span>
+<span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Leave other settings at default</span>
+<span id="cb2-302"><a href="#cb2-302" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`OK`</span></span>
+<span id="cb2-303"><a href="#cb2-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-304"><a href="#cb2-304" aria-hidden="true" tabindex="-1"></a><span class="ss">17. </span>Load a WMTS layer:</span>
 <span id="cb2-305"><a href="#cb2-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-306"><a href="#cb2-306" aria-hidden="true" tabindex="-1"></a>**Useful Dutch Data Portals:**</span>
-<span id="cb2-307"><a href="#cb2-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-308"><a href="#cb2-308" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**PDOK:** https://www.pdok.nl/ (national geospatial infrastructure)</span>
-<span id="cb2-309"><a href="#cb2-309" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Data.overheid.nl:** Open data from Dutch government</span>
-<span id="cb2-310"><a href="#cb2-310" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Nationaal Georegister:** https://www.nationaalgeoregister.nl/ (search for geospatial services)</span>
-<span id="cb2-311"><a href="#cb2-311" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Most Dutch provinces and municipalities also offer their own WFS/WMS services</span>
+<span id="cb2-306"><a href="#cb2-306" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Select the "PDOK Aerial Photos" connection and click <span class="in">`Connect`</span></span>
+<span id="cb2-307"><a href="#cb2-307" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Wait for available layers to load</span>
+<span id="cb2-308"><a href="#cb2-308" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Find and select <span class="in">`Luchtfoto 2025 Ortho 25cm RGB`</span> (current high-resolution 25cm aerial photos)</span>
+<span id="cb2-309"><a href="#cb2-309" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Important:** In the "Coordinate Reference System" section, select <span class="in">`EPSG:28992`</span> from the dropdown</span>
+<span id="cb2-310"><a href="#cb2-310" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Add`</span></span>
+<span id="cb2-311"><a href="#cb2-311" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Close`</span></span>
 <span id="cb2-312"><a href="#cb2-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-313"><a href="#cb2-313" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb2-314"><a href="#cb2-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-315"><a href="#cb2-315" aria-hidden="true" tabindex="-1"></a><span class="fu">## Extension Activities (Optional)</span></span>
-<span id="cb2-316"><a href="#cb2-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-317"><a href="#cb2-317" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Explore other PDOK services at https://www.pdok.nl/datasets</span>
-<span id="cb2-318"><a href="#cb2-318" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Try filtering WFS layers using the Data Source Manager's "SQL" or "Filter" options</span>
-<span id="cb2-319"><a href="#cb2-319" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Analyze the climate adaptation scores in your selected Rotterdam neighbourhoods</span>
-<span id="cb2-320"><a href="#cb2-320" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Compare different neighbourhoods' vulnerability to heat, water, or biodiversity loss</span>
-<span id="cb2-321"><a href="#cb2-321" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Add the RIVM Energy Labels WMS (<span class="in">`https://data.rivm.nl/geo/nl/wms?request=GetCapabilities`</span>, layer <span class="in">`rvo_energielabels`</span>) to see building energy performance</span>
-<span id="cb2-322"><a href="#cb2-322" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Create a styled map showing the relationship between neighbourhood characteristics and climate risks</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb2-313"><a href="#cb2-313" aria-hidden="true" tabindex="-1"></a>    ::: callout-note</span>
+<span id="cb2-314"><a href="#cb2-314" aria-hidden="true" tabindex="-1"></a>    ## WMTS vs WMS</span>
+<span id="cb2-315"><a href="#cb2-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-316"><a href="#cb2-316" aria-hidden="true" tabindex="-1"></a><span class="in">    WMTS (Web Map Tile Service) is a variant of WMS that serves pre-generated map tiles, making it faster for viewing at standard zoom levels.</span></span>
+<span id="cb2-317"><a href="#cb2-317" aria-hidden="true" tabindex="-1"></a><span class="in">    :::</span></span>
+<span id="cb2-318"><a href="#cb2-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-319"><a href="#cb2-319" aria-hidden="true" tabindex="-1"></a><span class="ss">18. </span>Save a local copy of the orthophoto:</span>
+<span id="cb2-320"><a href="#cb2-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-321"><a href="#cb2-321" aria-hidden="true" tabindex="-1"></a>    This step saves the aerial imagery as a permanent file that you can use offline and in future projects.</span>
+<span id="cb2-322"><a href="#cb2-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-323"><a href="#cb2-323" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Select the orthophoto layer in the Layers panel</span>
+<span id="cb2-324"><a href="#cb2-324" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Right-click on it and choose <span class="in">`Export`</span> <span class="sc">\&gt;</span> <span class="in">`Save As...`</span></span>
+<span id="cb2-325"><a href="#cb2-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-326"><a href="#cb2-326" aria-hidden="true" tabindex="-1"></a>    In the resulting dialog, set the following parameters:</span>
+<span id="cb2-327"><a href="#cb2-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-328"><a href="#cb2-328" aria-hidden="true" tabindex="-1"></a><span class="in">    -   **Output mode:** `Rendered image` (this saves what you see on screen)</span></span>
+<span id="cb2-329"><a href="#cb2-329" aria-hidden="true" tabindex="-1"></a><span class="in">    -   **Format:** `GeoTIFF`</span></span>
+<span id="cb2-330"><a href="#cb2-330" aria-hidden="true" tabindex="-1"></a><span class="in">    -   **Important:** Uncheck "Create VRT" (we want a standard GeoTIFF file, not a virtual raster)</span></span>
+<span id="cb2-331"><a href="#cb2-331" aria-hidden="true" tabindex="-1"></a><span class="in">    -   **File name:** Click `...` and navigate to the `\part1_data\raster` folder (create it if it doesn't exist)</span></span>
+<span id="cb2-332"><a href="#cb2-332" aria-hidden="true" tabindex="-1"></a><span class="in">        -   Name the file: `ortho_25cm.tif`</span></span>
+<span id="cb2-333"><a href="#cb2-333" aria-hidden="true" tabindex="-1"></a><span class="in">    -   **CRS:** `EPSG:28992` (should already be set)</span></span>
+<span id="cb2-334"><a href="#cb2-334" aria-hidden="true" tabindex="-1"></a><span class="in">    -   **Extent:** Click the dropdown and select `Calculate from Layer` \&gt; `bbox_buffered`</span></span>
+<span id="cb2-335"><a href="#cb2-335" aria-hidden="true" tabindex="-1"></a><span class="in">        -   This ensures you only save imagery for your study area</span></span>
+<span id="cb2-336"><a href="#cb2-336" aria-hidden="true" tabindex="-1"></a><span class="in">    -   **Resolution:**</span></span>
+<span id="cb2-337"><a href="#cb2-337" aria-hidden="true" tabindex="-1"></a><span class="in">        -   Horizontal: `0.25` (meters per pixel)</span></span>
+<span id="cb2-338"><a href="#cb2-338" aria-hidden="true" tabindex="-1"></a><span class="in">        -   Vertical: `0.25` (meters per pixel)</span></span>
+<span id="cb2-339"><a href="#cb2-339" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Click `OK` to start the export</span></span>
+<span id="cb2-340"><a href="#cb2-340" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Wait for the export to complete (this may take 1-2 minutes depending on the area size)</span></span>
+<span id="cb2-341"><a href="#cb2-341" aria-hidden="true" tabindex="-1"></a><span class="in">    -   The saved GeoTIFF will be automatically added to your map</span></span>
+<span id="cb2-342"><a href="#cb2-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-343"><a href="#cb2-343" aria-hidden="true" tabindex="-1"></a><span class="in">    ::: callout-tip</span></span>
+<span id="cb2-344"><a href="#cb2-344" aria-hidden="true" tabindex="-1"></a><span class="in">    ## Understanding Resolution</span></span>
+<span id="cb2-345"><a href="#cb2-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-346"><a href="#cb2-346" aria-hidden="true" tabindex="-1"></a><span class="in">    The 0.25m resolution means each pixel in the saved image represents 25cm × 25cm on the ground. This matches the native resolution of the PDOK aerial photos, ensuring no quality loss.</span></span>
+<span id="cb2-347"><a href="#cb2-347" aria-hidden="true" tabindex="-1"></a><span class="in">    :::</span></span>
+<span id="cb2-348"><a href="#cb2-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-349"><a href="#cb2-349" aria-hidden="true" tabindex="-1"></a><span class="in">    ![Figure 8 - Export Raster dialog showing proper settings for saving the aerial photo with correct extent and resolution](using_data_source_manager/fig%208.png)</span></span>
+<span id="cb2-350"><a href="#cb2-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-351"><a href="#cb2-351" aria-hidden="true" tabindex="-1"></a><span class="ss">19. </span>Arrange your layers for optimal visualization:</span>
+<span id="cb2-352"><a href="#cb2-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-353"><a href="#cb2-353" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>In the Layers panel, drag layers to arrange them in this order from **top to bottom**:</span>
+<span id="cb2-354"><a href="#cb2-354" aria-hidden="true" tabindex="-1"></a><span class="ss">        1.  </span><span class="in">`buurten`</span> (neighbourhood boundaries - should be visible as outlines)</span>
+<span id="cb2-355"><a href="#cb2-355" aria-hidden="true" tabindex="-1"></a><span class="ss">        2.  </span><span class="in">`climate_buildings_clipped`</span> (climate data polygons)</span>
+<span id="cb2-356"><a href="#cb2-356" aria-hidden="true" tabindex="-1"></a><span class="ss">        3.  </span><span class="in">`bbox_buffered`</span> (buffer outline - optional, can be hidden)</span>
+<span id="cb2-357"><a href="#cb2-357" aria-hidden="true" tabindex="-1"></a><span class="ss">        4.  </span><span class="in">`ortho_25cm.tif`</span> or the WMTS aerial photo layer (**at the bottom** as background)</span>
+<span id="cb2-358"><a href="#cb2-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-359"><a href="#cb2-359" aria-hidden="true" tabindex="-1"></a>    **Style adjustments:**</span>
+<span id="cb2-360"><a href="#cb2-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-361"><a href="#cb2-361" aria-hidden="true" tabindex="-1"></a><span class="in">    -   **Neighbourhood boundaries (`buurten`):**</span></span>
+<span id="cb2-362"><a href="#cb2-362" aria-hidden="true" tabindex="-1"></a><span class="in">        -   Right-click \&gt; `Properties` \&gt; `Symbology`</span></span>
+<span id="cb2-363"><a href="#cb2-363" aria-hidden="true" tabindex="-1"></a><span class="in">        -   Set fill to "Simple fill"</span></span>
+<span id="cb2-364"><a href="#cb2-364" aria-hidden="true" tabindex="-1"></a><span class="in">        -   Fill style: `No Brush` (transparent)</span></span>
+<span id="cb2-365"><a href="#cb2-365" aria-hidden="true" tabindex="-1"></a><span class="in">        -   Stroke color: Red or dark blue</span></span>
+<span id="cb2-366"><a href="#cb2-366" aria-hidden="true" tabindex="-1"></a><span class="in">        -   Stroke width: 0.5 - 1.0 mm</span></span>
+<span id="cb2-367"><a href="#cb2-367" aria-hidden="true" tabindex="-1"></a><span class="in">    -   **Climate buildings:**</span></span>
+<span id="cb2-368"><a href="#cb2-368" aria-hidden="true" tabindex="-1"></a><span class="in">        -   Adjust transparency: Right-click \&gt; `Properties` \&gt; `Symbology` \&gt; `Layer Rendering` tab</span></span>
+<span id="cb2-369"><a href="#cb2-369" aria-hidden="true" tabindex="-1"></a><span class="in">        -   Set opacity to 70-80% so you can see the aerial photo underneath</span></span>
+<span id="cb2-370"><a href="#cb2-370" aria-hidden="true" tabindex="-1"></a><span class="in">        -   Optionally, style by climate scores using categorized or graduated symbology</span></span>
+<span id="cb2-371"><a href="#cb2-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-372"><a href="#cb2-372" aria-hidden="true" tabindex="-1"></a><span class="in">    ![Figure 9 - Final map view showing neighbourhood boundaries, climate data, and aerial imagery properly layered with appropriate transparency](using_data_source_manager/fig%209.png)</span></span>
+<span id="cb2-373"><a href="#cb2-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-374"><a href="#cb2-374" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb2-375"><a href="#cb2-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-376"><a href="#cb2-376" aria-hidden="true" tabindex="-1"></a><span class="fu">## Recap</span></span>
+<span id="cb2-377"><a href="#cb2-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-378"><a href="#cb2-378" aria-hidden="true" tabindex="-1"></a>**What you've learned:**</span>
+<span id="cb2-379"><a href="#cb2-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-380"><a href="#cb2-380" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>The **Data Source Manager** is your central hub for connecting to external data sources in QGIS</span>
+<span id="cb2-381"><a href="#cb2-381" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**WFS** provides vector data that you can style, query, and analyze - great for operational data and spatial analysis</span>
+<span id="cb2-382"><a href="#cb2-382" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**WMS/WMTS** provides raster map images - great for background maps and visualization</span>
+<span id="cb2-383"><a href="#cb2-383" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How to use the **PDOK Services Plugin** to easily access Dutch open geospatial data</span>
+<span id="cb2-384"><a href="#cb2-384" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Basic **geoprocessing workflows**: selection, dissolve, buffer, clip, and extract extent operations</span>
+<span id="cb2-385"><a href="#cb2-385" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How to organize and save multiple layers in a **GeoPackage** for efficient data management</span>
+<span id="cb2-386"><a href="#cb2-386" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How to **export and save WMS/WMTS imagery** as permanent GeoTIFF files</span>
+<span id="cb2-387"><a href="#cb2-387" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Dutch **PDOK** (Publieke Dienstverlening Op de Kaart) offers free, reliable geospatial web services</span>
+<span id="cb2-388"><a href="#cb2-388" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Provincial and municipal data portals (like Zuid-Holland) provide specialized datasets</span>
+<span id="cb2-389"><a href="#cb2-389" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Saved connections can be reused in future projects</span>
+<span id="cb2-390"><a href="#cb2-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-391"><a href="#cb2-391" aria-hidden="true" tabindex="-1"></a>**Key differences between WFS and WMS:**</span>
+<span id="cb2-392"><a href="#cb2-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-393"><a href="#cb2-393" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Feature          <span class="pp">|</span> WFS               <span class="pp">|</span> WMS/WMTS        <span class="pp">|</span></span>
+<span id="cb2-394"><a href="#cb2-394" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------|-------------------|-----------------|</span></span>
+<span id="cb2-395"><a href="#cb2-395" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Data type        <span class="pp">|</span> Vector (features) <span class="pp">|</span> Raster (images) <span class="pp">|</span></span>
+<span id="cb2-396"><a href="#cb2-396" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> File size        <span class="pp">|</span> Can be large      <span class="pp">|</span> Smaller         <span class="pp">|</span></span>
+<span id="cb2-397"><a href="#cb2-397" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Queryable        <span class="pp">|</span> Yes               <span class="pp">|</span> No              <span class="pp">|</span></span>
+<span id="cb2-398"><a href="#cb2-398" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Stylable in QGIS <span class="pp">|</span> Yes               <span class="pp">|</span> Limited         <span class="pp">|</span></span>
+<span id="cb2-399"><a href="#cb2-399" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Best for         <span class="pp">|</span> Analysis, editing <span class="pp">|</span> Background maps <span class="pp">|</span></span>
+<span id="cb2-400"><a href="#cb2-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-401"><a href="#cb2-401" aria-hidden="true" tabindex="-1"></a>**Useful Dutch Data Portals:**</span>
+<span id="cb2-402"><a href="#cb2-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-403"><a href="#cb2-403" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**PDOK:** https://www.pdok.nl/ (national geospatial infrastructure)</span>
+<span id="cb2-404"><a href="#cb2-404" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Data.overheid.nl:** Open data from Dutch government</span>
+<span id="cb2-405"><a href="#cb2-405" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Nationaal Georegister:** https://www.nationaalgeoregister.nl/ (search for geospatial services)</span>
+<span id="cb2-406"><a href="#cb2-406" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Most Dutch provinces and municipalities also offer their own WFS/WMS services</span>
+<span id="cb2-407"><a href="#cb2-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-408"><a href="#cb2-408" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb2-409"><a href="#cb2-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-410"><a href="#cb2-410" aria-hidden="true" tabindex="-1"></a><span class="fu">## Extension Activities (Optional)</span></span>
+<span id="cb2-411"><a href="#cb2-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-412"><a href="#cb2-412" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Explore other PDOK services at <span class="ot">&lt;https://www.pdok.nl/datasets&gt;</span></span>
+<span id="cb2-413"><a href="#cb2-413" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Try filtering WFS layers using the Data Source Manager's "SQL" or "Filter" options before loading</span>
+<span id="cb2-414"><a href="#cb2-414" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Analyze the climate adaptation scores in your selected Rotterdam and Schiedam neighbourhoods</span>
+<span id="cb2-415"><a href="#cb2-415" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Compare different neighbourhoods' vulnerability to heat, water, or biodiversity loss using statistics</span>
+<span id="cb2-416"><a href="#cb2-416" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Add the RIVM Energy Labels WMS (<span class="in">`https://data.rivm.nl/geo/nl/wms?request=GetCapabilities`</span>, layer <span class="in">`rvo_energielabels`</span>) to see building energy performance ratings</span>
+<span id="cb2-417"><a href="#cb2-417" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Create a styled thematic map showing the relationship between neighbourhood characteristics and climate risks</span>
+<span id="cb2-418"><a href="#cb2-418" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Calculate summary statistics (mean, max, min) of climate scores by neighbourhood</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
