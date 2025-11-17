@@ -184,10 +184,14 @@ For most historical maps, **Polynomial 1st or 2nd order** works well.
 
 Precise georeferencing with 2 control points: Once the image is roughly positioned, you need to use the "Georeference raster with 2 Points" tool for precise alignment. This tool allows you to combine move, rotate, and uniform scale to georeference using 2 points that are identified in both the background layers and the raster to georeference.
 
-::: callout-note How the 2-Point Tool Works
+::: callout-note
+## How the 2-Point Tool Works
 
-Point 1: Moves the entire raster to align this point Point 2: Rotates and scales the raster around point 1 to align this second point This is sufficient for maps that don't have complex distortions
+-   Point 1: Moves the entire raster to align this point
 
+<!-- -->
+
+-   Point 2: Rotates and scales the raster around point 1 to align this second point This is sufficient for maps that don't have complex distortions
 :::
 
 Steps:
