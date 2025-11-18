@@ -22,8 +22,9 @@ By the end of this tutorial, you will be able to:
 
 **Software:** - QGIS (version 3.x or higher) - Web browser with internet access - RAWGraphs 2.0: https://app.rawgraphs.io/
 
-**Data files:** - `buildings.gpkg` - Rotterdam building footprints with function data - `buurten.gpkg` - Rotterdam neighborhoods (buurten)
-
+**Data files:**
+- `buildings.gpkg` - Rotterdam building footprints with function data
+- `buurten.gpkg` - Rotterdam neighborhoods (buurten)
 ------------------------------------------------------------------------
 
 ## Part 1: Preparing Building Function Data
@@ -33,7 +34,7 @@ By the end of this tutorial, you will be able to:
 1.  **Start QGIS** and create a new project
 2.  **Set the CRS** to EPSG:28992 (Amersfoort / RD New - Dutch national grid)
 3.  **Load the layers:**
-    -   Add `buildings.gpkg`
+    -   Add `buildings.gpkg` stored in the `part3_data/vector` folder
     -   Add `buurten.gpkg` (You have created this file in the first exercise - [using data source manager](using_data_source_manager.qmd)))
 
 ![Figure 1 - Loaded building and neighborhood layers](statistics_and_data_visualization/fig%201.png)
@@ -312,7 +313,7 @@ This creates unique groups for each neighborhood-function combination.
 
     -   Each row = one function type in one neighborhood with count, total area, and size statistics
 
-        ![](statistics_and_data_visualization/fig x3.png)
+        ![](statistics_and_data_visualization/fig%20x3.png)
 
 ------------------------------------------------------------------------
 
@@ -336,7 +337,7 @@ This creates unique groups for each neighborhood-function combination.
         -   ☑ `avg_area_m2`
         -   Uncheck `fid` and other unnecessary fields
 
-![Figure 10 - Export CSV configuration](statistics_and_data_visualization/fig 10.png)
+![Figure 10 - Export CSV configuration](statistics_and_data_visualization/fig%2010.png)
 
 3.  Click **OK**
 
@@ -348,7 +349,7 @@ This creates unique groups for each neighborhood-function combination.
 
     -   Verify data looks correct
 
-        ![](statistics_and_data_visualization/fig x4.png)
+        ![](statistics_and_data_visualization/fig%20x4.png)
 
 ### Step 5.2: Create Visualizations in RAWGraphs
 
@@ -367,7 +368,7 @@ This creates unique groups for each neighborhood-function combination.
     -   **Color scheme:** Choose a categorical palette
 6.  **Export:** Download as SVG
 
-![Figure 11 - Bar chart of building counts by function](statistics_and_data_visualization/fig 11.png)
+![Figure 11 - Bar chart of building counts by function](statistics_and_data_visualization/fig%2011.png)
 
 #### Visualization 2: Treemap - Area Distribution
 
@@ -386,7 +387,7 @@ This creates unique groups for each neighborhood-function combination.
     -   Enable/disable labels based on size
 5.  **Export:** Download as SVG
 
-![Figure 12 - Treemap showing area distribution](statistics_and_data_visualization/fig 12.png)
+![Figure 12 - Treemap showing area distribution](statistics_and_data_visualization/fig%2012.png)
 
 #### Visualization 3: Grouped Bar Chart - Compare Neighborhoods
 
