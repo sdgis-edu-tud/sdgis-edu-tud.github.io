@@ -5,11 +5,6 @@ execute:
   fig-path: "pages/misc/georeferencing_and_digitizing/"
 ---
 
----
-title: "Georeferencing and Digitizing Historical Maps"
-format: html
----
-
 **Duration:** 30-40 minutes
 
 ------------------------------------------------------------------------
@@ -308,7 +303,7 @@ Now that your map is georeferenced, you can extract information by digitizing ve
         -   **Name:** `notes` \| Type: `String` \| Length: 100
     -   Click `OK` to create the layer
 
-    ![Figure 6 - Creating a new vector layer for digitizing](georeferencing_and_digitizing/fig 5.png)
+    ![Figure 6 - Creating a new vector layer for digitizing](georeferencing_and_digitizing/fig%205.png)
 
 17. **Identify the three perimeters to digitize:**
 
@@ -342,7 +337,7 @@ The georeferenced map shows "**Woningbouwontwikkelingen in beschermingszone: rek
     -   Press `Esc` to cancel the current feature
     -   Enable snapping (`Settings` \> `Snapping Options`) to connect features precisely
 
-    ![Figure 7 - Digitizing building polygons](georeferencing_and_digitizing/fig 6.png)
+    ![Figure 7 - Digitizing building polygons](georeferencing_and_digitizing/fig%206.png)
 
 18. **Digitize multiple features:**
 
@@ -363,7 +358,7 @@ The georeferenced map shows "**Woningbouwontwikkelingen in beschermingszone: rek
     -   Click `Toggle Editing` again to stop editing
     -   Your digitized features are now permanently saved in the GeoPackage
 
-    ![Figure 8 - Completed digitized buildings](georeferencing_and_digitizing/fig 7.png)
+    ![Figure 8 - Completed digitized buildings](georeferencing_and_digitizing/fig%207.png)
 
 ### Part 5: Analysis and Comparison (Optional)
 

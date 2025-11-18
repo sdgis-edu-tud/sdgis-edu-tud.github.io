@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Georeferencing and Digitizing Historical Maps – sdgistud</title>
+<title>Georeferencing and Digitizing – sdgistud</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -438,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Georeferencing and Digitizing Historical Maps</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Georeferencing and Digitizing</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -1515,457 +1515,452 @@ Problem: High residual errors on specific points
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">  fig-path: "pages/misc/georeferencing_and_digitizing/"</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>title: "Georeferencing and Digitizing Historical Maps"</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>format: html</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>**Duration:** 30-40 minutes</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>**Duration:** 30-40 minutes</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning Goals</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>By the end of this tutorial, you will be able to:</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning Goals</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>By the end of this tutorial, you will be able to:</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Install and use the Freehand Raster Georeferencer plugin</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Georeference a scanned map or image to real-world coordinates</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Use control points to align historical maps with current data</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Digitize vector features (points, lines, polygons) from georeferenced maps</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Create and edit vector layers with proper attributes</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Understand transformation types and their appropriate uses</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Software and Data Required</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**QGIS** (version 3.x or higher)</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Freehand Raster Georeferencer** plugin</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Active internet connection (for PDOK aerial photos)</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Data files:**</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`buurten.gpkg`</span> (from previous exercise with Rotterdam neighbourhoods)</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`print.jpg`</span> (historical map or plan to be georeferenced)</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>**Georeferencing** is the process of assigning real-world coordinates to a scanned map, aerial photo, or any image that doesn't have spatial reference information. This is essential when working with historical maps, old plans, paper maps, or any non-digital cartographic material.</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>**Digitizing** is the process of tracing features from a georeferenced image to create vector data (points, lines, or polygons). This allows you to extract information from maps and make it usable for spatial analysis.</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Install and use the Freehand Raster Georeferencer plugin</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Georeference a scanned map or image to real-world coordinates</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Use control points to align historical maps with current data</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Digitize vector features (points, lines, polygons) from georeferenced maps</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Create and edit vector layers with proper attributes</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Understand transformation types and their appropriate uses</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Software and Data Required</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**QGIS** (version 3.x or higher)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Freehand Raster Georeferencer** plugin</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Active internet connection (for PDOK aerial photos)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Data files:**</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`buurten.gpkg`</span> (from previous exercise with Rotterdam neighbourhoods)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="in">`print.jpg`</span> (historical map or plan to be georeferenced)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>**Georeferencing** is the process of assigning real-world coordinates to a scanned map, aerial photo, or any image that doesn't have spatial reference information. This is essential when working with historical maps, old plans, paper maps, or any non-digital cartographic material.</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>**Digitizing** is the process of tracing features from a georeferenced image to create vector data (points, lines, or polygons). This allows you to extract information from maps and make it usable for spatial analysis.</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>In this tutorial, you'll georeference a historical map of part of Rotterdam and digitize features from it, comparing them with current aerial imagery.</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## What is Georeferencing?</span></span>
 <span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>In this tutorial, you'll georeference a historical map of part of Rotterdam and digitize features from it, comparing them with current aerial imagery.</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="fu">## What is Georeferencing?</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>Georeferencing links the pixels of a raster image to real-world geographic coordinates. You do this by identifying **Ground Control Points (GCPs)** - locations that you can identify both on your unreferenced image and on a georeferenced map or layer. QGIS then uses these points to calculate a mathematical transformation that warps your image to fit the coordinate system.</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Types of Transformations</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>Georeferencing links the pixels of a raster image to real-world geographic coordinates. You do this by identifying **Ground Control Points (GCPs)** - locations that you can identify both on your unreferenced image and on a georeferenced map or layer. QGIS then uses these points to calculate a mathematical transformation that warps your image to fit the coordinate system.</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## Types of Transformations</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Linear**: Requires 3+ points. Simple scaling, rotation, and translation. Good for maps that are already fairly accurate.</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Helmert**: Requires 2+ points. Preserves angles and scale uniformity. Good for scanned maps.</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Polynomial (1st, 2nd, 3rd order)**: Requires increasing numbers of points (6, 10, 15+). Can handle more complex distortions. Higher orders can introduce warping artifacts.</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Thin Plate Spline (TPS)**: Requires 10+ points. Flexible local warping. Good for maps with local distortions.</span>
 <span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Linear**: Requires 3+ points. Simple scaling, rotation, and translation. Good for maps that are already fairly accurate.</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Helmert**: Requires 2+ points. Preserves angles and scale uniformity. Good for scanned maps.</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Polynomial (1st, 2nd, 3rd order)**: Requires increasing numbers of points (6, 10, 15+). Can handle more complex distortions. Higher orders can introduce warping artifacts.</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Thin Plate Spline (TPS)**: Requires 10+ points. Flexible local warping. Good for maps with local distortions.</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>For most historical maps, **Polynomial 1st or 2nd order** works well.</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>For most historical maps, **Polynomial 1st or 2nd order** works well.</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="fu">## Steps</span></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 1: Setting Up Your Project</span></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Install the Freehand Raster Georeferencer plugin:**</span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Plugins`</span> <span class="sc">\&gt;</span> <span class="in">`Manage and Install Plugins...`</span></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click on the <span class="in">`All`</span> tab</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Search for "Freehand raster georeferencer"</span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Select the plugin and click <span class="in">`Install Plugin`</span></span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Close`</span></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>    ::: callout-note</span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    The Freehand Raster Georeferencer plugin provides an interactive way to georeference images directly in the QGIS map canvas, making it easier to align your image with reference data in real-time.</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>    :::</span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Start a new QGIS project:**</span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Project`</span> <span class="sc">\&gt;</span> <span class="in">`New`</span> (or press Ctrl+N)</span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Save your project immediately: <span class="in">`Project`</span> <span class="sc">\&gt;</span> <span class="in">`Save As...`</span></span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Name it <span class="in">`georeferencing_exercise.qgz`</span> in your working folder</span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Set the project CRS:**</span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Project`</span> <span class="sc">\&gt;</span> <span class="in">`Properties`</span> <span class="sc">\&gt;</span> <span class="in">`CRS`</span></span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Set to **EPSG:28992** (Amersfoort / RD New - Dutch coordinate system)</span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`OK`</span></span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 2: Loading Reference Data</span></span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Import neighbourhood boundaries:**</span>
-<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Layer`</span> <span class="sc">\&gt;</span> <span class="in">`Add Layer`</span> <span class="sc">\&gt;</span> <span class="in">`Add Vector Layer...`</span></span>
-<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click the <span class="in">`...`</span> button next to "Vector Dataset(s)"</span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Navigate to your <span class="in">`part1_data`</span> folder and select <span class="in">`buurten.gpkg`</span></span>
-<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Select the <span class="in">`buurten`</span> layer (the individual neighbourhoods, not dissolved)</span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Add`</span> then <span class="in">`Close`</span></span>
-<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Style this layer with a transparent fill and a visible boundary (e.g., red outline, 0.5mm width)</span>
-<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**Import orthophoto (aerial imagery):**</span>
-<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>    You have two options:</span>
-<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>    **Option A: Use locally saved orthophoto** (if you exported one in the previous exercise)</span>
-<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Layer`</span> <span class="sc">\&gt;</span> <span class="in">`Add Layer`</span> <span class="sc">\&gt;</span> <span class="in">`Add Raster Layer...`</span></span>
-<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Navigate to your exported orthophoto file</span>
-<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Add`</span></span>
-<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>    **Option B: Import from PDOK** (recommended for this exercise)</span>
-<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Open the **Data Source Manager** (Ctrl+L)</span></span>
-<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Select the **WMS / WMTS** tab</span></span>
-<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="in">    -   If you already have the PDOK Aerial Photos connection from the previous exercise, select it</span></span>
-<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a><span class="in">    -   If not, create a new connection:</span></span>
-<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="in">        -   Click `New`</span></span>
-<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a><span class="in">        -   **Name:** PDOK Aerial Photos</span></span>
-<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a><span class="in">        -   **URL:** `https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0`</span></span>
-<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a><span class="in">        -   Click `OK`</span></span>
-<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Select the connection and click `Connect`</span></span>
-<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Select the `Actueel_orthoHR` layer</span></span>
-<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Click `Add` then `Close`</span></span>
-<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>**Arrange your reference layers:**</span>
-<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>In the Layers panel, ensure the order is:</span>
-<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a><span class="ss">        1.  </span><span class="in">`buurten`</span> (on top)</span>
-<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a><span class="ss">        2.  </span>Aerial photo (at bottom)</span>
-<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Zoom to the extent of your Rotterdam neighbourhoods</span>
-<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>This will be your reference for georeferencing</span>
-<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a>    <span class="al">![Figure 1 - Reference layers: boundaries and aerial photo](georeferencing_and_digitizing/fig%201.png)</span></span>
-<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 3: Georeferencing with Freehand Raster Georeferencer</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="fu">## Steps</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 1: Setting Up Your Project</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Install the Freehand Raster Georeferencer plugin:**</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Plugins`</span> <span class="sc">\&gt;</span> <span class="in">`Manage and Install Plugins...`</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click on the <span class="in">`All`</span> tab</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Search for "Freehand raster georeferencer"</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Select the plugin and click <span class="in">`Install Plugin`</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Close`</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    ::: callout-note</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>    The Freehand Raster Georeferencer plugin provides an interactive way to georeference images directly in the QGIS map canvas, making it easier to align your image with reference data in real-time.</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    :::</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Start a new QGIS project:**</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Project`</span> <span class="sc">\&gt;</span> <span class="in">`New`</span> (or press Ctrl+N)</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Save your project immediately: <span class="in">`Project`</span> <span class="sc">\&gt;</span> <span class="in">`Save As...`</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Name it <span class="in">`georeferencing_exercise.qgz`</span> in your working folder</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Set the project CRS:**</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Project`</span> <span class="sc">\&gt;</span> <span class="in">`Properties`</span> <span class="sc">\&gt;</span> <span class="in">`CRS`</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Set to **EPSG:28992** (Amersfoort / RD New - Dutch coordinate system)</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`OK`</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 2: Loading Reference Data</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Import neighbourhood boundaries:**</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Layer`</span> <span class="sc">\&gt;</span> <span class="in">`Add Layer`</span> <span class="sc">\&gt;</span> <span class="in">`Add Vector Layer...`</span></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click the <span class="in">`...`</span> button next to "Vector Dataset(s)"</span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Navigate to your <span class="in">`part1_data`</span> folder and select <span class="in">`buurten.gpkg`</span></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Select the <span class="in">`buurten`</span> layer (the individual neighbourhoods, not dissolved)</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Add`</span> then <span class="in">`Close`</span></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Style this layer with a transparent fill and a visible boundary (e.g., red outline, 0.5mm width)</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**Import orthophoto (aerial imagery):**</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>    You have two options:</span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>    **Option A: Use locally saved orthophoto** (if you exported one in the previous exercise)</span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Layer`</span> <span class="sc">\&gt;</span> <span class="in">`Add Layer`</span> <span class="sc">\&gt;</span> <span class="in">`Add Raster Layer...`</span></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Navigate to your exported orthophoto file</span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Add`</span></span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>    **Option B: Import from PDOK** (recommended for this exercise)</span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Open the **Data Source Manager** (Ctrl+L)</span></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Select the **WMS / WMTS** tab</span></span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a><span class="in">    -   If you already have the PDOK Aerial Photos connection from the previous exercise, select it</span></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a><span class="in">    -   If not, create a new connection:</span></span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a><span class="in">        -   Click `New`</span></span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a><span class="in">        -   **Name:** PDOK Aerial Photos</span></span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a><span class="in">        -   **URL:** `https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0`</span></span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="in">        -   Click `OK`</span></span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Select the connection and click `Connect`</span></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Select the `Actueel_orthoHR` layer</span></span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Click `Add` then `Close`</span></span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>**Arrange your reference layers:**</span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>In the Layers panel, ensure the order is:</span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a><span class="ss">        1.  </span><span class="in">`buurten`</span> (on top)</span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a><span class="ss">        2.  </span>Aerial photo (at bottom)</span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Zoom to the extent of your Rotterdam neighbourhoods</span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>This will be your reference for georeferencing</span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>    <span class="al">![Figure 1 - Reference layers: boundaries and aerial photo](georeferencing_and_digitizing/fig%201.png)</span></span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 3: Georeferencing with Freehand Raster Georeferencer</span></span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a><span class="ss">7.  </span>**Import the map to be georeferenced:**</span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Locate the <span class="in">`Ruimte_voor_toekomstige_dijkversterking.jpg`</span> file in your working folder</span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Do NOT add it as a regular raster layer** (it has no coordinate information yet)</span>
 <span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a><span class="ss">7.  </span>**Import the map to be georeferenced:**</span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a><span class="ss">8.  </span>**Launch the Freehand Raster Georeferencer:**</span>
 <span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Locate the <span class="in">`Ruimte_voor_toekomstige_dijkversterking.jpg`</span> file in your working folder</span>
-<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Do NOT add it as a regular raster layer** (it has no coordinate information yet)</span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Raster`</span> <span class="sc">\&gt;</span> <span class="in">`Freehand Raster Georeferencer`</span> <span class="sc">\&gt;</span> <span class="in">`Freehand Raster Georeferencer`</span></span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Or look for the plugin icon in the toolbar</span>
 <span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a><span class="ss">8.  </span>**Launch the Freehand Raster Georeferencer:**</span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a><span class="ss">9.  </span>**Add the raster for interactive georeferencing:**</span>
 <span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Raster`</span> <span class="sc">\&gt;</span> <span class="in">`Freehand Raster Georeferencer`</span> <span class="sc">\&gt;</span> <span class="in">`Freehand Raster Georeferencer`</span></span>
-<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Or look for the plugin icon in the toolbar</span>
-<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a><span class="ss">9.  </span>**Add the raster for interactive georeferencing:**</span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>In the Freehand Raster Georeferencer panel that appears, click <span class="in">`Add Raster`</span></span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Navigate to and select ``` Ruimte_voor_toekomstige_dijkversterking.j``pg ```</span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>The image will appear in the map canvas as a semi-transparent overlay</span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>It will initially appear at an arbitrary location</span>
 <span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>In the Freehand Raster Georeferencer panel that appears, click <span class="in">`Add Raster`</span></span>
-<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Navigate to and select ``` Ruimte_voor_toekomstige_dijkversterking.j``pg ```</span>
-<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>The image will appear in the map canvas as a semi-transparent overlay</span>
-<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>It will initially appear at an arbitrary location</span>
-<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a>    <span class="al">![Figure 2 - Unreferenced map loaded in the canvas](georeferencing_and_digitizing/fig%202.png)</span></span>
-<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a><span class="ss">10. </span>**Interactively position and scale the map:**</span>
-<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a>    The plugin provides tools to manipulate the image directly in the map canvas:</span>
-<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Move**: Click and drag the image to roughly position it over the corresponding area in your reference data</span>
-<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Rotate**: Use the rotation handle (or tool) to align the image with the aerial photo</span>
-<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Scale**: Use the corner handles to resize the image to match the scale of your reference data</span>
-<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a>        ::: callout-note</span>
-<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>        It helps to zoom in to the extent that the raster must fit in to, saves some time</span>
-<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a>        :::</span>
-<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a>    **Tips for initial positioning:**</span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>    <span class="al">![Figure 2 - Unreferenced map loaded in the canvas](georeferencing_and_digitizing/fig%202.png)</span></span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a><span class="ss">10. </span>**Interactively position and scale the map:**</span>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a>    The plugin provides tools to manipulate the image directly in the map canvas:</span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Move**: Click and drag the image to roughly position it over the corresponding area in your reference data</span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Rotate**: Use the rotation handle (or tool) to align the image with the aerial photo</span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Scale**: Use the corner handles to resize the image to match the scale of your reference data</span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a>        ::: callout-note</span>
+<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a>        It helps to zoom in to the extent that the raster must fit in to, saves some time</span>
+<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a>        :::</span>
+<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a>    **Tips for initial positioning:**</span>
+<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Look for distinctive features that appear in both the historical map and current aerial photo (buildings, streets, canals, landmarks)</span></span>
+<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Start with rough positioning, then refine</span></span>
+<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Use major roads or canals as alignment guides</span></span>
+<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Adjust transparency if needed to see both layers clearly</span></span>
 <span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Look for distinctive features that appear in both the historical map and current aerial photo (buildings, streets, canals, landmarks)</span></span>
-<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Start with rough positioning, then refine</span></span>
-<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Use major roads or canals as alignment guides</span></span>
-<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Adjust transparency if needed to see both layers clearly</span></span>
-<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a><span class="in">    ![Figure 3 - Initial rough positioning of the map](georeferencing_and_digitizing/fig%203.png)</span></span>
+<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a><span class="in">    ![Figure 3 - Initial rough positioning of the map](georeferencing_and_digitizing/fig%203.png)</span></span>
+<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a>Precise georeferencing with 2 control points: Once the image is roughly positioned, you need to use the "Georeference raster with 2 Points" tool for precise alignment. This tool allows you to combine move, rotate, and uniform scale to georeference using 2 points that are identified in both the background layers and the raster to georeference.</span>
+<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a><span class="fu">## How the 2-Point Tool Works</span></span>
 <span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a>Precise georeferencing with 2 control points: Once the image is roughly positioned, you need to use the "Georeference raster with 2 Points" tool for precise alignment. This tool allows you to combine move, rotate, and uniform scale to georeference using 2 points that are identified in both the background layers and the raster to georeference.</span>
+<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Point 1: Moves the entire raster to align this point</span>
 <span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
-<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a><span class="fu">## How the 2-Point Tool Works</span></span>
-<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Point 1: Moves the entire raster to align this point</span>
+<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- --&gt;</span></span>
+<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Point 2: Rotates and scales the raster around point 1 to align this second point This is sufficient for maps that don't have complex distortions</span>
+<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- --&gt;</span></span>
+<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a>Steps:</span>
 <span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Point 2: Rotates and scales the raster around point 1 to align this second point This is sufficient for maps that don't have complex distortions</span>
-<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a>Steps:</span>
-<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a>In the Freehand Raster Georeferencer toolbar, click the <span class="in">`Georeference raster with 2 Points`</span> tool icon First point:</span>
-<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a>Click on a distinctive feature on your print.jpg image (e.g., a sharp building corner) Drag it to the exact same location on the reference data (aerial photo/map) The raster will move with your cursor, just like the Move tool The selected point will stay highlighted in red</span>
-<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a>Second point:</span>
+<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a>In the Freehand Raster Georeferencer toolbar, click the <span class="in">`Georeference raster with 2 Points`</span> tool icon First point:</span>
+<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a>Click on a distinctive feature on your print.jpg image (e.g., a sharp building corner) Drag it to the exact same location on the reference data (aerial photo/map) The raster will move with your cursor, just like the Move tool The selected point will stay highlighted in red</span>
+<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a>Second point:</span>
+<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a>Click on another distinctive feature on your print.jpg image Drag it to the corresponding location on the reference data This time, the raster will rotate and scale instead of moving The image will adjust to align both points simultaneously</span>
+<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a>**Best practices for selecting the 2 points:**</span>
 <span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a>Click on another distinctive feature on your print.jpg image Drag it to the corresponding location on the reference data This time, the raster will rotate and scale instead of moving The image will adjust to align both points simultaneously</span>
+<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a>Distribute points evenly - Choose points at opposite corners or edges of the image (not close together) Maximum distance - The farther apart your points are, the more accurate the rotation and scale Choose sharp, precise features: building corners, road intersections, bridge endpoints Avoid features that may have changed over time (temporary structures, vegetation) Use features that are clearly visible in both the historical map and current reference data</span>
 <span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a>**Best practices for selecting the 2 points:**</span>
-<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a>Distribute points evenly - Choose points at opposite corners or edges of the image (not close together) Maximum distance - The farther apart your points are, the more accurate the rotation and scale Choose sharp, precise features: building corners, road intersections, bridge endpoints Avoid features that may have changed over time (temporary structures, vegetation) Use features that are clearly visible in both the historical map and current reference data</span>
-<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a>**Good point locations:**</span>
-<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a>✓ Building corners (if buildings still exist in the same location)</span>
-<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a>✓ Road intersections (especially T-junctions or crossroads)</span>
-<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a>✓ Bridge corners or endpoints</span>
-<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a>✓ Monument centers or distinctive landmarks</span>
-<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a>✓ Canal locks, church spires, or other permanent structures</span>
-<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a>✗ Trees or vegetation (changes over time)</span>
-<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a>✗ Shorelines (may have changed due to development)</span>
+<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a>**Good point locations:**</span>
+<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a>✓ Building corners (if buildings still exist in the same location)</span>
+<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a>✓ Road intersections (especially T-junctions or crossroads)</span>
+<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a>✓ Bridge corners or endpoints</span>
+<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a>✓ Monument centers or distinctive landmarks</span>
+<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a>✓ Canal locks, church spires, or other permanent structures</span>
+<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a>✗ Trees or vegetation (changes over time)</span>
+<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a>✗ Shorelines (may have changed due to development)</span>
+<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a>✗ Vague or unclear features</span>
+<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a>✗ Features that are too close together</span>
+<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a>✗ Vague or unclear features</span>
+<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a><span class="al">![fig 4](georeferencing_and_digitizing/fig%204a.png)</span></span>
 <span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a>✗ Features that are too close together</span>
-<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a><span class="al">![fig 4](georeferencing_and_digitizing/fig%204a.png)</span></span>
-<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a>After applying the 2-point tool, toggle the georeferenced layer on/off Check alignment at different locations across the map If certain areas don't align well:</span>
+<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a>After applying the 2-point tool, toggle the georeferenced layer on/off Check alignment at different locations across the map If certain areas don't align well:</span>
+<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a>You can repeat the 2-point process with different points Try selecting points in areas that previously didn't align well For maps with complex distortions, you might need to use QGIS's built-in Georeferencer tool with more points (see Extension Activities)</span>
+<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a>When 2 Points Isn't Enough The 2-point method works well for:</span>
 <span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a>You can repeat the 2-point process with different points Try selecting points in areas that previously didn't align well For maps with complex distortions, you might need to use QGIS's built-in Georeferencer tool with more points (see Extension Activities)</span>
+<span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a>Modern, accurately printed maps Maps without significant distortion Small-scale maps or portions of larger maps</span>
 <span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a>When 2 Points Isn't Enough The 2-point method works well for:</span>
-<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a>Modern, accurately printed maps Maps without significant distortion Small-scale maps or portions of larger maps</span>
-<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a>If your map has:</span>
+<span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a>If your map has:</span>
+<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a>Local distortions or warping Non-uniform scale across the image Poor printing quality with irregular stretching</span>
+<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a>Then consider using QGIS's built-in Georeferencer tool which allows multiple control points and polynomial transformations.</span>
+<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-245"><a href="#cb2-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a>Local distortions or warping Non-uniform scale across the image Poor printing quality with irregular stretching</span>
+<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a><span class="ss">13. </span>**Apply the georeferencing:**</span>
 <span id="cb2-247"><a href="#cb2-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a>Then consider using QGIS's built-in Georeferencer tool which allows multiple control points and polynomial transformations.</span>
-<span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a><span class="ss">13. </span>**Apply the georeferencing:**</span>
-<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click the <span class="in">`Export Raster with world file`</span> button</span>
-<span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Choose output settings:</span>
-<span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>**Output file:** Save as <span class="in">`map_georeferenced.tif`</span> in your working folder</span>
-<span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`OK`</span></span>
-<span id="cb2-257"><a href="#cb2-257" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>The georeferenced raster will be added to your map</span>
-<span id="cb2-258"><a href="#cb2-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-259"><a href="#cb2-259" aria-hidden="true" tabindex="-1"></a><span class="ss">14. </span>**Verify the result:**</span>
-<span id="cb2-260"><a href="#cb2-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-261"><a href="#cb2-261" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Toggle the georeferenced layer on/off to compare with the aerial photo</span>
+<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click the <span class="in">`Export Raster with world file`</span> button</span>
+<span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Choose output settings:</span>
+<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>**Output file:** Save as <span class="in">`map_georeferenced.tif`</span> in your working folder</span>
+<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`OK`</span></span>
+<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>The georeferenced raster will be added to your map</span>
+<span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a><span class="ss">14. </span>**Verify the result:**</span>
+<span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Toggle the georeferenced layer on/off to compare with the aerial photo</span>
+<span id="cb2-257"><a href="#cb2-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-258"><a href="#cb2-258" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Check different areas of the image, especially:</span>
+<span id="cb2-259"><a href="#cb2-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-260"><a href="#cb2-260" aria-hidden="true" tabindex="-1"></a>    <span class="in">```         </span></span>
+<span id="cb2-261"><a href="#cb2-261" aria-hidden="true" tabindex="-1"></a><span class="in">    -   The corners and edges (farthest from your control points)</span></span>
 <span id="cb2-262"><a href="#cb2-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-263"><a href="#cb2-263" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Check different areas of the image, especially:</span>
+<span id="cb2-263"><a href="#cb2-263" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Major landmarks and intersections</span></span>
 <span id="cb2-264"><a href="#cb2-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-265"><a href="#cb2-265" aria-hidden="true" tabindex="-1"></a>    <span class="in">```         </span></span>
-<span id="cb2-266"><a href="#cb2-266" aria-hidden="true" tabindex="-1"></a><span class="in">    -   The corners and edges (farthest from your control points)</span></span>
+<span id="cb2-265"><a href="#cb2-265" aria-hidden="true" tabindex="-1"></a><span class="in">    -   The black boundary outline</span></span>
+<span id="cb2-266"><a href="#cb2-266" aria-hidden="true" tabindex="-1"></a><span class="in">    ```</span></span>
 <span id="cb2-267"><a href="#cb2-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-268"><a href="#cb2-268" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Major landmarks and intersections</span></span>
+<span id="cb2-268"><a href="#cb2-268" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Zoom to different scales to verify alignment accuracy</span></span>
 <span id="cb2-269"><a href="#cb2-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-270"><a href="#cb2-270" aria-hidden="true" tabindex="-1"></a><span class="in">    -   The black boundary outline</span></span>
-<span id="cb2-271"><a href="#cb2-271" aria-hidden="true" tabindex="-1"></a><span class="in">    ```</span></span>
-<span id="cb2-272"><a href="#cb2-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-273"><a href="#cb2-273" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Zoom to different scales to verify alignment accuracy</span></span>
-<span id="cb2-274"><a href="#cb2-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-275"><a href="#cb2-275" aria-hidden="true" tabindex="-1"></a><span class="in">    -   If alignment is poor in certain areas, note where the discrepancies occur</span></span>
-<span id="cb2-276"><a href="#cb2-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-277"><a href="#cb2-277" aria-hidden="true" tabindex="-1"></a><span class="in">    **Quality check questions:**</span></span>
-<span id="cb2-278"><a href="#cb2-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-279"><a href="#cb2-279" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Do buildings align with their current locations?</span></span>
-<span id="cb2-280"><a href="#cb2-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-281"><a href="#cb2-281" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Do roads and intersections match?</span></span>
-<span id="cb2-282"><a href="#cb2-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-283"><a href="#cb2-283" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Are the colored protection zone outlines clearly visible?</span></span>
-<span id="cb2-284"><a href="#cb2-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-285"><a href="#cb2-285" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Is the scale roughly correct across the entire map?</span></span>
-<span id="cb2-286"><a href="#cb2-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-287"><a href="#cb2-287" aria-hidden="true" tabindex="-1"></a><span class="in">    ![Figure 5 - Final georeferenced map overlay](georeferencing_and_digitizing/fig%204b.png)</span></span>
-<span id="cb2-288"><a href="#cb2-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-289"><a href="#cb2-289" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 4: Digitizing Features from the Georeferenced Map</span></span>
-<span id="cb2-290"><a href="#cb2-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-291"><a href="#cb2-291" aria-hidden="true" tabindex="-1"></a>Now that your map is georeferenced, you can extract information by digitizing vector features.</span>
-<span id="cb2-292"><a href="#cb2-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a><span class="ss">16. </span>**Create a new vector layer for digitizing:**</span>
-<span id="cb2-294"><a href="#cb2-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-295"><a href="#cb2-295" aria-hidden="true" tabindex="-1"></a>    **Example: Digitizing buildings**</span>
-<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Layer`</span> <span class="sc">\&gt;</span> <span class="in">`Create Layer`</span> <span class="sc">\&gt;</span> <span class="in">`New GeoPackage Layer...`</span></span>
-<span id="cb2-298"><a href="#cb2-298" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Database:** Click <span class="in">`...`</span> and save as <span class="in">`digitized_features.gpkg`</span></span>
-<span id="cb2-299"><a href="#cb2-299" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Layer name:** <span class="in">`housing_dev_protection_zone`</span></span>
-<span id="cb2-300"><a href="#cb2-300" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Geometry type:** <span class="in">`Polygon`</span></span>
-<span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**CRS:** EPSG:28992</span>
-<span id="cb2-302"><a href="#cb2-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-303"><a href="#cb2-303" aria-hidden="true" tabindex="-1"></a>    **Add attribute fields:**</span>
-<span id="cb2-304"><a href="#cb2-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-305"><a href="#cb2-305" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Click `New Field` to add attributes:</span></span>
-<span id="cb2-306"><a href="#cb2-306" aria-hidden="true" tabindex="-1"></a><span class="in">        -   **Name:** `area_id` \| Type: `Whole number` (Integer)</span></span>
-<span id="cb2-307"><a href="#cb2-307" aria-hidden="true" tabindex="-1"></a><span class="in">        -   **Name:** `area_type` \| Type: `String` \| Length: 50</span></span>
-<span id="cb2-308"><a href="#cb2-308" aria-hidden="true" tabindex="-1"></a><span class="in">        -   **Name:** `notes` \| Type: `String` \| Length: 100</span></span>
-<span id="cb2-309"><a href="#cb2-309" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Click `OK` to create the layer</span></span>
-<span id="cb2-310"><a href="#cb2-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-311"><a href="#cb2-311" aria-hidden="true" tabindex="-1"></a><span class="in">    ![Figure 6 - Creating a new vector layer for digitizing](georeferencing_and_digitizing/fig 5.png)</span></span>
-<span id="cb2-312"><a href="#cb2-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-313"><a href="#cb2-313" aria-hidden="true" tabindex="-1"></a><span class="ss">17. </span>**Identify the three perimeters to digitize:**</span>
-<span id="cb2-314"><a href="#cb2-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-315"><a href="#cb2-315" aria-hidden="true" tabindex="-1"></a>The georeferenced map shows "**Woningbouwontwikkelingen in beschermingszone: rekening houden met profiel waterkering**" (Housing Development in Protection Zone: Taking into Account Water Defense Profile). Before you start digitizing, carefully examine the georeferenced map:</span>
-<span id="cb2-316"><a href="#cb2-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-317"><a href="#cb2-317" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Zoom to the area within the thick black boundary</span>
-<span id="cb2-318"><a href="#cb2-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-319"><a href="#cb2-319" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Look for the three polygons with the pink outline</span>
-<span id="cb2-320"><a href="#cb2-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-321"><a href="#cb2-321" aria-hidden="true" tabindex="-1"></a><span class="ss">17. </span>**Start digitizing:**</span>
-<span id="cb2-322"><a href="#cb2-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-323"><a href="#cb2-323" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Select the <span class="in">`housing_dev_protection_zone`</span>layer in the Layers panel</span>
-<span id="cb2-324"><a href="#cb2-324" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click the <span class="in">`Toggle Editing`</span> button (pencil icon) or press Ctrl+E</span>
-<span id="cb2-325"><a href="#cb2-325" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click the <span class="in">`Add Polygon Feature`</span> button (or press Ctrl+.)</span>
-<span id="cb2-326"><a href="#cb2-326" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-327"><a href="#cb2-327" aria-hidden="true" tabindex="-1"></a>    **Digitizing workflow:**</span>
-<span id="cb2-328"><a href="#cb2-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-329"><a href="#cb2-329" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Left-click to place vertices around the building outline</span></span>
-<span id="cb2-330"><a href="#cb2-330" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Right-click to finish the polygon</span></span>
-<span id="cb2-331"><a href="#cb2-331" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Enter attribute values in the pop-up form:</span></span>
-<span id="cb2-332"><a href="#cb2-332" aria-hidden="true" tabindex="-1"></a><span class="in">        -   `area_id`: 1, 2, 3, etc.</span></span>
-<span id="cb2-333"><a href="#cb2-333" aria-hidden="true" tabindex="-1"></a><span class="in">        -   `area_type`: e.g., "housing development</span></span>
-<span id="cb2-334"><a href="#cb2-334" aria-hidden="true" tabindex="-1"></a><span class="in">        -   `notes`: any observations</span></span>
-<span id="cb2-335"><a href="#cb2-335" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Click `OK`</span></span>
-<span id="cb2-336"><a href="#cb2-336" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-337"><a href="#cb2-337" aria-hidden="true" tabindex="-1"></a><span class="in">    **Digitizing tips:**</span></span>
-<span id="cb2-338"><a href="#cb2-338" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-339"><a href="#cb2-339" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Zoom in close for precision</span></span>
-<span id="cb2-340"><a href="#cb2-340" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Use the mouse wheel to zoom in/out while digitizing</span></span>
-<span id="cb2-341"><a href="#cb2-341" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Press `Backspace` to remove the last vertex</span></span>
-<span id="cb2-342"><a href="#cb2-342" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Press `Esc` to cancel the current feature</span></span>
-<span id="cb2-343"><a href="#cb2-343" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Enable snapping (`Settings` \&gt; `Snapping Options`) to connect features precisely</span></span>
-<span id="cb2-344"><a href="#cb2-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-345"><a href="#cb2-345" aria-hidden="true" tabindex="-1"></a><span class="in">    ![Figure 7 - Digitizing building polygons](georeferencing_and_digitizing/fig 6.png)</span></span>
+<span id="cb2-270"><a href="#cb2-270" aria-hidden="true" tabindex="-1"></a><span class="in">    -   If alignment is poor in certain areas, note where the discrepancies occur</span></span>
+<span id="cb2-271"><a href="#cb2-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-272"><a href="#cb2-272" aria-hidden="true" tabindex="-1"></a><span class="in">    **Quality check questions:**</span></span>
+<span id="cb2-273"><a href="#cb2-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-274"><a href="#cb2-274" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Do buildings align with their current locations?</span></span>
+<span id="cb2-275"><a href="#cb2-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-276"><a href="#cb2-276" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Do roads and intersections match?</span></span>
+<span id="cb2-277"><a href="#cb2-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-278"><a href="#cb2-278" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Are the colored protection zone outlines clearly visible?</span></span>
+<span id="cb2-279"><a href="#cb2-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-280"><a href="#cb2-280" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Is the scale roughly correct across the entire map?</span></span>
+<span id="cb2-281"><a href="#cb2-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-282"><a href="#cb2-282" aria-hidden="true" tabindex="-1"></a><span class="in">    ![Figure 5 - Final georeferenced map overlay](georeferencing_and_digitizing/fig%204b.png)</span></span>
+<span id="cb2-283"><a href="#cb2-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-284"><a href="#cb2-284" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 4: Digitizing Features from the Georeferenced Map</span></span>
+<span id="cb2-285"><a href="#cb2-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-286"><a href="#cb2-286" aria-hidden="true" tabindex="-1"></a>Now that your map is georeferenced, you can extract information by digitizing vector features.</span>
+<span id="cb2-287"><a href="#cb2-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-288"><a href="#cb2-288" aria-hidden="true" tabindex="-1"></a><span class="ss">16. </span>**Create a new vector layer for digitizing:**</span>
+<span id="cb2-289"><a href="#cb2-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-290"><a href="#cb2-290" aria-hidden="true" tabindex="-1"></a>    **Example: Digitizing buildings**</span>
+<span id="cb2-291"><a href="#cb2-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-292"><a href="#cb2-292" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to <span class="in">`Layer`</span> <span class="sc">\&gt;</span> <span class="in">`Create Layer`</span> <span class="sc">\&gt;</span> <span class="in">`New GeoPackage Layer...`</span></span>
+<span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Database:** Click <span class="in">`...`</span> and save as <span class="in">`digitized_features.gpkg`</span></span>
+<span id="cb2-294"><a href="#cb2-294" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Layer name:** <span class="in">`housing_dev_protection_zone`</span></span>
+<span id="cb2-295"><a href="#cb2-295" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Geometry type:** <span class="in">`Polygon`</span></span>
+<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**CRS:** EPSG:28992</span>
+<span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-298"><a href="#cb2-298" aria-hidden="true" tabindex="-1"></a>    **Add attribute fields:**</span>
+<span id="cb2-299"><a href="#cb2-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-300"><a href="#cb2-300" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Click `New Field` to add attributes:</span></span>
+<span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a><span class="in">        -   **Name:** `area_id` \| Type: `Whole number` (Integer)</span></span>
+<span id="cb2-302"><a href="#cb2-302" aria-hidden="true" tabindex="-1"></a><span class="in">        -   **Name:** `area_type` \| Type: `String` \| Length: 50</span></span>
+<span id="cb2-303"><a href="#cb2-303" aria-hidden="true" tabindex="-1"></a><span class="in">        -   **Name:** `notes` \| Type: `String` \| Length: 100</span></span>
+<span id="cb2-304"><a href="#cb2-304" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Click `OK` to create the layer</span></span>
+<span id="cb2-305"><a href="#cb2-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-306"><a href="#cb2-306" aria-hidden="true" tabindex="-1"></a><span class="in">    ![Figure 6 - Creating a new vector layer for digitizing](georeferencing_and_digitizing/fig%205.png)</span></span>
+<span id="cb2-307"><a href="#cb2-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-308"><a href="#cb2-308" aria-hidden="true" tabindex="-1"></a><span class="ss">17. </span>**Identify the three perimeters to digitize:**</span>
+<span id="cb2-309"><a href="#cb2-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-310"><a href="#cb2-310" aria-hidden="true" tabindex="-1"></a>The georeferenced map shows "**Woningbouwontwikkelingen in beschermingszone: rekening houden met profiel waterkering**" (Housing Development in Protection Zone: Taking into Account Water Defense Profile). Before you start digitizing, carefully examine the georeferenced map:</span>
+<span id="cb2-311"><a href="#cb2-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-312"><a href="#cb2-312" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Zoom to the area within the thick black boundary</span>
+<span id="cb2-313"><a href="#cb2-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-314"><a href="#cb2-314" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Look for the three polygons with the pink outline</span>
+<span id="cb2-315"><a href="#cb2-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-316"><a href="#cb2-316" aria-hidden="true" tabindex="-1"></a><span class="ss">17. </span>**Start digitizing:**</span>
+<span id="cb2-317"><a href="#cb2-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-318"><a href="#cb2-318" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Select the <span class="in">`housing_dev_protection_zone`</span>layer in the Layers panel</span>
+<span id="cb2-319"><a href="#cb2-319" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click the <span class="in">`Toggle Editing`</span> button (pencil icon) or press Ctrl+E</span>
+<span id="cb2-320"><a href="#cb2-320" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click the <span class="in">`Add Polygon Feature`</span> button (or press Ctrl+.)</span>
+<span id="cb2-321"><a href="#cb2-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-322"><a href="#cb2-322" aria-hidden="true" tabindex="-1"></a>    **Digitizing workflow:**</span>
+<span id="cb2-323"><a href="#cb2-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-324"><a href="#cb2-324" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Left-click to place vertices around the building outline</span></span>
+<span id="cb2-325"><a href="#cb2-325" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Right-click to finish the polygon</span></span>
+<span id="cb2-326"><a href="#cb2-326" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Enter attribute values in the pop-up form:</span></span>
+<span id="cb2-327"><a href="#cb2-327" aria-hidden="true" tabindex="-1"></a><span class="in">        -   `area_id`: 1, 2, 3, etc.</span></span>
+<span id="cb2-328"><a href="#cb2-328" aria-hidden="true" tabindex="-1"></a><span class="in">        -   `area_type`: e.g., "housing development</span></span>
+<span id="cb2-329"><a href="#cb2-329" aria-hidden="true" tabindex="-1"></a><span class="in">        -   `notes`: any observations</span></span>
+<span id="cb2-330"><a href="#cb2-330" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Click `OK`</span></span>
+<span id="cb2-331"><a href="#cb2-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-332"><a href="#cb2-332" aria-hidden="true" tabindex="-1"></a><span class="in">    **Digitizing tips:**</span></span>
+<span id="cb2-333"><a href="#cb2-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-334"><a href="#cb2-334" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Zoom in close for precision</span></span>
+<span id="cb2-335"><a href="#cb2-335" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Use the mouse wheel to zoom in/out while digitizing</span></span>
+<span id="cb2-336"><a href="#cb2-336" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Press `Backspace` to remove the last vertex</span></span>
+<span id="cb2-337"><a href="#cb2-337" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Press `Esc` to cancel the current feature</span></span>
+<span id="cb2-338"><a href="#cb2-338" aria-hidden="true" tabindex="-1"></a><span class="in">    -   Enable snapping (`Settings` \&gt; `Snapping Options`) to connect features precisely</span></span>
+<span id="cb2-339"><a href="#cb2-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-340"><a href="#cb2-340" aria-hidden="true" tabindex="-1"></a><span class="in">    ![Figure 7 - Digitizing building polygons](georeferencing_and_digitizing/fig%206.png)</span></span>
+<span id="cb2-341"><a href="#cb2-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-342"><a href="#cb2-342" aria-hidden="true" tabindex="-1"></a><span class="ss">18. </span>**Digitize multiple features:**</span>
+<span id="cb2-343"><a href="#cb2-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-344"><a href="#cb2-344" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Digitize the 3 areas from your georeferenced map</span>
+<span id="cb2-345"><a href="#cb2-345" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Make sure each feature has complete attributes</span>
 <span id="cb2-346"><a href="#cb2-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-347"><a href="#cb2-347" aria-hidden="true" tabindex="-1"></a><span class="ss">18. </span>**Digitize multiple features:**</span>
+<span id="cb2-347"><a href="#cb2-347" aria-hidden="true" tabindex="-1"></a><span class="ss">19. </span>**Edit existing features (if needed):**</span>
 <span id="cb2-348"><a href="#cb2-348" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-349"><a href="#cb2-349" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Digitize the 3 areas from your georeferenced map</span>
-<span id="cb2-350"><a href="#cb2-350" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Make sure each feature has complete attributes</span>
-<span id="cb2-351"><a href="#cb2-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-352"><a href="#cb2-352" aria-hidden="true" tabindex="-1"></a><span class="ss">19. </span>**Edit existing features (if needed):**</span>
-<span id="cb2-353"><a href="#cb2-353" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-354"><a href="#cb2-354" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>With editing enabled, select the <span class="in">`Vertex Tool`</span> (or press V)</span>
-<span id="cb2-355"><a href="#cb2-355" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click on a feature to see its vertices</span>
-<span id="cb2-356"><a href="#cb2-356" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click and drag vertices to adjust position</span>
-<span id="cb2-357"><a href="#cb2-357" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click between vertices to add new ones</span>
-<span id="cb2-358"><a href="#cb2-358" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click on a vertex and press <span class="in">`Delete`</span> to remove it</span>
-<span id="cb2-359"><a href="#cb2-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-360"><a href="#cb2-360" aria-hidden="true" tabindex="-1"></a><span class="ss">20. </span>**Save your edits:**</span>
-<span id="cb2-361"><a href="#cb2-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-362"><a href="#cb2-362" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click the <span class="in">`Save Layer Edits`</span> button (floppy disk icon)</span>
-<span id="cb2-363"><a href="#cb2-363" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Toggle Editing`</span> again to stop editing</span>
-<span id="cb2-364"><a href="#cb2-364" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Your digitized features are now permanently saved in the GeoPackage</span>
-<span id="cb2-365"><a href="#cb2-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-366"><a href="#cb2-366" aria-hidden="true" tabindex="-1"></a>    <span class="al">![Figure 8 - Completed digitized buildings](georeferencing_and_digitizing/fig 7.png)</span></span>
-<span id="cb2-367"><a href="#cb2-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-368"><a href="#cb2-368" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 5: Analysis and Comparison (Optional)</span></span>
-<span id="cb2-369"><a href="#cb2-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-370"><a href="#cb2-370" aria-hidden="true" tabindex="-1"></a><span class="ss">21. </span>**Create additional layers:**</span>
-<span id="cb2-371"><a href="#cb2-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-372"><a href="#cb2-372" aria-hidden="true" tabindex="-1"></a>    You can create separate layers for different feature types:</span>
-<span id="cb2-373"><a href="#cb2-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-374"><a href="#cb2-374" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Lines:** Roads, canals, railways</span>
-<span id="cb2-375"><a href="#cb2-375" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Points:** Trees, monuments, street furniture</span>
-<span id="cb2-376"><a href="#cb2-376" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Polygons:** Parks, building footprints, land use areas</span>
-<span id="cb2-377"><a href="#cb2-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-378"><a href="#cb2-378" aria-hidden="true" tabindex="-1"></a>    Follow the same process as steps 16-20, adjusting the geometry type as needed.</span>
-<span id="cb2-379"><a href="#cb2-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-380"><a href="#cb2-380" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb2-381"><a href="#cb2-381" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-382"><a href="#cb2-382" aria-hidden="true" tabindex="-1"></a><span class="fu">## Recap</span></span>
-<span id="cb2-383"><a href="#cb2-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-384"><a href="#cb2-384" aria-hidden="true" tabindex="-1"></a>**What you've learned:**</span>
-<span id="cb2-385"><a href="#cb2-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-386"><a href="#cb2-386" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How to install and use the **Freehand Raster Georeferencer** plugin for interactive georeferencing</span>
-<span id="cb2-387"><a href="#cb2-387" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>The concept of **Ground Control Points (GCPs)** and how to place them effectively</span>
-<span id="cb2-388"><a href="#cb2-388" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Different **transformation types** and when to use them</span>
-<span id="cb2-389"><a href="#cb2-389" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Creating new **vector layers** with custom attributes</span>
-<span id="cb2-390"><a href="#cb2-390" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Digitizing** techniques for points, lines, and polygons</span>
-<span id="cb2-391"><a href="#cb2-391" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Using the **vertex tool** to edit geometries</span>
-<span id="cb2-392"><a href="#cb2-392" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-393"><a href="#cb2-393" aria-hidden="true" tabindex="-1"></a>**Key concepts:**</span>
-<span id="cb2-394"><a href="#cb2-394" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-395"><a href="#cb2-395" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Concept <span class="pp">|</span> Description <span class="pp">|</span></span>
-<span id="cb2-396"><a href="#cb2-396" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------------------------|------------------------------------|</span></span>
-<span id="cb2-397"><a href="#cb2-397" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Georeferencing <span class="pp">|</span> Assigning real-world coordinates to an image <span class="pp">|</span></span>
-<span id="cb2-398"><a href="#cb2-398" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GCP <span class="pp">|</span> Ground Control Point - a known location used for georeferencing <span class="pp">|</span></span>
-<span id="cb2-399"><a href="#cb2-399" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Residual error <span class="pp">|</span> The difference between predicted and actual GCP locations <span class="pp">|</span></span>
-<span id="cb2-400"><a href="#cb2-400" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Digitizing <span class="pp">|</span> Creating vector features by tracing from a raster image <span class="pp">|</span></span>
-<span id="cb2-401"><a href="#cb2-401" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Snapping <span class="pp">|</span> Automatic alignment of vertices to other features <span class="pp">|</span></span>
-<span id="cb2-402"><a href="#cb2-402" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Topology <span class="pp">|</span> Spatial relationships between features <span class="pp">|</span></span>
-<span id="cb2-403"><a href="#cb2-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-404"><a href="#cb2-404" aria-hidden="true" tabindex="-1"></a>**Best practices for georeferencing:**</span>
-<span id="cb2-405"><a href="#cb2-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-406"><a href="#cb2-406" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Choose **permanent, precise features** (building corners, intersections)</span>
-<span id="cb2-407"><a href="#cb2-407" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Check **residual errors** and remove/adjust problematic points</span>
-<span id="cb2-408"><a href="#cb2-408" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Save your **GCP points** for future reference or refinement</span>
-<span id="cb2-409"><a href="#cb2-409" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Use appropriate **transformation type** for your data</span>
-<span id="cb2-410"><a href="#cb2-410" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Always **verify** the result by toggling layers and checking alignment</span>
-<span id="cb2-411"><a href="#cb2-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-412"><a href="#cb2-412" aria-hidden="true" tabindex="-1"></a>**Best practices for digitizing:**</span>
-<span id="cb2-413"><a href="#cb2-413" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-414"><a href="#cb2-414" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Zoom in** close for precision</span>
-<span id="cb2-415"><a href="#cb2-415" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Enable **snapping** to connect features properly</span>
-<span id="cb2-416"><a href="#cb2-416" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Use consistent **attribution** for all features</span>
-<span id="cb2-417"><a href="#cb2-417" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Save frequently** during editing</span>
-<span id="cb2-418"><a href="#cb2-418" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Follow **topology rules** (e.g., no gaps, no overlaps for land parcels)</span>
-<span id="cb2-419"><a href="#cb2-419" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Document your **methodology** and any uncertainties</span>
-<span id="cb2-420"><a href="#cb2-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-421"><a href="#cb2-421" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb2-349"><a href="#cb2-349" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>With editing enabled, select the <span class="in">`Vertex Tool`</span> (or press V)</span>
+<span id="cb2-350"><a href="#cb2-350" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click on a feature to see its vertices</span>
+<span id="cb2-351"><a href="#cb2-351" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click and drag vertices to adjust position</span>
+<span id="cb2-352"><a href="#cb2-352" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click between vertices to add new ones</span>
+<span id="cb2-353"><a href="#cb2-353" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click on a vertex and press <span class="in">`Delete`</span> to remove it</span>
+<span id="cb2-354"><a href="#cb2-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-355"><a href="#cb2-355" aria-hidden="true" tabindex="-1"></a><span class="ss">20. </span>**Save your edits:**</span>
+<span id="cb2-356"><a href="#cb2-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-357"><a href="#cb2-357" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click the <span class="in">`Save Layer Edits`</span> button (floppy disk icon)</span>
+<span id="cb2-358"><a href="#cb2-358" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click <span class="in">`Toggle Editing`</span> again to stop editing</span>
+<span id="cb2-359"><a href="#cb2-359" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Your digitized features are now permanently saved in the GeoPackage</span>
+<span id="cb2-360"><a href="#cb2-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-361"><a href="#cb2-361" aria-hidden="true" tabindex="-1"></a>    <span class="al">![Figure 8 - Completed digitized buildings](georeferencing_and_digitizing/fig%207.png)</span></span>
+<span id="cb2-362"><a href="#cb2-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-363"><a href="#cb2-363" aria-hidden="true" tabindex="-1"></a><span class="fu">### Part 5: Analysis and Comparison (Optional)</span></span>
+<span id="cb2-364"><a href="#cb2-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-365"><a href="#cb2-365" aria-hidden="true" tabindex="-1"></a><span class="ss">21. </span>**Create additional layers:**</span>
+<span id="cb2-366"><a href="#cb2-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-367"><a href="#cb2-367" aria-hidden="true" tabindex="-1"></a>    You can create separate layers for different feature types:</span>
+<span id="cb2-368"><a href="#cb2-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-369"><a href="#cb2-369" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Lines:** Roads, canals, railways</span>
+<span id="cb2-370"><a href="#cb2-370" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Points:** Trees, monuments, street furniture</span>
+<span id="cb2-371"><a href="#cb2-371" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Polygons:** Parks, building footprints, land use areas</span>
+<span id="cb2-372"><a href="#cb2-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-373"><a href="#cb2-373" aria-hidden="true" tabindex="-1"></a>    Follow the same process as steps 16-20, adjusting the geometry type as needed.</span>
+<span id="cb2-374"><a href="#cb2-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-375"><a href="#cb2-375" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb2-376"><a href="#cb2-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-377"><a href="#cb2-377" aria-hidden="true" tabindex="-1"></a><span class="fu">## Recap</span></span>
+<span id="cb2-378"><a href="#cb2-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-379"><a href="#cb2-379" aria-hidden="true" tabindex="-1"></a>**What you've learned:**</span>
+<span id="cb2-380"><a href="#cb2-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-381"><a href="#cb2-381" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How to install and use the **Freehand Raster Georeferencer** plugin for interactive georeferencing</span>
+<span id="cb2-382"><a href="#cb2-382" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>The concept of **Ground Control Points (GCPs)** and how to place them effectively</span>
+<span id="cb2-383"><a href="#cb2-383" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Different **transformation types** and when to use them</span>
+<span id="cb2-384"><a href="#cb2-384" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Creating new **vector layers** with custom attributes</span>
+<span id="cb2-385"><a href="#cb2-385" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Digitizing** techniques for points, lines, and polygons</span>
+<span id="cb2-386"><a href="#cb2-386" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Using the **vertex tool** to edit geometries</span>
+<span id="cb2-387"><a href="#cb2-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-388"><a href="#cb2-388" aria-hidden="true" tabindex="-1"></a>**Key concepts:**</span>
+<span id="cb2-389"><a href="#cb2-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-390"><a href="#cb2-390" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Concept <span class="pp">|</span> Description <span class="pp">|</span></span>
+<span id="cb2-391"><a href="#cb2-391" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------------------------|------------------------------------|</span></span>
+<span id="cb2-392"><a href="#cb2-392" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Georeferencing <span class="pp">|</span> Assigning real-world coordinates to an image <span class="pp">|</span></span>
+<span id="cb2-393"><a href="#cb2-393" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GCP <span class="pp">|</span> Ground Control Point - a known location used for georeferencing <span class="pp">|</span></span>
+<span id="cb2-394"><a href="#cb2-394" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Residual error <span class="pp">|</span> The difference between predicted and actual GCP locations <span class="pp">|</span></span>
+<span id="cb2-395"><a href="#cb2-395" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Digitizing <span class="pp">|</span> Creating vector features by tracing from a raster image <span class="pp">|</span></span>
+<span id="cb2-396"><a href="#cb2-396" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Snapping <span class="pp">|</span> Automatic alignment of vertices to other features <span class="pp">|</span></span>
+<span id="cb2-397"><a href="#cb2-397" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Topology <span class="pp">|</span> Spatial relationships between features <span class="pp">|</span></span>
+<span id="cb2-398"><a href="#cb2-398" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-399"><a href="#cb2-399" aria-hidden="true" tabindex="-1"></a>**Best practices for georeferencing:**</span>
+<span id="cb2-400"><a href="#cb2-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-401"><a href="#cb2-401" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Choose **permanent, precise features** (building corners, intersections)</span>
+<span id="cb2-402"><a href="#cb2-402" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Check **residual errors** and remove/adjust problematic points</span>
+<span id="cb2-403"><a href="#cb2-403" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Save your **GCP points** for future reference or refinement</span>
+<span id="cb2-404"><a href="#cb2-404" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Use appropriate **transformation type** for your data</span>
+<span id="cb2-405"><a href="#cb2-405" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Always **verify** the result by toggling layers and checking alignment</span>
+<span id="cb2-406"><a href="#cb2-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-407"><a href="#cb2-407" aria-hidden="true" tabindex="-1"></a>**Best practices for digitizing:**</span>
+<span id="cb2-408"><a href="#cb2-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-409"><a href="#cb2-409" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Zoom in** close for precision</span>
+<span id="cb2-410"><a href="#cb2-410" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Enable **snapping** to connect features properly</span>
+<span id="cb2-411"><a href="#cb2-411" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Use consistent **attribution** for all features</span>
+<span id="cb2-412"><a href="#cb2-412" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Save frequently** during editing</span>
+<span id="cb2-413"><a href="#cb2-413" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Follow **topology rules** (e.g., no gaps, no overlaps for land parcels)</span>
+<span id="cb2-414"><a href="#cb2-414" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Document your **methodology** and any uncertainties</span>
+<span id="cb2-415"><a href="#cb2-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-416"><a href="#cb2-416" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb2-417"><a href="#cb2-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-418"><a href="#cb2-418" aria-hidden="true" tabindex="-1"></a><span class="fu">## Common Issues and Solutions</span></span>
+<span id="cb2-419"><a href="#cb2-419" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-420"><a href="#cb2-420" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
+<span id="cb2-421"><a href="#cb2-421" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problem: Some areas align well, others don't</span></span>
 <span id="cb2-422"><a href="#cb2-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-423"><a href="#cb2-423" aria-hidden="true" tabindex="-1"></a><span class="fu">## Common Issues and Solutions</span></span>
+<span id="cb2-423"><a href="#cb2-423" aria-hidden="true" tabindex="-1"></a>**Cause:** Local distortions in the original map (common in historical maps)</span>
 <span id="cb2-424"><a href="#cb2-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-425"><a href="#cb2-425" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
-<span id="cb2-426"><a href="#cb2-426" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problem: Some areas align well, others don't</span></span>
+<span id="cb2-425"><a href="#cb2-425" aria-hidden="true" tabindex="-1"></a>**Solution:** Use **Thin Plate Spline (TPS)** transformation with 15+ GCPs, or georeference the image in sections.</span>
+<span id="cb2-426"><a href="#cb2-426" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-427"><a href="#cb2-427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-428"><a href="#cb2-428" aria-hidden="true" tabindex="-1"></a>**Cause:** Local distortions in the original map (common in historical maps)</span>
-<span id="cb2-429"><a href="#cb2-429" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-430"><a href="#cb2-430" aria-hidden="true" tabindex="-1"></a>**Solution:** Use **Thin Plate Spline (TPS)** transformation with 15+ GCPs, or georeference the image in sections.</span>
-<span id="cb2-431"><a href="#cb2-431" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-428"><a href="#cb2-428" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
+<span id="cb2-429"><a href="#cb2-429" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problem: High residual errors on specific points</span></span>
+<span id="cb2-430"><a href="#cb2-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-431"><a href="#cb2-431" aria-hidden="true" tabindex="-1"></a>**Cause:** GCP placed incorrectly, or the feature has actually moved/changed</span>
 <span id="cb2-432"><a href="#cb2-432" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-433"><a href="#cb2-433" aria-hidden="true" tabindex="-1"></a>::: callout-warning</span>
-<span id="cb2-434"><a href="#cb2-434" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problem: High residual errors on specific points</span></span>
+<span id="cb2-433"><a href="#cb2-433" aria-hidden="true" tabindex="-1"></a>**Solution:** Review the point placement. If correct, the feature may have genuinely changed position - this is valuable historical information!</span>
+<span id="cb2-434"><a href="#cb2-434" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-435"><a href="#cb2-435" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-436"><a href="#cb2-436" aria-hidden="true" tabindex="-1"></a>**Cause:** GCP placed incorrectly, or the feature has actually moved/changed</span>
+<span id="cb2-436"><a href="#cb2-436" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb2-437"><a href="#cb2-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-438"><a href="#cb2-438" aria-hidden="true" tabindex="-1"></a>**Solution:** Review the point placement. If correct, the feature may have genuinely changed position - this is valuable historical information!</span>
-<span id="cb2-439"><a href="#cb2-439" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-440"><a href="#cb2-440" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-441"><a href="#cb2-441" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb2-442"><a href="#cb2-442" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-443"><a href="#cb2-443" aria-hidden="true" tabindex="-1"></a><span class="fu">## Extension Activities</span></span>
-<span id="cb2-444"><a href="#cb2-444" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-445"><a href="#cb2-445" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Georeference multiple historical maps from different time periods and compare changes</span>
-<span id="cb2-446"><a href="#cb2-446" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Calculate the area of buildings that have been demolished or added</span>
-<span id="cb2-447"><a href="#cb2-447" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Create a time-series animation showing urban development</span>
-<span id="cb2-448"><a href="#cb2-448" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Use the **Georeferencer** tool (built into QGIS) instead of the plugin to compare workflows</span>
-<span id="cb2-449"><a href="#cb2-449" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Digitize a complete street network and perform network analysis</span>
-<span id="cb2-450"><a href="#cb2-450" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Research historical sources to add rich attribute data to your digitized features</span>
-<span id="cb2-451"><a href="#cb2-451" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Create a web map showing historical vs. current imagery side-by-side</span>
-<span id="cb2-452"><a href="#cb2-452" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-453"><a href="#cb2-453" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb2-454"><a href="#cb2-454" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-455"><a href="#cb2-455" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resources</span></span>
-<span id="cb2-456"><a href="#cb2-456" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-457"><a href="#cb2-457" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**QGIS Georeferencing documentation:** https://docs.qgis.org/latest/en/docs/user_manual/working_with_raster/georeferencer.html</span>
-<span id="cb2-458"><a href="#cb2-458" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Digitizing documentation:** https://docs.qgis.org/latest/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb2-438"><a href="#cb2-438" aria-hidden="true" tabindex="-1"></a><span class="fu">## Extension Activities</span></span>
+<span id="cb2-439"><a href="#cb2-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-440"><a href="#cb2-440" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Georeference multiple historical maps from different time periods and compare changes</span>
+<span id="cb2-441"><a href="#cb2-441" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Calculate the area of buildings that have been demolished or added</span>
+<span id="cb2-442"><a href="#cb2-442" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Create a time-series animation showing urban development</span>
+<span id="cb2-443"><a href="#cb2-443" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Use the **Georeferencer** tool (built into QGIS) instead of the plugin to compare workflows</span>
+<span id="cb2-444"><a href="#cb2-444" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Digitize a complete street network and perform network analysis</span>
+<span id="cb2-445"><a href="#cb2-445" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Research historical sources to add rich attribute data to your digitized features</span>
+<span id="cb2-446"><a href="#cb2-446" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Create a web map showing historical vs. current imagery side-by-side</span>
+<span id="cb2-447"><a href="#cb2-447" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-448"><a href="#cb2-448" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb2-449"><a href="#cb2-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-450"><a href="#cb2-450" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resources</span></span>
+<span id="cb2-451"><a href="#cb2-451" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-452"><a href="#cb2-452" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**QGIS Georeferencing documentation:** https://docs.qgis.org/latest/en/docs/user_manual/working_with_raster/georeferencer.html</span>
+<span id="cb2-453"><a href="#cb2-453" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Digitizing documentation:** https://docs.qgis.org/latest/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
