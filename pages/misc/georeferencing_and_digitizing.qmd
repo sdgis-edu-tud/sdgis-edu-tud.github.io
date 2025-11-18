@@ -30,7 +30,7 @@ By the end of this tutorial, you will be able to:
 -   Active internet connection (for PDOK aerial photos)
 -   **Data files:**
     -   `buurten.gpkg` (from previous exercise with Rotterdam neighbourhoods)
-    -   `print.jpg` (historical map or plan to be georeferenced)
+    -   `Ruimte_voor_toekomstige_dijkversterking.jpg` (historical map or plan to be georeferenced)
 :::
 
 ## Introduction
@@ -193,11 +193,11 @@ Steps:
 
 In the Freehand Raster Georeferencer toolbar, click the `Georeference raster with 2 Points` tool icon First point:
 
-Click on a distinctive feature on your print.jpg image (e.g., a sharp building corner) Drag it to the exact same location on the reference data (aerial photo/map) The raster will move with your cursor, just like the Move tool The selected point will stay highlighted in red
+Click on a distinctive feature on your `Ruimte_voor_toekomstige_dijkversterking.jpg` image (e.g., a sharp building corner) Drag it to the exact same location on the reference data (aerial photo/map) The raster will move with your cursor, just like the Move tool The selected point will stay highlighted in red
 
 Second point:
 
-Click on another distinctive feature on your print.jpg image Drag it to the corresponding location on the reference data This time, the raster will rotate and scale instead of moving The image will adjust to align both points simultaneously
+Click on another distinctive feature on your `Ruimte_voor_toekomstige_dijkversterking.jpg` image Drag it to the corresponding location on the reference data This time, the raster will rotate and scale instead of moving The image will adjust to align both points simultaneously
 
 ::: callout-tip
 **Best practices for selecting the 2 points:**

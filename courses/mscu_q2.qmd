@@ -23,6 +23,10 @@ format: html
 
 ## Resources
 
+### Data Download
+
+Click [here](https://tud365-my.sharepoint.com/:f:/g/personal/dcannatella_tudelft_nl/Eqxc9Q5RSrZCs3_XZBOdhB0BTGl8QNZe9-D0Fi8tRtSfRg?e=Z5d0Ev) to download the dataset.
+
 ### Data Sources and Formats
 
 #### Importing Data from Portals
