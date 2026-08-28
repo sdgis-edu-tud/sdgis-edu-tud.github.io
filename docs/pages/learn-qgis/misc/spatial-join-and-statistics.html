@@ -1354,10 +1354,10 @@ Tip
 <span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Go to **Vector → Data Management Tools → Join Attributes by Location (Summary)**</span>
 <span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Configure the join:</span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Join to features in:** <span class="in">`[cbs-neighbourhoods]`</span></span>
-<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**By comparing to:** <span class="in">`[bakeries-osm]`</span></span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Where the features:** **intersect**</span>
-<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Summaries to calculate:** check only **Count**</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**Join to features in:** <span class="in">`[cbs-neighbourhoods]`</span></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**By comparing to:** <span class="in">`[bakeries-osm]`</span></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**Where the features:** **intersect**</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**Summaries to calculate:** check only **Count**</span>
 <span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Joined field name prefix:** leave as default, or set to <span class="in">`bakery_`</span></span>
 <span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Run the tool</span>
 <span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a></span>
@@ -1380,13 +1380,13 @@ Tip
 <span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Create a new field:** `bakery_dens` (type: **Decimal number**)</span>
 <span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Expression:**</span>
 <span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
 <span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a><span class="in">"NUMPOINTS" / ($area / 1000000)</span></span>
 <span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`"NUMPOINTS"`</span> – the bakery count field created by the join (rename in the expression if your join used a different field name)</span>
-<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`$area / 1000000`</span> – converts the neighbourhood's area from m² to km²</span>
-<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Dividing gives **bakeries per km²**</span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`"NUMPOINTS"`</span> – the bakery count field created by the join (rename in the expression if your join used a different field name)</span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`$area / 1000000`</span> – converts the neighbourhood's area from m² to km²</span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Dividing gives **bakeries per km²**</span>
 <span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Click **OK**, save your edits, and toggle editing off</span>
 <span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a></span>
@@ -1492,21 +1492,21 @@ Tip
 <span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reflection</span></span>
 <span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>What does the raw bakery-count map miss that the density map shows?</span>
-<span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Why might the mean and median density differ, and which one better describes a "typical" neighbourhood?</span>
-<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>How do the choropleth map and the bar chart complement each other — what's easier to read in each?</span>
-<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>What are the limitations of using crowdsourced OSM data to count amenities like bakeries?</span>
+<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What does the raw bakery-count map miss that the density map shows?</span>
+<span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why might the mean and median density differ, and which one better describes a "typical" neighbourhood?</span>
+<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How do the choropleth map and the bar chart complement each other — what's easier to read in each?</span>
+<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What are the limitations of using crowdsourced OSM data to count amenities like bakeries?</span>
 <span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-245"><a href="#cb2-245" aria-hidden="true" tabindex="-1"></a>::: {.callout-important title="Notes for TA"}</span>
-<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Fill in the real project filename, bakeries layer filename, and output names (currently <span class="in">`[bracketed]`</span> placeholders) once confirmed against the actual dataset.</span>
-<span id="cb2-247"><a href="#cb2-247" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Confirm the field name produced by **Join Attributes by Location (Summary)** — it defaults to <span class="in">`NUMPOINTS`</span> but can vary by QGIS build/plugin version; update the Field Calculator expression in Step 2.2 if it differs.</span>
-<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Confirm whether students continue in the same project as Part 1 or start fresh with a copy of <span class="in">`[cbs-neighbourhoods]`</span> — affects whether Step 1 needs its own project-opening instructions.</span>
-<span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Decide on Excel vs. Google Sheets for Step 6 and adjust the software requirement/prerequisites accordingly.</span>
-<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>This block now runs 90 minutes (13:00–14:30), merging the former Part 4 and Part 5 slots — <span class="in">`pages/courses/mscu_q1.qmd`</span>'s Day Structure table and Outcomes list need updating to match (single 90-min row, one merged deliverable bullet). Reflect the timing change in the Canvas/method-sheet schedule shared with students too.</span>
-<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>The old <span class="in">`spatial-join.qmd`</span> draft (live-OSM-query version) is superseded by this file — consider removing it.</span>
-<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>This file isn't yet referenced in <span class="in">`_quarto.yml`</span> — add it to the sidebar (and/or link it from <span class="in">`pages/courses/mscu_q1.qmd`</span>) once finalised.</span>
+<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Fill in the real project filename, bakeries layer filename, and output names (currently <span class="in">`[bracketed]`</span> placeholders) once confirmed against the actual dataset.</span>
+<span id="cb2-247"><a href="#cb2-247" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm the field name produced by **Join Attributes by Location (Summary)** — it defaults to <span class="in">`NUMPOINTS`</span> but can vary by QGIS build/plugin version; update the Field Calculator expression in Step 2.2 if it differs.</span>
+<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm whether students continue in the same project as Part 1 or start fresh with a copy of <span class="in">`[cbs-neighbourhoods]`</span> — affects whether Step 1 needs its own project-opening instructions.</span>
+<span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decide on Excel vs. Google Sheets for Step 6 and adjust the software requirement/prerequisites accordingly.</span>
+<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>This block now runs 90 minutes (13:00–14:30), merging the former Part 4 and Part 5 slots — <span class="in">`pages/courses/mscu_q1.qmd`</span>'s Day Structure table and Outcomes list need updating to match (single 90-min row, one merged deliverable bullet). Reflect the timing change in the Canvas/method-sheet schedule shared with students too.</span>
+<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The old <span class="in">`spatial-join.qmd`</span> draft (live-OSM-query version) is superseded by this file — consider removing it.</span>
+<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>This file isn't yet referenced in <span class="in">`_quarto.yml`</span> — add it to the sidebar (and/or link it from <span class="in">`pages/courses/mscu_q1.qmd`</span>) once finalised.</span>
 <span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

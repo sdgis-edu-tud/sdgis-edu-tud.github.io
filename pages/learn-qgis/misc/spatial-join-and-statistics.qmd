@@ -97,10 +97,10 @@ Open the **Attribute Table** for the feature count (bottom-left of the table win
 
 1.  Go to **Vector → Data Management Tools → Join Attributes by Location (Summary)**
 2.  Configure the join:
-    -   **Join to features in:** `[cbs-neighbourhoods]`
-    -   **By comparing to:** `[bakeries-osm]`
-    -   **Where the features:** **intersect**
-    -   **Summaries to calculate:** check only **Count**
+    - **Join to features in:** `[cbs-neighbourhoods]`
+    - **By comparing to:** `[bakeries-osm]`
+    - **Where the features:** **intersect**
+    - **Summaries to calculate:** check only **Count**
 3.  **Joined field name prefix:** leave as default, or set to `bakery_`
 4.  Run the tool
 
@@ -123,13 +123,13 @@ Raw counts favour large neighbourhoods, so add a density field to make the compa
 3.  **Create a new field:** `bakery_dens` (type: **Decimal number**)
 4.  **Expression:**
 
-```
+```         
 "NUMPOINTS" / ($area / 1000000)
 ```
 
--   `"NUMPOINTS"` – the bakery count field created by the join (rename in the expression if your join used a different field name)
--   `$area / 1000000` – converts the neighbourhood's area from m² to km²
--   Dividing gives **bakeries per km²**
+- `"NUMPOINTS"` – the bakery count field created by the join (rename in the expression if your join used a different field name)
+- `$area / 1000000` – converts the neighbourhood's area from m² to km²
+- Dividing gives **bakeries per km²**
 
 5.  Click **OK**, save your edits, and toggle editing off
 
@@ -235,19 +235,19 @@ Not necessarily — a large neighbourhood can have a high raw count simply becau
 
 ## Reflection
 
--   What does the raw bakery-count map miss that the density map shows?
--   Why might the mean and median density differ, and which one better describes a "typical" neighbourhood?
--   How do the choropleth map and the bar chart complement each other — what's easier to read in each?
--   What are the limitations of using crowdsourced OSM data to count amenities like bakeries?
+- What does the raw bakery-count map miss that the density map shows?
+- Why might the mean and median density differ, and which one better describes a "typical" neighbourhood?
+- How do the choropleth map and the bar chart complement each other — what's easier to read in each?
+- What are the limitations of using crowdsourced OSM data to count amenities like bakeries?
 
 ------------------------------------------------------------------------
 
 ::: {.callout-important title="Notes for TA"}
--   Fill in the real project filename, bakeries layer filename, and output names (currently `[bracketed]` placeholders) once confirmed against the actual dataset.
--   Confirm the field name produced by **Join Attributes by Location (Summary)** — it defaults to `NUMPOINTS` but can vary by QGIS build/plugin version; update the Field Calculator expression in Step 2.2 if it differs.
--   Confirm whether students continue in the same project as Part 1 or start fresh with a copy of `[cbs-neighbourhoods]` — affects whether Step 1 needs its own project-opening instructions.
--   Decide on Excel vs. Google Sheets for Step 6 and adjust the software requirement/prerequisites accordingly.
--   This block now runs 90 minutes (13:00–14:30), merging the former Part 4 and Part 5 slots — `pages/courses/mscu_q1.qmd`'s Day Structure table and Outcomes list need updating to match (single 90-min row, one merged deliverable bullet). Reflect the timing change in the Canvas/method-sheet schedule shared with students too.
--   The old `spatial-join.qmd` draft (live-OSM-query version) is superseded by this file — consider removing it.
--   This file isn't yet referenced in `_quarto.yml` — add it to the sidebar (and/or link it from `pages/courses/mscu_q1.qmd`) once finalised.
+- Fill in the real project filename, bakeries layer filename, and output names (currently `[bracketed]` placeholders) once confirmed against the actual dataset.
+- Confirm the field name produced by **Join Attributes by Location (Summary)** — it defaults to `NUMPOINTS` but can vary by QGIS build/plugin version; update the Field Calculator expression in Step 2.2 if it differs.
+- Confirm whether students continue in the same project as Part 1 or start fresh with a copy of `[cbs-neighbourhoods]` — affects whether Step 1 needs its own project-opening instructions.
+- Decide on Excel vs. Google Sheets for Step 6 and adjust the software requirement/prerequisites accordingly.
+- This block now runs 90 minutes (13:00–14:30), merging the former Part 4 and Part 5 slots — `pages/courses/mscu_q1.qmd`'s Day Structure table and Outcomes list need updating to match (single 90-min row, one merged deliverable bullet). Reflect the timing change in the Canvas/method-sheet schedule shared with students too.
+- The old `spatial-join.qmd` draft (live-OSM-query version) is superseded by this file — consider removing it.
+- This file isn't yet referenced in `_quarto.yml` — add it to the sidebar (and/or link it from `pages/courses/mscu_q1.qmd`) once finalised.
 :::

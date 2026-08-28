@@ -87,12 +87,12 @@ By completing this exercise, you will be able to:
 2.  Click **Select Features Using an Expression** (the ε icon)
 3.  Enter the expression:
 
-```
+```         
 "GM_CODE" = 'GM0718'
 ```
 
--   `"GM_CODE"` – the field holding the municipality code
--   `= 'GM0718'` – matches rows where that code equals Vlissingen's municipality code, written as a quoted text string
+- `"GM_CODE"` – the field holding the municipality code
+- `= 'GM0718'` – matches rows where that code equals Vlissingen's municipality code, written as a quoted text string
 
 4.  Click **Select Features**
 
@@ -110,9 +110,9 @@ By completing this exercise, you will be able to:
 ::: {.callout-tip appearance="minimal" icon="true"}
 **Why work with a subset instead of the full dataset?**
 
--   **More agile layers** — a smaller file renders and processes faster
--   **Less visual noise** — the map only shows the area you're analysing
--   **Focused analysis** — easier to compare against other Vlissingen-only layers, like the neighbourhood boundaries from Part 1
+- **More agile layers** — a smaller file renders and processes faster
+- **Less visual noise** — the map only shows the area you're analysing
+- **Focused analysis** — easier to compare against other Vlissingen-only layers, like the neighbourhood boundaries from Part 1
 :::
 
 ------------------------------------------------------------------------
@@ -180,7 +180,7 @@ Building blocks with no built floor space in 2024 aren't meaningful for a change
 1.  Right-click `[density-change]` → **Properties → Source**
 2.  In the **Provider Feature Filter** box, enter:
 
-```
+```         
 "[FSI_24]" > 0
 ```
 
@@ -193,13 +193,13 @@ Building blocks with no built floor space in 2024 aren't meaningful for a change
 3.  **Create a new field:** `fsi_change` (type: **Decimal number**)
 4.  **Expression:**
 
-```
+```         
 "[FSI_24]" - "[FSI_19]"
 ```
 
--   `"[FSI_24]"` – FSI value in 2024
--   `"[FSI_19]"` – FSI value in 2019
--   Subtracting gives the change in FSI over the period: a positive value means the block densified, a negative value means it lost built density
+- `"[FSI_24]"` – FSI value in 2024
+- `"[FSI_19]"` – FSI value in 2019
+- Subtracting gives the change in FSI over the period: a positive value means the block densified, a negative value means it lost built density
 
 5.  Click **OK**, save your edits, and toggle editing off
 
@@ -237,16 +237,16 @@ Look for the darkest class on the "increase" side of the ramp — this often clu
 
 ## Reflection
 
--   Why classify continuous density data into discrete classes rather than using a continuous colour ramp?
--   What does the change map tell you about how Vlissingen has densified between 2019 and 2024?
--   What are the limitations of comparing two snapshots in time (2019 vs. 2024) without knowing what happened in between?
+- Why classify continuous density data into discrete classes rather than using a continuous colour ramp?
+- What does the change map tell you about how Vlissingen has densified between 2019 and 2024?
+- What are the limitations of comparing two snapshots in time (2019 vs. 2024) without knowing what happened in between?
 
 ------------------------------------------------------------------------
 
 ::: {.callout-important title="Notes for TA"}
--   Fill in the real project filename, output layer names, and the exact FSI field names (currently `[bracketed]` placeholders) once confirmed against the actual dataset.
--   Confirm the `GM0718` municipality code for Vlissingen and the exact FSI field names before this goes to students — the original draft used `FSI_2024` and `FSI_24` interchangeably.
--   Decide whether students genuinely select Vlissingen out of the full Zeeland layer (Step 1, as written) or start from data already clipped to the study area like Parts 1 and 2 — this materially affects timing in a 45-minute slot.
--   The print-layout section from the original draft (Add Map / Add Attribute Table, referencing "PV potential") was cut as out of scope for this block — see the note at the top of this file.
--   This file and `import-vector.qmd`/`import-raster.qmd` still need to be added to `_quarto.yml`'s sidebar to go live.
+- Fill in the real project filename, output layer names, and the exact FSI field names (currently `[bracketed]` placeholders) once confirmed against the actual dataset.
+- Confirm the `GM0718` municipality code for Vlissingen and the exact FSI field names before this goes to students — the original draft used `FSI_2024` and `FSI_24` interchangeably.
+- Decide whether students genuinely select Vlissingen out of the full Zeeland layer (Step 1, as written) or start from data already clipped to the study area like Parts 1 and 2 — this materially affects timing in a 45-minute slot.
+- The print-layout section from the original draft (Add Map / Add Attribute Table, referencing "PV potential") was cut as out of scope for this block — see the note at the top of this file.
+- This file and `import-vector.qmd`/`import-raster.qmd` still need to be added to `_quarto.yml`'s sidebar to go live.
 :::
