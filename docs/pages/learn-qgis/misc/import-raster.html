@@ -450,7 +450,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Confirm whether Part 2 opens its own starter project (<code>[project-name-part2].qgz</code> below) or continues in the same project file as Part 1 — written here as a separate project, adjust if it should chain from Part 1’s output –&gt; <strong>done</strong></li>
 <li>Pick the actual cpt-city colour ramp for Step 3 (left as a placeholder — QGIS ships several elevation/terrain ramps under Color ramp → All Color Ramps → cpt-city) –&gt; <strong>we decided to let students choose the exact color ramp from the catalog</strong></li>
 <li>Decide the output naming/format for the exported risk-zone raster in Step 5 — flagged as open in the original draft –&gt; <strong>done</strong></li>
-<li>Confirm the 0.70 m threshold and its World Bank Climate Knowledge Portal source before this goes to students –&gt; <strong>could not find this exact information</strong> (still looking for it or an alternative source)</li>
+<li>Confirm the 0.70 m threshold and its World Bank Climate Knowledge Portal source before this goes to students –&gt; <strong>done</strong></li>
 <li><strong>Neither this file nor <code>import-vector.qmd</code> (Part 1) is currently referenced in <code>_quarto.yml</code></strong>, so neither is live on the site yet — add both to the sidebar (and/or link them from <code>pages/courses/mscu_q1.qmd</code>) once finalised</li>
 </ul>
 </div>
@@ -479,9 +479,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>You will need:</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 26%">
-<col style="width: 23%">
-<col style="width: 50%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -512,7 +512,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Background:</strong> The <a href="https://climateknowledgeportal.worldbank.org/">World Bank Climate Knowledge Portal</a> projects sea levels along the Dutch coast could rise by approximately <strong>0.70 m by 2100</strong> under current emissions trajectories. This tutorial uses that figure as a simple screening threshold — not a precise flood model.</p>
+<p><strong>Background:</strong> The <a href="https://climateknowledgeportal.worldbank.org/country/netherlands/sea-level-projections">World Bank Climate Knowledge Portal</a> projects sea levels along the Dutch coast could rise by approximately <strong>0.70 m by 2100</strong> under current emissions trajectories. This tutorial uses that figure as a simple screening threshold — not a precise flood model.</p>
 </div>
 </div>
 </div>
@@ -657,7 +657,7 @@ Tip
 <section id="step-5-export-and-share" class="level2">
 <h2 class="anchored" data-anchor-id="step-5-export-and-share">Step 5: Export and Share</h2>
 <ol type="1">
-<li>Right-click the risk-zone layer → <strong>Export → Save As…</strong>, and confirm the output format/name from Step 4 (<code>[risk_zones.tif</code>)</li>
+<li>Right-click the risk-zone layer → <strong>Export → Save As…</strong>, and confirm the output format/name from Step 4 (<code>risk_zones.tif</code>)</li>
 <li>Take a screenshot of the QGIS canvas showing the styled DTM basemap (with legend) for the Miro deliverable</li>
 <li>Upload the screenshot to the course Miro board</li>
 <li><strong>File → Save Project</strong></li>
@@ -1189,7 +1189,7 @@ Tip
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm whether Part 2 opens its own starter project (<span class="in">`[project-name-part2].qgz`</span> below) or continues in the same project file as Part 1 — written here as a separate project, adjust if it should chain from Part 1's output –<span class="sc">\&gt;</span> **done**</span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Pick the actual cpt-city colour ramp for Step 3 (left as a placeholder — QGIS ships several elevation/terrain ramps under Color ramp → All Color Ramps → cpt-city) –<span class="sc">\&gt;</span> **we decided to let students choose the exact color ramp from the catalog**</span>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decide the output naming/format for the exported risk-zone raster in Step 5 — flagged as open in the original draft –<span class="sc">\&gt;</span> **done**</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm the 0.70 m threshold and its World Bank Climate Knowledge Portal source before this goes to students –<span class="sc">\&gt;</span> **could not find this exact information** (still looking for it or an alternative source)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm the 0.70 m threshold and its World Bank Climate Knowledge Portal source before this goes to students –<span class="sc">\&gt;</span> **done**</span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Neither this file nor `import-vector.qmd` (Part 1) is currently referenced in `_quarto.yml`**, so neither is live on the site yet — add both to the sidebar (and/or link them from <span class="in">`pages/courses/mscu_q1.qmd`</span>) once finalised</span>
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
@@ -1217,13 +1217,13 @@ Tip
 <span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>**You will need:**</span>
 <span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Resource <span class="pp">|</span> Type <span class="pp">|</span> Description <span class="pp">|</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------------------|-----------------|------------------------------------|</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|----|----|----|</span></span>
 <span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`vlissingen-part-2.qgz`</span> <span class="pp">|</span> QGIS project <span class="pp">|</span> Starter project for the municipality of **Vlissingen** <span class="pp">|</span></span>
 <span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`elevation_5m.tif`</span> <span class="pp">|</span> Raster (GeoTIFF) <span class="pp">|</span> AHN Digital Terrain Model (DTM), pre-clipped to the study area <span class="pp">|</span></span>
 <span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal" icon="true"}</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>**Background:** The [World Bank Climate Knowledge Portal](https://climateknowledgeportal.worldbank.org/) projects sea levels along the Dutch coast could rise by approximately **0.70 m by 2100** under current emissions trajectories. This tutorial uses that figure as a simple screening threshold — not a precise flood model.</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>**Background:** The [World Bank Climate Knowledge Portal](https://climateknowledgeportal.worldbank.org/country/netherlands/sea-level-projections) projects sea levels along the Dutch coast could rise by approximately **0.70 m by 2100** under current emissions trajectories. This tutorial uses that figure as a simple screening threshold — not a precise flood model.</span>
 <span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
@@ -1328,7 +1328,7 @@ Tip
 <span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 5: Export and Share</span></span>
 <span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click the risk-zone layer → **Export → Save As…**, and confirm the output format/name from Step 4 (<span class="in">`[risk_zones.tif`</span>)</span>
+<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click the risk-zone layer → **Export → Save As…**, and confirm the output format/name from Step 4 (<span class="in">`risk_zones.tif`</span>)</span>
 <span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Take a screenshot of the QGIS canvas showing the styled DTM basemap (with legend) for the Miro deliverable</span>
 <span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Upload the screenshot to the course Miro board</span>
 <span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**File → Save Project**</span>

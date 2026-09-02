@@ -1,6 +1,6 @@
 ---
 title: "Part 4 – Spatial Join, Density & Statistics"
-description: "Join bakery locations to neighbourhoods, calculate density, compute descriptive statistics, and chart the results in Excel."
+description: "Join bus stop locations to neighbourhoods, calculate density, compute descriptive statistics, and chart the results in Excel."
 categories:
  - Spatial Analysis
  - Data Visualization
@@ -20,23 +20,11 @@ date: 2026-08-06
 
 **Author:** Daniele Cannatella
 
-::: {.callout-important title="Note for TA"}
-This is Part 4 of the MSc1 Urbanism Week 1 workshop (see `pages/courses/mscu_q1.qmd`, 13:00–14:30 slot). This block merges what were originally two separate 45-minute parts (spatial join/density, and basic statistics) into one 90-minute exercise, since the join + density + charting workflow naturally carries the statistics content too. Deliverable per the workshop plan: "Density + spatial join map of bakeries, with descriptive statistics and an Excel barchart — Miro". Reuses the CBS neighbourhood boundaries layer from Part 1.
-
-Remaining placeholders (`[...]`) to fill in before this goes out to students:
-
-- **The old draft (`spatial-join.qmd`) had students install the QuickOSM plugin and query bakeries live from OpenStreetMap.** The workshop's own data prerequisites (`pages/courses/mscu_q1.qmd`) list "OSM POIs — pre-filtered to bakeries only" as something prepared *in advance*, specifically "so students aren't querying/filtering live." This tutorial is written assuming a **pre-filtered bakeries layer is already provided** in the starter project — confirm that's correct rather than the live QuickOSM workflow the old draft implied.
-- Confirm the real starter project filename, the bakeries layer filename, and that its CRS matches the project (EPSG:28992)
-- Confirm whether Part 4 continues in the same project file as Part 1 (reusing `[cbs-neighbourhoods]`) or opens a fresh project with a copy of that layer — written here assuming continuation
-- Confirm Google Sheets is an acceptable substitute for Excel for students without an Office licence, or whether to standardise on one tool
-- The old draft file `spatial-join.qmd` is superseded by this file — consider deleting it once this is finalised
-:::
-
 ------------------------------------------------------------------------
 
 ## Overview
 
-This exercise is the fourth hands-on block of the Week 1 GIS workshop, following on from [Part 1 – Vector Import & Basemap](import-vector.qmd). You will import a point layer of bakeries in Vlissingen, count how many fall within each neighbourhood using a spatial join, calculate bakery density, compute descriptive statistics across all neighbourhoods, visualize the result as a choropleth, and build a bar chart from the same data in Excel.
+This exercise is the fourth hands-on block of the Week 1 GIS workshop, following on from [Part 1 – Vector Import & Basemap](import-vector.qmd). You will import a point layer of bus stops in Vlissingen, count how many fall within each neighbourhood using a spatial join, calculate bus stop density, compute descriptive statistics across all neighbourhoods, visualize the result as a choropleth, and build a bar chart from the same data in Excel.
 
 **Learning Outcomes**
 
@@ -57,30 +45,30 @@ By completing this exercise, you will be able to:
 **You will need:**
 
 | Resource | Type | Description |
-|----|----|----|
-| `[project-name-part4].qgz` | QGIS project | Continues from Part 1 — includes `[cbs-neighbourhoods]` |
-| `[cbs-neighbourhoods].shp` | Shapefile | CBS neighbourhood boundaries for Vlissingen (same layer as Part 1) |
-| `[bakeries-osm].gpkg` | Vector (points) | Bakery locations from OpenStreetMap, pre-filtered to Vlissingen |
+|------------------------|------------------------|------------------------|
+| `vlissingen.qgz` | QGIS project | Continues from Part 1 — includes `[cbs-neighbourhoods]` |
+| `vlissingen_neighbourhoods.gpkg` | Geopackage | CBS neighbourhood boundaries for Vlissingen (same layer as Part 1) |
+| `bus_stops.gpkg` | Vector (points) | Bus stop locations from OpenStreetMap, pre-filtered to Vlissingen |
 :::
 
 ::: {.callout-note appearance="minimal" icon="true"}
-**Background:** OpenStreetMap (OSM) is a crowdsourced map of the world — anyone can add or edit features. It's a fast, free source of point-of-interest data like shops and amenities, but coverage depends on how actively an area has been mapped, so a bakery count from OSM is an estimate, not a guaranteed complete inventory.
+**Background:** OpenStreetMap (OSM) is a crowdsourced map of the world — anyone can add or edit features. It's a fast, free source of point-of-interest data like shops and amenities, but coverage depends on how actively an area has been mapped, so a bus stop count from OSM is an estimate, not a guaranteed complete inventory.
 :::
 
 ------------------------------------------------------------------------
 
-## Step 1: Import the Bakeries Layer
+## Step 1: Import the Bus Stops Layer
 
-1.  Launch **QGIS LTR 3.44** and open the project `[project-name-part4].qgz`
-2.  From the **Browser Panel**, import the point layer `[bakeries-osm].gpkg`
-3.  Check that it draws correctly over Vlissingen, alongside `[cbs-neighbourhoods]`
+1.  Launch **QGIS LTR 3.44** and open the project `vlissingen.qgz`
+2.  From the **Browser Panel**, import the point layer `bus_stops.gpkg`
+3.  Check that it draws correctly over Vlissingen, alongside `vlissingen_neighbourhoods`
 
-**Result:** Bakery locations appear as points scattered across the neighbourhood boundaries.
+**Result:** Bus stops locations appear as points scattered across the neighbourhood boundaries.
 
-\[Add screenshot: QGIS canvas with bakery points loaded over the neighbourhood boundaries\]
+![](spatial_join_density_and_statistics/fig%201.png)
 
 :::: {.callout-note appearance="minimal" icon="true"}
-**❓ Question:** How many bakeries does the layer contain in total, and what CRS is it in?
+**❓ Question:** How many bus stops does the layer contain in total, and what CRS is it in?
 
 **✅ Solution (click to reveal):**
 
@@ -91,49 +79,72 @@ Open the **Attribute Table** for the feature count (bottom-left of the table win
 
 ------------------------------------------------------------------------
 
-## Step 2: Count Bakeries per Neighbourhood
+## Step 2: Count Bus stops per Neighbourhood
 
 ### 2.1 Join Attributes by Location (Summary)
 
-1.  Go to **Vector → Data Management Tools → Join Attributes by Location (Summary)**
+1.  Go to **Processing → Toolbox → Vector general → Join Attributes by Location (Summary)**
 2.  Configure the join:
-    - **Join to features in:** `[cbs-neighbourhoods]`
-    - **By comparing to:** `[bakeries-osm]`
+    - **Join to features in:** `vlissingen_neighbourhoods`
+    - **By comparing to:** `bus_stops`
     - **Where the features:** **intersect**
-    - **Summaries to calculate:** check only **Count**
-3.  **Joined field name prefix:** leave as default, or set to `bakery_`
-4.  Run the tool
+    - **Fields to summarise:** check only **bus**
+    - **Summaries to calculate:** check only **count**
+3.  Run the tool
 
 ::: {.callout-tip appearance="minimal" icon="true"}
-**Tip:** For point-in-polygon counts, **intersect** and **within** give the same result for almost every bakery — the difference only matters for a point sitting exactly on a boundary line. Either predicate works here.
+**Tip:** For point-in-polygon counts, **intersect** and **within** give the same result for almost every bus stop — the difference only matters for a point sitting exactly on a boundary line. Either predicate works here.
 :::
 
-**Result:** A new layer is created (e.g. `Joined layer`) with one row per neighbourhood and a new field holding the bakery count for that neighbourhood.
+**Result:** A new layer is created (e.g. `Joined layer`) with one row per neighbourhood and a new field holding the bus stop count for that neighbourhood.
 
-5.  Rename the output layer `[buurten-bakeries]`
+5.  Rename the output layer `stops_per_neighbourhood`
 
-\[Add screenshot: Join Attributes by Location (Summary) dialog with the configuration above\]
+![](spatial_join_density_and_statistics/fig%202.png)
 
-### 2.2 Calculate Density
+### 2.2 Replace NULL values
+
+1.  Open the **Attribute Table** for `stops_per_neighbourhood`, observe the `bus_count` column
+
+::: {.callout-note appearance="minimal" icon="true"}
+**NULL values:** In databases, **NULL** is used to represent unknown or missing values. In this exercise, **NULL** was attributed to the neighborhoods that do not contain any bus stop; thus this value may be replaced by **zero** without changing the meaning of the data. However, note that **NULL** and **zero** are not interchangeable, and the replacement shown in this step should not be done indiscriminately.
+:::
+
+2.  Toggle editing mode
+3.  Open **Field Calculator**
+4.  **Update existing field:** `bus_count`
+5.  Expression:
+
+```         
+if ("bus_count" IS NULL, 0, "bus_count")
+```
+
+- `if ("bus_count" IS NULL` – sets a condition
+- `0` – specifies what to do if the condition is true: which value to use as a replacement
+- `"bus_count"`- specifies what to do if the condition is false (i.e. value is not NULL): keep the current `bus_count` value
+
+**Result:** The `bus_count` column is updated to replace NULL values by numberic values (zero).
+
+### 2.3 Calculate Density
 
 Raw counts favour large neighbourhoods, so add a density field to make the comparison fair.
 
-1.  Open the **Attribute Table** for `[buurten-bakeries]`, toggle editing mode
+1.  Open the **Attribute Table** for `stops_per_neighbourhood`, toggle editing mode
 2.  Open **Field Calculator**
-3.  **Create a new field:** `bakery_dens` (type: **Decimal number**)
+3.  **Create a new field:** `bus_stop_dens` (type: **Decimal number**)
 4.  **Expression:**
 
 ```         
-"NUMPOINTS" / ($area / 1000000)
+"bus_count" / ($area / 1000000)
 ```
 
-- `"NUMPOINTS"` – the bakery count field created by the join (rename in the expression if your join used a different field name)
+- `"bus_count"` – the bus stop count field created by the join (rename in the expression if your join used a different field name)
 - `$area / 1000000` – converts the neighbourhood's area from m² to km²
-- Dividing gives **bakeries per km²**
+- Dividing gives **bus stops per km²**
 
 5.  Click **OK**, save your edits, and toggle editing off
 
-**Result:** Each neighbourhood now has both a raw bakery count and a density value.
+**Result:** Each neighbourhood now has both a raw bus stop count and a density value.
 
 ------------------------------------------------------------------------
 
@@ -143,14 +154,14 @@ Before mapping or charting the data, get a feel for the numbers themselves — t
 
 ### 3.1 Open the Statistics Panel
 
-1.  Select `[buurten-bakeries]` in the **Layers Panel**
+1.  Select `stops_per_neighbourhood` in the **Layers Panel**
 2.  Go to **View → Panels → Statistics Panel** (enable it if not already visible)
-3.  Set **Field/Expression** to `bakery_dens`
+3.  Set **Field/Expression** to `bus_stop_dens`
 4.  Make sure **Statistics on** is set to the whole layer, not just a selection
 
-**Result:** The panel lists summary statistics for `bakery_dens` across every neighbourhood — at minimum, note **Count**, **Minimum**, **Maximum**, **Mean**, and **Median**.
+**Result:** The panel lists summary statistics for `bus_stop_dens` across every neighbourhood — at minimum, note **Count**, **Minimum**, **Maximum**, **Mean**, and **Median**.
 
-\[Add screenshot: Statistics Panel showing count/min/max/mean/median for `bakery_dens`\]
+![](spatial_join_density_and_statistics/fig%203.png){width="409"}
 
 ### 3.2 Interpret the Numbers
 
@@ -158,7 +169,7 @@ Before mapping or charting the data, get a feel for the numbers themselves — t
 **Reading mean vs. median:** If the **mean** is noticeably higher than the **median**, a small number of neighbourhoods with very high density are pulling the average up — the median gives a better sense of what a "typical" neighbourhood looks like in that case.
 :::
 
-Write down the citywide **mean** bakery density — you'll use it in Step 6 to add a reference line to your bar chart.
+Write down the citywide **mean** bus stop density — you'll use it in Step 6 to add a reference line to your bar chart.
 
 :::: {.callout-note appearance="minimal" icon="true"}
 **❓ Question:** How many neighbourhoods sit above the citywide mean density? Does that match your impression from the raw numbers?
@@ -166,7 +177,7 @@ Write down the citywide **mean** bakery density — you'll use it in Step 6 to a
 **✅ Solution (click to reveal):**
 
 ::: {.callout-tip collapse="true"}
-Sort the attribute table by `bakery_dens` (click the column header) and count the rows above the mean value from Step 3.1. Because the mean is sensitive to outliers, it's common for a *majority* of neighbourhoods to sit below the mean, with just one or two very dense neighbourhoods pulling it up — worth checking against the median from Step 3.1.
+Sort the attribute table by `bus_stop_dens` (click the column header) and count the rows above the mean value from Step 3.1. Because the mean is sensitive to outliers, it's common for a *majority* of neighbourhoods to sit below the mean, with just one or two very dense neighbourhoods pulling it up — worth checking against the median from Step 3.1.
 :::
 ::::
 
@@ -174,24 +185,24 @@ Sort the attribute table by `bakery_dens` (click the column header) and count th
 
 ## Step 4: Visualize in QGIS
 
-1.  Select `[buurten-bakeries]`, open **Layer Styling** (`F7`)
+1.  Select `stops_per_neighbourhood`, open **Layer Styling** (`F7`)
 2.  Change the classification type to **Graduated**
-3.  **Value:** `bakery_dens`
+3.  **Value:** `bus_stop_dens`
 4.  **Classification Mode:** **Natural Breaks (Jenks)**, **4 classes**
 5.  Choose a sequential colour ramp and click **Classify**, then **Apply**
-6.  Make sure the `[bakeries-osm]` point layer is drawn on top, with small, visible markers, so individual bakeries stay visible over the choropleth
+6.  Make sure the `bus_stops` point layer is drawn on top, with small, visible markegit chers, so individual bus stops stay visible over the choropleth
 
-**Result:** A choropleth of bakery density per neighbourhood, with the underlying bakery points still visible for reference.
+**Result:** A choropleth of bus stop density per neighbourhood, with the underlying bus stop points still visible for reference.
 
-\[Add screenshot: choropleth map of `bakery_dens` with bakery points overlaid and legend visible\]
+![](spatial_join_density_and_statistics/fig%204.png)
 
 :::: {.callout-note appearance="minimal" icon="true"}
-**❓ Question:** Does the neighbourhood with the most bakeries (highest count) also have the highest density?
+**❓ Question:** Does the neighbourhood with the most bus stops (highest count) also have the highest density?
 
 **✅ Solution (click to reveal):**
 
 ::: {.callout-tip collapse="true"}
-Not necessarily — a large neighbourhood can have a high raw count simply because it covers more area, while a small, dense neighbourhood can have fewer bakeries in total but a higher density. Comparing the count map and the density map side by side (or just the two fields in the attribute table) usually makes this visible.
+Not necessarily — a large neighbourhood can have a high raw count simply because it covers more area, while a small, dense neighbourhood can have fewer bus stops in total but a higher density. Comparing the count map and the density map side by side (or just the two fields in the attribute table) usually makes this visible.
 :::
 ::::
 
@@ -199,28 +210,28 @@ Not necessarily — a large neighbourhood can have a high raw count simply becau
 
 ## Step 5: Export the Attribute Table as CSV
 
-1.  Right-click `[buurten-bakeries]` → **Export → Save Features As…**
+1.  Right-click `stops_per_neighbourhood` → **Export → Save Features As…**
 2.  **Format:** Comma Separated Value \[CSV\]
-3.  **File name:** `[buurten-bakeries].csv`
+3.  **File name:** ``` stops_per_neighbourhood``.csv ```
 4.  Under **Layer Options**, set **GEOMETRY** to **AS_XY** or **No geometry**, so the CSV stays a plain table rather than embedding geometry text in every row
 5.  Click **OK**
 
-**Result:** A CSV file with one row per neighbourhood, including its name, bakery count, and density.
+**Result:** A CSV file with one row per neighbourhood, including its name, bus stop count, and density.
 
 ------------------------------------------------------------------------
 
 ## Step 6: Build a Bar Chart in Excel or Google Sheets
 
-1.  Open `[buurten-bakeries].csv` in **Excel** (or import it into **Google Sheets**)
-2.  Select the neighbourhood name column and the `bakery_dens` (or count) column
+1.  Open `stops_per_neighbourhood.csv` in **Excel** (or import it into **Google Sheets**)
+2.  Select the neighbourhood name column and the `bus_stop_dens` (or count) column
 3.  Insert a **bar chart** (or column chart) from the selection
 4.  Sort the data by value first (largest to smallest) so the chart is easy to read
-5.  Give the chart a title and label the axes (e.g. "Bakery density by neighbourhood (bakeries/km²)")
+5.  Give the chart a title and label the axes (e.g. "Bus stop density by neighbourhood (bus stops/km²)")
 6.  Add a horizontal reference line at the **citywide mean** you noted in Step 3.2 (e.g. add a constant "Mean" column and plot it as a second series, or use a chart error-bar/trendline set to that value), so the chart shows at a glance which neighbourhoods sit above or below average
 
-**Result:** A bar chart ranking Vlissingen's neighbourhoods by bakery density, with the citywide mean visible as a reference.
+**Result:** A bar chart ranking Vlissingen's neighbourhoods by bus stop density, with the citywide mean visible as a reference.
 
-\[Add screenshot: bar chart in Excel/Google Sheets, sorted, labelled, and with the mean reference line\]
+![](spatial_join_density_and_statistics/fig%205.png)
 
 ------------------------------------------------------------------------
 
@@ -235,19 +246,10 @@ Not necessarily — a large neighbourhood can have a high raw count simply becau
 
 ## Reflection
 
-- What does the raw bakery-count map miss that the density map shows?
+- What does the raw bus stop-count map miss that the density map shows?
 - Why might the mean and median density differ, and which one better describes a "typical" neighbourhood?
+- How would the presence of NULL values affect these statistics and their interpretation?
 - How do the choropleth map and the bar chart complement each other — what's easier to read in each?
-- What are the limitations of using crowdsourced OSM data to count amenities like bakeries?
+- What are the limitations of using crowdsourced OSM data to count amenities like bus stops?
 
 ------------------------------------------------------------------------
-
-::: {.callout-important title="Notes for TA"}
-- Fill in the real project filename, bakeries layer filename, and output names (currently `[bracketed]` placeholders) once confirmed against the actual dataset.
-- Confirm the field name produced by **Join Attributes by Location (Summary)** — it defaults to `NUMPOINTS` but can vary by QGIS build/plugin version; update the Field Calculator expression in Step 2.2 if it differs.
-- Confirm whether students continue in the same project as Part 1 or start fresh with a copy of `[cbs-neighbourhoods]` — affects whether Step 1 needs its own project-opening instructions.
-- Decide on Excel vs. Google Sheets for Step 6 and adjust the software requirement/prerequisites accordingly.
-- This block now runs 90 minutes (13:00–14:30), merging the former Part 4 and Part 5 slots — `pages/courses/mscu_q1.qmd`'s Day Structure table and Outcomes list need updating to match (single 90-min row, one merged deliverable bullet). Reflect the timing change in the Canvas/method-sheet schedule shared with students too.
-- The old `spatial-join.qmd` draft (live-OSM-query version) is superseded by this file — consider removing it.
-- This file isn't yet referenced in `_quarto.yml` — add it to the sidebar (and/or link it from `pages/courses/mscu_q1.qmd`) once finalised.
-:::

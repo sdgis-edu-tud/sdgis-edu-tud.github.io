@@ -20,19 +20,6 @@ date: 2026-08-06
 
 **Author:** Daniele Cannatella
 
-::: {.callout-important title="Note for TA"}
-This is Part 3 of the MSc1 Urbanism Week 1 workshop (see `pages/courses/mscu_q1.qmd`, 11:00–11:45 slot). Scope is deliberately limited to selecting/cleaning the attribute table and producing one choropleth screenshot, to fit the 45-minute block.
-
-Remaining placeholders (`[...]`) to fill in before this goes out to students:
-
-- Confirm the real starter project filename and the exact field names in `PV29__00_Basis_Bouwblok` (the draft this was built from used `GM_CODE`, `FSI_2024`/`FSI_24`, and `FSI_19` inconsistently — pick one naming convention and confirm it against the actual dataset)
-- Confirm the Vlissingen municipality code (`GM0718`) is correct and correctly quoted as a string in the expression
-- **Unlike Parts 1 and 2, the draft has students filter Vlissingen out of a province-wide (Zeeland) layer themselves, rather than starting from data pre-clipped to the study area.** Decide whether that's a deliberate teaching point for this block (practising `Select by Expression`) or should be pre-clipped like the other parts to save time — Step 1 below is written assuming it's deliberate
-- Confirm the RUDIFUN background text below (translated/condensed from the original Dutch source blurb) is accurate before publishing
-- **Cut from the original draft:** a later section instructing students to build a print layout (Items panel → Add Map → Add Attribute Table) and describing "Southern municipalities" with higher PV potential. This doesn't match Part 3's deliverable (a canvas screenshot to Miro) and reads like it was copied from an unrelated solar-potential tutorial — the print-layout workflow belongs to the afternoon Cartography exercise instead. Flag if this was cut in error.
-- Neither this file nor `import-vector.qmd`/`import-raster.qmd` is currently referenced in `_quarto.yml` — add all three to the sidebar (and/or link them from `pages/courses/mscu_q1.qmd`) once finalised
-:::
-
 ------------------------------------------------------------------------
 
 ## Overview
@@ -57,8 +44,8 @@ By completing this exercise, you will be able to:
 **You will need:**
 
 | Resource | Type | Description |
-|----|----|----|
-| `[project-name-part3].qgz` | QGIS project | Starter project, pre-loaded with the RUDIFUN dataset for the province of **Zeeland** |
+|------------------------|------------------------|------------------------|
+| `vlissingen-part-3.qgz` | QGIS project | Starter project, pre-loaded with the RUDIFUN dataset for the province of **Zeeland** |
 | `PV29__00_Basis_Bouwblok` | Vector layer (polygon) | RUDIFUN building-block density dataset (FSI, MXI), province-wide — not yet clipped to Vlissingen |
 :::
 
@@ -242,11 +229,3 @@ Look for the darkest class on the "increase" side of the ramp — this often clu
 - What are the limitations of comparing two snapshots in time (2019 vs. 2024) without knowing what happened in between?
 
 ------------------------------------------------------------------------
-
-::: {.callout-important title="Notes for TA"}
-- Fill in the real project filename, output layer names, and the exact FSI field names (currently `[bracketed]` placeholders) once confirmed against the actual dataset.
-- Confirm the `GM0718` municipality code for Vlissingen and the exact FSI field names before this goes to students — the original draft used `FSI_2024` and `FSI_24` interchangeably.
-- Decide whether students genuinely select Vlissingen out of the full Zeeland layer (Step 1, as written) or start from data already clipped to the study area like Parts 1 and 2 — this materially affects timing in a 45-minute slot.
-- The print-layout section from the original draft (Add Map / Add Attribute Table, referencing "PV potential") was cut as out of scope for this block — see the note at the top of this file.
-- This file and `import-vector.qmd`/`import-raster.qmd` still need to be added to `_quarto.yml`'s sidebar to go live.
-:::

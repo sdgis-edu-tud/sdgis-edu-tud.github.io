@@ -19,16 +19,6 @@ date: 2026-08-06
 
 **Author:** Daniele Cannatella
 
-::: {.callout-important title="Note for TA"}
-This is Part 2 of the MSc1 Urbanism Week 1 workshop (see `pages/courses/mscu_q1.qmd`, 10:30–11:00 slot). Deliverable per the workshop plan: "Basemap of DTM (AHN); screenshot to Miro" — the pasted draft this was built from didn't include a Miro screenshot step even though every other part in the plan ends with one, so Step 4 below adds it to match Part 1's pattern. Please check:
-
-- Confirm the AHN DTM is pre-clipped and delivered via the same starter-project mechanism as Part 1 (per the workshop plan, raw AHN pulls are "slow/unpredictable live", so students should not be fetching it themselves) –\> **done**
-- Confirm whether Part 2 opens its own starter project (`[project-name-part2].qgz` below) or continues in the same project file as Part 1 — written here as a separate project, adjust if it should chain from Part 1's output –\> **done**
-- Pick the actual cpt-city colour ramp for Step 3 (left as a placeholder — QGIS ships several elevation/terrain ramps under Color ramp → All Color Ramps → cpt-city) –\> **we decided to let students choose the exact color ramp from the catalog**
-- Decide the output naming/format for the exported risk-zone raster in Step 5 — flagged as open in the original draft –\> **done**
-- Confirm the 0.70 m threshold and its World Bank Climate Knowledge Portal source before this goes to students –\> **could not find this exact information** (still looking for it or an alternative source)
-- **Neither this file nor `import-vector.qmd` (Part 1) is currently referenced in `_quarto.yml`**, so neither is live on the site yet — add both to the sidebar (and/or link them from `pages/courses/mscu_q1.qmd`) once finalised
-:::
 
 ------------------------------------------------------------------------
 
@@ -54,13 +44,13 @@ By completing this exercise, you will be able to:
 **You will need:**
 
 | Resource | Type | Description |
-|-------------------|-----------------|------------------------------------|
+|------------------------|------------------------|------------------------|
 | `vlissingen-part-2.qgz` | QGIS project | Starter project for the municipality of **Vlissingen** |
 | `elevation_5m.tif` | Raster (GeoTIFF) | AHN Digital Terrain Model (DTM), pre-clipped to the study area |
 :::
 
 ::: {.callout-note appearance="minimal" icon="true"}
-**Background:** The [World Bank Climate Knowledge Portal](https://climateknowledgeportal.worldbank.org/) projects sea levels along the Dutch coast could rise by approximately **0.70 m by 2100** under current emissions trajectories. This tutorial uses that figure as a simple screening threshold — not a precise flood model.
+**Background:** The [World Bank Climate Knowledge Portal](https://climateknowledgeportal.worldbank.org/country/netherlands/sea-level-projections) projects sea levels along the Dutch coast could rise by approximately **0.70 m by 2100** under current emissions trajectories. This tutorial uses that figure as a simple screening threshold — not a precise flood model.
 :::
 
 ------------------------------------------------------------------------
@@ -165,7 +155,7 @@ Areas at or below the 0.70 m threshold are treated here as a simple proxy for la
 
 ## Step 5: Export and Share
 
-1.  Right-click the risk-zone layer → **Export → Save As…**, and confirm the output format/name from Step 4 (`[risk_zones.tif`)
+1.  Right-click the risk-zone layer → **Export → Save As…**, and confirm the output format/name from Step 4 (`risk_zones.tif`)
 2.  Take a screenshot of the QGIS canvas showing the styled DTM basemap (with legend) for the Miro deliverable
 3.  Upload the screenshot to the course Miro board
 4.  **File → Save Project**
@@ -180,9 +170,3 @@ Areas at or below the 0.70 m threshold are treated here as a simple proxy for la
 
 ------------------------------------------------------------------------
 
-::: {.callout-important title="Notes for TA"}
-- Fill in the real project filename, AHN DTM filename, cpt-city ramp name, and risk-zone output name/format (currently `[bracketed]` placeholders). –\> **done**
-- Confirm the 0.70 m 2100 sea-level-rise figure and its World Bank Climate Knowledge Portal citation before publishing — it's used here as a simple teaching threshold, not a validated flood-risk figure, and Step 3's reflection question is designed to surface that limitation with students. –\> **still checking source**
-- Consider whether the histogram/min-max questions (Step 2.2) need a fixed expected answer once the real AHN extract is finalised, rather than the open-ended guidance currently given. –\> **I think guidance enough**
-- This file and `import-vector.qmd` still need to be added to `_quarto.yml`'s sidebar to go live.
-:::

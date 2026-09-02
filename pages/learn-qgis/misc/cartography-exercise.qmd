@@ -19,18 +19,6 @@ date: 2026-08-06
 
 **Author:** Daniele Cannatella
 
-::: {.callout-important title="Note for TA"}
-This is the Cartography Exercise block of the MSc1 Urbanism Week 1 workshop (see `pages/courses/mscu_q1.qmd`, 15:45–16:45 slot), following the 45-minute Cartography input lecture (14:45–15:30) and a 15-minute map review (15:30–15:45). Deliverable per the workshop plan: "≥1 map finalized, rest as take-home."
-
-This exercise doesn't introduce new data — students bring one of their own styled layers from Parts 1–4 (land use, DTM/risk zone, FSI choropleth, or bakery density) and turn it into a finished map. Placeholders to confirm before this goes out to students:
-
-- Decide whether every student finalises the **same** map (e.g. everyone does the Part 3 choropleth) for consistency of grading/discussion, or picks freely among their Parts 1–4 outputs, as written below
-- Confirm what the inset map should show — written here as "Vlissingen's location within Zeeland/the Netherlands," but confirm a suitable province/country boundary layer is available in the starter project(s) for this
-- Confirm page size/orientation convention (A4 vs. A3, portrait vs. landscape) if you want the class to standardise for the Miro board
-- Confirm the export format expected for the Miro deliverable (PNG image vs. PDF)
-- This file isn't yet referenced in `_quarto.yml` — add it to the sidebar (and/or link it from `pages/courses/mscu_q1.qmd`) once finalised
-:::
-
 ------------------------------------------------------------------------
 
 ## Overview
@@ -56,7 +44,7 @@ By completing this exercise, you will be able to:
 **You will need:**
 
 | Resource | Type | Description |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | One project from Parts 1–4 | QGIS project | Your own styled output — land use basemap, DTM/risk zone, FSI choropleth, or bakery density map |
 | `zeeland.gpkg` | Geopackage | Boundary layer for the inset map |
 :::
@@ -66,7 +54,7 @@ By completing this exercise, you will be able to:
 ## Quick Reference: Layout Elements
 
 | Element | Menu Path | Purpose |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | Print Layout | **Project → New Print Layout** | Opens the layout canvas where all map elements are assembled |
 | Map | **Add Item → Add Map** | Places the main (or inset) map view on the page |
 | Legend | **Add Item → Add Legend** | Explains symbology to the reader |
@@ -78,7 +66,7 @@ By completing this exercise, you will be able to:
 
 ## Step 1: Choose Your Map and Tidy the Layers
 
-1.  Open the project containing the layer you want to finalise (your choice of Part 1's land use map, Part 2's DTM/risk zone, Part 3's FSI choropleth, or Part 4's bakery density map)
+1.  Open the project containing the layer you want to finalise (your choice of Part 1's land use map, Part 2's DTM/risk zone, Part 3's FSI choropleth, or Part 4's bus stops density map)
 2.  In the **Layers Panel**, turn off or remove any layers you don't want to appear in the final map, so the legend stays focused
 3.  Confirm your main layer's symbology still looks the way you left it (graduated/categorised classes, colours, etc.)
 
@@ -89,10 +77,11 @@ By completing this exercise, you will be able to:
 ## Step 2: Build the Main Map
 
 1.  Go to **Project → New Print Layout**, give it a name (e.g. `land_use_layout`)
-2.  In the **Items Panel**, click **Add Item → Add Map**
-3.  Click and drag on the layout canvas to draw the main map frame — aim for roughly **60–70% of the page**
-4.  With the map item selected, use the **Item Properties** panel to pan/zoom the map inside its frame until the extent looks right
-5.  Once you're happy with the extent, tick **Lock Layers** and **Lock Styles** in Item Properties, so later edits to the project don't accidentally change what's shown in the layout
+2.  Click on the canvas; in Item Properties, change the page **size** to **A3**
+3.  In the **Items Panel**, click **Add Item → Add Map**
+4.  Click and drag on the layout canvas to draw the main map frame — aim for roughly **60–70% of the page**
+5.  With the map item selected, use the **Item Properties** panel to pan/zoom the map inside its frame until the extent looks right
+6.  Once you're happy with the extent, tick **Lock Layers** and **Lock Styles** in Item Properties, so later edits to the project don't accidentally change what's shown in the layout
 
 **Result:** Your styled layer fills most of the page as the main map.
 
@@ -108,7 +97,7 @@ A reader unfamiliar with Vlissingen needs context for where your main map sits �
 
 1.  Click **Add Item → Add Map** again
 2.  Draw a small frame in an empty corner of the page (roughly 15–20% of the page width)
-3.  In **Item Properties** for this new map, zoom/pan it out to show the wider context — e.g. Vlissingen's location within **Zeeland** or the **Netherlands** — using the `zeeland` layer
+3.  In **Item Properties** for this new map, zoom/pan it out to show the wider context — i.e. Vlissingen's location within **Zeeland** — using the `zeeland` layer
 
 ### 3.2 Show the Main Map's Extent on the Inset
 
@@ -159,7 +148,7 @@ Layout elements only work if the underlying map symbology is legible at print si
 
 1.  Return to the main map's **Layer Styling** (`F7`) if needed
 2.  Increase contrast between classes if colours look too similar once printed/exported (e.g. widen the colour ramp, or reduce the number of classes)
-3.  For point layers (e.g. bakeries), check that marker size is large enough to see at the layout's scale, but not so large that points overlap
+3.  For point layers (e.g. bus stops), check that marker size is large enough to see at the layout's scale, but not so large that points overlap
 4.  Keep any reference/basemap layers (e.g. OSM) subdued — lower opacity or greyscale — so your main theme stays the visual focus
 5.  Click **Apply**, then return to the Print Layout and refresh the map item if changes don't appear automatically (right-click the map item → **Refresh View**)
 
@@ -193,6 +182,22 @@ Without a halo, dark label text becomes unreadable over dark map classes, and li
 :::
 ::::
 
+### Extra: Rule-based Labeling
+
+1.  Select the `vlissingen_neighbourhoods` layer, open **Layer Properties → Labels**
+2.  Change **Single Labels** to **Rule-based Labeling**, click **Add Rule**
+3.  **Filter:**
+
+```         
+"aantalInwoners" > 1000
+```
+
+- `"aantalInwoners"` – refers to one of the layer's attributes (number of residents)
+- `> 1000` – flags neighborhoods with over a thousand residents
+
+4.  **Text**: `buurtnaam`
+5.  Style the labels as described in Step 7
+
 ------------------------------------------------------------------------
 
 ## Step 8: Final Check and Export
@@ -206,7 +211,7 @@ Before exporting, run through this checklist:
 - [ ] Labels are legible and not overlapping or clipped
 - [ ] Inset map clearly shows where the main map sits in a wider context
 
-1.  Go to **Layout → Export as Image…** (PNG, for Miro) or **Export as PDF…**
+1.  Go to **Layout → Export as Image…** (PNG, for Miro)
 2.  Save the export at a resolution suitable for on-screen viewing (300 dpi is a safe default)
 3.  Upload the exported map to the course Miro board
 4.  **File → Save Project**, so your layout is preserved
@@ -227,9 +232,4 @@ Repeat Steps 1–8 for at least one more of your Parts 1–4 outputs, using the 
 
 ------------------------------------------------------------------------
 
-::: {.callout-important title="Notes for TA"}
-- Confirm the province/country boundary layer to use for the inset map (currently `[province-or-country-boundary]` placeholder), and that it's available in every student's Parts 1–4 starter projects. –\> **suggest using Zeeland, it's available on the data folder**
-- Decide whether all students finalise the same map or choose freely among Parts 1–4 — affects how the 15-minute map review (15:30–15:45) and in-class discussion are run.
-- Confirm the expected export format (PNG vs. PDF) and page size/orientation convention for consistency on the Miro board.
-- This file isn't yet referenced in `_quarto.yml` — add it to the sidebar (and/or link it from `pages/courses/mscu_q1.qmd`) once finalised.
-:::
+

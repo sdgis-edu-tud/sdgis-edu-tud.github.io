@@ -19,14 +19,6 @@ date: 2026-08-06
 
 **Authors:** Daniele Cannatella and Julia Fossa Marques
 
-::: {.callout-important title="Note for TA"}
-This is Part 1 of the MSc1 Urbanism Week 1 workshop (see `pages/courses/mscu_q1.qmd`, 10:00–10:30 slot). Scope is deliberately limited to import + styling + basemap to fit the 30-minute block
-
-Remaining placeholders (`[...]`) to fill in before this goes out to students:
-
-- Per the course plan, BBG + CBS neighbourhoods are already clipped to the study area and provided pre-loaded/ready — confirm the starter project reflects that so students don't need to clip anything themselves –\> **done**
-:::
-
 ------------------------------------------------------------------------
 
 ## Overview
@@ -51,7 +43,7 @@ By completing this exercise, you will be able to:
 **You will need:**
 
 | Resource | Type | Description |
-|-------------------------|------------------------|------------------------|
+|------------------------|------------------------|------------------------|
 | `vlissingen.qgz` | QGIS project | Starter project for the municipality of **Vlissingen** |
 | `bbg.gpkg` | Geopackage | Land use layer (Bestand Bodemgebruik), pre-clipped to the study area |
 | `vlissingen_neighbourhoods.gpkg` | Geopackage | CBS neighbourhood boundaries, pre-clipped to the study area |
@@ -155,9 +147,3 @@ Check the bottom-right corner of the QGIS window for the project CRS, and right-
 
 ------------------------------------------------------------------------
 
-::: {.callout-important title="Notes for TA"}
-- Confirm `bbg` and `[cbs-neighbourhoods]` are pre-clipped to the Vlissingen study area in the distributed starter project, per the Part 1 data prerequisites in `pages/courses/mscu_q1.qmd` — students should not need to clip anything themselves in this 30-minute slot. –\> **done**
-- Fill in the real project filename, CBS neighbourhoods filename, and the BBG category field name (currently `[bracketed]` placeholders) once finalised. –\> **done**
-- Confirm the CRS answer in Step 1.2 against the actual starter project. –\> **done**
-- The join/unique-values/area-in-hectares content from the original draft was intentionally cut for time — see `CLAUDE.md` if you want to reuse that structure for a later, longer part (e.g. Part 3's attribute tables + choropleth exercise).
-:::
