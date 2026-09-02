@@ -439,27 +439,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Time Estimate:</strong> 90 minutes</p>
 <p><strong>Software Required:</strong> QGIS LTR 3.44, Excel (or Google Sheets)</p>
 <p><strong>Author:</strong> Daniele Cannatella</p>
-<div class="callout callout-style-default callout-important callout-titled" title="Note for TA">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Note for TA
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This is Part 4 of the MSc1 Urbanism Week 1 workshop (see <code>pages/courses/mscu_q1.qmd</code>, 13:00–14:30 slot). This block merges what were originally two separate 45-minute parts (spatial join/density, and basic statistics) into one 90-minute exercise, since the join + density + charting workflow naturally carries the statistics content too. Deliverable per the workshop plan: “Density + spatial join map of bus stops, with descriptive statistics and an Excel barchart — Miro”. Reuses the CBS neighbourhood boundaries layer from Part 1.</p>
-<p>Remaining placeholders (<code>[...]</code>) to fill in before this goes out to students:</p>
-<ul>
-<li><strong>The old draft (<code>spatial-join.qmd</code>) had students install the QuickOSM plugin and query bus stops live from OpenStreetMap.</strong> The workshop’s own data prerequisites (<code>pages/courses/mscu_q1.qmd</code>) list “OSM POIs — pre-filtered to bus stops only” as something prepared <em>in advance</em>, specifically “so students aren’t querying/filtering live.” This tutorial is written assuming a <strong>pre-filtered bus stops layer is already provided</strong> in the starter project — confirm that’s correct rather than the live QuickOSM workflow the old draft implied.</li>
-<li>Confirm the real starter project filename, the bus stops layer filename, and that its CRS matches the project (EPSG:28992) –&gt; <strong>done</strong></li>
-<li>Confirm whether Part 4 continues in the same project file as Part 1 (reusing <code>[cbs-neighbourhoods]</code>) or opens a fresh project with a copy of that layer — written here assuming continuation</li>
-<li>Confirm Google Sheets is an acceptable substitute for Excel for students without an Office licence, or whether to standardise on one tool</li>
-<li>The old draft file <code>spatial-join.qmd</code> is superseded by this file — consider deleting it once this is finalised</li>
-</ul>
-</div>
-</div>
 <hr>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
@@ -547,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>❓ Question:</strong> How many bus stops does the layer contain in total, and what CRS is it in?</p>
 <p><strong>✅ Solution (click to reveal):</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -556,7 +535,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Open the <strong>Attribute Table</strong> for the feature count (bottom-left of the table window), and check <strong>Properties → Information</strong> for the CRS. If it doesn’t match the project CRS (EPSG:28992), QGIS reprojects it on the fly for display, but it’s worth confirming before the join in Step 2.</p>
 </div>
@@ -686,7 +665,7 @@ Tip
 <p><strong>❓ Question:</strong> How many neighbourhoods sit above the citywide mean density? Does that match your impression from the raw numbers?</p>
 <p><strong>✅ Solution (click to reveal):</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -695,7 +674,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Sort the attribute table by <code>bus_stop_dens</code> (click the column header) and count the rows above the mean value from Step 3.1. Because the mean is sensitive to outliers, it’s common for a <em>majority</em> of neighbourhoods to sit below the mean, with just one or two very dense neighbourhoods pulling it up — worth checking against the median from Step 3.1.</p>
 </div>
@@ -715,7 +694,7 @@ Tip
 <li><strong>Value:</strong> <code>bus_stop_dens</code></li>
 <li><strong>Classification Mode:</strong> <strong>Natural Breaks (Jenks)</strong>, <strong>4 classes</strong></li>
 <li>Choose a sequential colour ramp and click <strong>Classify</strong>, then <strong>Apply</strong></li>
-<li>Make sure the <code>bus_stops</code> point layer is drawn on top, with small, visible markers, so individual bus stops stay visible over the choropleth</li>
+<li>Make sure the <code>bus_stops</code> point layer is drawn on top, with small, visible markegit chers, so individual bus stops stay visible over the choropleth</li>
 </ol>
 <p><strong>Result:</strong> A choropleth of bus stop density per neighbourhood, with the underlying bus stop points still visible for reference.</p>
 <p><img src="spatial_join_density_and_statistics/fig 4.png" class="img-fluid"></p>
@@ -728,7 +707,7 @@ Tip
 <p><strong>❓ Question:</strong> Does the neighbourhood with the most bus stops (highest count) also have the highest density?</p>
 <p><strong>✅ Solution (click to reveal):</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -737,7 +716,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Not necessarily — a large neighbourhood can have a high raw count simply because it covers more area, while a small, dense neighbourhood can have fewer bus stops in total but a higher density. Comparing the count map and the density map side by side (or just the two fields in the attribute table) usually makes this visible.</p>
 </div>
@@ -794,27 +773,6 @@ Tip
 <li>What are the limitations of using crowdsourced OSM data to count amenities like bus stops?</li>
 </ul>
 <hr>
-<div class="callout callout-style-default callout-important callout-titled" title="Notes for TA">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Notes for TA
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Fill in the real project filename, bus stops layer filename, and output names (currently <code>[bracketed]</code> placeholders) once confirmed against the actual dataset. —&gt; <strong>done</strong></li>
-<li>Confirm the field name produced by <strong>Join Attributes by Location (Summary)</strong> — it defaults to <code>NUMPOINTS</code> but can vary by QGIS build/plugin version; update the Field Calculator expression in Step 2.2 if it differs. –&gt; <strong>done</strong></li>
-<li>Confirm whether students continue in the same project as Part 1 or start fresh with a copy of <code>[cbs-neighbourhoods]</code> — affects whether Step 1 needs its own project-opening instructions. –&gt; <strong>done</strong></li>
-<li>Decide on Excel vs.&nbsp;Google Sheets for Step 6 and adjust the software requirement/prerequisites accordingly. –&gt; <strong>both work</strong></li>
-<li>This block now runs 90 minutes (13:00–14:30), merging the former Part 4 and Part 5 slots — <code>pages/courses/mscu_q1.qmd</code>’s Day Structure table and Outcomes list need updating to match (single 90-min row, one merged deliverable bullet). Reflect the timing change in the Canvas/method-sheet schedule shared with students too.</li>
-<li>The old <code>spatial-join.qmd</code> draft (live-OSM-query version) is superseded by this file — consider removing it.</li>
-<li>This file isn’t yet referenced in <code>_quarto.yml</code> — add it to the sidebar (and/or link it from <code>pages/courses/mscu_q1.qmd</code>) once finalised.</li>
-</ul>
-</div>
-</div>
 
 
 <!-- -->
@@ -1308,261 +1266,239 @@ Tip
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>**Author:** Daniele Cannatella</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>::: {.callout-important title="Note for TA"}</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>This is Part 4 of the MSc1 Urbanism Week 1 workshop (see <span class="in">`pages/courses/mscu_q1.qmd`</span>, 13:00–14:30 slot). This block merges what were originally two separate 45-minute parts (spatial join/density, and basic statistics) into one 90-minute exercise, since the join + density + charting workflow naturally carries the statistics content too. Deliverable per the workshop plan: "Density + spatial join map of bus stops, with descriptive statistics and an Excel barchart — Miro". Reuses the CBS neighbourhood boundaries layer from Part 1.</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>Remaining placeholders (<span class="in">`[...]`</span>) to fill in before this goes out to students:</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**The old draft (`spatial-join.qmd`) had students install the QuickOSM plugin and query bus stops live from OpenStreetMap.** The workshop's own data prerequisites (`pages/courses/mscu_q1.qmd`) list "OSM POIs — pre-filtered to bus stops only" as something prepared *in advance*, specifically "so students aren't querying/filtering live." This tutorial is written assuming a **pre-filtered bus stops layer is already provided** in the starter project — confirm that's correct rather than the live QuickOSM workflow the old draft implied.</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm the real starter project filename, the bus stops layer filename, and that its CRS matches the project (EPSG:28992) --<span class="sc">\&gt;</span> **done**</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm whether Part 4 continues in the same project file as Part 1 (reusing <span class="in">`[cbs-neighbourhoods]`</span>) or opens a fresh project with a copy of that layer — written here assuming continuation</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm Google Sheets is an acceptable substitute for Excel for students without an Office licence, or whether to standardise on one tool</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The old draft file <span class="in">`spatial-join.qmd`</span> is superseded by this file — consider deleting it once this is finalised</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>This exercise is the fourth hands-on block of the Week 1 GIS workshop, following on from <span class="co">[</span><span class="ot">Part 1 – Vector Import &amp; Basemap</span><span class="co">](import-vector.qmd)</span>. You will import a point layer of bus stops in Vlissingen, count how many fall within each neighbourhood using a spatial join, calculate bus stop density, compute descriptive statistics across all neighbourhoods, visualize the result as a choropleth, and build a bar chart from the same data in Excel.</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>**Learning Outcomes**</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>By completing this exercise, you will be able to:</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>✅ Import a point layer into QGIS and check it against an existing polygon layer\</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>✅ Use a spatial join to count points within polygons (a zonal statistic — one count per neighbourhood "zone")\</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>✅ Calculate a density field (points per area)\</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>✅ Compute and interpret basic descriptive statistics (mean, median, min/max) across neighbourhoods\</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>✅ Style a quick choropleth map of counts or density\</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>✅ Export attribute data as CSV and build a bar chart in Excel</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>This exercise is the fourth hands-on block of the Week 1 GIS workshop, following on from <span class="co">[</span><span class="ot">Part 1 – Vector Import &amp; Basemap</span><span class="co">](import-vector.qmd)</span>. You will import a point layer of bus stops in Vlissingen, count how many fall within each neighbourhood using a spatial join, calculate bus stop density, compute descriptive statistics across all neighbourhoods, visualize the result as a choropleth, and build a bar chart from the same data in Excel.</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>**Learning Outcomes**</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>By completing this exercise, you will be able to:</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>✅ Import a point layer into QGIS and check it against an existing polygon layer\</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>✅ Use a spatial join to count points within polygons (a zonal statistic — one count per neighbourhood "zone")\</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>✅ Calculate a density field (points per area)\</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>✅ Compute and interpret basic descriptive statistics (mean, median, min/max) across neighbourhoods\</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>✅ Style a quick choropleth map of counts or density\</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>✅ Export attribute data as CSV and build a bar chart in Excel</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data &amp; Software</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal" icon="true"}</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>**You will need:**</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Resource <span class="pp">|</span> Type <span class="pp">|</span> Description <span class="pp">|</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------------|------------------------|------------------------|</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`vlissingen.qgz`</span> <span class="pp">|</span> QGIS project <span class="pp">|</span> Continues from Part 1 — includes <span class="in">`[cbs-neighbourhoods]`</span> <span class="pp">|</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`vlissingen_neighbourhoods.gpkg`</span> <span class="pp">|</span> Geopackage <span class="pp">|</span> CBS neighbourhood boundaries for Vlissingen (same layer as Part 1) <span class="pp">|</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`bus_stops.gpkg`</span> <span class="pp">|</span> Vector (points) <span class="pp">|</span> Bus stop locations from OpenStreetMap, pre-filtered to Vlissingen <span class="pp">|</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data &amp; Software</span></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal" icon="true"}</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>**You will need:**</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Resource <span class="pp">|</span> Type <span class="pp">|</span> Description <span class="pp">|</span></span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|----|----|----|</span></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`vlissingen.qgz`</span> <span class="pp">|</span> QGIS project <span class="pp">|</span> Continues from Part 1 — includes <span class="in">`[cbs-neighbourhoods]`</span> <span class="pp">|</span></span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`vlissingen_neighbourhoods.gpkg`</span> <span class="pp">|</span> Geopackage <span class="pp">|</span> CBS neighbourhood boundaries for Vlissingen (same layer as Part 1) <span class="pp">|</span></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`bus_stops.gpkg`</span> <span class="pp">|</span> Vector (points) <span class="pp">|</span> Bus stop locations from OpenStreetMap, pre-filtered to Vlissingen <span class="pp">|</span></span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal" icon="true"}</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>**Background:** OpenStreetMap (OSM) is a crowdsourced map of the world — anyone can add or edit features. It's a fast, free source of point-of-interest data like shops and amenities, but coverage depends on how actively an area has been mapped, so a bus stop count from OSM is an estimate, not a guaranteed complete inventory.</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 1: Import the Bus Stops Layer</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Launch **QGIS LTR 3.44** and open the project <span class="in">`vlissingen.qgz`</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>From the **Browser Panel**, import the point layer <span class="in">`bus_stops.gpkg`</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Check that it draws correctly over Vlissingen, alongside <span class="in">`vlissingen_neighbourhoods`</span></span>
 <span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal" icon="true"}</span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>**Background:** OpenStreetMap (OSM) is a crowdsourced map of the world — anyone can add or edit features. It's a fast, free source of point-of-interest data like shops and amenities, but coverage depends on how actively an area has been mapped, so a bus stop count from OSM is an estimate, not a guaranteed complete inventory.</span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>**Result:** Bus stops locations appear as points scattered across the neighbourhood boundaries.</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="al">![](spatial_join_density_and_statistics/fig%201.png)</span></span>
 <span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 1: Import the Bus Stops Layer</span></span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Launch **QGIS LTR 3.44** and open the project <span class="in">`vlissingen.qgz`</span></span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>From the **Browser Panel**, import the point layer <span class="in">`bus_stops.gpkg`</span></span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Check that it draws correctly over Vlissingen, alongside <span class="in">`vlissingen_neighbourhoods`</span></span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>**Result:** Bus stops locations appear as points scattered across the neighbourhood boundaries.</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>:::: {.callout-note appearance="minimal" icon="true"}</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>**❓ Question:** How many bus stops does the layer contain in total, and what CRS is it in?</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>**✅ Solution (click to reveal):**</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>Open the **Attribute Table** for the feature count (bottom-left of the table window), and check **Properties → Information** for the CRS. If it doesn't match the project CRS (EPSG:28992), QGIS reprojects it on the fly for display, but it's worth confirming before the join in Step 2.</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="al">![](spatial_join_density_and_statistics/fig%201.png)</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>:::: {.callout-note appearance="minimal" icon="true"}</span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>**❓ Question:** How many bus stops does the layer contain in total, and what CRS is it in?</span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>**✅ Solution (click to reveal):**</span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
-<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>Open the **Attribute Table** for the feature count (bottom-left of the table window), and check **Properties → Information** for the CRS. If it doesn't match the project CRS (EPSG:28992), QGIS reprojects it on the fly for display, but it's worth confirming before the join in Step 2.</span>
-<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 2: Count Bus stops per Neighbourhood</span></span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.1 Join Attributes by Location (Summary)</span></span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Go to **Processing → Toolbox → Vector general → Join Attributes by Location (Summary)**</span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Configure the join:</span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**Join to features in:** <span class="in">`vlissingen_neighbourhoods`</span></span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**By comparing to:** <span class="in">`bus_stops`</span></span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**Where the features:** **intersect**</span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**Fields to summarise:** check only **bus**</span>
-<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**Summaries to calculate:** check only **count**</span>
-<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Run the tool</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 2: Count Bus stops per Neighbourhood</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.1 Join Attributes by Location (Summary)</span></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Go to **Processing → Toolbox → Vector general → Join Attributes by Location (Summary)**</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Configure the join:</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**Join to features in:** <span class="in">`vlissingen_neighbourhoods`</span></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**By comparing to:** <span class="in">`bus_stops`</span></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**Where the features:** **intersect**</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**Fields to summarise:** check only **bus**</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**Summaries to calculate:** check only **count**</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Run the tool</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip appearance="minimal" icon="true"}</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>**Tip:** For point-in-polygon counts, **intersect** and **within** give the same result for almost every bus stop — the difference only matters for a point sitting exactly on a boundary line. Either predicate works here.</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>**Result:** A new layer is created (e.g. <span class="in">`Joined layer`</span>) with one row per neighbourhood and a new field holding the bus stop count for that neighbourhood.</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Rename the output layer <span class="in">`stops_per_neighbourhood`</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="al">![](spatial_join_density_and_statistics/fig%202.png)</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.2 Replace NULL values</span></span>
 <span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip appearance="minimal" icon="true"}</span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>**Tip:** For point-in-polygon counts, **intersect** and **within** give the same result for almost every bus stop — the difference only matters for a point sitting exactly on a boundary line. Either predicate works here.</span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>**Result:** A new layer is created (e.g. <span class="in">`Joined layer`</span>) with one row per neighbourhood and a new field holding the bus stop count for that neighbourhood.</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Open the **Attribute Table** for <span class="in">`stops_per_neighbourhood`</span>, observe the <span class="in">`bus_count`</span> column</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal" icon="true"}</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>**NULL values:** In databases, **NULL** is used to represent unknown or missing values. In this exercise, **NULL** was attributed to the neighborhoods that do not contain any bus stop; thus this value may be replaced by **zero** without changing the meaning of the data. However, note that **NULL** and **zero** are not interchangeable, and the replacement shown in this step should not be done indiscriminately.</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Rename the output layer <span class="in">`stops_per_neighbourhood`</span></span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a><span class="al">![](spatial_join_density_and_statistics/fig%202.png)</span></span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.2 Replace NULL values</span></span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Open the **Attribute Table** for <span class="in">`stops_per_neighbourhood`</span>, observe the <span class="in">`bus_count`</span> column</span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal" icon="true"}</span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>**NULL values:** In databases, **NULL** is used to represent unknown or missing values. In this exercise, **NULL** was attributed to the neighborhoods that do not contain any bus stop; thus this value may be replaced by **zero** without changing the meaning of the data. However, note that **NULL** and **zero** are not interchangeable, and the replacement shown in this step should not be done indiscriminately.</span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Toggle editing mode</span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Open **Field Calculator**</span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Update existing field:** <span class="in">`bus_count`</span></span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Expression:</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Toggle editing mode</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Open **Field Calculator**</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Update existing field:** <span class="in">`bus_count`</span></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Expression:</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a><span class="in">if ("bus_count" IS NULL, 0, "bus_count")</span></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`if ("bus_count" IS NULL`</span> – sets a condition</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`0`</span> – specifies what to do if the condition is true: which value to use as a replacement</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`"bus_count"`</span>- specifies what to do if the condition is false (i.e. value is not NULL): keep the current <span class="in">`bus_count`</span> value</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>**Result:** The <span class="in">`bus_count`</span> column is updated to replace NULL values by numberic values (zero).</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.3 Calculate Density</span></span>
 <span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
-<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="in">if ("bus_count" IS NULL, 0, "bus_count")</span></span>
-<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`if ("bus_count" IS NULL`</span> – sets a condition</span>
-<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`0`</span> – specifies what to do if the condition is true: which value to use as a replacement</span>
-<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`"bus_count"`</span>- specifies what to do if the condition is false (i.e. value is not NULL): keep the current <span class="in">`bus_count`</span> value</span>
-<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>**Result:** The <span class="in">`bus_count`</span> column is updated to replace NULL values by numberic values (zero).</span>
-<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.3 Calculate Density</span></span>
-<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a>Raw counts favour large neighbourhoods, so add a density field to make the comparison fair.</span>
-<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Open the **Attribute Table** for <span class="in">`stops_per_neighbourhood`</span>, toggle editing mode</span>
-<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Open **Field Calculator**</span>
-<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Create a new field:** `bus_stop_dens` (type: **Decimal number**)</span>
-<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Expression:**</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>Raw counts favour large neighbourhoods, so add a density field to make the comparison fair.</span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Open the **Attribute Table** for <span class="in">`stops_per_neighbourhood`</span>, toggle editing mode</span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Open **Field Calculator**</span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Create a new field:** `bus_stop_dens` (type: **Decimal number**)</span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Expression:**</span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="in">"bus_count" / ($area / 1000000)</span></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`"bus_count"`</span> – the bus stop count field created by the join (rename in the expression if your join used a different field name)</span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`$area / 1000000`</span> – converts the neighbourhood's area from m² to km²</span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Dividing gives **bus stops per km²**</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Click **OK**, save your edits, and toggle editing off</span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>**Result:** Each neighbourhood now has both a raw bus stop count and a density value.</span>
 <span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
-<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a><span class="in">"bus_count" / ($area / 1000000)</span></span>
-<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 3: Descriptive Statistics</span></span>
 <span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`"bus_count"`</span> – the bus stop count field created by the join (rename in the expression if your join used a different field name)</span>
-<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`$area / 1000000`</span> – converts the neighbourhood's area from m² to km²</span>
-<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Dividing gives **bus stops per km²**</span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>Before mapping or charting the data, get a feel for the numbers themselves — this is what turns a table of values into something you can interpret.</span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3.1 Open the Statistics Panel</span></span>
 <span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Click **OK**, save your edits, and toggle editing off</span>
-<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>**Result:** Each neighbourhood now has both a raw bus stop count and a density value.</span>
-<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 3: Descriptive Statistics</span></span>
-<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>Before mapping or charting the data, get a feel for the numbers themselves — this is what turns a table of values into something you can interpret.</span>
-<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3.1 Open the Statistics Panel</span></span>
-<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Select <span class="in">`stops_per_neighbourhood`</span> in the **Layers Panel**</span>
-<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Go to **View → Panels → Statistics Panel** (enable it if not already visible)</span>
-<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Set **Field/Expression** to <span class="in">`bus_stop_dens`</span></span>
-<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Make sure **Statistics on** is set to the whole layer, not just a selection</span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Select <span class="in">`stops_per_neighbourhood`</span> in the **Layers Panel**</span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Go to **View → Panels → Statistics Panel** (enable it if not already visible)</span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Set **Field/Expression** to <span class="in">`bus_stop_dens`</span></span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Make sure **Statistics on** is set to the whole layer, not just a selection</span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>**Result:** The panel lists summary statistics for `bus_stop_dens` across every neighbourhood — at minimum, note **Count**, **Minimum**, **Maximum**, **Mean**, and **Median**.</span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a><span class="al">![](spatial_join_density_and_statistics/fig%203.png)</span>{width="409"}</span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3.2 Interpret the Numbers</span></span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal" icon="true"}</span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>**Reading mean vs. median:** If the **mean** is noticeably higher than the **median**, a small number of neighbourhoods with very high density are pulling the average up — the median gives a better sense of what a "typical" neighbourhood looks like in that case.</span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>Write down the citywide **mean** bus stop density — you'll use it in Step 6 to add a reference line to your bar chart.</span>
 <span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>**Result:** The panel lists summary statistics for `bus_stop_dens` across every neighbourhood — at minimum, note **Count**, **Minimum**, **Maximum**, **Mean**, and **Median**.</span>
-<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a><span class="al">![](spatial_join_density_and_statistics/fig%203.png)</span>{width="409"}</span>
-<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3.2 Interpret the Numbers</span></span>
-<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal" icon="true"}</span>
-<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a>**Reading mean vs. median:** If the **mean** is noticeably higher than the **median**, a small number of neighbourhoods with very high density are pulling the average up — the median gives a better sense of what a "typical" neighbourhood looks like in that case.</span>
-<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>:::: {.callout-note appearance="minimal" icon="true"}</span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>**❓ Question:** How many neighbourhoods sit above the citywide mean density? Does that match your impression from the raw numbers?</span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>**✅ Solution (click to reveal):**</span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a>Sort the attribute table by <span class="in">`bus_stop_dens`</span> (click the column header) and count the rows above the mean value from Step 3.1. Because the mean is sensitive to outliers, it's common for a *majority* of neighbourhoods to sit below the mean, with just one or two very dense neighbourhoods pulling it up — worth checking against the median from Step 3.1.</span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a>Write down the citywide **mean** bus stop density — you'll use it in Step 6 to add a reference line to your bar chart.</span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a>:::: {.callout-note appearance="minimal" icon="true"}</span>
-<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>**❓ Question:** How many neighbourhoods sit above the citywide mean density? Does that match your impression from the raw numbers?</span>
-<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a>**✅ Solution (click to reveal):**</span>
-<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
-<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a>Sort the attribute table by <span class="in">`bus_stop_dens`</span> (click the column header) and count the rows above the mean value from Step 3.1. Because the mean is sensitive to outliers, it's common for a *majority* of neighbourhoods to sit below the mean, with just one or two very dense neighbourhoods pulling it up — worth checking against the median from Step 3.1.</span>
-<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 4: Visualize in QGIS</span></span>
-<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Select <span class="in">`stops_per_neighbourhood`</span>, open **Layer Styling** (<span class="in">`F7`</span>)</span>
-<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Change the classification type to **Graduated**</span>
-<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Value:** <span class="in">`bus_stop_dens`</span></span>
-<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Classification Mode:** **Natural Breaks (Jenks)**, **4 classes**</span>
-<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Choose a sequential colour ramp and click **Classify**, then **Apply**</span>
-<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>Make sure the <span class="in">`bus_stops`</span> point layer is drawn on top, with small, visible markers, so individual bus stops stay visible over the choropleth</span>
-<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a>**Result:** A choropleth of bus stop density per neighbourhood, with the underlying bus stop points still visible for reference.</span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 4: Visualize in QGIS</span></span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Select <span class="in">`stops_per_neighbourhood`</span>, open **Layer Styling** (<span class="in">`F7`</span>)</span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Change the classification type to **Graduated**</span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Value:** <span class="in">`bus_stop_dens`</span></span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Classification Mode:** **Natural Breaks (Jenks)**, **4 classes**</span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Choose a sequential colour ramp and click **Classify**, then **Apply**</span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>Make sure the <span class="in">`bus_stops`</span> point layer is drawn on top, with small, visible markegit chers, so individual bus stops stay visible over the choropleth</span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a>**Result:** A choropleth of bus stop density per neighbourhood, with the underlying bus stop points still visible for reference.</span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a><span class="al">![](spatial_join_density_and_statistics/fig%204.png)</span></span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a>:::: {.callout-note appearance="minimal" icon="true"}</span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a>**❓ Question:** Does the neighbourhood with the most bus stops (highest count) also have the highest density?</span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a>**✅ Solution (click to reveal):**</span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a>Not necessarily — a large neighbourhood can have a high raw count simply because it covers more area, while a small, dense neighbourhood can have fewer bus stops in total but a higher density. Comparing the count map and the density map side by side (or just the two fields in the attribute table) usually makes this visible.</span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a><span class="al">![](spatial_join_density_and_statistics/fig%204.png)</span></span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a>:::: {.callout-note appearance="minimal" icon="true"}</span>
-<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a>**❓ Question:** Does the neighbourhood with the most bus stops (highest count) also have the highest density?</span>
-<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a>**✅ Solution (click to reveal):**</span>
-<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
-<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a>Not necessarily — a large neighbourhood can have a high raw count simply because it covers more area, while a small, dense neighbourhood can have fewer bus stops in total but a higher density. Comparing the count map and the density map side by side (or just the two fields in the attribute table) usually makes this visible.</span>
-<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 5: Export the Attribute Table as CSV</span></span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click <span class="in">`stops_per_neighbourhood`</span> → **Export → Save Features As…**</span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Format:** Comma Separated Value <span class="sc">\[</span>CSV<span class="sc">\]</span></span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**File name:** ``` stops_per_neighbourhood``.csv ```</span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Under **Layer Options**, set **GEOMETRY** to **AS_XY** or **No geometry**, so the CSV stays a plain table rather than embedding geometry text in every row</span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Click **OK**</span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a>**Result:** A CSV file with one row per neighbourhood, including its name, bus stop count, and density.</span>
 <span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 5: Export the Attribute Table as CSV</span></span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 6: Build a Bar Chart in Excel or Google Sheets</span></span>
 <span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click <span class="in">`stops_per_neighbourhood`</span> → **Export → Save Features As…**</span>
-<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Format:** Comma Separated Value <span class="sc">\[</span>CSV<span class="sc">\]</span></span>
-<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**File name:** ``` stops_per_neighbourhood``.csv ```</span>
-<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Under **Layer Options**, set **GEOMETRY** to **AS_XY** or **No geometry**, so the CSV stays a plain table rather than embedding geometry text in every row</span>
-<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Click **OK**</span>
-<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a>**Result:** A CSV file with one row per neighbourhood, including its name, bus stop count, and density.</span>
-<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 6: Build a Bar Chart in Excel or Google Sheets</span></span>
-<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Open <span class="in">`stops_per_neighbourhood.csv`</span> in **Excel** (or import it into **Google Sheets**)</span>
-<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Select the neighbourhood name column and the <span class="in">`bus_stop_dens`</span> (or count) column</span>
-<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Insert a **bar chart** (or column chart) from the selection</span>
-<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Sort the data by value first (largest to smallest) so the chart is easy to read</span>
-<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Give the chart a title and label the axes (e.g. "Bus stop density by neighbourhood (bus stops/km²)")</span>
-<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>Add a horizontal reference line at the **citywide mean** you noted in Step 3.2 (e.g. add a constant "Mean" column and plot it as a second series, or use a chart error-bar/trendline set to that value), so the chart shows at a glance which neighbourhoods sit above or below average</span>
-<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a>**Result:** A bar chart ranking Vlissingen's neighbourhoods by bus stop density, with the citywide mean visible as a reference.</span>
-<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a><span class="al">![](spatial_join_density_and_statistics/fig%205.png)</span></span>
-<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 7: Export and Share</span></span>
-<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Take a screenshot of the QGIS choropleth map (with legend)</span>
-<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Take a screenshot (or export) of the Excel/Google Sheets bar chart</span>
-<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Upload both to the course Miro board</span>
-<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**File → Save Project**, and save the spreadsheet</span>
-<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reflection</span></span>
-<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What does the raw bus stop-count map miss that the density map shows?</span>
-<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why might the mean and median density differ, and which one better describes a "typical" neighbourhood?</span>
-<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How would the presence of NULL values affect these statistics and their interpretation?</span>
-<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How do the choropleth map and the bar chart complement each other — what's easier to read in each?</span>
-<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What are the limitations of using crowdsourced OSM data to count amenities like bus stops?</span>
-<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a>::: {.callout-important title="Notes for TA"}</span>
-<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Fill in the real project filename, bus stops layer filename, and output names (currently <span class="in">`[bracketed]`</span> placeholders) once confirmed against the actual dataset. —<span class="sc">\&gt;</span> **done**</span>
-<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm the field name produced by **Join Attributes by Location (Summary)** — it defaults to `NUMPOINTS` but can vary by QGIS build/plugin version; update the Field Calculator expression in Step 2.2 if it differs. –\&gt; **done**</span>
-<span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm whether students continue in the same project as Part 1 or start fresh with a copy of <span class="in">`[cbs-neighbourhoods]`</span> — affects whether Step 1 needs its own project-opening instructions. –<span class="sc">\&gt;</span> **done**</span>
-<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decide on Excel vs. Google Sheets for Step 6 and adjust the software requirement/prerequisites accordingly. –<span class="sc">\&gt;</span> **both work**</span>
-<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>This block now runs 90 minutes (13:00–14:30), merging the former Part 4 and Part 5 slots — <span class="in">`pages/courses/mscu_q1.qmd`</span>'s Day Structure table and Outcomes list need updating to match (single 90-min row, one merged deliverable bullet). Reflect the timing change in the Canvas/method-sheet schedule shared with students too.</span>
-<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The old <span class="in">`spatial-join.qmd`</span> draft (live-OSM-query version) is superseded by this file — consider removing it.</span>
-<span id="cb3-276"><a href="#cb3-276" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>This file isn't yet referenced in <span class="in">`_quarto.yml`</span> — add it to the sidebar (and/or link it from <span class="in">`pages/courses/mscu_q1.qmd`</span>) once finalised.</span>
-<span id="cb3-277"><a href="#cb3-277" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Open <span class="in">`stops_per_neighbourhood.csv`</span> in **Excel** (or import it into **Google Sheets**)</span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Select the neighbourhood name column and the <span class="in">`bus_stop_dens`</span> (or count) column</span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Insert a **bar chart** (or column chart) from the selection</span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Sort the data by value first (largest to smallest) so the chart is easy to read</span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Give the chart a title and label the axes (e.g. "Bus stop density by neighbourhood (bus stops/km²)")</span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>Add a horizontal reference line at the **citywide mean** you noted in Step 3.2 (e.g. add a constant "Mean" column and plot it as a second series, or use a chart error-bar/trendline set to that value), so the chart shows at a glance which neighbourhoods sit above or below average</span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a>**Result:** A bar chart ranking Vlissingen's neighbourhoods by bus stop density, with the citywide mean visible as a reference.</span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a><span class="al">![](spatial_join_density_and_statistics/fig%205.png)</span></span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 7: Export and Share</span></span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Take a screenshot of the QGIS choropleth map (with legend)</span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Take a screenshot (or export) of the Excel/Google Sheets bar chart</span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Upload both to the course Miro board</span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**File → Save Project**, and save the spreadsheet</span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reflection</span></span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What does the raw bus stop-count map miss that the density map shows?</span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why might the mean and median density differ, and which one better describes a "typical" neighbourhood?</span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How would the presence of NULL values affect these statistics and their interpretation?</span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How do the choropleth map and the bar chart complement each other — what's easier to read in each?</span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What are the limitations of using crowdsourced OSM data to count amenities like bus stops?</span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

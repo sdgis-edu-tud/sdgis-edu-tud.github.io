@@ -434,27 +434,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Time Estimate:</strong> 30 minutes</p>
 <p><strong>Software Required:</strong> QGIS LTR 3.44</p>
 <p><strong>Author:</strong> Daniele Cannatella</p>
-<div class="callout callout-style-default callout-important callout-titled" title="Note for TA">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Note for TA
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This is Part 2 of the MSc1 Urbanism Week 1 workshop (see <code>pages/courses/mscu_q1.qmd</code>, 10:30–11:00 slot). Deliverable per the workshop plan: “Basemap of DTM (AHN); screenshot to Miro” — the pasted draft this was built from didn’t include a Miro screenshot step even though every other part in the plan ends with one, so Step 4 below adds it to match Part 1’s pattern. Please check:</p>
-<ul>
-<li>Confirm the AHN DTM is pre-clipped and delivered via the same starter-project mechanism as Part 1 (per the workshop plan, raw AHN pulls are “slow/unpredictable live”, so students should not be fetching it themselves) –&gt; <strong>done</strong></li>
-<li>Confirm whether Part 2 opens its own starter project (<code>[project-name-part2].qgz</code> below) or continues in the same project file as Part 1 — written here as a separate project, adjust if it should chain from Part 1’s output –&gt; <strong>done</strong></li>
-<li>Pick the actual cpt-city colour ramp for Step 3 (left as a placeholder — QGIS ships several elevation/terrain ramps under Color ramp → All Color Ramps → cpt-city) –&gt; <strong>we decided to let students choose the exact color ramp from the catalog</strong></li>
-<li>Decide the output naming/format for the exported risk-zone raster in Step 5 — flagged as open in the original draft –&gt; <strong>done</strong></li>
-<li>Confirm the 0.70 m threshold and its World Bank Climate Knowledge Portal source before this goes to students –&gt; <strong>done</strong></li>
-<li><strong>Neither this file nor <code>import-vector.qmd</code> (Part 1) is currently referenced in <code>_quarto.yml</code></strong>, so neither is live on the site yet — add both to the sidebar (and/or link them from <code>pages/courses/mscu_q1.qmd</code>) once finalised</li>
-</ul>
-</div>
-</div>
 <hr>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
@@ -566,7 +545,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>❓ Question:</strong> What are the min and max elevation values for this raster?</p>
 <p><strong>✅ Solution (click to reveal):</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -575,7 +554,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Read the <strong>Min</strong> and <strong>Max</strong> fields directly from the Symbology panel (Step 2.2). Values close to or below 0 m are common near the Dutch coast.</p>
 </div>
@@ -593,7 +572,7 @@ Tip
 <p><strong>❓ Question:</strong> What does the histogram tell you about this study area?</p>
 <p><strong>💬 Discussion pointers (click to reveal):</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -602,7 +581,7 @@ Tip
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Look for: where the bulk of the distribution sits (the dominant elevation range), whether there’s a long tail toward higher elevations (e.g.&nbsp;dunes or built-up areas), and any sharp spike at an extreme value (often a sign of a no-data value being read as real elevation, rather than a genuine terrain feature).</p>
 </div>
@@ -672,24 +651,6 @@ Tip
 <li>How might this simple screening approach differ from a proper hydrodynamic flood model?</li>
 </ul>
 <hr>
-<div class="callout callout-style-default callout-important callout-titled" title="Notes for TA">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Notes for TA
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Fill in the real project filename, AHN DTM filename, cpt-city ramp name, and risk-zone output name/format (currently <code>[bracketed]</code> placeholders). –&gt; <strong>done</strong></li>
-<li>Confirm the 0.70 m 2100 sea-level-rise figure and its World Bank Climate Knowledge Portal citation before publishing — it’s used here as a simple teaching threshold, not a validated flood-risk figure, and Step 3’s reflection question is designed to surface that limitation with students. –&gt; <strong>still checking source</strong></li>
-<li>Consider whether the histogram/min-max questions (Step 2.2) need a fixed expected answer once the real AHN extract is finalised, rather than the open-ended guidance currently given. –&gt; <strong>I think guidance enough</strong></li>
-<li>This file and <code>import-vector.qmd</code> still need to be added to <code>_quarto.yml</code>’s sidebar to go live.</li>
-</ul>
-</div>
-</div>
 
 
 <!-- -->
@@ -1182,173 +1143,156 @@ Tip
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>**Author:** Daniele Cannatella</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>::: {.callout-important title="Note for TA"}</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>This is Part 2 of the MSc1 Urbanism Week 1 workshop (see <span class="in">`pages/courses/mscu_q1.qmd`</span>, 10:30–11:00 slot). Deliverable per the workshop plan: "Basemap of DTM (AHN); screenshot to Miro" — the pasted draft this was built from didn't include a Miro screenshot step even though every other part in the plan ends with one, so Step 4 below adds it to match Part 1's pattern. Please check:</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm the AHN DTM is pre-clipped and delivered via the same starter-project mechanism as Part 1 (per the workshop plan, raw AHN pulls are "slow/unpredictable live", so students should not be fetching it themselves) –<span class="sc">\&gt;</span> **done**</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm whether Part 2 opens its own starter project (<span class="in">`[project-name-part2].qgz`</span> below) or continues in the same project file as Part 1 — written here as a separate project, adjust if it should chain from Part 1's output –<span class="sc">\&gt;</span> **done**</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Pick the actual cpt-city colour ramp for Step 3 (left as a placeholder — QGIS ships several elevation/terrain ramps under Color ramp → All Color Ramps → cpt-city) –<span class="sc">\&gt;</span> **we decided to let students choose the exact color ramp from the catalog**</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decide the output naming/format for the exported risk-zone raster in Step 5 — flagged as open in the original draft –<span class="sc">\&gt;</span> **done**</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm the 0.70 m threshold and its World Bank Climate Knowledge Portal source before this goes to students –<span class="sc">\&gt;</span> **done**</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Neither this file nor `import-vector.qmd` (Part 1) is currently referenced in `_quarto.yml`**, so neither is live on the site yet — add both to the sidebar (and/or link them from <span class="in">`pages/courses/mscu_q1.qmd`</span>) once finalised</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>This exercise is the second hands-on block of the Week 1 GIS workshop, following directly on from <span class="co">[</span><span class="ot">Part 1 – Vector Import &amp; Basemap</span><span class="co">](import-vector.qmd)</span>. You will import an AHN elevation raster for Vlissingen, inspect its values, style it as a basemap, and use a simple elevation threshold to derive a sea-level-risk zone.</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>**Learning Outcomes**</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>By completing this exercise, you will be able to:</span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>This exercise is the second hands-on block of the Week 1 GIS workshop, following directly on from <span class="co">[</span><span class="ot">Part 1 – Vector Import &amp; Basemap</span><span class="co">](import-vector.qmd)</span>. You will import an AHN elevation raster for Vlissingen, inspect its values, style it as a basemap, and use a simple elevation threshold to derive a sea-level-risk zone.</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>✅ Import a raster layer into QGIS from the Browser Panel\</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>✅ Read raster statistics (min/max) and interpret a histogram\</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>✅ Style a raster using a pseudocolor ramp\</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>✅ Derive a binary risk-zone raster using a threshold expression\</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>✅ Export a raster layer and share a basemap screenshot</span>
 <span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>**Learning Outcomes**</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>By completing this exercise, you will be able to:</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data &amp; Software</span></span>
 <span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>✅ Import a raster layer into QGIS from the Browser Panel\</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>✅ Read raster statistics (min/max) and interpret a histogram\</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>✅ Style a raster using a pseudocolor ramp\</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>✅ Derive a binary risk-zone raster using a threshold expression\</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>✅ Export a raster layer and share a basemap screenshot</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data &amp; Software</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal" icon="true"}</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>**You will need:**</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal" icon="true"}</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>**You will need:**</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Resource <span class="pp">|</span> Type <span class="pp">|</span> Description <span class="pp">|</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------------|------------------------|------------------------|</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`vlissingen-part-2.qgz`</span> <span class="pp">|</span> QGIS project <span class="pp">|</span> Starter project for the municipality of **Vlissingen** <span class="pp">|</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`elevation_5m.tif`</span> <span class="pp">|</span> Raster (GeoTIFF) <span class="pp">|</span> AHN Digital Terrain Model (DTM), pre-clipped to the study area <span class="pp">|</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal" icon="true"}</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>**Background:** The [World Bank Climate Knowledge Portal](https://climateknowledgeportal.worldbank.org/country/netherlands/sea-level-projections) projects sea levels along the Dutch coast could rise by approximately **0.70 m by 2100** under current emissions trajectories. This tutorial uses that figure as a simple screening threshold — not a precise flood model.</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Resource <span class="pp">|</span> Type <span class="pp">|</span> Description <span class="pp">|</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|----|----|----|</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`vlissingen-part-2.qgz`</span> <span class="pp">|</span> QGIS project <span class="pp">|</span> Starter project for the municipality of **Vlissingen** <span class="pp">|</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`elevation_5m.tif`</span> <span class="pp">|</span> Raster (GeoTIFF) <span class="pp">|</span> AHN Digital Terrain Model (DTM), pre-clipped to the study area <span class="pp">|</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal" icon="true"}</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>**Background:** The [World Bank Climate Knowledge Portal](https://climateknowledgeportal.worldbank.org/country/netherlands/sea-level-projections) projects sea levels along the Dutch coast could rise by approximately **0.70 m by 2100** under current emissions trajectories. This tutorial uses that figure as a simple screening threshold — not a precise flood model.</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 1: Import the Raster Layer</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Launch **QGIS LTR 3.44**</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Open the project <span class="in">`vlissingen-part-2.qgz`</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>From the **Browser Panel**, import the raster layer <span class="in">`elevation_5m.tif`</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>**Result:** The `evelation_5m` layer appears in the **Layers Panel** and draws on the canvas in a default greyscale style.</span>
 <span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="al">![](import_raster/fig%201.png)</span></span>
 <span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 1: Import the Raster Layer</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Launch **QGIS LTR 3.44**</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Open the project <span class="in">`vlissingen-part-2.qgz`</span></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>From the **Browser Panel**, import the raster layer <span class="in">`elevation_5m.tif`</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 2: Inspect Raster Statistics</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.1 Open Symbology and Set Accuracy</span></span>
 <span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>**Result:** The `evelation_5m` layer appears in the **Layers Panel** and draws on the canvas in a default greyscale style.</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="al">![](import_raster/fig%201.png)</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click the <span class="in">`elevation_5m`</span> layer and select **Properties**</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Go to the **Symbology** tab</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Under **Min / Max Value Settings**, set **Accuracy** to **Actual (slower)** instead of the default **Estimate (faster)**</span>
 <span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 2: Inspect Raster Statistics</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal" icon="true"}</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>**Why this matters:** *Estimate* computes statistics from a sample of pixels, which is fast but can miss extreme values. *Actual* reads every pixel — slower on a large raster, but the min/max and histogram are exact.</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.1 Open Symbology and Set Accuracy</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.2 Check Min, Max, and Histogram</span></span>
 <span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click the <span class="in">`elevation_5m`</span> layer and select **Properties**</span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Go to the **Symbology** tab</span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Under **Min / Max Value Settings**, set **Accuracy** to **Actual (slower)** instead of the default **Estimate (faster)**</span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance="minimal" icon="true"}</span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>**Why this matters:** *Estimate* computes statistics from a sample of pixels, which is fast but can miss extreme values. *Actual* reads every pixel — slower on a large raster, but the min/max and histogram are exact.</span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.2 Check Min, Max, and Histogram</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>With **Accuracy: Actual** applied, note the reported **Min** and **Max** values in the Symbology panel</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Switch to the **Histogram** tab (in the same Layer Properties dialog) to view the distribution of elevation values</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>**Result:** You should see a min/max elevation range for the study area, and a histogram showing how frequently each elevation value occurs.</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="al">![](import_raster/fig%202.png)</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>:::: {.callout-note appearance="minimal" icon="true"}</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>**❓ Question:** What are the min and max elevation values for this raster?</span>
 <span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>With **Accuracy: Actual** applied, note the reported **Min** and **Max** values in the Symbology panel</span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Switch to the **Histogram** tab (in the same Layer Properties dialog) to view the distribution of elevation values</span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>**Result:** You should see a min/max elevation range for the study area, and a histogram showing how frequently each elevation value occurs.</span>
-<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a><span class="al">![](import_raster/fig%202.png)</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>**✅ Solution (click to reveal):**</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>Read the **Min** and **Max** fields directly from the Symbology panel (Step 2.2). Values close to or below 0 m are common near the Dutch coast.</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>:::: {.callout-note appearance="minimal" icon="true"}</span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>**❓ Question:** What are the min and max elevation values for this raster?</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>**❓ Question:** What does the histogram tell you about this study area?</span>
 <span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>**✅ Solution (click to reveal):**</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>**💬 Discussion pointers (click to reveal):**</span>
 <span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
-<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>Read the **Min** and **Max** fields directly from the Symbology panel (Step 2.2). Values close to or below 0 m are common near the Dutch coast.</span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>Look for: where the bulk of the distribution sits (the dominant elevation range), whether there's a long tail toward higher elevations (e.g. dunes or built-up areas), and any sharp spike at an extreme value (often a sign of a no-data value being read as real elevation, rather than a genuine terrain feature).</span>
 <span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>:::: {.callout-note appearance="minimal" icon="true"}</span>
-<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>**❓ Question:** What does the histogram tell you about this study area?</span>
-<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>**💬 Discussion pointers (click to reveal):**</span>
-<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
-<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>Look for: where the bulk of the distribution sits (the dominant elevation range), whether there's a long tail toward higher elevations (e.g. dunes or built-up areas), and any sharp spike at an extreme value (often a sign of a no-data value being read as real elevation, rather than a genuine terrain feature).</span>
-<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 3: Style the Raster</span></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Still in **Layer Properties → Symbology**, change **Render type** to **Singleband pseudocolor**</span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Choose an elevation-appropriate colour ramp from the **cpt-city** catalog: **Color ramp → All Color Ramps/Create New Color Ramp... → cpt-city**</span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Click **Classify**, then **Apply**</span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>**Result:** The DTM now renders in a continuous colour ramp from low to high elevation, making terrain patterns easier to read than the default greyscale.</span>
 <span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="al">![](import_raster/fig%203.png)</span></span>
 <span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 3: Style the Raster</span></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Still in **Layer Properties → Symbology**, change **Render type** to **Singleband pseudocolor**</span>
-<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Choose an elevation-appropriate colour ramp from the **cpt-city** catalog: **Color ramp → All Color Ramps/Create New Color Ramp... → cpt-city**</span>
-<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Click **Classify**, then **Apply**</span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 4: Derive a Sea-Level-Risk Zone</span></span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>Areas at or below the 0.70 m threshold are treated here as a simple proxy for land potentially exposed to projected 2100 sea-level rise.</span>
 <span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>**Result:** The DTM now renders in a continuous colour ramp from low to high elevation, making terrain patterns easier to read than the default greyscale.</span>
-<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a><span class="al">![](import_raster/fig%203.png)</span></span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Open the **Raster Calculator** (**Raster → Raster Calculator…**, or search **Raster calculator** in the **Processing Toolbox**)</span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Output layer:** <span class="in">`risk_zones.tif`</span></span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Expression:**</span>
 <span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 4: Derive a Sea-Level-Risk Zone</span></span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a><span class="in">"elevation_5m@1" &lt;= 0.70</span></span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>Areas at or below the 0.70 m threshold are treated here as a simple proxy for land potentially exposed to projected 2100 sea-level rise.</span>
-<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Open the **Raster Calculator** (**Raster → Raster Calculator…**, or search **Raster calculator** in the **Processing Toolbox**)</span>
-<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Output layer:** <span class="in">`risk_zones.tif`</span></span>
-<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Expression:**</span>
-<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
-<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a><span class="in">"elevation_5m@1" &lt;= 0.70</span></span>
-<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`"elevation_5m@1"`</span> – refers to band 1 of the AHN DTM raster</span>
-<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`&lt;= 0.70`</span> – flags every pixel at or below the 0.70 m threshold</span>
-<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Click **OK** to run</span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`"elevation_5m@1"`</span> – refers to band 1 of the AHN DTM raster</span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`&lt;= 0.70`</span> – flags every pixel at or below the 0.70 m threshold</span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Click **OK** to run</span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a>**Result:** A new binary raster is created, where a value of **1** marks pixels at or below 0.70 m (the potential risk zone) and **0** marks pixels above it.</span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a><span class="al">![](import_raster/fig%204.png)</span></span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4.1 Style and Verify the Risk Zone</span></span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Open **Symbology** for the new risk-zone raster</span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Set **Render type** to **Singleband pseudocolor**, or use **Paletted/Unique values** with two classes (0 / 1)</span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Assign a clear colour to class **1** (e.g. red or orange) and make class **0** transparent or a neutral colour, so the risk zone stands out against the basemap</span>
 <span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a>**Result:** A new binary raster is created, where a value of **1** marks pixels at or below 0.70 m (the potential risk zone) and **0** marks pixels above it.</span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a><span class="al">![](import_raster/fig%205.png)</span></span>
 <span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a><span class="al">![](import_raster/fig%204.png)</span></span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4.1 Style and Verify the Risk Zone</span></span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 5: Export and Share</span></span>
 <span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Open **Symbology** for the new risk-zone raster</span>
-<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Set **Render type** to **Singleband pseudocolor**, or use **Paletted/Unique values** with two classes (0 / 1)</span>
-<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Assign a clear colour to class **1** (e.g. red or orange) and make class **0** transparent or a neutral colour, so the risk zone stands out against the basemap</span>
-<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a><span class="al">![](import_raster/fig%205.png)</span></span>
-<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 5: Export and Share</span></span>
-<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click the risk-zone layer → **Export → Save As…**, and confirm the output format/name from Step 4 (<span class="in">`risk_zones.tif`</span>)</span>
-<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Take a screenshot of the QGIS canvas showing the styled DTM basemap (with legend) for the Miro deliverable</span>
-<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Upload the screenshot to the course Miro board</span>
-<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**File → Save Project**</span>
-<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reflection</span></span>
-<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What does this risk zone tell you about the study area?</span>
-<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What are the limitations of using a single elevation threshold to represent flood or sea-level risk?</span>
-<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How might this simple screening approach differ from a proper hydrodynamic flood model?</span>
-<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a>::: {.callout-important title="Notes for TA"}</span>
-<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Fill in the real project filename, AHN DTM filename, cpt-city ramp name, and risk-zone output name/format (currently <span class="in">`[bracketed]`</span> placeholders). –<span class="sc">\&gt;</span> **done**</span>
-<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Confirm the 0.70 m 2100 sea-level-rise figure and its World Bank Climate Knowledge Portal citation before publishing — it's used here as a simple teaching threshold, not a validated flood-risk figure, and Step 3's reflection question is designed to surface that limitation with students. –<span class="sc">\&gt;</span> **still checking source**</span>
-<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Consider whether the histogram/min-max questions (Step 2.2) need a fixed expected answer once the real AHN extract is finalised, rather than the open-ended guidance currently given. –<span class="sc">\&gt;</span> **I think guidance enough**</span>
-<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>This file and <span class="in">`import-vector.qmd`</span> still need to be added to <span class="in">`_quarto.yml`</span>'s sidebar to go live.</span>
-<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click the risk-zone layer → **Export → Save As…**, and confirm the output format/name from Step 4 (<span class="in">`risk_zones.tif`</span>)</span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Take a screenshot of the QGIS canvas showing the styled DTM basemap (with legend) for the Miro deliverable</span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Upload the screenshot to the course Miro board</span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**File → Save Project**</span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reflection</span></span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What does this risk zone tell you about the study area?</span>
+<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What are the limitations of using a single elevation threshold to represent flood or sea-level risk?</span>
+<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How might this simple screening approach differ from a proper hydrodynamic flood model?</span>
+<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
