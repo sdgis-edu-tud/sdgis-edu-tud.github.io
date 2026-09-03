@@ -514,12 +514,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="explore-the-full-dataset">1.1 Explore the Full Dataset</h3>
 <ol type="1">
 <li>Launch <strong>QGIS LTR 3.44</strong></li>
-<li>Open the project <code>[project-name-part3].qgz</code></li>
+<li>Open the project <code>vlissingen-part-3.qgz</code></li>
 <li>The layer <code>PV29__00_Basis_Bouwblok</code> should already be loaded, covering the whole of <strong>Zeeland</strong></li>
 <li>Open its <strong>Attribute Table</strong> and note the feature count and the available fields, in particular <code>GM_CODE</code> (municipality code) and the FSI fields for 2019 and 2024 (<code>[FSI_19]</code> / <code>[FSI_24]</code>)</li>
 </ol>
 <p><strong>Result:</strong> The attribute table lists building blocks for the entire province, not just Vlissingen.</p>
-<p>[Add screenshot: attribute table of <code>PV29__00_Basis_Bouwblok</code> showing the <code>GM_CODE</code> and FSI columns]</p>
+<p><img src="choroplet_map/fig 1.png" class="img-fluid"></p>
 </section>
 <section id="select-vlissingen-by-expression" class="level3">
 <h3 class="anchored" data-anchor-id="select-vlissingen-by-expression">1.2 Select Vlissingen by Expression</h3>
@@ -537,15 +537,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Click <strong>Select Features</strong></li>
 </ol>
 <p><strong>Result:</strong> Only the building blocks belonging to Vlissingen are now highlighted in yellow on the canvas and selected (highlighted) in the attribute table.</p>
-<p>[Add screenshot: canvas with the Vlissingen building blocks selected, rest of Zeeland unselected]</p>
+<p><img src="choroplet_map/fig 2.png" class="img-fluid"></p>
 </section>
 <section id="export-the-selection-as-a-new-layer" class="level3">
 <h3 class="anchored" data-anchor-id="export-the-selection-as-a-new-layer">1.3 Export the Selection as a New Layer</h3>
 <ol type="1">
 <li>Right-click the layer → <strong>Export → Save Selected Features As…</strong></li>
 <li><strong>Format:</strong> GeoPackage</li>
-<li><strong>File name:</strong> <code>[vlissingen-rudifun].gpkg</code></li>
-<li>Click <strong>OK</strong>, then add the new layer to the map if it isn’t added automatically</li>
+<li>Click on the three dots (besides the <strong>File name</strong> field) and navigate to the <code>data_output</code> folder</li>
+<li><strong>Name:</strong> <code>vlissingen_rudifun</code></li>
+<li>Click <strong>Save</strong>, then <strong>OK</strong></li>
+<li>Add the new layer to the map if it isn’t added automatically</li>
 </ol>
 <div class="callout callout-style-simple callout-tip no-icon">
 <div class="callout-body d-flex">
@@ -571,14 +573,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="remove-unneeded-fields">2.1 Remove Unneeded Fields</h3>
 <p>The full dataset carries many more indicators than this exercise needs. To keep the table readable, remove everything except <code>GM_CODE</code> and the FSI fields for 2019 and 2024.</p>
 <ol type="1">
-<li>Right-click the <code>[vlissingen-rudifun]</code> layer → <strong>Properties → Fields</strong></li>
+<li>Right-click the <code>vlissingen_rudifun</code> layer → <strong>Properties → Fields</strong></li>
 <li>Click the <strong>pencil icon</strong> to toggle editing mode</li>
 <li>Select the fields you don’t need for this exercise, and click the <strong>Delete Field</strong> button (red <strong>X</strong>) for each</li>
-<li>Keep only <code>GM_CODE</code>, <code>[FSI_19]</code>, and <code>[FSI_24]</code></li>
+<li>Keep only <code>GM_CODE</code>, <code>FSI_19</code>, and <code>FSI_24</code></li>
 <li>Click <strong>OK</strong> to apply, then save your edits</li>
 </ol>
 <p><strong>Result:</strong> The attribute table now shows only the fields relevant to this exercise.</p>
-<p>[Add screenshot: Fields tab of Layer Properties, before and after deleting unneeded fields]</p>
+<p><img src="choroplet_map/fig 3-1.png" class="img-fluid" width="400"></p>
+<p><img src="choroplet_map/fig 3-2.png" class="img-fluid" width="400"></p>
 <hr>
 </section>
 </section>
@@ -587,9 +590,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="classify-by-fsi-2024" class="level3">
 <h3 class="anchored" data-anchor-id="classify-by-fsi-2024">3.1 Classify by FSI 2024</h3>
 <ol type="1">
-<li>Select the <code>[vlissingen-rudifun]</code> layer, open <strong>Layer Styling</strong> (<code>F7</code>)</li>
+<li>Select the <code>vlissingen_rudifun</code> layer, open <strong>Layer Styling</strong> (<code>F7</code>)</li>
 <li>Change the classification type to <strong>Graduated</strong></li>
-<li><strong>Value:</strong> <code>[FSI_24]</code></li>
+<li><strong>Value:</strong> <code>FSI_24</code></li>
 <li><strong>Classification Mode:</strong> <strong>Natural Breaks (Jenks)</strong></li>
 <li><strong>Classes:</strong> 5</li>
 <li>Choose a sequential colour ramp (e.g.&nbsp;<strong>Blues</strong> or <strong>Oranges</strong>) and click <strong>Classify</strong>, then <strong>Apply</strong></li>
@@ -605,7 +608,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><strong>Result:</strong> Building blocks are now shaded from low to high FSI in 2024.</p>
-<p>[Add screenshot: choropleth map of <code>[FSI_24]</code> with legend visible]</p>
+<p><img src="choroplet_map/fig 4.png" class="img-fluid"></p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -641,18 +644,18 @@ Tip
 <section id="duplicate-the-layer" class="level3">
 <h3 class="anchored" data-anchor-id="duplicate-the-layer">4.1 Duplicate the Layer</h3>
 <ol type="1">
-<li>Right-click the <code>[vlissingen-rudifun]</code> layer → <strong>Duplicate Layer</strong></li>
-<li>Rename the copy <code>[density-change]</code></li>
+<li>Right-click the <code>vlissingen_rudifun</code> layer → <strong>Duplicate Layer</strong></li>
+<li>Rename the copy <code>density_change</code></li>
 </ol>
 </section>
 <section id="filter-out-empty-blocks" class="level3">
 <h3 class="anchored" data-anchor-id="filter-out-empty-blocks">4.2 Filter Out Empty Blocks</h3>
 <p>Building blocks with no built floor space in 2024 aren’t meaningful for a change map, so filter them out before calculating the difference.</p>
 <ol type="1">
-<li>Right-click <code>[density-change]</code> → <strong>Properties → Source</strong></li>
+<li>Right-click <code>density_change</code> → <strong>Properties → Source</strong></li>
 <li>In the <strong>Provider Feature Filter</strong> box, enter:</li>
 </ol>
-<pre><code>"[FSI_24]" &gt; 0</code></pre>
+<pre><code>"FSI_24" &gt; 0</code></pre>
 <ol start="3" type="1">
 <li>Click <strong>OK</strong></li>
 </ol>
@@ -660,15 +663,15 @@ Tip
 <section id="calculate-the-change" class="level3">
 <h3 class="anchored" data-anchor-id="calculate-the-change">4.3 Calculate the Change</h3>
 <ol type="1">
-<li>Open the <strong>Attribute Table</strong> for <code>[density-change]</code>, toggle editing mode</li>
+<li>Open the <strong>Attribute Table</strong> for <code>density_change</code>, toggle editing mode</li>
 <li>Open <strong>Field Calculator</strong></li>
 <li><strong>Create a new field:</strong> <code>fsi_change</code> (type: <strong>Decimal number</strong>)</li>
 <li><strong>Expression:</strong></li>
 </ol>
-<pre><code>"[FSI_24]" - "[FSI_19]"</code></pre>
+<pre><code>"FSI_24" - "FSI_19"</code></pre>
 <ul>
-<li><code>"[FSI_24]"</code> – FSI value in 2024</li>
-<li><code>"[FSI_19]"</code> – FSI value in 2019</li>
+<li><code>"FSI_24"</code> – FSI value in 2024</li>
+<li><code>"FSI_19"</code> – FSI value in 2019</li>
 <li>Subtracting gives the change in FSI over the period: a positive value means the block densified, a negative value means it lost built density</li>
 </ul>
 <ol start="5" type="1">
@@ -678,14 +681,14 @@ Tip
 <section id="classify-the-change" class="level3">
 <h3 class="anchored" data-anchor-id="classify-the-change">4.4 Classify the Change</h3>
 <ol type="1">
-<li>Open <strong>Layer Styling</strong> (<code>F7</code>) for <code>[density-change]</code></li>
+<li>Open <strong>Layer Styling</strong> (<code>F7</code>) for <code>density_change</code></li>
 <li><strong>Value:</strong> <code>fsi_change</code></li>
 <li>Choose a <strong>diverging</strong> colour ramp (e.g.&nbsp;<strong>RdBu</strong> or <strong>Spectral</strong>), so decreases and increases are visually distinct</li>
 <li>Set the classification so that <strong>0 sits on a class break</strong> — either by choosing <strong>Natural Breaks (Jenks)</strong> and checking the generated breaks, or by manually editing a break to fall at 0</li>
 <li>Click <strong>Classify</strong>, then <strong>Apply</strong></li>
 </ol>
 <p><strong>Result:</strong> Areas that densified between 2019 and 2024 appear in one colour, areas that lost density appear in the other, and the intensity of the colour shows the size of the change.</p>
-<p>[Add screenshot: choropleth map of <code>fsi_change</code> with a diverging colour ramp and legend visible]</p>
+<p><img src="choroplet_map/fig 5.png" class="img-fluid"></p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1250,7 +1253,7 @@ Tip
 <span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>**You will need:**</span>
 <span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Resource <span class="pp">|</span> Type <span class="pp">|</span> Description <span class="pp">|</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------------|------------------------|------------------------|</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|----|----|----|</span></span>
 <span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`vlissingen-part-3.qgz`</span> <span class="pp">|</span> QGIS project <span class="pp">|</span> Starter project, pre-loaded with the RUDIFUN dataset for the province of **Zeeland** <span class="pp">|</span></span>
 <span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`PV29__00_Basis_Bouwblok`</span> <span class="pp">|</span> Vector layer (polygon) <span class="pp">|</span> RUDIFUN building-block density dataset (FSI, MXI), province-wide — not yet clipped to Vlissingen <span class="pp">|</span></span>
 <span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>:::</span>
@@ -1266,13 +1269,13 @@ Tip
 <span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1.1 Explore the Full Dataset</span></span>
 <span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Launch **QGIS LTR 3.44**</span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Open the project <span class="in">`[project-name-part3].qgz`</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Open the project <span class="in">`vlissingen-part-3.qgz`</span></span>
 <span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>The layer <span class="in">`PV29__00_Basis_Bouwblok`</span> should already be loaded, covering the whole of **Zeeland**</span>
 <span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Open its **Attribute Table** and note the feature count and the available fields, in particular <span class="in">`GM_CODE`</span> (municipality code) and the FSI fields for 2019 and 2024 (<span class="in">`[FSI_19]`</span> / <span class="in">`[FSI_24]`</span>)</span>
 <span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>**Result:** The attribute table lists building blocks for the entire province, not just Vlissingen.</span>
 <span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span>Add screenshot: attribute table of <span class="in">`PV29__00_Basis_Bouwblok`</span> showing the <span class="in">`GM_CODE`</span> and FSI columns<span class="sc">\]</span></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="al">![](choroplet_map/fig%201.png)</span></span>
 <span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1.2 Select Vlissingen by Expression</span></span>
 <span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a></span>
@@ -1291,150 +1294,154 @@ Tip
 <span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>**Result:** Only the building blocks belonging to Vlissingen are now highlighted in yellow on the canvas and selected (highlighted) in the attribute table.</span>
 <span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span>Add screenshot: canvas with the Vlissingen building blocks selected, rest of Zeeland unselected<span class="sc">\]</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="al">![](choroplet_map/fig%202.png)</span></span>
 <span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1.3 Export the Selection as a New Layer</span></span>
 <span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click the layer → **Export → Save Selected Features As…**</span>
 <span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Format:** GeoPackage</span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**File name:** <span class="in">`[vlissingen-rudifun].gpkg`</span></span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Click **OK**, then add the new layer to the map if it isn't added automatically</span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip appearance="minimal" icon="true"}</span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>**Why work with a subset instead of the full dataset?**</span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**More agile layers** — a smaller file renders and processes faster</span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Less visual noise** — the map only shows the area you're analysing</span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Focused analysis** — easier to compare against other Vlissingen-only layers, like the neighbourhood boundaries from Part 1</span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Click on the three dots (besides the **File name** field) and navigate to the <span class="in">`data_output`</span> folder</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Name:** <span class="in">`vlissingen_rudifun`</span></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Click **Save**, then **OK**</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>Add the new layer to the map if it isn't added automatically</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip appearance="minimal" icon="true"}</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>**Why work with a subset instead of the full dataset?**</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**More agile layers** — a smaller file renders and processes faster</span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Less visual noise** — the map only shows the area you're analysing</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Focused analysis** — easier to compare against other Vlissingen-only layers, like the neighbourhood boundaries from Part 1</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 2: Clean Up the Attribute Table</span></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.1 Remove Unneeded Fields</span></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 2: Clean Up the Attribute Table</span></span>
 <span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>The full dataset carries many more indicators than this exercise needs. To keep the table readable, remove everything except <span class="in">`GM_CODE`</span> and the FSI fields for 2019 and 2024.</span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.1 Remove Unneeded Fields</span></span>
 <span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click the <span class="in">`[vlissingen-rudifun]`</span> layer → **Properties → Fields**</span>
-<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Click the **pencil icon** to toggle editing mode</span>
-<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Select the fields you don't need for this exercise, and click the **Delete Field** button (red **X**) for each</span>
-<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Keep only <span class="in">`GM_CODE`</span>, <span class="in">`[FSI_19]`</span>, and <span class="in">`[FSI_24]`</span></span>
-<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Click **OK** to apply, then save your edits</span>
-<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>**Result:** The attribute table now shows only the fields relevant to this exercise.</span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>The full dataset carries many more indicators than this exercise needs. To keep the table readable, remove everything except <span class="in">`GM_CODE`</span> and the FSI fields for 2019 and 2024.</span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click the <span class="in">`vlissingen_rudifun`</span> layer → **Properties → Fields**</span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Click the **pencil icon** to toggle editing mode</span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Select the fields you don't need for this exercise, and click the **Delete Field** button (red **X**) for each</span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Keep only <span class="in">`GM_CODE`</span>, <span class="in">`FSI_19`</span>, and <span class="in">`FSI_24`</span></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Click **OK** to apply, then save your edits</span>
 <span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span>Add screenshot: Fields tab of Layer Properties, before and after deleting unneeded fields<span class="sc">\]</span></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>**Result:** The attribute table now shows only the fields relevant to this exercise.</span>
 <span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a><span class="al">![](choroplet_map/fig%203-1.png)</span>{width="400"}</span>
 <span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 3: Where Are the Densest Buurten in 2024?</span></span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a><span class="al">![](choroplet_map/fig%203-2.png)</span>{width="400"}</span>
 <span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3.1 Classify by FSI 2024</span></span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Select the <span class="in">`[vlissingen-rudifun]`</span> layer, open **Layer Styling** (<span class="in">`F7`</span>)</span>
-<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Change the classification type to **Graduated**</span>
-<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Value:** <span class="in">`[FSI_24]`</span></span>
-<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Classification Mode:** **Natural Breaks (Jenks)**</span>
-<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**Classes:** 5</span>
-<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>Choose a sequential colour ramp (e.g. **Blues** or **Oranges**) and click **Classify**, then **Apply**</span>
-<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip appearance="minimal" icon="true"}</span>
-<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>**Tip:** Natural Breaks (Jenks) groups similar values together and maximises the difference between classes — it's a good default for density data where you want the classification to reflect real gaps in the distribution, rather than splitting the data into equal-sized groups.</span>
-<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 3: Where Are the Densest Buurten in 2024?</span></span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3.1 Classify by FSI 2024</span></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Select the <span class="in">`vlissingen_rudifun`</span> layer, open **Layer Styling** (<span class="in">`F7`</span>)</span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Change the classification type to **Graduated**</span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Value:** <span class="in">`FSI_24`</span></span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Classification Mode:** **Natural Breaks (Jenks)**</span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**Classes:** 5</span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>Choose a sequential colour ramp (e.g. **Blues** or **Oranges**) and click **Classify**, then **Apply**</span>
 <span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>**Result:** Building blocks are now shaded from low to high FSI in 2024.</span>
-<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span>Add screenshot: choropleth map of <span class="in">`[FSI_24]`</span> with legend visible<span class="sc">\]</span></span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip appearance="minimal" icon="true"}</span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a>**Tip:** Natural Breaks (Jenks) groups similar values together and maximises the difference between classes — it's a good default for density data where you want the classification to reflect real gaps in the distribution, rather than splitting the data into equal-sized groups.</span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>:::: {.callout-note appearance="minimal" icon="true"}</span>
-<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>**❓ Question:** Looking at the map, which areas of Vlissingen are the densest in 2024?</span>
-<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>**✅ Solution (click to reveal):**</span>
-<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
-<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>The darkest class should fall over the historic city centre and the most built-up residential blocks, where floor space is high relative to plot area. Lighter classes typically correspond to industrial or port areas, green space, and low-density suburban blocks.</span>
-<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 4: How Did Density Change Between 2019 and 2024?</span></span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>**Result:** Building blocks are now shaded from low to high FSI in 2024.</span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a><span class="al">![](choroplet_map/fig%204.png)</span></span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a>:::: {.callout-note appearance="minimal" icon="true"}</span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>**❓ Question:** Looking at the map, which areas of Vlissingen are the densest in 2024?</span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>**✅ Solution (click to reveal):**</span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>The darkest class should fall over the historic city centre and the most built-up residential blocks, where floor space is high relative to plot area. Lighter classes typically correspond to industrial or port areas, green space, and low-density suburban blocks.</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4.1 Duplicate the Layer</span></span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
 <span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click the <span class="in">`[vlissingen-rudifun]`</span> layer → **Duplicate Layer**</span>
-<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Rename the copy <span class="in">`[density-change]`</span></span>
-<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4.2 Filter Out Empty Blocks</span></span>
-<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>Building blocks with no built floor space in 2024 aren't meaningful for a change map, so filter them out before calculating the difference.</span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 4: How Did Density Change Between 2019 and 2024?</span></span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4.1 Duplicate the Layer</span></span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click the <span class="in">`vlissingen_rudifun`</span> layer → **Duplicate Layer**</span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Rename the copy <span class="in">`density_change`</span></span>
 <span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click <span class="in">`[density-change]`</span> → **Properties → Source**</span>
-<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>In the **Provider Feature Filter** box, enter:</span>
-<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
-<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a><span class="in">"[FSI_24]" &gt; 0</span></span>
-<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4.2 Filter Out Empty Blocks</span></span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a>Building blocks with no built floor space in 2024 aren't meaningful for a change map, so filter them out before calculating the difference.</span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click <span class="in">`density_change`</span> → **Properties → Source**</span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>In the **Provider Feature Filter** box, enter:</span>
 <span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Click **OK**</span>
-<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4.3 Calculate the Change</span></span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a><span class="in">"FSI_24" &gt; 0</span></span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Open the **Attribute Table** for <span class="in">`[density-change]`</span>, toggle editing mode</span>
-<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Open **Field Calculator**</span>
-<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Create a new field:** `fsi_change` (type: **Decimal number**)</span>
-<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Expression:**</span>
-<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
-<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a><span class="in">"[FSI_24]" - "[FSI_19]"</span></span>
-<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Click **OK**</span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4.3 Calculate the Change</span></span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Open the **Attribute Table** for <span class="in">`density_change`</span>, toggle editing mode</span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Open **Field Calculator**</span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Create a new field:** `fsi_change` (type: **Decimal number**)</span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Expression:**</span>
 <span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`"[FSI_24]"`</span> – FSI value in 2024</span>
-<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`"[FSI_19]"`</span> – FSI value in 2019</span>
-<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Subtracting gives the change in FSI over the period: a positive value means the block densified, a negative value means it lost built density</span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a><span class="in">"FSI_24" - "FSI_19"</span></span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Click **OK**, save your edits, and toggle editing off</span>
-<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4.4 Classify the Change</span></span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`"FSI_24"`</span> – FSI value in 2024</span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`"FSI_19"`</span> – FSI value in 2019</span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Subtracting gives the change in FSI over the period: a positive value means the block densified, a negative value means it lost built density</span>
 <span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Open **Layer Styling** (<span class="in">`F7`</span>) for <span class="in">`[density-change]`</span></span>
-<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Value:** <span class="in">`fsi_change`</span></span>
-<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Choose a **diverging** colour ramp (e.g. **RdBu** or **Spectral**), so decreases and increases are visually distinct</span>
-<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Set the classification so that **0 sits on a class break** — either by choosing **Natural Breaks (Jenks)** and checking the generated breaks, or by manually editing a break to fall at 0</span>
-<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Click **Classify**, then **Apply**</span>
-<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a>**Result:** Areas that densified between 2019 and 2024 appear in one colour, areas that lost density appear in the other, and the intensity of the colour shows the size of the change.</span>
-<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span>Add screenshot: choropleth map of <span class="in">`fsi_change`</span> with a diverging colour ramp and legend visible<span class="sc">\]</span></span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Click **OK**, save your edits, and toggle editing off</span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4.4 Classify the Change</span></span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Open **Layer Styling** (<span class="in">`F7`</span>) for <span class="in">`density_change`</span></span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Value:** <span class="in">`fsi_change`</span></span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Choose a **diverging** colour ramp (e.g. **RdBu** or **Spectral**), so decreases and increases are visually distinct</span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Set the classification so that **0 sits on a class break** — either by choosing **Natural Breaks (Jenks)** and checking the generated breaks, or by manually editing a break to fall at 0</span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Click **Classify**, then **Apply**</span>
 <span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>:::: {.callout-note appearance="minimal" icon="true"}</span>
-<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>**❓ Question:** Which parts of Vlissingen densified the most between 2019 and 2024? Are there any areas that lost density?</span>
-<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>**✅ Solution (click to reveal):**</span>
-<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
-<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a>Look for the darkest class on the "increase" side of the ramp — this often clusters around recent infill or redevelopment sites. A small number of blocks in the darkest "decrease" class may point to demolitions or a data artefact (e.g. a block that was reclassified between the two survey years) rather than genuine density loss — worth flagging as a limitation.</span>
-<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 5: Export and Share</span></span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>**Result:** Areas that densified between 2019 and 2024 appear in one colour, areas that lost density appear in the other, and the intensity of the colour shows the size of the change.</span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a><span class="al">![](choroplet_map/fig%205.png)</span></span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>:::: {.callout-note appearance="minimal" icon="true"}</span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>**❓ Question:** Which parts of Vlissingen densified the most between 2019 and 2024? Are there any areas that lost density?</span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a>**✅ Solution (click to reveal):**</span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>Look for the darkest class on the "increase" side of the ramp — this often clusters around recent infill or redevelopment sites. A small number of blocks in the darkest "decrease" class may point to demolitions or a data artefact (e.g. a block that was reclassified between the two survey years) rather than genuine density loss — worth flagging as a limitation.</span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Take a screenshot of the QGIS canvas showing the <span class="in">`fsi_change`</span> choropleth, with the legend visible</span>
-<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Upload the screenshot to the course Miro board</span>
-<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**File → Save Project**</span>
+<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 5: Export and Share</span></span>
 <span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reflection</span></span>
+<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Take a screenshot of the QGIS canvas showing the <span class="in">`fsi_change`</span> choropleth, with the legend visible</span>
+<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Upload the screenshot to the course Miro board</span>
+<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**File → Save Project**</span>
 <span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why classify continuous density data into discrete classes rather than using a continuous colour ramp?</span>
-<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What does the change map tell you about how Vlissingen has densified between 2019 and 2024?</span>
-<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What are the limitations of comparing two snapshots in time (2019 vs. 2024) without knowing what happened in between?</span>
+<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reflection</span></span>
 <span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why classify continuous density data into discrete classes rather than using a continuous colour ramp?</span>
+<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What does the change map tell you about how Vlissingen has densified between 2019 and 2024?</span>
+<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What are the limitations of comparing two snapshots in time (2019 vs. 2024) without knowing what happened in between?</span>
+<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
