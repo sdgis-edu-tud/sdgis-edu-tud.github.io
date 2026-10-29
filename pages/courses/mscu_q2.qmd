@@ -9,17 +9,15 @@ format: html
 
 - Rob van Houten
 
-- Ines Zaid
+- Inès Daugerel
 
 ## 👩‍🏫👨‍🏫🎓Helpers
 
-- Faried Nurmohamed
-
-- Stepan Prikazcicov
+- Julia Fossa Marques
 
 ## Dates and Deadlines
 
-- GIS workshop: Wednesday 19 November 2025, 08:45
+- GIS workshop: Friday 13 November 2026, 08:45
 
 ## Resources
 
