@@ -18,10 +18,12 @@ date: .na.character
 
 By the end of this tutorial, you will be able to:
 
+- Drawing section lines
 -   create mu;ti-layer elevation profiles in QGIS using the built-in Elevation Profile tool.
 -   Load raster, LAZ point cloud, vector data to analyse in section.
 -   Digitize vector features (points, lines, polygons) from georeferenced maps
 -   Create and edit vector layers with proper attributes
+-   Comapre datasets (vector vs raster vs LiDAR)
 :::
 
 ::: callout-note
@@ -36,15 +38,21 @@ By the end of this tutorial, you will be able to:
     -   Vector LineString
 :::
 
+
 ## Steps
+
+### Part 1 : setting the project up
+
 1. Prepare QGIS
 > Go to Plugins > Manage and Install Plugins…
 In the search bar at the top left:
 - Type 'QuickMapServices' → click Install.
 No need to install the old Profile Tool plugin anymore because Elevation Profile is built into QGIS.
+
 2. Load a Basemap
 > Go to Web > QuickMapServices > OSM > OSM Standard
 This appears inside the Web menu after installing QuickMapServices. Use the mouse wheel and the navigation toolbar on the left to zoom to the correct area.
+
 3. Load the NASA Raster DEM (raster)
 > Go to Plugins > SRTM Downloader > SRTM Downloader
 This opens the SRTM Downloader window.
@@ -54,6 +62,7 @@ This opens the SRTM Downloader window.
 - Press 'Download' at the bottom.
 The first time, it asks for NASA Earthdata login. Use the link to create an account.
 Once downloaded, the raster DEM appears in the Layers Panel on the left.
+
 4. Load the TU Delft LAZ file (point cloud)
 Download the LAZ tile from https://geotiles.citg.tudelft.nl/
 > Go to Layer > Add Layer > Add Point Cloud Layer…
@@ -62,6 +71,7 @@ To style the point cloud:
 - Open the Layer Styling Panel (right toolbar, paintbrush icon).
 - Select 'Attribute by Classification'.
 - Set 'Z' as the attribute so colours represent height.
+
 5. Create the vector line (section line)
 > Go to Layer > Create Layer > New GeoPackage Layer…
 In the window:
@@ -78,6 +88,7 @@ To draw the line:
 - When the attribute window appears, type the line name.
 > Go to Layer > Save Layer Edits
 > Go to Layer > Toggle Editing (off)
+
 6. Use the Elevation Profile tool
 > Go to View > Panels > Elevation Profile
 A panel opens on the right side of QGIS.
