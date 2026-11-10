@@ -1,6 +1,6 @@
 ---
 title: Building and Analysing Sections
-description: creating brand new sections and 
+description: Creating Cross-Sections in QGIS Using Raster, Vector, and Point Cloud Data
 categories:
   - Data Preparation
   - Georeferencing
@@ -12,8 +12,31 @@ date: .na.character
 
 **Duration:** 30-40 minutes
 
-Tutorial: Creating Cross-Sections in QGIS Using Raster, Vector, and Point Cloud Data
-This guide explains how to create multi-layer elevation profiles in QGIS using the built-in Elevation Profile tool. I use three data types: the NASA raster DEM, the TU Delft LAZ point cloud, and my own vector LineString.
+------------------------------------------------------------------------
+::: callout-note
+## Learning Goals
+
+By the end of this tutorial, you will be able to:
+
+-   create mu;ti-layer elevation profiles in QGIS using the built-in Elevation Profile tool.
+-   Load raster, LAZ point cloud, vector data to analyse in section.
+-   Digitize vector features (points, lines, polygons) from georeferenced maps
+-   Create and edit vector layers with proper attributes
+:::
+
+::: callout-note
+## Software and Data Required
+
+-   **QGIS** (version 3.x or higher)
+-   **Freehand Raster Georeferencer** plugin
+-   Active internet connection (for PDOK aerial photos)
+-   **Data files:**
+    -   NASA raster DEM
+    -   TU Delft LAZ point Cloud
+    -   Vector LineString
+:::
+
+## Steps
 1. Prepare QGIS
 > Go to Plugins > Manage and Install Plugins…
 In the search bar at the top left:
@@ -76,5 +99,13 @@ To use my vector line:
 - The point cloud shows fine detail like buildings, trees, and surface features.
 - The vector line is the exact path used to extract the profile.
 
+
+Other sources
+
+- Video Tutorial: [Cross section detection using Profile Tool](https://www.youtube.com/watch?v=jwbsdLuxyAY&t=110s&ab_channel=GeoDeltaLabs)
+- Video Tutorial: [Compare raster DTM's, contour lines and a point cloud for different transects](https://www.youtube.com/watch?time_continue=66&v=jqDm1RpGpVE&embeds_referring_euri=https%3A%2F%2Fwww.notion.so%2F&source_ve_path=Mjg2NjY)
+- Video Tutorial: [Elevation Profiles using .laz data](https://www.youtube.com/watch?v=8fsMyj1nxpE&ab_channel=OpenSourceOptions)
+- Video Tutorial: [Multiple cross sectional profiles](https://www.youtube.com/watch?v=HCO7Ugfc_0w&t=184s&ab_channel=WebStoryMap)
+- Video Tutorial: [Create 3D Terrain with QGIS and GIMP](https://www.youtube.com/watch?v=rgFI5WiXOl8&ab_channel=GeoDeltaLabs)
 
 
