@@ -404,7 +404,7 @@ This creates unique groups for each neighborhood-function combination.
 ## Summary Table: Statistics You've Calculated
 
 | Statistic | Method | Answers the Question |
-|--------------------|-------------------|---------------------------------|
+|------------------------|------------------------|------------------------|
 | **Building Count by Function** | Statistics by Categories | How many buildings of each type in each neighborhood? |
 | **Total Area by Function** | Statistics by Categories | What's the total floor area per function type? |
 | **Average Building Size** | Aggregate tool | What's the typical building size per function? |
@@ -430,7 +430,7 @@ END
 ### 2. Spatial Predicates
 
 | Predicate | Description | Use Case |
-|-----------------------|---------------------------|----------------------|
+|------------------------|------------------------|------------------------|
 | **within** | Feature completely inside | Buildings entirely within neighborhoods |
 | **intersects** | Features touch or overlap | Include buildings on borders |
 | **contains** | Opposite of within | Which neighborhood contains building |
@@ -919,23 +919,6 @@ This creates unique groups for each neighborhood-function combination.
 5.  **Export:** Download as SVG
 
 ![Figure 12 - Treemap showing area distribution](statistics_and_data_visualization/fig%2012.png)
-
-#### Visualization 3: Grouped Bar Chart - Compare Neighborhoods
-
-1.  **Start new chart**
-2.  **Choose chart:** Select **Bar chart**
-3.  **Map dimensions:**
-    - **X axis:** `neighborhood`
-    - **Y axis:** `building_count`
-    - **Color:** `function`
-    - **Series:** Leave empty for grouped bars
-4.  **Customize:**
-    - **Sort by:** Total value to rank neighborhoods
-    - Enable legend
-    - Adjust colors for function types
-5.  **Export:** Download as SVG
-
-![Figure 13 - Grouped bar chart comparing neighborhoods](images/grouped_barchart.png)
 
 ------------------------------------------------------------------------
 

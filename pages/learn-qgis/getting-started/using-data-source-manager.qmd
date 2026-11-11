@@ -20,20 +20,20 @@ date: .na.character
 
 By the end of this exercise, you will be able to:
 
--   Navigate and use the QGIS Data Source Manager
--   Connect to and load WFS (Web Feature Service) layers from Dutch data portals
--   Connect to and load WMS (Web Map Service) layers from Dutch data portals
--   Understand the difference between WFS and WMS services
--   Save connections for future use
--   Perform basic geoprocessing operations (selection, clipping, dissolve, buffer)
+- Navigate and use the QGIS Data Source Manager
+- Connect to and load WFS (Web Feature Service) layers from Dutch data portals
+- Connect to and load WMS (Web Map Service) layers from Dutch data portals
+- Understand the difference between WFS and WMS services
+- Save connections for future use
+- Perform basic geoprocessing operations (selection, clipping, dissolve, buffer)
 :::
 
 ::: callout-note
 ## Software and Plugins Required
 
--   **QGIS** (version 3.x or higher)
--   **PDOK Services Plugin** for QGIS
--   Active internet connection
+- **QGIS** (version 3.x or higher)
+- **PDOK Services Plugin** for QGIS
+- Active internet connection
 :::
 
 ## Introduction
@@ -60,7 +60,7 @@ This workflow demonstrates a common GIS task: defining a study area, retrieving 
 ## Key Differences Between WFS and WMS
 
 | Feature | WFS | WMS |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | Data type | Vector (features) | Raster (images) |
 | File size | Can be large | Smaller |
 | Queryable | Yes | No |
@@ -77,17 +77,17 @@ This workflow demonstrates a common GIS task: defining a study area, retrieving 
 
 2.  Set the project CRS (Coordinate Reference System) to **EPSG:28992** (Amersfoort / RD New - the Dutch standard projection)
 
-    -   Go to `Project` \> `Properties` \> `CRS`
-    -   Search for "28992" and select "Amersfoort / RD New"
-    -   Click `OK`
+    - Go to `Project` \> `Properties` \> `CRS`
+    - Search for "28992" and select "Amersfoort / RD New"
+    - Click `OK`
 
 3.  Using the PDOK Services plugin, retrieve data via WFS of this dataset:
 
-    -   Open the PDOK Services Plugin (look for the PDOK icon in the toolbar or go to `Web` \> `PDOK Services Plugin`)
-    -   In the plugin window, search for "CBS Wijken en Buurten 2024"
-    -   Select the **WFS** option (not WMS!)
-    -   Choose the layer: `cbs_buurten_2024` (neighbourhoods)
-    -   Click to add it to your map
+    - Open the PDOK Services Plugin (look for the PDOK icon in the toolbar or go to `Web` \> `PDOK Services Plugin`)
+    - In the plugin window, search for "CBS Wijken en Buurten 2024"
+    - Select the **WFS** option (not WMS!)
+    - Choose the layer: `cbs_buurten_2024` (neighbourhoods)
+    - Click to add it to your map
 
     ::: callout-important
     Please pay attention to retrieve the correct data, as there are many buurten layers, both for WFS and WMS! What you need is a **vector layer** containing all 14,668 buurten (neighbourhoods) in the Netherlands. After loading, check the feature count in the layer properties to confirm you have the complete dataset.
@@ -97,14 +97,14 @@ This workflow demonstrates a common GIS task: defining a study area, retrieving 
 
 4.  You must now select only the 20 buurten (neighbourhoods) that meet these criteria:
 
-    -   They belong to the municipalities of **Rotterdam** OR **Schiedam** (`gemeentenaam` = "Rotterdam" OR `gemeentenaam` = "Schiedam") **AND**
-    -   Their name (`buurtnaam`) is one of the following: "Stationsbuurt", "Singelkwartier", "Natuurkundigenbuurt", "Marconibuurt", "Glasbuurt", "Nieuw-Mathenesse", "Wetenschappersbuurt", "Newtonbuurt", "Boylebuurt", "Oud Mathenesse", "Nieuw Mathenesse", "Witte Dorp", "Spangen", "Tussendijken", "Bospolder", "Schiemond", "Nieuwe Westen", "Delfshaven", "Middelland", "Dijkzigt"
+    - They belong to the municipalities of **Rotterdam** OR **Schiedam** (`gemeentenaam` = "Rotterdam" OR `gemeentenaam` = "Schiedam") **AND**
+    - Their name (`buurtnaam`) is one of the following: "Stationsbuurt", "Singelkwartier", "Natuurkundigenbuurt", "Marconibuurt", "Glasbuurt", "Nieuw-Mathenesse", "Wetenschappersbuurt", "Newtonbuurt", "Boylebuurt", "Oud Mathenesse", "Nieuw Mathenesse", "Witte Dorp", "Spangen", "Tussendijken", "Bospolder", "Schiemond", "Nieuwe Westen", "Delfshaven", "Middelland", "Dijkzigt"
 
     **To select these neighbourhoods:**
 
-    -   Open the attribute table (right-click on layer \> `Open Attribute Table`)
-    -   Click on `Select features using an expression` (the yellow icon with ε)
-    -   Enter this expression:
+    - Open the attribute table (right-click on layer \> `Open Attribute Table`)
+    - Click on `Select features using an expression` (the yellow icon with ε)
+    - Enter this expression:
 
     ```         
     "gemeentenaam" IN ('Schiedam', 'Rotterdam') AND 
@@ -115,61 +115,61 @@ This workflow demonstrates a common GIS task: defining a study area, retrieving 
     'Nieuwe Westen', 'Delfshaven', 'Middelland', 'Dijkzigt')
     ```
 
-    -   Click `Select Features`
-    -   Verify that **20 features are selected** (shown at the top of the attribute table)
+    - Click `Select Features`
+    - Verify that **20 features are selected** (shown at the top of the attribute table)
 
     **Now save the selected features:**
 
-    -   Right-click on the layer \> `Export` \> `Save Selected Features As...`
+    - Right-click on the layer \> `Export` \> `Save Selected Features As...`
 
-    -   Format: `GeoPackage`
+    - Format: `GeoPackage`
 
-    -   File name: Navigate to folder `part1_data` and name it `buurten.gpkg`
+    - File name: Navigate to folder `part1_data` and name it `buurten.gpkg`
 
-    -   Layer name: `buurten`
+    - Layer name: `buurten`
 
-    -   CRS: `EPSG:28992`
+    - CRS: `EPSG:28992`
 
-    -   **Select fields to keep:**
+    - **Select fields to keep:**
 
-        -   Click on the fields list and uncheck all columns except:
-            -   `buurtnaam` (name of the neighbourhood)
-            -   `buurtcode` (code of the neighbourhood)
-            -   `gemeentenaam` (name of the municipality)
+      - Click on the fields list and uncheck all columns except:
+        - `buurtnaam` (name of the neighbourhood)
+        - `buurtcode` (code of the neighbourhood)
+        - `gemeentenaam` (name of the municipality)
 
-        ::: callout-tip
-        You can use the `Deselect All` button and then manually check only the 3 fields you want to keep.
-        :::
+      ::: callout-tip
+      You can use the `Deselect All` button and then manually check only the 3 fields you want to keep.
+      :::
 
-    -   Click `OK` to save
+    - Click `OK` to save
 
     **Add the area column:**
 
-    -   Open the attribute table of the newly saved `buurten` layer
-    -   Enable editing mode (click the pencil icon)
-    -   Open the Field Calculator (Ctrl+I or click the abacus icon)
-    -   Check `Create a new field`
-    -   Output field name: `buurt_area`
-    -   Output field type: `Decimal number (real)`
-    -   Precision: 2
-    -   In the expression box, enter: `round($area, 2)`
-    -   Click `OK`
-    -   Save edits (click the floppy disk icon) and disable editing mode (click the pencil icon again)
+    - Open the attribute table of the newly saved `buurten` layer
+    - Enable editing mode (click the pencil icon)
+    - Open the Field Calculator (Ctrl+I or click the abacus icon)
+    - Check `Create a new field`
+    - Output field name: `buurt_area`
+    - Output field type: `Decimal number (real)`
+    - Precision: 2
+    - In the expression box, enter: `round($area, 2)`
+    - Click `OK`
+    - Save edits (click the floppy disk icon) and disable editing mode (click the pencil icon again)
 
     ![Figure 2 - Field Calculator showing the area calculation expression that rounds the area to 2 decimal places](using_data_source_manager/fig%202.png)
 
 5.  Dissolve the geometries of the 20 buurten into a single polygon:
 
-    -   Go to `Vector` \> `Geoprocessing Tools` \> `Dissolve`
-    -   Input layer: `buurten`
-    -   Leave "Dissolve field(s)" empty (this will dissolve all features into one polygon representing the entire study area)
-    -   Click `Run`
-    -   After the temporary layer is created, right-click on it \> `Export` \> `Save Features As...`
-    -   Format: `GeoPackage`
-    -   File name: Select the existing `buurten.gpkg` file
-    -   Layer name: `buurten_dissolved`
-    -   In the fields section, uncheck all attributes (we only need the geometry)
-    -   Click `OK`
+    - Go to `Vector` \> `Geoprocessing Tools` \> `Dissolve`
+    - Input layer: `buurten`
+    - Leave "Dissolve field(s)" empty (this will dissolve all features into one polygon representing the entire study area)
+    - Click `Run`
+    - After the temporary layer is created, right-click on it \> `Export` \> `Save Features As...`
+    - Format: `GeoPackage`
+    - File name: Select the existing `buurten.gpkg` file
+    - Layer name: `buurten_dissolved`
+    - In the fields section, uncheck all attributes (we only need the geometry)
+    - Click `OK`
 
     ::: callout-note
     ## Note
@@ -181,35 +181,35 @@ This workflow demonstrates a common GIS task: defining a study area, retrieving 
 
 6.  Compute the bounding box (rectangular extent) of `buurten_dissolved`:
 
-    -   Go to `Vector` \> `Research Tools` \> `Extract layer extent`
-    -   Input layer: `buurten_dissolved`
-    -   Click `Run`
-    -   A temporary layer will be created showing a rectangle that encompasses your dissolved neighbourhoods
-    -   Export this layer to the GeoPackage:
-        -   Right-click on the extent layer \> `Export` \> `Save Features As...`
-        -   File name: Select the existing `buurten.gpkg`
-        -   Layer name: `bbox`
-        -   Keep only columns: `minx`, `miny`, `maxx`, `maxy` (these represent the bounding box coordinates)
-        -   Click `OK`
+    - Go to `Vector` \> `Research Tools` \> `Extract layer extent`
+    - Input layer: `buurten_dissolved`
+    - Click `Run`
+    - A temporary layer will be created showing a rectangle that encompasses your dissolved neighbourhoods
+    - Export this layer to the GeoPackage:
+      - Right-click on the extent layer \> `Export` \> `Save Features As...`
+      - File name: Select the existing `buurten.gpkg`
+      - Layer name: `bbox`
+      - Keep only columns: `minx`, `miny`, `maxx`, `maxy` (these represent the bounding box coordinates)
+      - Click `OK`
 
-    ![Figure 4 - Bounding box (rectangular extent) of the dissolved study area shown as a red rectangle](using_data_source_manager/fig%204.png)
+    ![Figure 4 - Bounding box (rectangular extent) of the dissolved study area shown as a pink rectangle](using_data_source_manager/fig%204.png)
 
 7.  Finally, compute a 200 meter buffer around the bbox layer:
 
-    -   Go to `Vector` \> `Geoprocessing Tools` \> `Buffer`
-    -   Input layer: `bbox`
-    -   Distance: `200` (meters)
-    -   Segments: 5 (default is fine)
-    -   End cap style: `Flat` (the end cap style parameter controls how line endings are handled in the buffer)
-    -   Join style: `Miter` (creates sharp corners at angles)
-    -   Miter limit: 2.0 (default)
-    -   Click `Run`
-    -   Export the result to the GeoPackage:
-        -   Right-click on the buffered layer \> `Export` \> `Save Features As...`
-        -   File name: Select the existing `buurten.gpkg`
-        -   Layer name: `bbox_buffered`
-        -   Uncheck all attributes in the fields section (we only need the geometry)
-        -   Click `OK`
+    - Go to `Vector` \> `Geoprocessing Tools` \> `Buffer`
+    - Input layer: `bbox`
+    - Distance: `200` (meters)
+    - Segments: 5 (default is fine)
+    - End cap style: `Flat` (the end cap style parameter controls how line endings are handled in the buffer)
+    - Join style: `Miter` (creates sharp corners at angles)
+    - Miter limit: 2.0 (default)
+    - Click `Run`
+    - Export the result to the GeoPackage:
+      - Right-click on the buffered layer \> `Export` \> `Save Features As...`
+      - File name: Select the existing `buurten.gpkg`
+      - Layer name: `bbox_buffered`
+      - Uncheck all attributes in the fields section (we only need the geometry)
+      - Click `OK`
 
     ::: callout-tip
     ## Why create a buffer?
@@ -217,33 +217,33 @@ This workflow demonstrates a common GIS task: defining a study area, retrieving 
     The 200m buffer extends our study area slightly beyond the neighbourhood boundaries. This ensures we capture climate data for buildings that are close to but just outside the neighbourhoods, providing better context for our analysis.
     :::
 
-    ![Figure 5 - 200m buffer around the bounding box, creating an expanded study area shown in green](using_data_source_manager/fig%205.png)
+    ![Figure 5 - 200m buffer around the bounding box, creating an expanded study area shown in yellow](using_data_source_manager/fig%205.png)
 
 ### Part 2: Connecting to WFS for Climate Adaptation Data
 
 8.  Open the **Data Source Manager**
 
-    -   Click the "Open Data Source Manager" button in the toolbar, OR
-    -   Go to `Layer` \> `Data Source Manager`, OR
-    -   Press `Ctrl+L`
+    - Click the "Open Data Source Manager" button in the toolbar, OR
+    - Go to `Layer` \> `Data Source Manager`, OR
+    - Press `Ctrl+L`
 
 9.  Select the **WFS / OGC API - Features** tab on the left side of the dialog
 
 10. Create a new WFS connection to Zuid-Holland climate data:
 
-    -   Click `New` to create a new connection
-    -   **Name:** Zuid-Holland Climate Adaptation
-    -   **URL:** `https://geodata.zuid-holland.nl/geoserver/klimaat/wfs?service=WFS&version=2.0.0&request=GetCapabilities`
-    -   Leave other settings at default
-    -   Click `OK`
+    - Click `New` to create a new connection
+    - **Name:** Zuid-Holland Climate Adaptation
+    - **URL:** `https://geodata.zuid-holland.nl/geoserver/klimaat/wfs?service=WFS&version=2.0.0&request=GetCapabilities`
+    - Leave other settings at default
+    - Click `OK`
 
 11. Load a WFS layer:
 
-    -   Select the "Zuid-Holland Climate Adaptation" connection from the dropdown and click `Connect`
-    -   Wait for the available layers to load (this may take a few seconds)
-    -   Find and select `klimaat:PANDEN_WATEROVERLAST_HITTE_GROEN` (this layer contains climate adaptation data for buildings: water overlay risk, heat stress, and biodiversity indicators from 2022)
-    -   Click `Add` at the bottom
-    -   Click `Close` to close the Data Source Manager
+    - Select the "Zuid-Holland Climate Adaptation" connection from the dropdown and click `Connect`
+    - Wait for the available layers to load (this may take a few seconds)
+    - Find and select `klimaat:PANDEN_WATEROVERLAST_HITTE_GROEN` (this layer contains climate adaptation data for buildings: water overlay risk, heat stress, and biodiversity indicators from 2022)
+    - Click `Add` at the bottom
+    - Click `Close` to close the Data Source Manager
 
     ::: callout-note
     ## Layer name explanation
@@ -255,18 +255,18 @@ This workflow demonstrates a common GIS task: defining a study area, retrieving 
 
 12. Clip the layer to your study area:
 
-    -   Go to `Vector` \> `Geoprocessing Tools` \> `Clip`
-    -   Input layer: `klimaat:PANDEN_WATEROVERLAST_HITTE_GROEN` (the climate buildings layer)
-    -   Overlay layer: `bbox_buffered`
-    -   Click `Run`
-    -   This will create a new temporary layer containing only the climate data within your buffered study area
-    -   **Save the clipped layer:**
-        -   Right-click on the clipped temporary layer \> `Make Permanent...`
-        -   Format: `GeoPackage`
-        -   File name: Select or create `climate_data.gpkg` in your `part1_data` folder
-        -   Layer name: `climate_buildings_clipped`
-        -   Click `OK`
-    -   You can now remove the original (unclipped) WFS layer to improve performance
+    - Go to `Vector` \> `Geoprocessing Tools` \> `Clip`
+    - Input layer: `klimaat:PANDEN_WATEROVERLAST_HITTE_GROEN` (the climate buildings layer)
+    - Overlay layer: `bbox_buffered`
+    - Click `Run`
+    - This will create a new temporary layer containing only the climate data within your buffered study area
+    - **Save the clipped layer:**
+      - Right-click on the clipped temporary layer \> `Make Permanent...`
+      - Format: `GeoPackage`
+      - File name: Select or create `climate_data.gpkg` in your `part1_data` folder
+      - Layer name: `climate_buildings_clipped`
+      - Click `OK`
+    - You can now remove the original (unclipped) WFS layer to improve performance
 
     ::: callout-tip
     ## Why clip the data?
@@ -276,14 +276,14 @@ This workflow demonstrates a common GIS task: defining a study area, retrieving 
 
 13. Explore the layer:
 
-    -   Zoom to your study area: right-click on `bbox_buffered` layer \> `Zoom to Layer`
-    -   Notice that buildings are vector features (polygons) you can select and query
-    -   Open the attribute table (right-click layer \> `Open Attribute Table`)
-    -   Explore the climate adaptation attributes, such as:
-        -   `wateroverlast_score` - Water overlay/flood risk score
-        -   `hittestress_score` - Heat stress vulnerability score\
-        -   `groen_score` - Green/biodiversity score
-    -   Each building has multiple climate vulnerability indicators
+    - Zoom to your study area: right-click on `bbox_buffered` layer \> `Zoom to Layer`
+    - Notice that buildings are vector features (polygons) you can select and query
+    - Open the attribute table (right-click layer \> `Open Attribute Table`)
+    - Explore the climate adaptation attributes, such as:
+      - `wateroverlast_score` - Water overlay/flood risk score
+      - `hittestress_score` - Heat stress vulnerability score\
+      - `groen_score` - Green/biodiversity score
+    - Each building has multiple climate vulnerability indicators
 
     ![Figure 7 - Attribute table of clipped climate buildings layer showing various climate risk scores for individual buildings](using_data_source_manager/fig%207.png)
 
@@ -303,20 +303,20 @@ Before retrieving the WMS layer, you should first **zoom to the study area** by 
 
 16. Create a new WMS connection:
 
-    -   Click `New` to create a new connection
-    -   **Name:** PDOK Aerial Photos
-    -   **URL:** `https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts`
-    -   Leave other settings at default
-    -   Click `OK`
+    - Click `New` to create a new connection
+    - **Name:** PDOK Aerial Photos
+    - **URL:** `https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts`
+    - Leave other settings at default
+    - Click `OK`
 
 17. Load a WMTS layer:
 
-    -   Select the "PDOK Aerial Photos" connection and click `Connect`
-    -   Wait for available layers to load
-    -   Find and select `Luchtfoto 2025 Ortho 25cm RGB` (current high-resolution 25cm aerial photos)
-    -   **Important:** In the "Coordinate Reference System" section, select `EPSG:28992` from the dropdown
-    -   Click `Add`
-    -   Click `Close`
+    - Select the "PDOK Aerial Photos" connection and click `Connect`
+    - Wait for available layers to load
+    - Find and select `Luchtfoto 2025 Ortho 25cm RGB` (current high-resolution 25cm aerial photos)
+    - **Important:** In the "Coordinate Reference System" section, select `EPSG:28992` from the dropdown
+    - Click `Add`
+    - Click `Close`
 
     ::: callout-note
     ## WMTS vs WMS
@@ -328,25 +328,25 @@ Before retrieving the WMS layer, you should first **zoom to the study area** by 
 
     This step saves the aerial imagery as a permanent file that you can use offline and in future projects.
 
-    -   Select the orthophoto layer in the Layers panel
-    -   Right-click on it and choose `Export` \> `Save As...`
+    - Select the orthophoto layer in the Layers panel
+    - Right-click on it and choose `Export` \> `Save As...`
 
     In the resulting dialog, set the following parameters:
 
-    -   **Output mode:** `Rendered image` (this saves what you see on screen)
-    -   **Format:** `GeoTIFF`
-    -   **Important:** Uncheck "Create VRT" (we want a standard GeoTIFF file, not a virtual raster)
-    -   **File name:** Click `...` and navigate to the `\part1_data\raster` folder (create it if it doesn't exist)
-        -   Name the file: `ortho_25cm.tif`
-    -   **CRS:** `EPSG:28992` (should already be set)
-    -   **Extent:** Click the dropdown and select `Calculate from Layer` \> `bbox_buffered`
-        -   This ensures you only save imagery for your study area
-    -   **Resolution:**
-        -   Horizontal: `0.25` (meters per pixel)
-        -   Vertical: `0.25` (meters per pixel)
-    -   Click `OK` to start the export
-    -   Wait for the export to complete (this may take 1-2 minutes depending on the area size)
-    -   The saved GeoTIFF will be automatically added to your map
+    - **Output mode:** `Rendered image` (this saves what you see on screen)
+    - **Format:** `GeoTIFF`
+    - **Important:** Uncheck "Create VRT" (we want a standard GeoTIFF file, not a virtual raster)
+    - **File name:** Click `...` and navigate to the `\part1_data\raster` folder (create it if it doesn't exist)
+      - Name the file: `ortho_25cm.tif`
+    - **CRS:** `EPSG:28992` (should already be set)
+    - **Extent:** Click the dropdown and select `Calculate from Layer` \> `bbox_buffered`
+      - This ensures you only save imagery for your study area
+    - **Resolution:**
+      - Horizontal: `0.25` (meters per pixel)
+      - Vertical: `0.25` (meters per pixel)
+    - Click `OK` to start the export
+    - Wait for the export to complete (this may take 1-2 minutes depending on the area size)
+    - The saved GeoTIFF will be automatically added to your map
 
     ::: callout-tip
     ## Understanding Resolution
@@ -358,24 +358,24 @@ Before retrieving the WMS layer, you should first **zoom to the study area** by 
 
 19. Arrange your layers for optimal visualization:
 
-    -   In the Layers panel, drag layers to arrange them in this order from **top to bottom**:
-        1.  `buurten` (neighbourhood boundaries - should be visible as outlines)
-        2.  `climate_buildings_clipped` (climate data polygons)
-        3.  `bbox_buffered` (buffer outline - optional, can be hidden)
-        4.  `ortho_25cm.tif` or the WMTS aerial photo layer (**at the bottom** as background)
+    - In the Layers panel, drag layers to arrange them in this order from **top to bottom**:
+      1.  `buurten` (neighbourhood boundaries - should be visible as outlines)
+      2.  `climate_buildings_clipped` (climate data polygons)
+      3.  `bbox_buffered` (buffer outline - optional, can be hidden)
+      4.  `ortho_25cm.tif` or the WMTS aerial photo layer (**at the bottom** as background)
 
     **Style adjustments:**
 
-    -   **Neighbourhood boundaries (`buurten`):**
-        -   Right-click \> `Properties` \> `Symbology`
-        -   Set fill to "Simple fill"
-        -   Fill style: `No Brush` (transparent)
-        -   Stroke color: Red or dark blue
-        -   Stroke width: 0.5 - 1.0 mm
-    -   **Climate buildings:**
-        -   Adjust transparency: Right-click \> `Properties` \> `Symbology` \> `Layer Rendering` tab
-        -   Set opacity to 70-80% so you can see the aerial photo underneath
-        -   Optionally, style by climate scores using categorized or graduated symbology
+    - **Neighbourhood boundaries (`buurten`):**
+      - Right-click \> `Properties` \> `Symbology`
+      - Set fill to "Simple fill"
+      - Fill style: `No Brush` (transparent)
+      - Stroke color: Red or dark blue
+      - Stroke width: 0.5 - 1.0 mm
+    - **Climate buildings:**
+      - Adjust transparency: Right-click \> `Properties` \> `Symbology` \> `Layer Rendering` tab
+      - Set opacity to 70-80% so you can see the aerial photo underneath
+      - Optionally, style by climate scores using categorized or graduated symbology
 
     ![Figure 9 - Final map view showing neighbourhood boundaries, climate data, and aerial imagery properly layered with appropriate transparency](using_data_source_manager/fig%209.png)
 
@@ -385,16 +385,16 @@ Before retrieving the WMS layer, you should first **zoom to the study area** by 
 
 **What you've learned:**
 
--   The **Data Source Manager** is your central hub for connecting to external data sources in QGIS
--   **WFS** provides vector data that you can style, query, and analyze - great for operational data and spatial analysis
--   **WMS/WMTS** provides raster map images - great for background maps and visualization
--   How to use the **PDOK Services Plugin** to easily access Dutch open geospatial data
--   Basic **geoprocessing workflows**: selection, dissolve, buffer, clip, and extract extent operations
--   How to organize and save multiple layers in a **GeoPackage** for efficient data management
--   How to **export and save WMS/WMTS imagery** as permanent GeoTIFF files
--   Dutch **PDOK** (Publieke Dienstverlening Op de Kaart) offers free, reliable geospatial web services
--   Provincial and municipal data portals (like Zuid-Holland) provide specialized datasets
--   Saved connections can be reused in future projects
+- The **Data Source Manager** is your central hub for connecting to external data sources in QGIS
+- **WFS** provides vector data that you can style, query, and analyze - great for operational data and spatial analysis
+- **WMS/WMTS** provides raster map images - great for background maps and visualization
+- How to use the **PDOK Services Plugin** to easily access Dutch open geospatial data
+- Basic **geoprocessing workflows**: selection, dissolve, buffer, clip, and extract extent operations
+- How to organize and save multiple layers in a **GeoPackage** for efficient data management
+- How to **export and save WMS/WMTS imagery** as permanent GeoTIFF files
+- Dutch **PDOK** (Publieke Dienstverlening Op de Kaart) offers free, reliable geospatial web services
+- Provincial and municipal data portals (like Zuid-Holland) provide specialized datasets
+- Saved connections can be reused in future projects
 
 **Key differences between WFS and WMS:**
 
@@ -408,19 +408,19 @@ Before retrieving the WMS layer, you should first **zoom to the study area** by 
 
 **Useful Dutch Data Portals:**
 
--   **PDOK:** https://www.pdok.nl/ (national geospatial infrastructure)
--   **Data.overheid.nl:** Open data from Dutch government
--   **Nationaal Georegister:** https://www.nationaalgeoregister.nl/ (search for geospatial services)
--   Most Dutch provinces and municipalities also offer their own WFS/WMS services
+- **PDOK:** https://www.pdok.nl/ (national geospatial infrastructure)
+- **Data.overheid.nl:** Open data from Dutch government
+- **Nationaal Georegister:** https://www.nationaalgeoregister.nl/ (search for geospatial services)
+- Most Dutch provinces and municipalities also offer their own WFS/WMS services
 
 ------------------------------------------------------------------------
 
 ## Extension Activities (Optional)
 
--   Explore other PDOK services at <https://www.pdok.nl/datasets>
--   Try filtering WFS layers using the Data Source Manager's "SQL" or "Filter" options before loading
--   Analyze the climate adaptation scores in your selected Rotterdam and Schiedam neighbourhoods
--   Compare different neighbourhoods' vulnerability to heat, water, or biodiversity loss using statistics
--   Add the RIVM Energy Labels WMS (`https://data.rivm.nl/geo/nl/wms?request=GetCapabilities`, layer `rvo_energielabels`) to see building energy performance ratings
--   Create a styled thematic map showing the relationship between neighbourhood characteristics and climate risks
--   Calculate summary statistics (mean, max, min) of climate scores by neighbourhood
+- Explore other PDOK services at <https://www.pdok.nl/datasets>
+- Try filtering WFS layers using the Data Source Manager's "SQL" or "Filter" options before loading
+- Analyze the climate adaptation scores in your selected Rotterdam and Schiedam neighbourhoods
+- Compare different neighbourhoods' vulnerability to heat, water, or biodiversity loss using statistics
+- Add the RIVM Energy Labels WMS (`https://data.rivm.nl/geo/nl/wms?request=GetCapabilities`, layer `rvo_energielabels`) to see building energy performance ratings
+- Create a styled thematic map showing the relationship between neighbourhood characteristics and climate risks
+- Calculate summary statistics (mean, max, min) of climate scores by neighbourhood
