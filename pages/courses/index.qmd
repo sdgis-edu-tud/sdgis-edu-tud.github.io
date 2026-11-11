@@ -32,7 +32,7 @@ Each course page typically includes: - Learning objectives - Required software a
 ### Master of Urbanism
 
 - [**Q1 Studio** — GIS Workshop](/pages/courses/mscu_q1.qmd)
-- **Q2 Studio** — GIS Workshop\
+- [**Q2 Studio** — GIS Workshop](/pages/courses/mscu_q2.qmd)
 - **Q3 Studio** — GIS Workshop\
 - **Applied Spatial Analytics**\
 - **DISSUF** — Graduation Cluster

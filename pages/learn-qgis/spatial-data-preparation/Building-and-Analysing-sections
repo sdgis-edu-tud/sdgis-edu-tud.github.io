@@ -44,7 +44,8 @@ By the end of this tutorial, you will be able to:
 ### Part 1 : setting the project up
 
 1. Prepare QGIS
-> Go to Plugins > Manage and Install Plugins…
+> Go to Plugins > Manage and Install Plugin
+s…
 In the search bar at the top left:
 - Type 'QuickMapServices' → click Install.
 No need to install the old Profile Tool plugin anymore because Elevation Profile is built into QGIS.

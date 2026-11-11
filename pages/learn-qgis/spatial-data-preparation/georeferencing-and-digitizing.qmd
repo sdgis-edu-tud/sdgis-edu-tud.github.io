@@ -19,23 +19,23 @@ date: .na.character
 
 By the end of this tutorial, you will be able to:
 
--   Install and use the Freehand Raster Georeferencer plugin
--   Georeference a scanned map or image to real-world coordinates
--   Use control points to align historical maps with current data
--   Digitize vector features (points, lines, polygons) from georeferenced maps
--   Create and edit vector layers with proper attributes
--   Understand transformation types and their appropriate uses
+- Install and use the Freehand Raster Georeferencer plugin
+- Georeference a scanned map or image to real-world coordinates
+- Use control points to align historical maps with current data
+- Digitize vector features (points, lines, polygons) from georeferenced maps
+- Create and edit vector layers with proper attributes
+- Understand transformation types and their appropriate uses
 :::
 
 ::: callout-note
 ## Software and Data Required
 
--   **QGIS** (version 3.x or higher)
--   **Freehand Raster Georeferencer** plugin
--   Active internet connection (for PDOK aerial photos)
--   **Data files:**
-    -   `buurten.gpkg` (from previous exercise with Rotterdam neighbourhoods)
-    -   `Ruimte_voor_toekomstige_dijkversterking.jpg` (historical map or plan to be georeferenced)
+- **QGIS** (version 3.x or higher)
+- **Freehand Raster Georeferencer** plugin
+- Active internet connection (for PDOK aerial photos)
+- **Data files:**
+  - `buurten.gpkg` (from previous exercise with Rotterdam neighbourhoods)
+  - `Ruimte_voor_toekomstige_dijkversterking.jpg` (historical map or plan to be georeferenced)
 :::
 
 ## Introduction
@@ -55,10 +55,10 @@ Georeferencing links the pixels of a raster image to real-world geographic coord
 ::: callout-tip
 ## Types of Transformations
 
--   **Linear**: Requires 3+ points. Simple scaling, rotation, and translation. Good for maps that are already fairly accurate.
--   **Helmert**: Requires 2+ points. Preserves angles and scale uniformity. Good for scanned maps.
--   **Polynomial (1st, 2nd, 3rd order)**: Requires increasing numbers of points (6, 10, 15+). Can handle more complex distortions. Higher orders can introduce warping artifacts.
--   **Thin Plate Spline (TPS)**: Requires 10+ points. Flexible local warping. Good for maps with local distortions.
+- **Linear**: Requires 3+ points. Simple scaling, rotation, and translation. Good for maps that are already fairly accurate.
+- **Helmert**: Requires 2+ points. Preserves angles and scale uniformity. Good for scanned maps.
+- **Polynomial (1st, 2nd, 3rd order)**: Requires increasing numbers of points (6, 10, 15+). Can handle more complex distortions. Higher orders can introduce warping artifacts.
+- **Thin Plate Spline (TPS)**: Requires 10+ points. Flexible local warping. Good for maps with local distortions.
 
 For most historical maps, **Polynomial 1st or 2nd order** works well.
 :::
@@ -71,11 +71,11 @@ For most historical maps, **Polynomial 1st or 2nd order** works well.
 
 1.  **Install the Freehand Raster Georeferencer plugin:**
 
-    -   Go to `Plugins` \> `Manage and Install Plugins...`
-    -   Click on the `All` tab
-    -   Search for "Freehand raster georeferencer"
-    -   Select the plugin and click `Install Plugin`
-    -   Click `Close`
+    - Go to `Plugins` \> `Manage and Install Plugins...`
+    - Click on the `All` tab
+    - Search for "Freehand raster georeferencer"
+    - Select the plugin and click `Install Plugin`
+    - Click `Close`
 
     ::: callout-note
     The Freehand Raster Georeferencer plugin provides an interactive way to georeference images directly in the QGIS map canvas, making it easier to align your image with reference data in real-time.
@@ -83,26 +83,26 @@ For most historical maps, **Polynomial 1st or 2nd order** works well.
 
 2.  **Start a new QGIS project:**
 
-    -   Go to `Project` \> `New` (or press Ctrl+N)
-    -   Save your project immediately: `Project` \> `Save As...`
-    -   Name it `georeferencing_exercise.qgz` in your working folder
+    - Go to `Project` \> `New` (or press Ctrl+N)
+    - Save your project immediately: `Project` \> `Save As...`
+    - Name it `georeferencing_exercise.qgz` in your working folder
 
 3.  **Set the project CRS:**
 
-    -   Go to `Project` \> `Properties` \> `CRS`
-    -   Set to **EPSG:28992** (Amersfoort / RD New - Dutch coordinate system)
-    -   Click `OK`
+    - Go to `Project` \> `Properties` \> `CRS`
+    - Set to **EPSG:28992** (Amersfoort / RD New - Dutch coordinate system)
+    - Click `OK`
 
 ### Part 2: Loading Reference Data
 
 4.  **Import neighbourhood boundaries:**
 
-    -   Go to `Layer` \> `Add Layer` \> `Add Vector Layer...`
-    -   Click the `...` button next to "Vector Dataset(s)"
-    -   Navigate to your `part1_data` folder and select `buurten.gpkg`
-    -   Select the `buurten` layer (the individual neighbourhoods, not dissolved)
-    -   Click `Add` then `Close`
-    -   Style this layer with a transparent fill and a visible boundary (e.g., red outline, 0.5mm width)
+    - Go to `Layer` \> `Add Layer` \> `Add Vector Layer...`
+    - Click the `...` button next to "Vector Dataset(s)"
+    - Navigate to your `part1_data` folder and select `buurten.gpkg`
+    - Select the `buurten` layer (the individual neighbourhoods, not dissolved)
+    - Click `Add` then `Close`
+    - Style this layer with a transparent fill and a visible boundary (e.g., red outline, 0.5mm width)
 
 5.  **Import orthophoto (aerial imagery):**
 
@@ -110,88 +110,88 @@ For most historical maps, **Polynomial 1st or 2nd order** works well.
 
     **Option A: Use locally saved orthophoto** (if you exported one in the previous exercise)
 
-    -   Go to `Layer` \> `Add Layer` \> `Add Raster Layer...`
-    -   Navigate to your exported orthophoto file
-    -   Click `Add`
+    - Go to `Layer` \> `Add Layer` \> `Add Raster Layer...`
+    - Navigate to your exported orthophoto file
+    - Click `Add`
 
     **Option B: Import from PDOK** (recommended for this exercise)
 
-    -   Open the **Data Source Manager** (Ctrl+L)
-    -   Select the **WMS / WMTS** tab
-    -   If you already have the PDOK Aerial Photos connection from the previous exercise, select it
-    -   If not, create a new connection:
-        -   Click `New`
-        -   **Name:** PDOK Aerial Photos
-        -   **URL:** `https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0`
-        -   Click `OK`
-    -   Select the connection and click `Connect`
-    -   Select the `Actueel_orthoHR` layer
-    -   Click `Add` then `Close`
+    - Open the **Data Source Manager** (Ctrl+L)
+    - Select the **WMS / WMTS** tab
+    - If you already have the PDOK Aerial Photos connection from the previous exercise, select it
+    - If not, create a new connection:
+      - Click `New`
+      - **Name:** PDOK Aerial Photos
+      - **URL:** `https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0`
+      - Click `OK`
+    - Select the connection and click `Connect`
+    - Select the `Actueel_orthoHR` layer
+    - Click `Add` then `Close`
 
 6.  **Arrange your reference layers:**
 
-    -   In the Layers panel, ensure the order is:
-        1.  `buurten` (on top)
-        2.  Aerial photo (at bottom)
-    -   Zoom to the extent of your Rotterdam neighbourhoods
-    -   This will be your reference for georeferencing
+    - In the Layers panel, ensure the order is:
+      1.  `buurten` (on top)
+      2.  Aerial photo (at bottom)
+    - Zoom to the extent of your Rotterdam neighbourhoods
+    - This will be your reference for georeferencing
 
-    ![Figure 1 - Reference layers: boundaries and aerial photo](georeferencing_and_digitizing/fig%201.png)
+    ![Figure 1 - Reference layers: boundaries and aerial photo](images/georeferencing-and-digitizing/fig%201.png)
 
 ### Part 3: Georeferencing with Freehand Raster Georeferencer
 
 7.  **Import the map to be georeferenced:**
 
-    -   Locate the `Ruimte_voor_toekomstige_dijkversterking.jpg` file in your working folder
-    -   **Do NOT add it as a regular raster layer** (it has no coordinate information yet)
+    - Locate the `Ruimte_voor_toekomstige_dijkversterking.jpg` file in your working folder
+    - **Do NOT add it as a regular raster layer** (it has no coordinate information yet)
 
 8.  **Launch the Freehand Raster Georeferencer:**
 
-    -   Go to `Raster` \> `Freehand Raster Georeferencer` \> `Freehand Raster Georeferencer`
-    -   Or look for the plugin icon in the toolbar
+    - Go to `Raster` \> `Freehand Raster Georeferencer` \> `Freehand Raster Georeferencer`
+    - Or look for the plugin icon in the toolbar
 
 9.  **Add the raster for interactive georeferencing:**
 
-    -   In the Freehand Raster Georeferencer panel that appears, click `Add Raster`
-    -   Navigate to and select ``` Ruimte_voor_toekomstige_dijkversterking.j``pg ```
-    -   The image will appear in the map canvas as a semi-transparent overlay
-    -   It will initially appear at an arbitrary location
+    - In the Freehand Raster Georeferencer panel that appears, click `Add Raster`
+    - Navigate to and select ``` Ruimte_voor_toekomstige_dijkversterking.j``pg ```
+    - The image will appear in the map canvas as a semi-transparent overlay
+    - It will initially appear at an arbitrary location
 
-    ![Figure 2 - Unreferenced map loaded in the canvas](georeferencing_and_digitizing/fig%202.png)
+    ![Figure 2 - Unreferenced map loaded in the canvas](images/georeferencing-and-digitizing/fig%202.png)
 
 10. **Interactively position and scale the map:**
 
     The plugin provides tools to manipulate the image directly in the map canvas:
 
-    -   **Move**: Click and drag the image to roughly position it over the corresponding area in your reference data
+    - **Move**: Click and drag the image to roughly position it over the corresponding area in your reference data
 
-    -   **Rotate**: Use the rotation handle (or tool) to align the image with the aerial photo
+    - **Rotate**: Use the rotation handle (or tool) to align the image with the aerial photo
 
-    -   **Scale**: Use the corner handles to resize the image to match the scale of your reference data
+    - **Scale**: Use the corner handles to resize the image to match the scale of your reference data
 
-        ::: callout-note
-        It helps to zoom in to the extent that the raster must fit in to, saves some time
-        :::
+      ::: callout-note
+      It helps to zoom in to the extent that the raster must fit in to, saves some time
+      :::
 
     **Tips for initial positioning:**
 
-    -   Look for distinctive features that appear in both the historical map and current aerial photo (buildings, streets, canals, landmarks)
-    -   Start with rough positioning, then refine
-    -   Use major roads or canals as alignment guides
-    -   Adjust transparency if needed to see both layers clearly
+    - Look for distinctive features that appear in both the historical map and current aerial photo (buildings, streets, canals, landmarks)
+    - Start with rough positioning, then refine
+    - Use major roads or canals as alignment guides
+    - Adjust transparency if needed to see both layers clearly
 
-    ![Figure 3 - Initial rough positioning of the map](georeferencing_and_digitizing/fig%203.png)
+    ![Figure 3 - Initial rough positioning of the map](images/georeferencing-and-digitizing/fig%203.png)
 
 Precise georeferencing with 2 control points: Once the image is roughly positioned, you need to use the "Georeference raster with 2 Points" tool for precise alignment. This tool allows you to combine move, rotate, and uniform scale to georeference using 2 points that are identified in both the background layers and the raster to georeference.
 
 ::: callout-note
 ## How the 2-Point Tool Works
 
--   Point 1: Moves the entire raster to align this point
+- Point 1: Moves the entire raster to align this point
 
 <!-- -->
 
--   Point 2: Rotates and scales the raster around point 1 to align this second point This is sufficient for maps that don't have complex distortions
+- Point 2: Rotates and scales the raster around point 1 to align this second point This is sufficient for maps that don't have complex distortions
 :::
 
 Steps:
@@ -230,7 +230,7 @@ Distribute points evenly - Choose points at opposite corners or edges of the ima
 ✗ Features that are too close together
 :::
 
-![fig 4](georeferencing_and_digitizing/fig%204a.png)
+![fig 4](images/georeferencing-and-digitizing/fig%204a.png)
 
 After applying the 2-point tool, toggle the georeferenced layer on/off Check alignment at different locations across the map If certain areas don't align well:
 
@@ -250,17 +250,17 @@ Then consider using QGIS's built-in Georeferencer tool which allows multiple con
 
 13. **Apply the georeferencing:**
 
-    -   Click the `Export Raster with world file` button
-    -   Choose output settings:
-        -   **Output file:** Save as `map_georeferenced.tif` in your working folder
-    -   Click `OK`
-    -   The georeferenced raster will be added to your map
+    - Click the `Export Raster with world file` button
+    - Choose output settings:
+      - **Output file:** Save as `map_georeferenced.tif` in your working folder
+    - Click `OK`
+    - The georeferenced raster will be added to your map
 
 14. **Verify the result:**
 
-    -   Toggle the georeferenced layer on/off to compare with the aerial photo
+    - Toggle the georeferenced layer on/off to compare with the aerial photo
 
-    -   Check different areas of the image, especially:
+    - Check different areas of the image, especially:
 
     ```         
     -   The corners and edges (farthest from your control points)
@@ -270,21 +270,21 @@ Then consider using QGIS's built-in Georeferencer tool which allows multiple con
     -   The black boundary outline
     ```
 
-    -   Zoom to different scales to verify alignment accuracy
+    - Zoom to different scales to verify alignment accuracy
 
-    -   If alignment is poor in certain areas, note where the discrepancies occur
+    - If alignment is poor in certain areas, note where the discrepancies occur
 
     **Quality check questions:**
 
-    -   Do buildings align with their current locations?
+    - Do buildings align with their current locations?
 
-    -   Do roads and intersections match?
+    - Do roads and intersections match?
 
-    -   Are the colored protection zone outlines clearly visible?
+    - Are the colored protection zone outlines clearly visible?
 
-    -   Is the scale roughly correct across the entire map?
+    - Is the scale roughly correct across the entire map?
 
-    ![Figure 5 - Final georeferenced map overlay](georeferencing_and_digitizing/fig%204b.png)
+    ![Figure 5 - Final georeferenced map overlay](images/georeferencing-and-digitizing/fig%204b.png)
 
 ### Part 4: Digitizing Features from the Georeferenced Map
 
@@ -294,76 +294,76 @@ Now that your map is georeferenced, you can extract information by digitizing ve
 
     **Example: Digitizing buildings**
 
-    -   Go to `Layer` \> `Create Layer` \> `New GeoPackage Layer...`
-    -   **Database:** Click `...` and save as `digitized_features.gpkg`
-    -   **Layer name:** `housing_dev_protection_zone`
-    -   **Geometry type:** `Polygon`
-    -   **CRS:** EPSG:28992
+    - Go to `Layer` \> `Create Layer` \> `New GeoPackage Layer...`
+    - **Database:** Click `...` and save as `digitized_features.gpkg`
+    - **Layer name:** `housing_dev_protection_zone`
+    - **Geometry type:** `Polygon`
+    - **CRS:** EPSG:28992
 
     **Add attribute fields:**
 
-    -   Click `New Field` to add attributes:
-        -   **Name:** `area_id` \| Type: `Whole number` (Integer)
-        -   **Name:** `area_type` \| Type: `String` \| Length: 50
-        -   **Name:** `notes` \| Type: `String` \| Length: 100
-    -   Click `OK` to create the layer
+    - Click `New Field` to add attributes:
+      - **Name:** `area_id` \| Type: `Whole number` (Integer)
+      - **Name:** `area_type` \| Type: `String` \| Length: 50
+      - **Name:** `notes` \| Type: `String` \| Length: 100
+    - Click `OK` to create the layer
 
-    ![Figure 6 - Creating a new vector layer for digitizing](georeferencing_and_digitizing/fig%205.png)
+    ![Figure 6 - Creating a new vector layer for digitizing](images/georeferencing-and-digitizing/fig%205.png)
 
 17. **Identify the three perimeters to digitize:**
 
 The georeferenced map shows "**Woningbouwontwikkelingen in beschermingszone: rekening houden met profiel waterkering**" (Housing Development in Protection Zone: Taking into Account Water Defense Profile). Before you start digitizing, carefully examine the georeferenced map:
 
--   Zoom to the area within the thick black boundary
+- Zoom to the area within the thick black boundary
 
--   Look for the three polygons with the pink outline
+- Look for the three polygons with the pink outline
 
 17. **Start digitizing:**
 
-    -   Select the `housing_dev_protection_zone`layer in the Layers panel
-    -   Click the `Toggle Editing` button (pencil icon) or press Ctrl+E
-    -   Click the `Add Polygon Feature` button (or press Ctrl+.)
+    - Select the `housing_dev_protection_zone`layer in the Layers panel
+    - Click the `Toggle Editing` button (pencil icon) or press Ctrl+E
+    - Click the `Add Polygon Feature` button (or press Ctrl+.)
 
     **Digitizing workflow:**
 
-    -   Left-click to place vertices around the building outline
-    -   Right-click to finish the polygon
-    -   Enter attribute values in the pop-up form:
-        -   `area_id`: 1, 2, 3, etc.
-        -   `area_type`: e.g., "housing development
-        -   `notes`: any observations
-    -   Click `OK`
+    - Left-click to place vertices around the building outline
+    - Right-click to finish the polygon
+    - Enter attribute values in the pop-up form:
+      - `area_id`: 1, 2, 3, etc.
+      - `area_type`: e.g., "housing development
+      - `notes`: any observations
+    - Click `OK`
 
     **Digitizing tips:**
 
-    -   Zoom in close for precision
-    -   Use the mouse wheel to zoom in/out while digitizing
-    -   Press `Backspace` to remove the last vertex
-    -   Press `Esc` to cancel the current feature
-    -   Enable snapping (`Settings` \> `Snapping Options`) to connect features precisely
+    - Zoom in close for precision
+    - Use the mouse wheel to zoom in/out while digitizing
+    - Press `Backspace` to remove the last vertex
+    - Press `Esc` to cancel the current feature
+    - Enable snapping (`Settings` \> `Snapping Options`) to connect features precisely
 
-    ![Figure 7 - Digitizing building polygons](georeferencing_and_digitizing/fig%206.png)
+    ![Figure 7 - Digitizing building polygons](images/georeferencing-and-digitizing/fig%206.png)
 
 18. **Digitize multiple features:**
 
-    -   Digitize the 3 areas from your georeferenced map
-    -   Make sure each feature has complete attributes
+    - Digitize the 3 areas from your georeferenced map
+    - Make sure each feature has complete attributes
 
 19. **Edit existing features (if needed):**
 
-    -   With editing enabled, select the `Vertex Tool` (or press V)
-    -   Click on a feature to see its vertices
-    -   Click and drag vertices to adjust position
-    -   Click between vertices to add new ones
-    -   Click on a vertex and press `Delete` to remove it
+    - With editing enabled, select the `Vertex Tool` (or press V)
+    - Click on a feature to see its vertices
+    - Click and drag vertices to adjust position
+    - Click between vertices to add new ones
+    - Click on a vertex and press `Delete` to remove it
 
 20. **Save your edits:**
 
-    -   Click the `Save Layer Edits` button (floppy disk icon)
-    -   Click `Toggle Editing` again to stop editing
-    -   Your digitized features are now permanently saved in the GeoPackage
+    - Click the `Save Layer Edits` button (floppy disk icon)
+    - Click `Toggle Editing` again to stop editing
+    - Your digitized features are now permanently saved in the GeoPackage
 
-    ![Figure 8 - Completed digitized buildings](georeferencing_and_digitizing/fig%207.png)
+    ![Figure 8 - Completed digitized buildings](images/georeferencing-and-digitizing/fig%207.png)
 
 ### Part 5: Analysis and Comparison (Optional)
 
@@ -371,9 +371,9 @@ The georeferenced map shows "**Woningbouwontwikkelingen in beschermingszone: rek
 
     You can create separate layers for different feature types:
 
-    -   **Lines:** Roads, canals, railways
-    -   **Points:** Trees, monuments, street furniture
-    -   **Polygons:** Parks, building footprints, land use areas
+    - **Lines:** Roads, canals, railways
+    - **Points:** Trees, monuments, street furniture
+    - **Polygons:** Parks, building footprints, land use areas
 
     Follow the same process as steps 16-20, adjusting the geometry type as needed.
 
@@ -383,17 +383,17 @@ The georeferenced map shows "**Woningbouwontwikkelingen in beschermingszone: rek
 
 **What you've learned:**
 
--   How to install and use the **Freehand Raster Georeferencer** plugin for interactive georeferencing
--   The concept of **Ground Control Points (GCPs)** and how to place them effectively
--   Different **transformation types** and when to use them
--   Creating new **vector layers** with custom attributes
--   **Digitizing** techniques for points, lines, and polygons
--   Using the **vertex tool** to edit geometries
+- How to install and use the **Freehand Raster Georeferencer** plugin for interactive georeferencing
+- The concept of **Ground Control Points (GCPs)** and how to place them effectively
+- Different **transformation types** and when to use them
+- Creating new **vector layers** with custom attributes
+- **Digitizing** techniques for points, lines, and polygons
+- Using the **vertex tool** to edit geometries
 
 **Key concepts:**
 
 | Concept | Description |
-|------------------------------------|------------------------------------|
+|----|----|
 | Georeferencing | Assigning real-world coordinates to an image |
 | GCP | Ground Control Point - a known location used for georeferencing |
 | Residual error | The difference between predicted and actual GCP locations |
@@ -403,20 +403,20 @@ The georeferenced map shows "**Woningbouwontwikkelingen in beschermingszone: rek
 
 **Best practices for georeferencing:**
 
--   Choose **permanent, precise features** (building corners, intersections)
--   Check **residual errors** and remove/adjust problematic points
--   Save your **GCP points** for future reference or refinement
--   Use appropriate **transformation type** for your data
--   Always **verify** the result by toggling layers and checking alignment
+- Choose **permanent, precise features** (building corners, intersections)
+- Check **residual errors** and remove/adjust problematic points
+- Save your **GCP points** for future reference or refinement
+- Use appropriate **transformation type** for your data
+- Always **verify** the result by toggling layers and checking alignment
 
 **Best practices for digitizing:**
 
--   **Zoom in** close for precision
--   Enable **snapping** to connect features properly
--   Use consistent **attribution** for all features
--   **Save frequently** during editing
--   Follow **topology rules** (e.g., no gaps, no overlaps for land parcels)
--   Document your **methodology** and any uncertainties
+- **Zoom in** close for precision
+- Enable **snapping** to connect features properly
+- Use consistent **attribution** for all features
+- **Save frequently** during editing
+- Follow **topology rules** (e.g., no gaps, no overlaps for land parcels)
+- Document your **methodology** and any uncertainties
 
 ------------------------------------------------------------------------
 
@@ -442,17 +442,17 @@ The georeferenced map shows "**Woningbouwontwikkelingen in beschermingszone: rek
 
 ## Extension Activities
 
--   Georeference multiple historical maps from different time periods and compare changes
--   Calculate the area of buildings that have been demolished or added
--   Create a time-series animation showing urban development
--   Use the **Georeferencer** tool (built into QGIS) instead of the plugin to compare workflows
--   Digitize a complete street network and perform network analysis
--   Research historical sources to add rich attribute data to your digitized features
--   Create a web map showing historical vs. current imagery side-by-side
+- Georeference multiple historical maps from different time periods and compare changes
+- Calculate the area of buildings that have been demolished or added
+- Create a time-series animation showing urban development
+- Use the **Georeferencer** tool (built into QGIS) instead of the plugin to compare workflows
+- Digitize a complete street network and perform network analysis
+- Research historical sources to add rich attribute data to your digitized features
+- Create a web map showing historical vs. current imagery side-by-side
 
 ------------------------------------------------------------------------
 
 ## Resources
 
--   **QGIS Georeferencing documentation:** https://docs.qgis.org/latest/en/docs/user_manual/working_with_raster/georeferencer.html
--   **Digitizing documentation:** https://docs.qgis.org/latest/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html
+- **QGIS Georeferencing documentation:** https://docs.qgis.org/latest/en/docs/user_manual/working_with_raster/georeferencer.html
+- **Digitizing documentation:** https://docs.qgis.org/latest/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html
