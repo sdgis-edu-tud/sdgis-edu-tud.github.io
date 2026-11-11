@@ -64,7 +64,7 @@ This opens the SRTM Downloader window.
 The first time, it asks for NASA Earthdata login. Use the link to create an account.
 Once downloaded, the raster DEM appears in the Layers Panel on the left.
 
-4. Load the TU Delft LAZ file (point cloud)
+###4. Load the TU Delft LAZ file (point cloud)
 Download the LAZ tile from https://geotiles.citg.tudelft.nl/
 > Go to Layer > Add Layer > Add Point Cloud Layer…
 This opens a file window. After selecting the LAZ file, press Open. Or simply drag and drop it into QGIS.
