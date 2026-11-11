@@ -1,0 +1,2285 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Calculating network density and spatial statistics">
+
+<title>Road Network Density Analysis in the Netherlands – SDGIS</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../pages/learn-qgis/landscape-analysis/working-with-terrain-data.html" rel="next">
+<link href="../../../pages/learn-qgis/misc/land-use-grid-aggregation.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-6388ad00bb6ecaefa25b9a98db1edf18.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-cb168b1d3fd9d67ce14b64e8ae8a6f7f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-6388ad00bb6ecaefa25b9a98db1edf18.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" data-goatcounter="https://dcannatella.goatcounter.com/count" src="//gc.zgo.at/count.js"></script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">SDGIS</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../pages/software-tools.html"> 
+<span class="menu-text">Software &amp; Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../pages/learn-qgis/index.html" aria-current="page"> 
+<span class="menu-text">Learn QGIS</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../pages/learn-r.html"> 
+<span class="menu-text">Learn R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../pages/courses/index.html"> 
+<span class="menu-text">Courses &amp; Workshops</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../pages/find-data/index.html"> 
+<span class="menu-text">Find Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../pages/about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../pages/contact.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../pages/contribute.html"> 
+<span class="menu-text">Contribute</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://twitter.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/sdgis-edu-tud/sdgis-edu-tud.github.io">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/sdgis-edu-tud/sdgis-edu-tud.github.io/issues">
+            Report a Bug
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../pages/learn-qgis/misc/land-use-grid-aggregation.html">Density Analysis</a></li><li class="breadcrumb-item"><a href="../../../pages/learn-qgis/density-analysis/road-network-density.html">Road Network Density Analysis in the Netherlands</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+  <div id="quarto-announcement" data-announcement-id="2d7ecad59b2aea5d24108c5e91ff4fe1" class="alert alert-primary hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p><strong>Alert</strong> - This website is under construction. Some content may not yet be available or may be out of date.</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learn QGIS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Getting Started</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/getting-started/install-qgis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Install QGIS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/getting-started/switch-language.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Change Language to English</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/getting-started/activating-panels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Activating Panels</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/getting-started/connecting-folders.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Connecting Folders to Browser Panel’s Favorites</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/getting-started/installing-plugins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installing Plugins (QMS &amp; PDOK)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/getting-started/new-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creating a new project in QGIS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/getting-started/using-data-source-manager.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using the Data Source Manager with WFS and WMS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/spatial-data-preparation/georeferencing-and-digitizing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Georeferencing and Digitizing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/spatial-data-preparation/creating-fishnet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creating a 2x2 km Fishnet Grid Using CBS Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Statistics &amp; Data Visualization</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/misc/statistics-and-data-visualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analyzing Building Functions by Neighborhood</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Cartography &amp; Mapping</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Density Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/misc/land-use-grid-aggregation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aggregating Land Use Classes to a Dutch Grid</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/density-analysis/road-network-density.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Road Network Density Analysis in the Netherlands</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Landscape Analysis</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/landscape-analysis/working-with-terrain-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Working with Terrain Data in QGIS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/landscape-analysis/dem-derivatives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slope, Aspect, and Hillshade</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/landscape-analysis/hydrological-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hydrological Analysis: Flow Paths and Watersheds</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/landscape-analysis/visibility-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visibility Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../pages/learn-qgis/landscape-analysis/cross-profiles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cross Profiles</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#system-requirements-setup" id="toc-system-requirements-setup" class="nav-link" data-scroll-target="#system-requirements-setup">System Requirements &amp; Setup</a>
+  <ul class="collapse">
+  <li><a href="#software-installation" id="toc-software-installation" class="nav-link" data-scroll-target="#software-installation">Software Installation</a></li>
+  <li><a href="#data-requirements" id="toc-data-requirements" class="nav-link" data-scroll-target="#data-requirements">Data Requirements</a></li>
+  <li><a href="#spatial-extent" id="toc-spatial-extent" class="nav-link" data-scroll-target="#spatial-extent">Spatial Extent</a></li>
+  </ul></li>
+  <li><a href="#workflow-overview" id="toc-workflow-overview" class="nav-link" data-scroll-target="#workflow-overview">Workflow Overview</a></li>
+  <li><a href="#background-understanding-road-networks-and-density" id="toc-background-understanding-road-networks-and-density" class="nav-link" data-scroll-target="#background-understanding-road-networks-and-density">Background: Understanding Road Networks and Density</a></li>
+  <li><a href="#step-1-import-and-prepare-data" id="toc-step-1-import-and-prepare-data" class="nav-link" data-scroll-target="#step-1-import-and-prepare-data">Step 1: Import and Prepare Data</a>
+  <ul class="collapse">
+  <li><a href="#import-layers-into-qgis" id="toc-import-layers-into-qgis" class="nav-link" data-scroll-target="#import-layers-into-qgis">1.1 Import Layers into QGIS</a></li>
+  <li><a href="#verify-coordinate-reference-system" id="toc-verify-coordinate-reference-system" class="nav-link" data-scroll-target="#verify-coordinate-reference-system">1.2 Verify Coordinate Reference System</a></li>
+  <li><a href="#examine-the-osm-data" id="toc-examine-the-osm-data" class="nav-link" data-scroll-target="#examine-the-osm-data">1.3 Examine the OSM Data</a></li>
+  </ul></li>
+  <li><a href="#step-2-filter-road-data-by-classification-optional" id="toc-step-2-filter-road-data-by-classification-optional" class="nav-link" data-scroll-target="#step-2-filter-road-data-by-classification-optional">Step 2: Filter Road Data by Classification (Optional)</a>
+  <ul class="collapse">
+  <li><a href="#apply-a-filter-to-the-osm-layer" id="toc-apply-a-filter-to-the-osm-layer" class="nav-link" data-scroll-target="#apply-a-filter-to-the-osm-layer">2.1 Apply a Filter to the OSM Layer</a></li>
+  </ul></li>
+  <li><a href="#step-3-calculate-total-road-length-per-grid-cell" id="toc-step-3-calculate-total-road-length-per-grid-cell" class="nav-link" data-scroll-target="#step-3-calculate-total-road-length-per-grid-cell">Step 3: Calculate Total Road Length per Grid Cell</a>
+  <ul class="collapse">
+  <li><a href="#open-sum-line-lengths-tool" id="toc-open-sum-line-lengths-tool" class="nav-link" data-scroll-target="#open-sum-line-lengths-tool">3.1 Open Sum Line Lengths Tool</a></li>
+  <li><a href="#configure-sum-line-lengths" id="toc-configure-sum-line-lengths" class="nav-link" data-scroll-target="#configure-sum-line-lengths">3.2 Configure Sum Line Lengths</a></li>
+  <li><a href="#verify-the-results" id="toc-verify-the-results" class="nav-link" data-scroll-target="#verify-the-results">3.3 Verify the Results</a></li>
+  </ul></li>
+  <li><a href="#step-4-visualize-road-density-using-natural-breaks-classification" id="toc-step-4-visualize-road-density-using-natural-breaks-classification" class="nav-link" data-scroll-target="#step-4-visualize-road-density-using-natural-breaks-classification">Step 4: Visualize Road Density Using Natural Breaks Classification</a>
+  <ul class="collapse">
+  <li><a href="#open-layer-styling" id="toc-open-layer-styling" class="nav-link" data-scroll-target="#open-layer-styling">4.1 Open Layer Styling</a></li>
+  <li><a href="#configure-graduated-classification" id="toc-configure-graduated-classification" class="nav-link" data-scroll-target="#configure-graduated-classification">4.2 Configure Graduated Classification</a></li>
+  <li><a href="#enhance-map-visibility" id="toc-enhance-map-visibility" class="nav-link" data-scroll-target="#enhance-map-visibility">4.3 Enhance Map Visibility</a></li>
+  </ul></li>
+  <li><a href="#step-5-create-a-professional-map-layout" id="toc-step-5-create-a-professional-map-layout" class="nav-link" data-scroll-target="#step-5-create-a-professional-map-layout">Step 5: Create a Professional Map Layout</a></li>
+  <li><a href="#step-6-interpretation-and-analysis" id="toc-step-6-interpretation-and-analysis" class="nav-link" data-scroll-target="#step-6-interpretation-and-analysis">Step 6: Interpretation and Analysis</a>
+  <ul class="collapse">
+  <li><a href="#spatial-patterns-to-observe" id="toc-spatial-patterns-to-observe" class="nav-link" data-scroll-target="#spatial-patterns-to-observe">Spatial Patterns to Observe</a></li>
+  <li><a href="#regional-insights" id="toc-regional-insights" class="nav-link" data-scroll-target="#regional-insights">Regional Insights</a></li>
+  </ul></li>
+  <li><a href="#troubleshooting-guide" id="toc-troubleshooting-guide" class="nav-link" data-scroll-target="#troubleshooting-guide">Troubleshooting Guide</a></li>
+  <li><a href="#extensions-and-advanced-topics" id="toc-extensions-and-advanced-topics" class="nav-link" data-scroll-target="#extensions-and-advanced-topics">Extensions and Advanced Topics</a></li>
+  <li><a href="#references-resources" id="toc-references-resources" class="nav-link" data-scroll-target="#references-resources">References &amp; Resources</a></li>
+  <li><a href="#quick-reference-key-tools" id="toc-quick-reference-key-tools" class="nav-link" data-scroll-target="#quick-reference-key-tools">Quick Reference: Key Tools</a></li>
+  <li><a href="#appendix-osm-road-classification-hierarchy" id="toc-appendix-osm-road-classification-hierarchy" class="nav-link" data-scroll-target="#appendix-osm-road-classification-hierarchy">Appendix: OSM Road Classification Hierarchy</a></li>
+  <li><a href="#feedback-support" id="toc-feedback-support" class="nav-link" data-scroll-target="#feedback-support">Feedback &amp; Support</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../pages/learn-qgis/misc/land-use-grid-aggregation.html">Density Analysis</a></li><li class="breadcrumb-item"><a href="../../../pages/learn-qgis/density-analysis/road-network-density.html">Road Network Density Analysis in the Netherlands</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Road Network Density Analysis in the Netherlands</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">Spatial Analysis</div>
+    <div class="quarto-category">Network Analysis</div>
+    <div class="quarto-category">Density Analysis</div>
+    <div class="quarto-category">Grid</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Calculating network density and spatial statistics
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Invalid Date</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Classification:</strong> Intermediate GIS Analysis | Spatial Network Analysis | Infrastructure Assessment</p>
+<p><strong>Learning Level:</strong> Intermediate</p>
+<p><strong>Time Estimate:</strong> 1–2 hours</p>
+<p><strong>Software Required:</strong> QGIS 3.24+</p>
+<p><strong>Author:</strong> Updated from original by Claudiu Forgaci (2024)</p>
+<hr>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This tutorial guides you through analyzing the spatial distribution of road network density across the Netherlands. You will use OpenStreetMap (OSM) highway data and a 2×2 km reference grid to calculate total road length per grid cell, then visualize patterns of road infrastructure density at the regional scale.</p>
+<p><strong>Learning Outcomes:</strong></p>
+<p>By completing this tutorial, you will be able to:</p>
+<p>✅ Import and filter OpenStreetMap highway data by road classification<br>
+✅ Prepare road network data for density analysis<br>
+✅ Calculate total road length within grid cells using line length analysis<br>
+✅ Visualize spatial distribution of road density using classified maps<br>
+✅ Interpret regional patterns in transportation infrastructure<br>
+✅ Apply the workflow to different geographic regions and road types</p>
+<hr>
+</section>
+<section id="system-requirements-setup" class="level2">
+<h2 class="anchored" data-anchor-id="system-requirements-setup">System Requirements &amp; Setup</h2>
+<section id="software-installation" class="level3">
+<h3 class="anchored" data-anchor-id="software-installation">Software Installation</h3>
+<p><strong>QGIS:</strong> - Download version 3.24 or later from https://qgis.org/download/ - Installation instructions vary by operating system</p>
+</section>
+<section id="data-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="data-requirements">Data Requirements</h3>
+<p>You will need the following datasets:</p>
+<p><strong>OpenStreetMap (OSM) Highway Data</strong> - Vector line layer containing road network - Available from: <a href="http://download.geofabrik.de/europe/netherlands.html">geofabriek.de</a> or QuickOSM plugin - Must contain a <code>fclass</code> or <code>highway</code> field with road classification values - Relevant road types for this analysis: - <code>motorway</code>, <code>motorway_link</code> – High-speed limited access - <code>primary</code>, <code>primary_link</code> – Major through routes - <code>secondary</code>, <code>secondary_link</code>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Alternatively, you can find the OSM-Roads dataset in the data folder.</p>
+</div>
+</div>
+<p><strong>2x2 km Reference Grid</strong> - Regular grid covering the Netherlands - Must contain a <code>fid</code> field for unique cell identification - Grid cells are 2×2 km (4 km²)</p>
+<p><strong>Coordinate Reference System (CRS):</strong></p>
+<ul>
+<li>Both datasets must be in <strong>EPSG:28992 (Amersfoort / RD New)</strong></li>
+<li>This projected CRS ensures accurate distance/length calculations</li>
+<li>All data should be pre-reprojected before analysis</li>
+</ul>
+</section>
+<section id="spatial-extent" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-extent">Spatial Extent</h3>
+<p>This tutorial covers the Netherlands using a 2x2 grid extent.</p>
+</section>
+</section>
+<section id="workflow-overview" class="level2">
+<h2 class="anchored" data-anchor-id="workflow-overview">Workflow Overview</h2>
+<p>The analysis follows a simple, direct workflow:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Phase</th>
+<th>Tasks</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Data Preparation</strong></td>
+<td>Import OSM and grid data; verify CRS</td>
+<td>Verified layers in EPSG:28992</td>
+</tr>
+<tr class="even">
+<td><strong>Data Filtering</strong></td>
+<td>Select relevant road types (motorway, primary, secondary)</td>
+<td>Filtered OSM road layer</td>
+</tr>
+<tr class="odd">
+<td><strong>Density Calculation</strong></td>
+<td>Calculate total road length per grid cell</td>
+<td>Grid with road length field</td>
+</tr>
+<tr class="even">
+<td><strong>Classification</strong></td>
+<td>Apply natural breaks classification to visualize density</td>
+<td>Classified density map</td>
+</tr>
+<tr class="odd">
+<td><strong>Interpretation</strong></td>
+<td>Analyze spatial patterns of road infrastructure</td>
+<td>Regional insights</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="background-understanding-road-networks-and-density" class="level2">
+<h2 class="anchored" data-anchor-id="background-understanding-road-networks-and-density">Background: Understanding Road Networks and Density</h2>
+<p><strong>Road Network Classification:</strong></p>
+<p>Roads are typically classified by their functional importance and connectivity:</p>
+<ul>
+<li><strong>Motorway</strong> (<code>motorway</code>) – Limited-access, high-speed infrastructure</li>
+<li><strong>Primary</strong> (<code>primary</code>) – Major through routes connecting urban centers</li>
+<li><strong>Secondary</strong> (<code>secondary</code>) – Important regional connections</li>
+<li><strong>Links</strong> (e.g., <code>motorway_link</code>) – Connector roads between road classes</li>
+</ul>
+<p><strong>Road Density Concept:</strong></p>
+<p>Road density = Total length of roads (kilometers) per unit area (km²)</p>
+<p><strong>Units:</strong> - For a 2×2 km grid cell (4 km² area): Density = Total road length (km) / 4 - High density indicates well-developed transportation infrastructure - Low density indicates rural or sparse settlement areas</p>
+<p><strong>Spatial Patterns:</strong></p>
+<p>Road density typically shows: - <strong>High density</strong> in urban cores, metropolitan regions, and developed areas - <strong>Medium density</strong> in towns and agricultural regions - <strong>Low density</strong> in rural, mountainous, or sparsely settled areas</p>
+<hr>
+</section>
+<section id="step-1-import-and-prepare-data" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-import-and-prepare-data">Step 1: Import and Prepare Data</h2>
+<section id="import-layers-into-qgis" class="level3">
+<h3 class="anchored" data-anchor-id="import-layers-into-qgis">1.1 Import Layers into QGIS</h3>
+<ol type="1">
+<li><p>Launch <strong>QGIS 3.24+</strong></p></li>
+<li><p><strong>Import the OSM highway data:</strong></p>
+<ul>
+<li>Go to <strong>Layer → Add Layer → Add Vector Layer</strong></li>
+<li>Navigate to your OSM roads shapefile or GeoPackage</li>
+<li>Click <strong>Open</strong></li>
+<li>The layer appears in the <strong>Layers Panel</strong></li>
+</ul></li>
+<li><p><strong>Import the 2×2 km grid:</strong></p>
+<ul>
+<li>Go to <strong>Layer → Add Layer → Add Vector Layer</strong></li>
+<li>Navigate to the grid layer</li>
+<li>Click <strong>Open</strong></li>
+<li>The layer appears in the <strong>Layers Panel</strong></li>
+</ul></li>
+<li><p><strong>Verify visibility:</strong></p>
+<ul>
+<li>Both layers should be visible in the main canvas</li>
+<li>The grid will appear as a regular pattern of square cells</li>
+</ul></li>
+</ol>
+</section>
+<section id="verify-coordinate-reference-system" class="level3">
+<h3 class="anchored" data-anchor-id="verify-coordinate-reference-system">1.2 Verify Coordinate Reference System</h3>
+<p>Both layers must be in <strong>EPSG:28992</strong> for accurate length calculations.</p>
+<p><strong>Check CRS for each layer:</strong></p>
+<ol type="1">
+<li>Right-click the <strong>OSM roads</strong> layer and select <strong>Layer CRS</strong>
+<ul>
+<li>Note the current CRS (should be EPSG:4326)</li>
+</ul></li>
+<li>Repeat for the <strong>grid</strong> layer</li>
+</ol>
+<p><strong>If CRS differs from EPSG:28992, reproject:</strong></p>
+<ol type="1">
+<li>Go to <strong>Processing → Toolbox</strong></li>
+<li>Search for <strong>Reproject layer</strong></li>
+<li>Double-click to open</li>
+</ol>
+<p><strong>For each layer that needs reprojection:</strong></p>
+<ol type="1">
+<li><strong>Input layer:</strong> Select the layer to reproject</li>
+<li><strong>Target CRS:</strong> Select <strong>EPSG:28992</strong></li>
+<li>Click <strong>Run</strong></li>
+<li>A reprojected layer is created and added to the Layers Panel</li>
+</ol>
+</section>
+<section id="examine-the-osm-data" class="level3">
+<h3 class="anchored" data-anchor-id="examine-the-osm-data">1.3 Examine the OSM Data</h3>
+<ol type="1">
+<li><p>Right-click the OSM roads layer and select <strong>Open Attribute Table</strong></p></li>
+<li><p><strong>Locate the highway classification field:</strong></p>
+<ul>
+<li>Find the column named <code>highway</code></li>
+<li>This contains values like “motorway,” “primary,” “secondary,” etc.</li>
+</ul></li>
+<li><p><strong>Review the data:</strong></p>
+<ul>
+<li>Scroll through several rows to understand road types present</li>
+<li>Note the number of features (roads)</li>
+<li>Check for any data quality issues</li>
+</ul></li>
+<li><p>Close the attribute table</p></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="step-2-filter-road-data-by-classification-optional" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-filter-road-data-by-classification-optional">Step 2: Filter Road Data by Classification (Optional)</h2>
+<p>You can analyze all road types together or focus on specific classifications (e.g., only motorways and primary roads). This step filters the data; skip if you want to include all roads.</p>
+<section id="apply-a-filter-to-the-osm-layer" class="level3">
+<h3 class="anchored" data-anchor-id="apply-a-filter-to-the-osm-layer">2.1 Apply a Filter to the OSM Layer</h3>
+<ol type="1">
+<li>Right-click the OSM roads layer and select <strong>Filter…</strong>
+<ul>
+<li>Alternatively: <strong>Vector → Filter…</strong></li>
+</ul></li>
+<li>The <strong>Query Builder dialog</strong> opens</li>
+</ol>
+<p><strong>Create a filter expression for major roads:</strong></p>
+<p>Build an expression to select only important road classes:</p>
+<pre><code>"highway" IN ('motorway', 'motorway_link', 'primary', 'primary_link', 'secondary', 'secondary_link')</code></pre>
+<p><strong>Explanation:</strong> - <code>IN (...)</code> selects records where the <code>fclass</code> field matches any listed value - This includes motorways, primary, and secondary roads with their link roads - Excludes local/minor roads</p>
+<p><strong>Alternative: Include all road types</strong></p>
+<p>If you want to analyze the complete road network, skip filtering or use:</p>
+<pre><code>"fclass" IS NOT NULL</code></pre>
+<ol start="3" type="1">
+<li>Click <strong>OK</strong> to apply the filter</li>
+</ol>
+<p><strong>Result:</strong> - The OSM layer now displays only selected road types - Filtered-out roads are hidden but not deleted</p>
+<hr>
+</section>
+</section>
+<section id="step-3-calculate-total-road-length-per-grid-cell" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-calculate-total-road-length-per-grid-cell">Step 3: Calculate Total Road Length per Grid Cell</h2>
+<p>This is the core analysis step. We use QGIS’s <strong>Sum Line Lengths</strong> tool to calculate the total length of roads within each grid cell.</p>
+<section id="open-sum-line-lengths-tool" class="level3">
+<h3 class="anchored" data-anchor-id="open-sum-line-lengths-tool">3.1 Open Sum Line Lengths Tool</h3>
+<ol type="1">
+<li>Go to <strong>Vector → Analysis Tools → Sum Line Lengths</strong>
+<ul>
+<li>Alternatively: <strong>Processing → Toolbox</strong> → Search for <strong>Sum Line Lengths</strong> → Double-click</li>
+</ul></li>
+<li>The <strong>Sum Line Lengths dialog</strong> opens</li>
+</ol>
+</section>
+<section id="configure-sum-line-lengths" class="level3">
+<h3 class="anchored" data-anchor-id="configure-sum-line-lengths">3.2 Configure Sum Line Lengths</h3>
+<ol type="1">
+<li><strong>Input polygon layer:</strong> Select the <strong>EEA grid layer</strong>
+<ul>
+<li>This defines the zones (grid cells) for which we calculate road lengths</li>
+</ul></li>
+<li><strong>Input line layer:</strong> Select the <strong>OSM roads layer</strong>
+<ul>
+<li>This contains the road network data</li>
+<li>If filtered, the tool uses only visible (filtered) roads</li>
+</ul></li>
+<li><strong>Output field name:</strong> Enter <code>LENGTH</code>
+<ul>
+<li>This field will store the total road length per grid cell</li>
+<li>The name is descriptive and follows standard conventions</li>
+</ul></li>
+<li><strong>Output:</strong> Click dropdown and select <strong>Save to File</strong>
+<ul>
+<li>Click folder icon to choose save location</li>
+<li>Enter filename: <code>Grid_with_Road_Length.shp</code> or <code>.gpkg</code></li>
+</ul></li>
+<li>Click <strong>Run</strong></li>
+</ol>
+<p><strong>Processing:</strong> - QGIS analyzes each grid cell polygon - For each cell, finds all road segments within it - Calculates the total length of these road segments - Units are in the CRS measurement units (meters in EPSG:28992)</p>
+<p><strong>Result:</strong> - A new layer <code>Grid_with_Road_Length</code> is created - The attribute table includes: - All original grid fields (e.g., <code>CellCode</code>) - New <code>LENGTH</code> field containing total road length per cell in meters</p>
+</section>
+<section id="verify-the-results" class="level3">
+<h3 class="anchored" data-anchor-id="verify-the-results">3.3 Verify the Results</h3>
+<ol type="1">
+<li><p>Open the <strong>Attribute Table</strong> of <code>Grid_with_Road_Length</code></p></li>
+<li><p><strong>Locate the LENGTH column</strong> (scroll right if needed)</p></li>
+<li><p><strong>Review values:</strong></p>
+<ul>
+<li>All values should be ≥ 0 (non-negative)</li>
+<li>Cells with high urban density should show higher values</li>
+<li>Cells in rural areas should show lower values</li>
+<li>Most cells should have some roads (LENGTH &gt; 0)</li>
+</ul></li>
+<li><p><strong>Inspect a sample of values:</strong></p>
+<ul>
+<li>Note the range (e.g., minimum and maximum values)</li>
+<li>These help inform the classification in the next step</li>
+</ul></li>
+<li><p>Close the attribute table</p></li>
+</ol>
+<p><strong>Example length values (in meters):</strong> - Urban cell: 200,000–300,000 m - Town cell: 100,000–200,000 m - Rural cell: 20,000–50,000 m - Sparsely populated: 0–20,000 m</p>
+<hr>
+</section>
+</section>
+<section id="step-4-visualize-road-density-using-natural-breaks-classification" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-visualize-road-density-using-natural-breaks-classification">Step 4: Visualize Road Density Using Natural Breaks Classification</h2>
+<p>Natural breaks classification groups the data into meaningful categories based on natural clustering, making patterns in road density visually apparent.</p>
+<section id="open-layer-styling" class="level3">
+<h3 class="anchored" data-anchor-id="open-layer-styling">4.1 Open Layer Styling</h3>
+<ol type="1">
+<li><p>Select the <code>Grid_with_Road_Length</code> layer in the <strong>Layers Panel</strong></p></li>
+<li><p>Open <strong>Layer Styling:</strong></p>
+<ul>
+<li>Go to <strong>View → Panels → Layer Styling</strong></li>
+<li>Or press <strong>F7</strong></li>
+</ul></li>
+<li><p>The <strong>Layer Styling panel</strong> opens on the right side</p></li>
+</ol>
+</section>
+<section id="configure-graduated-classification" class="level3">
+<h3 class="anchored" data-anchor-id="configure-graduated-classification">4.2 Configure Graduated Classification</h3>
+<ol type="1">
+<li><p>In the <strong>Symbology</strong> tab, change the classification type</p>
+<ul>
+<li>Click the dropdown showing “Single Symbol”</li>
+<li>Select <strong>Graduated</strong></li>
+</ul></li>
+<li><p><strong>Configure classification parameters:</strong></p>
+<ul>
+<li><strong>Value:</strong> Click dropdown and select <code>LENGTH</code></li>
+<li><strong>Classification Mode:</strong> Click dropdown and select <strong>Natural Breaks (Jenks)</strong>
+<ul>
+<li>This algorithm identifies natural clustering in the data</li>
+<li>Produces visually meaningful categories</li>
+</ul></li>
+<li><strong>Number of Classes:</strong> Set to <strong>5</strong>
+<ul>
+<li>Adjust to 4–7 depending on your data distribution</li>
+</ul></li>
+</ul></li>
+<li><p><strong>Choose a color ramp:</strong></p>
+<ul>
+<li>Click the <strong>Color Ramp</strong> dropdown</li>
+<li>Select a sequential scheme suitable for representing density:
+<ul>
+<li><strong>YlOrRd</strong> – Yellow to Orange to Red (classic density visualization)</li>
+<li><strong>YlGnBu</strong> – Yellow to Green to Blue</li>
+<li><strong>Viridis</strong> – Purple to Green to Yellow (perceptually uniform)</li>
+<li><strong>RdYlBu_r</strong> – Red to Yellow to Blue (intensity gradient)</li>
+</ul></li>
+</ul></li>
+<li><p>Click <strong>Classify</strong> to generate categories</p>
+<ul>
+<li>The panel shows the computed class breaks and their associated colors</li>
+<li>Review the breaks to ensure they make sense</li>
+</ul></li>
+<li><p><strong>(Optional) Customize class labels:</strong></p>
+<ul>
+<li>In the <strong>Label</strong> column, replace numeric break values with descriptive names:
+<ul>
+<li>“Very Low,” “Low,” “Medium,” “High,” “Very High”</li>
+</ul></li>
+<li>Double-click a label cell to edit</li>
+</ul></li>
+<li><p>Click <strong>Apply</strong> to visualize on the map</p></li>
+</ol>
+<p><strong>Result:</strong> - The main canvas displays the grid with cells colored by road density - Distinct spatial patterns should emerge: - Red/warm colors indicate high road density (urban areas) - Yellow/medium colors indicate moderate density (towns) - Blue/cool colors indicate low density (rural areas)</p>
+</section>
+<section id="enhance-map-visibility" class="level3">
+<h3 class="anchored" data-anchor-id="enhance-map-visibility">4.3 Enhance Map Visibility</h3>
+<ol type="1">
+<li><strong>Adjust transparency (optional):</strong>
+<ul>
+<li>In Layer Styling, go to the <strong>General</strong> or <strong>Transparency</strong> tab</li>
+<li>Set <strong>Opacity</strong> to 85–90% to allow underlying features to show through</li>
+</ul></li>
+<li><strong>Customize borders:</strong>
+<ul>
+<li>In Symbology, adjust <strong>Stroke width</strong> to 0.2–0.5 pt for subtle cell outlines</li>
+</ul></li>
+<li>Click <strong>Apply</strong> again to update</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="step-5-create-a-professional-map-layout" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-create-a-professional-map-layout">Step 5: Create a Professional Map Layout</h2>
+<p>Compile the styled grid into a publication-ready map with legend, scale, and attribution.</p>
+<hr>
+</section>
+<section id="step-6-interpretation-and-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="step-6-interpretation-and-analysis">Step 6: Interpretation and Analysis</h2>
+<section id="spatial-patterns-to-observe" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-patterns-to-observe">Spatial Patterns to Observe</h3>
+<p>Examine your road density map for characteristic patterns:</p>
+<p><strong>High Density Zones (warm colors):</strong> - Metropolitan areas (London, Paris, Amsterdam, Brussels, Cologne, Ruhr Valley) - Dense urban networks with well-developed street grids - Major highway corridors and interchanges</p>
+<p><strong>Medium Density Zones (neutral colors):</strong> - Secondary cities and towns - Agricultural regions with moderate road networks - Suburban and periurban areas</p>
+<p><strong>Low Density Zones (cool colors):</strong> - Rural and sparsely populated areas - Mountainous regions with limited accessibility - Natural protected areas with minimal infrastructure</p>
+<p><strong>Linear Patterns:</strong> - Major motorway corridors visible as distinct density bands - Trans-regional routes connecting major urban centers</p>
+</section>
+<section id="regional-insights" class="level3">
+<h3 class="anchored" data-anchor-id="regional-insights">Regional Insights</h3>
+<p>Questions to explore with your analysis:</p>
+<ol type="1">
+<li><strong>Which regions show highest road density?</strong>
+<ul>
+<li>Compare urban centers vs.&nbsp;surrounding countryside</li>
+<li>Identify infrastructure hubs</li>
+</ul></li>
+<li><strong>Do density patterns reflect economic development?</strong>
+<ul>
+<li>Do wealthier regions show higher infrastructure investment?</li>
+<li>How do historical development patterns influence modern density?</li>
+</ul></li>
+<li><strong>Are there geographic constraints?</strong>
+<ul>
+<li>How do mountains, water bodies, or political boundaries affect road networks?</li>
+</ul></li>
+<li><strong>How does road classification correlate with density?</strong>
+<ul>
+<li>Are motorways concentrated in high-density regions?</li>
+<li>Do secondary roads provide more even coverage?</li>
+</ul></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="troubleshooting-guide" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting-guide">Troubleshooting Guide</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Problem</th>
+<th>Cause</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Sum Line Lengths produces all zero values</strong></td>
+<td>Wrong CRS (geographic instead of projected); grid and roads not properly aligned</td>
+<td>Verify CRS is EPSG:28992 (projected). Check grid and roads overlap spatially.</td>
+</tr>
+<tr class="even">
+<td><strong>No roads found in cells</strong></td>
+<td>Spatial extent mismatch; roads layer filtered out</td>
+<td>Verify grid and roads cover the same area. Remove any filters on roads layer.</td>
+</tr>
+<tr class="odd">
+<td><strong>Classification produces poor visualization</strong></td>
+<td>Too many or too few classes; extreme outliers</td>
+<td>Adjust number of classes (4–7). Try different break algorithms (Equal Interval, Quantiles).</td>
+</tr>
+<tr class="even">
+<td><strong>Map is too cluttered</strong></td>
+<td>Grid cell outlines too thick; overlap with basemap</td>
+<td>Reduce stroke width to 0.2 pt.&nbsp;Increase cell opacity or adjust colors.</td>
+</tr>
+<tr class="odd">
+<td><strong>LENGTH values in unusual units</strong></td>
+<td>Wrong CRS interpretation</td>
+<td>Verify CRS is EPSG:28992. Recalculate if needed.</td>
+</tr>
+<tr class="even">
+<td><strong>Some grid cells show no roads but should</strong></td>
+<td>Topological issues; roads don’t perfectly intersect cells</td>
+<td>Verify road data quality. Run “Check Validity” on roads layer.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="extensions-and-advanced-topics" class="level2">
+<h2 class="anchored" data-anchor-id="extensions-and-advanced-topics">Extensions and Advanced Topics</h2>
+<p>Once you complete this tutorial, consider:</p>
+<ol type="1">
+<li><strong>Road Type-Specific Analysis:</strong>
+<ul>
+<li>Calculate separate density layers for motorways, primary roads, secondary roads</li>
+<li>Compare density patterns by road classification</li>
+<li>Identify regions dominated by different road types</li>
+</ul></li>
+<li><strong>Density Gradients:</strong>
+<ul>
+<li>Analyze how road density decreases with distance from urban centers</li>
+<li>Create distance-decay analysis</li>
+</ul></li>
+<li><strong>Temporal Analysis:</strong>
+<ul>
+<li>If historical OSM snapshots available, assess road network growth over time</li>
+<li>Compare 2010 vs.&nbsp;2024 infrastructure development</li>
+</ul></li>
+<li><strong>Accessibility Analysis:</strong>
+<ul>
+<li>Combine road density with travel time analysis</li>
+<li>Identify regions with high density but limited connectivity</li>
+</ul></li>
+<li><strong>Infrastructure Planning:</strong>
+<ul>
+<li>Compare current density with planned infrastructure projects</li>
+<li>Identify underserved areas needing road development</li>
+</ul></li>
+<li><strong>Multi-modal Networks:</strong>
+<ul>
+<li>Extend analysis to include railways, waterways, or cycling infrastructure</li>
+<li>Compare transportation modes</li>
+</ul></li>
+</ol>
+<hr>
+</section>
+<section id="references-resources" class="level2">
+<h2 class="anchored" data-anchor-id="references-resources">References &amp; Resources</h2>
+<p><strong>Data Sources:</strong></p>
+<ul>
+<li><strong>OpenStreetMap:</strong> https://www.openstreetmap.org/</li>
+<li><strong>QuickOSM Plugin</strong> (for direct OSM import): https://plugins.qgis.org/plugins/QuickOSM/</li>
+</ul>
+<p><strong>QGIS Documentation:</strong></p>
+<ul>
+<li><strong>Sum Line Lengths Tool:</strong> https://docs.qgis.org/latest/en/docs/user_manual/processing_algs/qgis/vectoranalysis.html</li>
+<li><strong>Vector Analysis Tools:</strong> https://docs.qgis.org/latest/en/docs/user_manual/processing_algs/qgis/vectoranalysis.html</li>
+<li><strong>Classification Methods:</strong> https://docs.qgis.org/latest/en/docs/user_manual/working_with_vector/vector_properties.html</li>
+</ul>
+<p><strong>Related Resources:</strong></p>
+<ul>
+<li><strong>QGIS Official Training Manual:</strong> https://docs.qgis.org/latest/en/docs/training_manual/</li>
+<li><strong>OpenStreetMap Tag Documentation:</strong> https://wiki.openstreetmap.org/wiki/Key:highway</li>
+<li><strong>EEA Transport Resources:</strong> https://www.eea.europa.eu/themes/transport</li>
+</ul>
+<hr>
+</section>
+<section id="quick-reference-key-tools" class="level2">
+<h2 class="anchored" data-anchor-id="quick-reference-key-tools">Quick Reference: Key Tools</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Tool Path</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Import data</strong></td>
+<td><strong>Layer → Add Layer → Add Vector Layer</strong></td>
+<td>Load OSM roads and grid</td>
+</tr>
+<tr class="even">
+<td><strong>Check CRS</strong></td>
+<td><strong>Right-click layer → Layer CRS</strong></td>
+<td>Verify coordinate system</td>
+</tr>
+<tr class="odd">
+<td><strong>Reproject</strong></td>
+<td><strong>Processing → Reproject layer</strong></td>
+<td>Convert to EPSG:28992</td>
+</tr>
+<tr class="even">
+<td><strong>Filter roads</strong></td>
+<td><strong>Vector → Filter</strong></td>
+<td>Select specific road types</td>
+</tr>
+<tr class="odd">
+<td><strong>Calculate lengths</strong></td>
+<td><strong>Vector → Analysis Tools → Sum Line Lengths</strong></td>
+<td>Compute road length per cell</td>
+</tr>
+<tr class="even">
+<td><strong>Visualize</strong></td>
+<td><strong>View → Layer Styling (F7)</strong></td>
+<td>Apply classification and colors</td>
+</tr>
+<tr class="odd">
+<td><strong>Classify</strong></td>
+<td><strong>Symbology → Graduated → Natural Breaks</strong></td>
+<td>Create density categories</td>
+</tr>
+<tr class="even">
+<td><strong>Create layout</strong></td>
+<td><strong>Project → New Print Layout</strong></td>
+<td>Build publication map</td>
+</tr>
+<tr class="odd">
+<td><strong>Export</strong></td>
+<td><strong>Layout → Export as PDF/Image</strong></td>
+<td>Save final map</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="appendix-osm-road-classification-hierarchy" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-osm-road-classification-hierarchy">Appendix: OSM Road Classification Hierarchy</h2>
+<p><strong>Road Types Included in This Analysis:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 30%">
+<col style="width: 18%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Classification</th>
+<th>Meaning</th>
+<th>Typical Speed</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>motorway</code></td>
+<td>Limited-access highway</td>
+<td>100–130 km/h</td>
+<td>A-roads, Autobahns</td>
+</tr>
+<tr class="even">
+<td><code>motorway_link</code></td>
+<td>Motorway connector</td>
+<td>Variable</td>
+<td>Ramps, off-ramps</td>
+</tr>
+<tr class="odd">
+<td><code>primary</code></td>
+<td>Major through route</td>
+<td>60–100 km/h</td>
+<td>National routes</td>
+</tr>
+<tr class="even">
+<td><code>primary_link</code></td>
+<td>Primary connector</td>
+<td>Variable</td>
+<td>Primary exit ramps</td>
+</tr>
+<tr class="odd">
+<td><code>secondary</code></td>
+<td>Regional route</td>
+<td>50–80 km/h</td>
+<td>Regional highways</td>
+</tr>
+<tr class="even">
+<td><code>secondary_link</code></td>
+<td>Secondary connector</td>
+<td>Variable</td>
+<td>Secondary connections</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Road Types Excluded (Optional):</strong> - <code>residential</code> – Streets in residential neighborhoods - <code>unclassified</code> – Minor local roads - <code>service</code> – Service roads, parking areas - <code>living_street</code> – Low-traffic residential areas - <code>track</code> – Agricultural/forestry roads</p>
+<hr>
+<p><strong>Document Version:</strong> 1.0 (February 2026)<br>
+<strong>QGIS Version:</strong> 3.24+<br>
+<strong>Difficulty Level:</strong> Intermediate (Beginner-friendly)<br>
+<strong>Expected Time:</strong> 1–2 hours<br>
+<strong>Data Scale:</strong> Regional (North-West Europe, 10×10 km cells)<br>
+<strong>CRS:</strong> EPSG:28992 (Amersfoort / RD New)</p>
+<hr>
+</section>
+<section id="feedback-support" class="level2">
+<h2 class="anchored" data-anchor-id="feedback-support">Feedback &amp; Support</h2>
+<p>If you encounter issues:</p>
+<ul>
+<li>Review the <strong>Troubleshooting Guide</strong> above</li>
+<li>Check <strong>QGIS documentation</strong> at https://docs.qgis.org/</li>
+<li>Consult <strong>OpenStreetMap wiki</strong> for data questions</li>
+<li>Contact your instructor or GIS support team</li>
+</ul>
+<hr>
+
+
+<!-- -->
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sdgis-edu-tud\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../pages/learn-qgis/misc/land-use-grid-aggregation.html" class="pagination-link" aria-label="Aggregating Land Use Classes to a Dutch Grid">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Aggregating Land Use Classes to a Dutch Grid</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../pages/learn-qgis/landscape-analysis/working-with-terrain-data.html" class="pagination-link" aria-label="Working with Terrain Data in QGIS">
+        <span class="nav-page-text">Working with Terrain Data in QGIS</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Road Network Density Analysis in the Netherlands</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Calculating network density and spatial statistics</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"> - Spatial Analysis</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"> - Network Analysis</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"> - Density Analysis</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"> - Grid</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="an">level:</span><span class="co"> Intermediate</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="an">level_code:</span><span class="co"> 2.0</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="an">level_color:</span><span class="co"> '#1F78B4'</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> .na.character</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>**Classification:** Intermediate GIS Analysis <span class="sc">\|</span> Spatial Network Analysis <span class="sc">\|</span> Infrastructure Assessment</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>**Learning Level:** Intermediate</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>**Time Estimate:** 1–2 hours</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>**Software Required:** QGIS 3.24+</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>**Author:** Updated from original by Claudiu Forgaci (2024)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>This tutorial guides you through analyzing the spatial distribution of road network density across the Netherlands. You will use OpenStreetMap (OSM) highway data and a 2×2 km reference grid to calculate total road length per grid cell, then visualize patterns of road infrastructure density at the regional scale.</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>**Learning Outcomes:**</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>By completing this tutorial, you will be able to:</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>✅ Import and filter OpenStreetMap highway data by road classification\</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>✅ Prepare road network data for density analysis\</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>✅ Calculate total road length within grid cells using line length analysis\</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>✅ Visualize spatial distribution of road density using classified maps\</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>✅ Interpret regional patterns in transportation infrastructure\</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>✅ Apply the workflow to different geographic regions and road types</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## System Requirements &amp; Setup</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="fu">### Software Installation</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>**QGIS:** - Download version 3.24 or later from https://qgis.org/download/ - Installation instructions vary by operating system</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data Requirements</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>You will need the following datasets:</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>**OpenStreetMap (OSM) Highway Data** - Vector line layer containing road network - Available from: <span class="co">[</span><span class="ot">geofabriek.de</span><span class="co">](http://download.geofabrik.de/europe/netherlands.html)</span> or QuickOSM plugin - Must contain a <span class="in">`fclass`</span> or <span class="in">`highway`</span> field with road classification values - Relevant road types for this analysis: - <span class="in">`motorway`</span>, <span class="in">`motorway_link`</span> – High-speed limited access - <span class="in">`primary`</span>, <span class="in">`primary_link`</span> – Major through routes - <span class="in">`secondary`</span>, <span class="in">`secondary_link`</span>.</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>::: callout-important</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>Alternatively, you can find the OSM-Roads dataset in the data folder.</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>**2x2 km Reference Grid** - Regular grid covering the Netherlands - Must contain a <span class="in">`fid`</span> field for unique cell identification - Grid cells are 2×2 km (4 km²)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>**Coordinate Reference System (CRS):**</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Both datasets must be in **EPSG:28992 (Amersfoort / RD New)**</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>This projected CRS ensures accurate distance/length calculations</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>All data should be pre-reprojected before analysis</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="fu">### Spatial Extent</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>This tutorial covers the Netherlands using a 2x2 grid extent.</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## Workflow Overview</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>The analysis follows a simple, direct workflow:</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Phase <span class="pp">|</span> Tasks <span class="pp">|</span> Output <span class="pp">|</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a><span class="pp">|----|----|----|</span></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Data Preparation** <span class="pp">|</span> Import OSM and grid data; verify CRS <span class="pp">|</span> Verified layers in EPSG:28992 <span class="pp">|</span></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Data Filtering** <span class="pp">|</span> Select relevant road types (motorway, primary, secondary) <span class="pp">|</span> Filtered OSM road layer <span class="pp">|</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Density Calculation** <span class="pp">|</span> Calculate total road length per grid cell <span class="pp">|</span> Grid with road length field <span class="pp">|</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Classification** <span class="pp">|</span> Apply natural breaks classification to visualize density <span class="pp">|</span> Classified density map <span class="pp">|</span></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Interpretation** <span class="pp">|</span> Analyze spatial patterns of road infrastructure <span class="pp">|</span> Regional insights <span class="pp">|</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## Background: Understanding Road Networks and Density</span></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>**Road Network Classification:**</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>Roads are typically classified by their functional importance and connectivity:</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Motorway** (<span class="in">`motorway`</span>) – Limited-access, high-speed infrastructure</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Primary** (<span class="in">`primary`</span>) – Major through routes connecting urban centers</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Secondary** (<span class="in">`secondary`</span>) – Important regional connections</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Links** (e.g., <span class="in">`motorway_link`</span>) – Connector roads between road classes</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>**Road Density Concept:**</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>Road density = Total length of roads (kilometers) per unit area (km²)</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>**Units:** - For a 2×2 km grid cell (4 km² area): Density = Total road length (km) / 4 - High density indicates well-developed transportation infrastructure - Low density indicates rural or sparse settlement areas</span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>**Spatial Patterns:**</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>Road density typically shows: - **High density** in urban cores, metropolitan regions, and developed areas - **Medium density** in towns and agricultural regions - **Low density** in rural, mountainous, or sparsely settled areas</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 1: Import and Prepare Data</span></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1.1 Import Layers into QGIS</span></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Launch **QGIS 3.24+**</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Import the OSM highway data:**</span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to **Layer → Add Layer → Add Vector Layer**</span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Navigate to your OSM roads shapefile or GeoPackage</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click **Open**</span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>The layer appears in the **Layers Panel**</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Import the 2×2 km grid:**</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to **Layer → Add Layer → Add Vector Layer**</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Navigate to the grid layer</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click **Open**</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>The layer appears in the **Layers Panel**</span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Verify visibility:**</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Both layers should be visible in the main canvas</span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>The grid will appear as a regular pattern of square cells</span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1.2 Verify Coordinate Reference System</span></span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>Both layers must be in **EPSG:28992** for accurate length calculations.</span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>**Check CRS for each layer:**</span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click the **OSM roads** layer and select **Layer CRS**</span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Note the current CRS (should be EPSG:4326)</span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Repeat for the **grid** layer</span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>**If CRS differs from EPSG:28992, reproject:**</span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Go to **Processing → Toolbox**</span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Search for **Reproject layer**</span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Double-click to open</span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>**For each layer that needs reprojection:**</span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Input layer:** Select the layer to reproject</span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Target CRS:** Select **EPSG:28992**</span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Click **Run**</span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>A reprojected layer is created and added to the Layers Panel</span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1.3 Examine the OSM Data</span></span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click the OSM roads layer and select **Open Attribute Table**</span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Locate the highway classification field:**</span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Find the column named <span class="in">`highway`</span></span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>This contains values like "motorway," "primary," "secondary," etc.</span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Review the data:**</span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Scroll through several rows to understand road types present</span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Note the number of features (roads)</span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Check for any data quality issues</span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Close the attribute table</span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 2: Filter Road Data by Classification (Optional)</span></span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a>You can analyze all road types together or focus on specific classifications (e.g., only motorways and primary roads). This step filters the data; skip if you want to include all roads.</span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2.1 Apply a Filter to the OSM Layer</span></span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Right-click the OSM roads layer and select **Filter...**</span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Alternatively: **Vector → Filter...**</span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>The **Query Builder dialog** opens</span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a>**Create a filter expression for major roads:**</span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a>Build an expression to select only important road classes:</span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a><span class="in">"highway" IN ('motorway', 'motorway_link', 'primary', 'primary_link', 'secondary', 'secondary_link')</span></span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a>**Explanation:** - <span class="in">`IN (...)`</span> selects records where the <span class="in">`fclass`</span> field matches any listed value - This includes motorways, primary, and secondary roads with their link roads - Excludes local/minor roads</span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a>**Alternative: Include all road types**</span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a>If you want to analyze the complete road network, skip filtering or use:</span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a><span class="in">"fclass" IS NOT NULL</span></span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Click **OK** to apply the filter</span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a>**Result:** - The OSM layer now displays only selected road types - Filtered-out roads are hidden but not deleted</span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 3: Calculate Total Road Length per Grid Cell</span></span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a>This is the core analysis step. We use QGIS's **Sum Line Lengths** tool to calculate the total length of roads within each grid cell.</span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3.1 Open Sum Line Lengths Tool</span></span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Go to **Vector → Analysis Tools → Sum Line Lengths**</span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Alternatively: **Processing → Toolbox** → Search for **Sum Line Lengths** → Double-click</span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>The **Sum Line Lengths dialog** opens</span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3.2 Configure Sum Line Lengths</span></span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Input polygon layer:** Select the **EEA grid layer**</span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>This defines the zones (grid cells) for which we calculate road lengths</span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Input line layer:** Select the **OSM roads layer**</span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>This contains the road network data</span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>If filtered, the tool uses only visible (filtered) roads</span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Output field name:** Enter <span class="in">`LENGTH`</span></span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>This field will store the total road length per grid cell</span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>The name is descriptive and follows standard conventions</span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Output:** Click dropdown and select **Save to File**</span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click folder icon to choose save location</span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Enter filename: <span class="in">`Grid_with_Road_Length.shp`</span> or <span class="in">`.gpkg`</span></span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Click **Run**</span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a>**Processing:** - QGIS analyzes each grid cell polygon - For each cell, finds all road segments within it - Calculates the total length of these road segments - Units are in the CRS measurement units (meters in EPSG:28992)</span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a>**Result:** - A new layer <span class="in">`Grid_with_Road_Length`</span> is created - The attribute table includes: - All original grid fields (e.g., <span class="in">`CellCode`</span>) - New <span class="in">`LENGTH`</span> field containing total road length per cell in meters</span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3.3 Verify the Results</span></span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Open the **Attribute Table** of <span class="in">`Grid_with_Road_Length`</span></span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Locate the LENGTH column** (scroll right if needed)</span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Review values:**</span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>All values should be ≥ 0 (non-negative)</span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Cells with high urban density should show higher values</span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Cells in rural areas should show lower values</span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Most cells should have some roads (LENGTH <span class="sc">\&gt;</span> 0)</span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Inspect a sample of values:**</span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Note the range (e.g., minimum and maximum values)</span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>These help inform the classification in the next step</span>
+<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Close the attribute table</span>
+<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a>**Example length values (in meters):** - Urban cell: 200,000–300,000 m - Town cell: 100,000–200,000 m - Rural cell: 20,000–50,000 m - Sparsely populated: 0–20,000 m</span>
+<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 4: Visualize Road Density Using Natural Breaks Classification</span></span>
+<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a>Natural breaks classification groups the data into meaningful categories based on natural clustering, making patterns in road density visually apparent.</span>
+<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4.1 Open Layer Styling</span></span>
+<span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Select the <span class="in">`Grid_with_Road_Length`</span> layer in the **Layers Panel**</span>
+<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Open **Layer Styling:**</span>
+<span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Go to **View → Panels → Layer Styling**</span>
+<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Or press **F7**</span>
+<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-276"><a href="#cb3-276" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>The **Layer Styling panel** opens on the right side</span>
+<span id="cb3-277"><a href="#cb3-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-278"><a href="#cb3-278" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4.2 Configure Graduated Classification</span></span>
+<span id="cb3-279"><a href="#cb3-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-280"><a href="#cb3-280" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>In the **Symbology** tab, change the classification type</span>
+<span id="cb3-281"><a href="#cb3-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-282"><a href="#cb3-282" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click the dropdown showing "Single Symbol"</span>
+<span id="cb3-283"><a href="#cb3-283" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Select **Graduated**</span>
+<span id="cb3-284"><a href="#cb3-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-285"><a href="#cb3-285" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Configure classification parameters:**</span>
+<span id="cb3-286"><a href="#cb3-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-287"><a href="#cb3-287" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Value:** Click dropdown and select <span class="in">`LENGTH`</span></span>
+<span id="cb3-288"><a href="#cb3-288" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Classification Mode:** Click dropdown and select **Natural Breaks (Jenks)**</span>
+<span id="cb3-289"><a href="#cb3-289" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>This algorithm identifies natural clustering in the data</span>
+<span id="cb3-290"><a href="#cb3-290" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Produces visually meaningful categories</span>
+<span id="cb3-291"><a href="#cb3-291" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>**Number of Classes:** Set to **5**</span>
+<span id="cb3-292"><a href="#cb3-292" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>Adjust to 4–7 depending on your data distribution</span>
+<span id="cb3-293"><a href="#cb3-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-294"><a href="#cb3-294" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Choose a color ramp:**</span>
+<span id="cb3-295"><a href="#cb3-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-296"><a href="#cb3-296" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Click the **Color Ramp** dropdown</span>
+<span id="cb3-297"><a href="#cb3-297" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Select a sequential scheme suitable for representing density:</span>
+<span id="cb3-298"><a href="#cb3-298" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>**YlOrRd** – Yellow to Orange to Red (classic density visualization)</span>
+<span id="cb3-299"><a href="#cb3-299" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>**YlGnBu** – Yellow to Green to Blue</span>
+<span id="cb3-300"><a href="#cb3-300" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>**Viridis** – Purple to Green to Yellow (perceptually uniform)</span>
+<span id="cb3-301"><a href="#cb3-301" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>**RdYlBu_r** – Red to Yellow to Blue (intensity gradient)</span>
+<span id="cb3-302"><a href="#cb3-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-303"><a href="#cb3-303" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Click **Classify** to generate categories</span>
+<span id="cb3-304"><a href="#cb3-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-305"><a href="#cb3-305" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>The panel shows the computed class breaks and their associated colors</span>
+<span id="cb3-306"><a href="#cb3-306" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Review the breaks to ensure they make sense</span>
+<span id="cb3-307"><a href="#cb3-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-308"><a href="#cb3-308" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**(Optional) Customize class labels:**</span>
+<span id="cb3-309"><a href="#cb3-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-310"><a href="#cb3-310" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>In the **Label** column, replace numeric break values with descriptive names:</span>
+<span id="cb3-311"><a href="#cb3-311" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>"Very Low," "Low," "Medium," "High," "Very High"</span>
+<span id="cb3-312"><a href="#cb3-312" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Double-click a label cell to edit</span>
+<span id="cb3-313"><a href="#cb3-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-314"><a href="#cb3-314" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>Click **Apply** to visualize on the map</span>
+<span id="cb3-315"><a href="#cb3-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-316"><a href="#cb3-316" aria-hidden="true" tabindex="-1"></a>**Result:** - The main canvas displays the grid with cells colored by road density - Distinct spatial patterns should emerge: - Red/warm colors indicate high road density (urban areas) - Yellow/medium colors indicate moderate density (towns) - Blue/cool colors indicate low density (rural areas)</span>
+<span id="cb3-317"><a href="#cb3-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-318"><a href="#cb3-318" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4.3 Enhance Map Visibility</span></span>
+<span id="cb3-319"><a href="#cb3-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-320"><a href="#cb3-320" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Adjust transparency (optional):**</span>
+<span id="cb3-321"><a href="#cb3-321" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>In Layer Styling, go to the **General** or **Transparency** tab</span>
+<span id="cb3-322"><a href="#cb3-322" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Set **Opacity** to 85–90% to allow underlying features to show through</span>
+<span id="cb3-323"><a href="#cb3-323" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Customize borders:**</span>
+<span id="cb3-324"><a href="#cb3-324" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>In Symbology, adjust **Stroke width** to 0.2–0.5 pt for subtle cell outlines</span>
+<span id="cb3-325"><a href="#cb3-325" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Click **Apply** again to update</span>
+<span id="cb3-326"><a href="#cb3-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-327"><a href="#cb3-327" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-328"><a href="#cb3-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-329"><a href="#cb3-329" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 5: Create a Professional Map Layout</span></span>
+<span id="cb3-330"><a href="#cb3-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-331"><a href="#cb3-331" aria-hidden="true" tabindex="-1"></a>Compile the styled grid into a publication-ready map with legend, scale, and attribution.</span>
+<span id="cb3-332"><a href="#cb3-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-333"><a href="#cb3-333" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-334"><a href="#cb3-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-335"><a href="#cb3-335" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 6: Interpretation and Analysis</span></span>
+<span id="cb3-336"><a href="#cb3-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-337"><a href="#cb3-337" aria-hidden="true" tabindex="-1"></a><span class="fu">### Spatial Patterns to Observe</span></span>
+<span id="cb3-338"><a href="#cb3-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-339"><a href="#cb3-339" aria-hidden="true" tabindex="-1"></a>Examine your road density map for characteristic patterns:</span>
+<span id="cb3-340"><a href="#cb3-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-341"><a href="#cb3-341" aria-hidden="true" tabindex="-1"></a>**High Density Zones (warm colors):** - Metropolitan areas (London, Paris, Amsterdam, Brussels, Cologne, Ruhr Valley) - Dense urban networks with well-developed street grids - Major highway corridors and interchanges</span>
+<span id="cb3-342"><a href="#cb3-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-343"><a href="#cb3-343" aria-hidden="true" tabindex="-1"></a>**Medium Density Zones (neutral colors):** - Secondary cities and towns - Agricultural regions with moderate road networks - Suburban and periurban areas</span>
+<span id="cb3-344"><a href="#cb3-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-345"><a href="#cb3-345" aria-hidden="true" tabindex="-1"></a>**Low Density Zones (cool colors):** - Rural and sparsely populated areas - Mountainous regions with limited accessibility - Natural protected areas with minimal infrastructure</span>
+<span id="cb3-346"><a href="#cb3-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-347"><a href="#cb3-347" aria-hidden="true" tabindex="-1"></a>**Linear Patterns:** - Major motorway corridors visible as distinct density bands - Trans-regional routes connecting major urban centers</span>
+<span id="cb3-348"><a href="#cb3-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-349"><a href="#cb3-349" aria-hidden="true" tabindex="-1"></a><span class="fu">### Regional Insights</span></span>
+<span id="cb3-350"><a href="#cb3-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-351"><a href="#cb3-351" aria-hidden="true" tabindex="-1"></a>Questions to explore with your analysis:</span>
+<span id="cb3-352"><a href="#cb3-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-353"><a href="#cb3-353" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Which regions show highest road density?**</span>
+<span id="cb3-354"><a href="#cb3-354" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Compare urban centers vs. surrounding countryside</span>
+<span id="cb3-355"><a href="#cb3-355" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Identify infrastructure hubs</span>
+<span id="cb3-356"><a href="#cb3-356" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Do density patterns reflect economic development?**</span>
+<span id="cb3-357"><a href="#cb3-357" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Do wealthier regions show higher infrastructure investment?</span>
+<span id="cb3-358"><a href="#cb3-358" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>How do historical development patterns influence modern density?</span>
+<span id="cb3-359"><a href="#cb3-359" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Are there geographic constraints?**</span>
+<span id="cb3-360"><a href="#cb3-360" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>How do mountains, water bodies, or political boundaries affect road networks?</span>
+<span id="cb3-361"><a href="#cb3-361" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**How does road classification correlate with density?**</span>
+<span id="cb3-362"><a href="#cb3-362" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Are motorways concentrated in high-density regions?</span>
+<span id="cb3-363"><a href="#cb3-363" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Do secondary roads provide more even coverage?</span>
+<span id="cb3-364"><a href="#cb3-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-365"><a href="#cb3-365" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-366"><a href="#cb3-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-367"><a href="#cb3-367" aria-hidden="true" tabindex="-1"></a><span class="fu">## Troubleshooting Guide</span></span>
+<span id="cb3-368"><a href="#cb3-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-369"><a href="#cb3-369" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Problem <span class="pp">|</span> Cause <span class="pp">|</span> Solution <span class="pp">|</span></span>
+<span id="cb3-370"><a href="#cb3-370" aria-hidden="true" tabindex="-1"></a><span class="pp">|----|----|----|</span></span>
+<span id="cb3-371"><a href="#cb3-371" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Sum Line Lengths produces all zero values** <span class="pp">|</span> Wrong CRS (geographic instead of projected); grid and roads not properly aligned <span class="pp">|</span> Verify CRS is EPSG:28992 (projected). Check grid and roads overlap spatially. <span class="pp">|</span></span>
+<span id="cb3-372"><a href="#cb3-372" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **No roads found in cells** <span class="pp">|</span> Spatial extent mismatch; roads layer filtered out <span class="pp">|</span> Verify grid and roads cover the same area. Remove any filters on roads layer. <span class="pp">|</span></span>
+<span id="cb3-373"><a href="#cb3-373" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Classification produces poor visualization** <span class="pp">|</span> Too many or too few classes; extreme outliers <span class="pp">|</span> Adjust number of classes (4–7). Try different break algorithms (Equal Interval, Quantiles). <span class="pp">|</span></span>
+<span id="cb3-374"><a href="#cb3-374" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Map is too cluttered** <span class="pp">|</span> Grid cell outlines too thick; overlap with basemap <span class="pp">|</span> Reduce stroke width to 0.2 pt. Increase cell opacity or adjust colors. <span class="pp">|</span></span>
+<span id="cb3-375"><a href="#cb3-375" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **LENGTH values in unusual units** <span class="pp">|</span> Wrong CRS interpretation <span class="pp">|</span> Verify CRS is EPSG:28992. Recalculate if needed. <span class="pp">|</span></span>
+<span id="cb3-376"><a href="#cb3-376" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Some grid cells show no roads but should** <span class="pp">|</span> Topological issues; roads don't perfectly intersect cells <span class="pp">|</span> Verify road data quality. Run "Check Validity" on roads layer. <span class="pp">|</span></span>
+<span id="cb3-377"><a href="#cb3-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-378"><a href="#cb3-378" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-379"><a href="#cb3-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-380"><a href="#cb3-380" aria-hidden="true" tabindex="-1"></a><span class="fu">## Extensions and Advanced Topics</span></span>
+<span id="cb3-381"><a href="#cb3-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-382"><a href="#cb3-382" aria-hidden="true" tabindex="-1"></a>Once you complete this tutorial, consider:</span>
+<span id="cb3-383"><a href="#cb3-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-384"><a href="#cb3-384" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Road Type-Specific Analysis:**</span>
+<span id="cb3-385"><a href="#cb3-385" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Calculate separate density layers for motorways, primary roads, secondary roads</span>
+<span id="cb3-386"><a href="#cb3-386" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Compare density patterns by road classification</span>
+<span id="cb3-387"><a href="#cb3-387" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Identify regions dominated by different road types</span>
+<span id="cb3-388"><a href="#cb3-388" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Density Gradients:**</span>
+<span id="cb3-389"><a href="#cb3-389" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Analyze how road density decreases with distance from urban centers</span>
+<span id="cb3-390"><a href="#cb3-390" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Create distance-decay analysis</span>
+<span id="cb3-391"><a href="#cb3-391" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Temporal Analysis:**</span>
+<span id="cb3-392"><a href="#cb3-392" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>If historical OSM snapshots available, assess road network growth over time</span>
+<span id="cb3-393"><a href="#cb3-393" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Compare 2010 vs. 2024 infrastructure development</span>
+<span id="cb3-394"><a href="#cb3-394" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Accessibility Analysis:**</span>
+<span id="cb3-395"><a href="#cb3-395" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Combine road density with travel time analysis</span>
+<span id="cb3-396"><a href="#cb3-396" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Identify regions with high density but limited connectivity</span>
+<span id="cb3-397"><a href="#cb3-397" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**Infrastructure Planning:**</span>
+<span id="cb3-398"><a href="#cb3-398" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Compare current density with planned infrastructure projects</span>
+<span id="cb3-399"><a href="#cb3-399" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Identify underserved areas needing road development</span>
+<span id="cb3-400"><a href="#cb3-400" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>**Multi-modal Networks:**</span>
+<span id="cb3-401"><a href="#cb3-401" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Extend analysis to include railways, waterways, or cycling infrastructure</span>
+<span id="cb3-402"><a href="#cb3-402" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Compare transportation modes</span>
+<span id="cb3-403"><a href="#cb3-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-404"><a href="#cb3-404" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-405"><a href="#cb3-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-406"><a href="#cb3-406" aria-hidden="true" tabindex="-1"></a><span class="fu">## References &amp; Resources</span></span>
+<span id="cb3-407"><a href="#cb3-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-408"><a href="#cb3-408" aria-hidden="true" tabindex="-1"></a>**Data Sources:**</span>
+<span id="cb3-409"><a href="#cb3-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-410"><a href="#cb3-410" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**OpenStreetMap:** https://www.openstreetmap.org/</span>
+<span id="cb3-411"><a href="#cb3-411" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**QuickOSM Plugin** (for direct OSM import): https://plugins.qgis.org/plugins/QuickOSM/</span>
+<span id="cb3-412"><a href="#cb3-412" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-413"><a href="#cb3-413" aria-hidden="true" tabindex="-1"></a>**QGIS Documentation:**</span>
+<span id="cb3-414"><a href="#cb3-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-415"><a href="#cb3-415" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Sum Line Lengths Tool:** https://docs.qgis.org/latest/en/docs/user_manual/processing_algs/qgis/vectoranalysis.html</span>
+<span id="cb3-416"><a href="#cb3-416" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Vector Analysis Tools:** https://docs.qgis.org/latest/en/docs/user_manual/processing_algs/qgis/vectoranalysis.html</span>
+<span id="cb3-417"><a href="#cb3-417" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Classification Methods:** https://docs.qgis.org/latest/en/docs/user_manual/working_with_vector/vector_properties.html</span>
+<span id="cb3-418"><a href="#cb3-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-419"><a href="#cb3-419" aria-hidden="true" tabindex="-1"></a>**Related Resources:**</span>
+<span id="cb3-420"><a href="#cb3-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-421"><a href="#cb3-421" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**QGIS Official Training Manual:** https://docs.qgis.org/latest/en/docs/training_manual/</span>
+<span id="cb3-422"><a href="#cb3-422" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**OpenStreetMap Tag Documentation:** https://wiki.openstreetmap.org/wiki/Key:highway</span>
+<span id="cb3-423"><a href="#cb3-423" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**EEA Transport Resources:** https://www.eea.europa.eu/themes/transport</span>
+<span id="cb3-424"><a href="#cb3-424" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-425"><a href="#cb3-425" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-426"><a href="#cb3-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-427"><a href="#cb3-427" aria-hidden="true" tabindex="-1"></a><span class="fu">## Quick Reference: Key Tools</span></span>
+<span id="cb3-428"><a href="#cb3-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-429"><a href="#cb3-429" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Task <span class="pp">|</span> Tool Path <span class="pp">|</span> Purpose <span class="pp">|</span></span>
+<span id="cb3-430"><a href="#cb3-430" aria-hidden="true" tabindex="-1"></a><span class="pp">|----|----|----|</span></span>
+<span id="cb3-431"><a href="#cb3-431" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Import data** | **Layer → Add Layer → Add Vector Layer** <span class="pp">|</span> Load OSM roads and grid <span class="pp">|</span></span>
+<span id="cb3-432"><a href="#cb3-432" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Check CRS** | **Right-click layer → Layer CRS** <span class="pp">|</span> Verify coordinate system <span class="pp">|</span></span>
+<span id="cb3-433"><a href="#cb3-433" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Reproject** | **Processing → Reproject layer** <span class="pp">|</span> Convert to EPSG:28992 <span class="pp">|</span></span>
+<span id="cb3-434"><a href="#cb3-434" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Filter roads** | **Vector → Filter** <span class="pp">|</span> Select specific road types <span class="pp">|</span></span>
+<span id="cb3-435"><a href="#cb3-435" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Calculate lengths** | **Vector → Analysis Tools → Sum Line Lengths** <span class="pp">|</span> Compute road length per cell <span class="pp">|</span></span>
+<span id="cb3-436"><a href="#cb3-436" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Visualize** | **View → Layer Styling (F7)** <span class="pp">|</span> Apply classification and colors <span class="pp">|</span></span>
+<span id="cb3-437"><a href="#cb3-437" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Classify** | **Symbology → Graduated → Natural Breaks** <span class="pp">|</span> Create density categories <span class="pp">|</span></span>
+<span id="cb3-438"><a href="#cb3-438" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Create layout** | **Project → New Print Layout** <span class="pp">|</span> Build publication map <span class="pp">|</span></span>
+<span id="cb3-439"><a href="#cb3-439" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Export** | **Layout → Export as PDF/Image** <span class="pp">|</span> Save final map <span class="pp">|</span></span>
+<span id="cb3-440"><a href="#cb3-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-441"><a href="#cb3-441" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-442"><a href="#cb3-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-443"><a href="#cb3-443" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix: OSM Road Classification Hierarchy</span></span>
+<span id="cb3-444"><a href="#cb3-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-445"><a href="#cb3-445" aria-hidden="true" tabindex="-1"></a>**Road Types Included in This Analysis:**</span>
+<span id="cb3-446"><a href="#cb3-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-447"><a href="#cb3-447" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Classification   <span class="pp">|</span> Meaning                <span class="pp">|</span> Typical Speed <span class="pp">|</span> Examples              <span class="pp">|</span></span>
+<span id="cb3-448"><a href="#cb3-448" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------|------------------------|---------------|-----------------------|</span></span>
+<span id="cb3-449"><a href="#cb3-449" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`motorway`</span>       <span class="pp">|</span> Limited-access highway <span class="pp">|</span> 100–130 km/h  <span class="pp">|</span> A-roads, Autobahns    <span class="pp">|</span></span>
+<span id="cb3-450"><a href="#cb3-450" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`motorway_link`</span>  <span class="pp">|</span> Motorway connector     <span class="pp">|</span> Variable      <span class="pp">|</span> Ramps, off-ramps      <span class="pp">|</span></span>
+<span id="cb3-451"><a href="#cb3-451" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`primary`</span>        <span class="pp">|</span> Major through route    <span class="pp">|</span> 60–100 km/h   <span class="pp">|</span> National routes       <span class="pp">|</span></span>
+<span id="cb3-452"><a href="#cb3-452" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`primary_link`</span>   <span class="pp">|</span> Primary connector      <span class="pp">|</span> Variable      <span class="pp">|</span> Primary exit ramps    <span class="pp">|</span></span>
+<span id="cb3-453"><a href="#cb3-453" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`secondary`</span>      <span class="pp">|</span> Regional route         <span class="pp">|</span> 50–80 km/h    <span class="pp">|</span> Regional highways     <span class="pp">|</span></span>
+<span id="cb3-454"><a href="#cb3-454" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`secondary_link`</span> <span class="pp">|</span> Secondary connector    <span class="pp">|</span> Variable      <span class="pp">|</span> Secondary connections <span class="pp">|</span></span>
+<span id="cb3-455"><a href="#cb3-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-456"><a href="#cb3-456" aria-hidden="true" tabindex="-1"></a>**Road Types Excluded (Optional):** - <span class="in">`residential`</span> – Streets in residential neighborhoods - <span class="in">`unclassified`</span> – Minor local roads - <span class="in">`service`</span> – Service roads, parking areas - <span class="in">`living_street`</span> – Low-traffic residential areas - <span class="in">`track`</span> – Agricultural/forestry roads</span>
+<span id="cb3-457"><a href="#cb3-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-458"><a href="#cb3-458" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-459"><a href="#cb3-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-460"><a href="#cb3-460" aria-hidden="true" tabindex="-1"></a>**Document Version:** 1.0 (February 2026)\</span>
+<span id="cb3-461"><a href="#cb3-461" aria-hidden="true" tabindex="-1"></a>**QGIS Version:** 3.24+\</span>
+<span id="cb3-462"><a href="#cb3-462" aria-hidden="true" tabindex="-1"></a>**Difficulty Level:** Intermediate (Beginner-friendly)\</span>
+<span id="cb3-463"><a href="#cb3-463" aria-hidden="true" tabindex="-1"></a>**Expected Time:** 1–2 hours\</span>
+<span id="cb3-464"><a href="#cb3-464" aria-hidden="true" tabindex="-1"></a>**Data Scale:** Regional (North-West Europe, 10×10 km cells)\</span>
+<span id="cb3-465"><a href="#cb3-465" aria-hidden="true" tabindex="-1"></a>**CRS:** EPSG:28992 (Amersfoort / RD New)</span>
+<span id="cb3-466"><a href="#cb3-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-467"><a href="#cb3-467" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-468"><a href="#cb3-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-469"><a href="#cb3-469" aria-hidden="true" tabindex="-1"></a><span class="fu">## Feedback &amp; Support</span></span>
+<span id="cb3-470"><a href="#cb3-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-471"><a href="#cb3-471" aria-hidden="true" tabindex="-1"></a>If you encounter issues:</span>
+<span id="cb3-472"><a href="#cb3-472" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-473"><a href="#cb3-473" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Review the **Troubleshooting Guide** above</span>
+<span id="cb3-474"><a href="#cb3-474" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Check **QGIS documentation** at https://docs.qgis.org/</span>
+<span id="cb3-475"><a href="#cb3-475" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Consult **OpenStreetMap wiki** for data questions</span>
+<span id="cb3-476"><a href="#cb3-476" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Contact your instructor or GIS support team</span>
+<span id="cb3-477"><a href="#cb3-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-478"><a href="#cb3-478" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright 2025, <a href="mailto:SDGIS-BK@tudelft.nl">SDGIS-BK@tudelft.nl</a></p>
+</div>   
+    <div class="nav-footer-center">
+<div class="footer-logos">
+<p><img src="../../../images/logos/international-logo_rgb@16x.png" alt="TU Delft" class="footer-logo"></p>
+</div>
+</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sdgis-edu-tud/sdgis-edu-tud.github.io">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

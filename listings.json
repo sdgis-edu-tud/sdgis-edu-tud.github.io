@@ -1,0 +1,55 @@
+[
+  {
+    "listing": "/pages/learn_gis.html",
+    "items": []
+  },
+  {
+    "listing": "/pages/learn-qgis/index.html",
+    "items": [
+      "/pages/learn-qgis/getting-started/activating-panels.html",
+      "/pages/learn-qgis/misc/land-use-grid-aggregation.html",
+      "/pages/learn-qgis/misc/statistics-and-data-visualization.html",
+      "/pages/learn-qgis/cartography/cartographic_principles.html",
+      "/pages/learn-qgis/getting-started/switch-language.html",
+      "/pages/learn-qgis/getting-started/connecting-folders.html",
+      "/pages/learn-qgis/spatial-data-preparation/creating-fishnet.html",
+      "/pages/learn-qgis/getting-started/new-project.html",
+      "/pages/learn-qgis/landscape-analysis/cross-profiles.html",
+      "/pages/learn-qgis/getting-started/folder-structure.html",
+      "/pages/learn-qgis/spatial-data-preparation/georeferencing-and-digitizing.html",
+      "/pages/learn-qgis/landscape-analysis/hydrological-analysis.html",
+      "/pages/learn-qgis/getting-started/install-qgis.html",
+      "/pages/learn-qgis/getting-started/installing-plugins.html",
+      "/pages/learn-qgis/introduction.html",
+      "/pages/learn-qgis/cartography/making_a_map.html",
+      "/pages/learn-qgis/cartography/map_elements.html",
+      "/pages/learn-qgis/cartography/map_layout.html",
+      "/pages/learn-qgis/environmental-assessment/pv-potential.html",
+      "/pages/learn-qgis/misc/import-vector.html",
+      "/pages/learn-qgis/misc/import-raster.html",
+      "/pages/learn-qgis/misc/choroplet-map.html",
+      "/pages/learn-qgis/misc/spatial-join-and-statistics.html",
+      "/pages/learn-qgis/misc/cartography-exercise.html",
+      "/pages/learn-qgis/density-analysis/road-network-density.html",
+      "/pages/learn-qgis/landscape-analysis/dem-derivatives.html",
+      "/pages/learn-qgis/cartography/types_of_maps.html",
+      "/pages/learn-qgis/getting-started/using-data-source-manager.html",
+      "/pages/learn-qgis/landscape-analysis/visibility-analysis.html",
+      "/pages/learn-qgis/cartography/map_aesthetics.html",
+      "/pages/learn-qgis/landscape-analysis/working-with-terrain-data.html",
+      "/pages/learn-qgis/misc/spatial-join.html"
+    ]
+  },
+  {
+    "listing": "/pages/find-data/index.html",
+    "items": []
+  },
+  {
+    "listing": "/pages/courses/index.html",
+    "items": [
+      "/pages/courses/mscu_q1.html",
+      "/pages/courses/mscu_q2.html",
+      "/pages/courses/mscu_q3.html"
+    ]
+  }
+]
