@@ -23,7 +23,7 @@ By the end of this tutorial, you will be able to:
 -   Load raster, LAZ point cloud, vector data to analyse in section.
 -   Digitize vector features (points, lines, polygons) from georeferenced maps
 -   Create and edit vector layers with proper attributes
--   Comapre datasets (vector vs raster vs LiDAR)
+-   Comapre datasets (vector vs raster vs LiDAR) 
 :::
 
 ::: callout-note
