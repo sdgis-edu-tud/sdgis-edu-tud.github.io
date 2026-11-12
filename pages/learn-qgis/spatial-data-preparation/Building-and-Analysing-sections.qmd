@@ -1,0 +1,176 @@
+---
+title: Building and Analysing Sections
+description: Creating Cross-Sections in QGIS Using Raster, Vector, and Point Cloud Data
+categories:
+  - Data Preparation
+  - Georeferencing
+level: Beginner
+level_code: 1.0 
+level_color: '#A6CEE3'
+date: .na.character
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+**Duration:** 30-40 minutes
+
+------------------------------------------------------------------------
+
+::: callout-note
+## Learning Goals
+
+By the end of this tutorial, you will be able to:
+
+- Drawing section lines
+- create multi-layer elevation profiles in QGIS using the built-in
+  Elevation Profile tool.
+- Load raster, LAZ point cloud, vector data to analyse in section.
+- Digitize vector features (points, lines, polygons) from georeferenced
+  maps
+- Create and edit vector layers with proper attributes
+- Compare data sets (vector vs raster vs LiDAR)
+:::
+
+::: callout-note
+## Software and Data Required
+
+- **QGIS** (version 3.x or higher)
+- **Freehand Raster Georeferencer** plugin
+- Active internet connection (for PDOK aerial photos)
+- **Data files:**
+  - NASA raster DEM
+  - TU Delft LAZ point Cloud
+  - Vector LineString
+:::
+
+# Steps
+
+## Part 1 : setting the project up
+
+1.  **Prepare QGIS**
+
+- Go to `Plugins` \> `Manage and Install Plugins…`
+
+- Then, in the `search bar` at the top left, type `QuickMapServices` →
+  click `Install`.
+
+  There is no need to install the old Profile Tool plugin anymore
+  because Elevation Profile is built into QGIS.
+
+2.  **Load a Basemap**
+
+- Go to `Web` \> `QuickMapServices` \> `OSM` \> `OSM Standard`
+
+This appears inside the Web menu after installing `QuickMapServices`.
+Use the mouse wheel and the navigation toolbar on the left to zoom to
+the correct area.
+
+3.  **Load the NASA Raster DEM (raster)**
+
+- Go to `Plugins` \> `SRTM Downloader` This opens the SRTM Downloader
+  window.
+
+- `Set canvas extent` is at the top right. It uses whatever is visible
+  on the map.
+
+- Tick `Load image into QGIS when done`.
+
+- Under `Output Path`, click the folder icon to choose where the file
+  goes.
+
+- Press `Download` at the bottom.
+
+::: callout-note
+- The first time, the websites asks for NASA Earthdata Login.
+- Use the link to create an account.
+- Once downloaded, the raster DEM appears in the `layer panel` on the
+  left
+:::
+
+4.  **Load the TU Delft LAZ file (point cloud)**
+
+- Download the ***LAZ tile*** from <https://geotiles.citg.tudelft.nl/>
+
+- Go to `Layer` \> `Add Layer` \> `Add Point Cloud Layer…`
+
+This opens a file window.
+
+- After selecting the LAZ file, press `Open`. You can simply drag and
+  drop it into QGIS.
+
+[To style the point cloud:]{.underline}
+
+- Open the `Layer Styling Panel` (on the right toolbar, look for the
+  paintbrush icon).
+- Select `Attribute by Classification`.
+- Set `Z` as the attribute so colours represent height.
+
+## Part 2 : creating the section for analysis
+
+5.  **Create the vector line (section line)**
+
+- Go to `Layer` \> `Create Layer` \> `New GeoPackage Layer…`
+
+On the window:
+
+- Choose an existing `.gpkg` file or create a new one.
+- Geometry type = LineString.
+- Create a field called `name` (text).
+- Press OK. To draw the line: \> Go to `Layer` \> Toggle `Editing`
+
+The editing toolbar becomes active.
+
+- Use `Add Line Feature` (icon looks like a bent polyline).
+- Click along the desired path.
+- Double-click to finish.
+- When the attribute window appears, type the line name.
+- then Go to `Layer` \> `Save Layer Edits` \> Go to `Layer` \> Toggle
+  `Editing` (off)
+
+6.  **Use the Elevation Profile tool**
+
+- Go to `View` \> `Panels` \> `Elevation Profile`
+
+A panel opens on the right side of QGIS.
+
+To add layers:
+
+- Click `+ Add Layer` at the top of the Elevation Profile panel.
+- Select the NASA DEM and choose `Raster` type.
+- Select the TU Delft LAZ point cloud and choose `Point Cloud` type.
+
+To use vector line:
+
+- Select the line in the map (using the regular `Select Features` tool).
+- In the `Elevation Profile` panel, open the menu (the three dots).
+- Choose `Generate Profile from Selected Feature`.
+
+7.  **Adjust the profile view**
+
+- Use `Sampling Distance` to adjust how detailed the profile is.
+- Use `Point Cloud Radius` to control how far from the line the point
+  cloud is sampled.
+- Toggle layers on and off using the eye icons.
+- Press `Export as Image` to save the section graph.
+
+8.  **Interpretation**
+
+- The raster DEM gives a smooth representation of terrain.
+- The point cloud shows fine detail like buildings, trees, and surface
+  features.
+- The vector line is the exact path used to extract the profile.
+
+**Other sources**
+
+- Video Tutorial: [Cross section detection using Profile
+  Tool](https://www.youtube.com/watch?v=jwbsdLuxyAY&t=110s&ab_channel=GeoDeltaLabs)
+- Video Tutorial: [Compare raster DTM's, contour lines and a point cloud
+  for different
+  transects](https://www.youtube.com/watch?time_continue=66&v=jqDm1RpGpVE&embeds_referring_euri=https%3A%2F%2Fwww.notion.so%2F&source_ve_path=Mjg2NjY)
+- Video Tutorial: [Elevation Profiles using .laz
+  data](https://www.youtube.com/watch?v=8fsMyj1nxpE&ab_channel=OpenSourceOptions)
+- Video Tutorial: [Multiple cross sectional
+  profiles](https://www.youtube.com/watch?v=HCO7Ugfc_0w&t=184s&ab_channel=WebStoryMap)
+- Video Tutorial: [Create 3D Terrain with QGIS and
+  GIMP](https://www.youtube.com/watch?v=rgFI5WiXOl8&ab_channel=GeoDeltaLabs)
