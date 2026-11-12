@@ -3,26 +3,12 @@ title: "About"
 about:
     template: jolla
     links:
-    - icon: twitter
-      text: twitter
-      href: https://twitter.com
+    # - icon: twitter
+    #   text: twitter
+    #   href: https://twitter.com
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/sdgis-edu-tud
 ---
 
-Finley Malloc is the Chief Data Scientist at Wengo Analytics. When not innovating on data platforms, Finley enjoys spending time unicycling and playing with her pet iguana.
-
-## Education
-
-University of California, San Diego | San Diego, CA
-PhD in Mathematics | Sept 2011 - June 2015
-
-Macalester College | St. Paul, MN
-B.A in Economics | Sept 2007 - June 2011
-
-## Experience
-
-Wengo Analytics | Head Data Scientist | April 2018 - present
-
-GeoScynce | Chief Analyst | Spet 2012 - April 2018
+The Spatial Data & GIS Platform is developed by the Department of Urbanism at TU Delft to support students and educators in the Faculty of Architecture and the Built Environment. We provide curated teaching materials, datasets, and tools for both Bachelor’s and Master’s programs.
