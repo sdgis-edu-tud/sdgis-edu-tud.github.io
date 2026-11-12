@@ -35,7 +35,7 @@ Click [here](https://surfdrive.surf.nl/s/ZifCpiHF3bXMSqF) to download the datase
 
 ### Building and Analyzing sections
 
-**Exercise 3: [Building and Analysing](/pages/learn-qgis/spatial-data-preparation/Building-and-Analysing-sections)**
+**Exercise 3: [Building and Analysing](/pages/learn-qgis/spatial-data-preparation/Building-and-Analysing-sections.qmd)**
 
 ### Data Interoperability and Visualization
 
