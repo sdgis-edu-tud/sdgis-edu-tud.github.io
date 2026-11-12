@@ -7,8 +7,6 @@ format: html
 
 - Daniele Cannatella
 
-- Rob van Houten
-
 - Inès Daugerel
 
 ## 👩‍🏫👨‍🏫🎓Helpers
