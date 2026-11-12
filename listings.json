@@ -4,11 +4,16 @@
     "items": []
   },
   {
+    "listing": "/pages/find-data/index.html",
+    "items": []
+  },
+  {
     "listing": "/pages/learn-qgis/index.html",
     "items": [
       "/pages/learn-qgis/getting-started/activating-panels.html",
       "/pages/learn-qgis/misc/land-use-grid-aggregation.html",
       "/pages/learn-qgis/misc/statistics-and-data-visualization.html",
+      "/pages/learn-qgis/spatial-data-preparation/Building-and-Analysing-sections.html",
       "/pages/learn-qgis/cartography/cartographic_principles.html",
       "/pages/learn-qgis/getting-started/switch-language.html",
       "/pages/learn-qgis/getting-started/connecting-folders.html",
@@ -39,10 +44,6 @@
       "/pages/learn-qgis/landscape-analysis/working-with-terrain-data.html",
       "/pages/learn-qgis/misc/spatial-join.html"
     ]
-  },
-  {
-    "listing": "/pages/find-data/index.html",
-    "items": []
   },
   {
     "listing": "/pages/courses/index.html",
