@@ -68,8 +68,14 @@ the correct area.
 
 3.  **Load the NASA Raster DEM (raster)**
 
-- Go to `Plugins` \> `SRTM Downloader` This opens the SRTM Downloader
-  window.
+- Visit the [OpenTopography](https://opentopography.org/) website; log
+  in or create a new account.
+
+- In "My Account", request an API Key. Keep the generated key somewhere
+  easily accessible.
+
+- On QGIS, go to `Plugins` \> `SRTM Downloader`. This opens the SRTM
+  Downloader window.
 
 - `Set canvas extent` is at the top right. It uses whatever is visible
   on the map.
@@ -79,18 +85,18 @@ the correct area.
 - Under `Output Path`, click the folder icon to choose where the file
   goes.
 
-- Press `Download` at the bottom.
+- Under API-Key, paste the key obtained from OpenTopography.
 
-::: callout-note
-- The first time, the websites asks for NASA Earthdata Login.
-- Use the link to create an account.
-- Once downloaded, the raster DEM appears in the `layer panel` on the
-  left
-:::
+- Select the correct DEM-Type.
+
+- Press `Download` at the bottom. The raster DEM should appear in the
+  `layer panel` on the left.
 
 4.  **Load the TU Delft LAZ file (point cloud)**
 
-- Download the ***LAZ tile*** from <https://geotiles.citg.tudelft.nl/>
+- Download `37GN2_10_tutorial.copc.laz` from the provided data folder.
+  It contains a processed ***LAZ tile*** from
+  <https://geotiles.citg.tudelft.nl/>
 
 - Go to `Layer` \> `Add Layer` \> `Add Point Cloud Layer…`
 
@@ -103,8 +109,9 @@ This opens a file window.
 
 - Open the `Layer Styling Panel` (on the right toolbar, look for the
   paintbrush icon).
-- Select `Attribute by Classification`.
+- Select `Attribute by Ramp`.
 - Set `Z` as the attribute so colours represent height.
+- Choose a color ramp, and click Apply.
 
 ## Part 2 : creating the section for analysis
 
@@ -130,7 +137,7 @@ The editing toolbar becomes active.
 
 6.  **Use the Elevation Profile tool**
 
-- Go to `View` \> `Panels` \> `Elevation Profile`
+- Go to `View` \> `Elevation Profile`
 
 A panel opens on the right side of QGIS.
 
@@ -140,16 +147,14 @@ To add layers:
 - Select the NASA DEM and choose `Raster` type.
 - Select the TU Delft LAZ point cloud and choose `Point Cloud` type.
 
-To use vector line:
+To use vector lines:
 
-- Select the line in the map (using the regular `Select Features` tool).
-- In the `Elevation Profile` panel, open the menu (the three dots).
-- Choose `Generate Profile from Selected Feature`.
+- In the `Elevation Profile` panel, choose `Capture Curve from Feature`.
+- Select the desired line.
 
 7.  **Adjust the profile view**
 
-- Use `Sampling Distance` to adjust how detailed the profile is.
-- Use `Point Cloud Radius` to control how far from the line the point
+- Use `Options > Tolerance` to control how far from the line the point
   cloud is sampled.
 - Toggle layers on and off using the eye icons.
 - Press `Export as Image` to save the section graph.
